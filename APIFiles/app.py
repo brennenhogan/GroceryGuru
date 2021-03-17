@@ -1,7 +1,8 @@
 from flask import Flask
-from models.product_model import product_api
-from models.login_model import login_api
-from models.base_model import db, ma
+from routes.product_routes import product_api
+from routes.login_routes import login_api
+from models.base_model import db
+from schemas.base_schema import ma
 import os
 
 # Init app
