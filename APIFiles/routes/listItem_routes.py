@@ -2,6 +2,7 @@ from flask import request, jsonify, Blueprint
 from models.base_model import db
 from models.listItem_model import ListItem
 from models.store_model import Store
+from models.listOwnership_model import ListOwnership
 from schemas.listItem_schema import listItem_schema
 from schemas.store_schema import store_schema
 from schemas.completeList_schema import completeList_schema
@@ -31,8 +32,14 @@ def add_item():
 
 # INDIVIDUAL LIST QUERY #
 # Get a list by ID
-@listItem_api.route('/list/<id>', methods=['GET'])
-def get_list(id):
+@listItem_api.route('/list/<id>/<user_uuid>', methods=['GET'])
+def get_list(id, user_uuid):
+  owner = db.session.query(ListOwnership).filter(ListOwnership.uuid==user_uuid).filter(ListOwnership.list_id==id).all()
+  
+  if not owner:
+    print("INVALID REQUEST - No permissions")
+    return {"result": False}
+
   stores = db.session.query(ListItem.store_id).filter(ListItem.list_id==id).distinct().all()
   distinct_store_ids = [store._asdict()['store_id'] for store in stores] # Get the ids of the stores for a list
   
