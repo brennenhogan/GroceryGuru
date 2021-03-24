@@ -1,6 +1,9 @@
 from flask import Flask
 from routes.product_routes import product_api
 from routes.login_routes import login_api
+from routes.listItem_routes import listItem_api
+from routes.store_routes import store_api
+from routes.listOwnership_routes import listOwnership_api
 from models.base_model import db
 from schemas.base_schema import ma
 import os
@@ -18,6 +21,9 @@ ma.init_app(app)
 
 app.register_blueprint(product_api)
 app.register_blueprint(login_api)
+app.register_blueprint(listItem_api)
+app.register_blueprint(store_api)
+app.register_blueprint(listOwnership_api)
 
 # Create DB
 def create():
