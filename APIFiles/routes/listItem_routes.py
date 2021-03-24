@@ -5,25 +5,29 @@ from models.store_model import Store
 from schemas.listItem_schema import listItem_schema
 from schemas.store_schema import store_schema
 from schemas.completeList_schema import completeList_schema
+from sqlalchemy import exc
 
 listItem_api = Blueprint('listItem_api', __name__)
 
-# Add an item # TODO - sort out autoincrement on the item_id
+# Add an item
 @listItem_api.route('/item', methods=['POST'])
 def add_item():
-  item_id = request.json['item_id']
   list_id = request.json['list_id']
-  store = request.json['store'] # Store must be added for user to add items to that store, so this works
+  store_id = request.json['store_id'] # Store must be added for user to add items to that store, so this works
   qty = request.json['qty']
   description = request.json['description']
-  purchased = request.json['purchased']
+  purchased = 0
 
-  new_item = ListItem(item_id, list_id, store, qty, description, purchased)
-
+  new_item = ListItem(list_id, store_id, qty, description, purchased)
+ 
   db.session.add(new_item)
-  db.session.commit()
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    print(exc.SQLAlchemyError)
+    return {"result": False}
 
-  return listItem_schema.jsonify(new_item)
+  return {"result": True}
 
 # INDIVIDUAL LIST QUERY #
 # Get a list by ID

@@ -5,6 +5,7 @@ from models.list_model import List
 from schemas.listOwnership_schema import listOwnership_schema
 from schemas.list_schema import list_schema
 from schemas.listName_schema import listName_schema
+from sqlalchemy import exc
 
 listOwnership_api = Blueprint('listOwnership_api', __name__)
 
@@ -17,9 +18,12 @@ def add_owner():
   new_owner = ListOwnership(uuid, list_id)
 
   db.session.add(new_owner)
-  db.session.commit()
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    return {"result": False}
 
-  return listOwnership_schema.jsonify(new_owner)
+  return {"result": True}
 
 # LANDING PAGE QUERY #
 # See all lists for a user (ListOwnership.list_id, List.name, List.old)

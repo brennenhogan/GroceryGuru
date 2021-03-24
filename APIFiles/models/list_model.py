@@ -2,9 +2,9 @@ from models.base_model import db
 
 # List Class/Model
 class List(db.Model):
-  list_id = db.Column(db.Integer, primary_key=True)
-  name = db.Column(db.String(100))
-  old = db.Column(db.Integer)
+  list_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+  name = db.Column(db.String(100), nullable=False)
+  old = db.Column(db.Integer, nullable=False)
 
   def __init__(self, list_id, name, old):
     self.list_id = list_id
