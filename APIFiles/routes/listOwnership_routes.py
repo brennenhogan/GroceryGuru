@@ -9,8 +9,8 @@ from sqlalchemy import exc
 
 listOwnership_api = Blueprint('listOwnership_api', __name__)
 
-# Add a new list (or share a list to another user)
-@listOwnership_api.route('/owner', methods=['POST'])
+# Share a list to another user)
+@listOwnership_api.route('/share', methods=['POST'])
 def add_owner():
   uuid = request.json['uuid']
   list_id = request.json['list_id']

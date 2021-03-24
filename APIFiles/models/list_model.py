@@ -6,8 +6,7 @@ class List(db.Model):
   name = db.Column(db.String(100), nullable=False)
   old = db.Column(db.Integer, nullable=False)
 
-  def __init__(self, list_id, name, old):
-    self.list_id = list_id
+  def __init__(self, name, old):
     self.name = name
     self.old = old
 

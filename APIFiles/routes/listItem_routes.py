@@ -16,7 +16,7 @@ def add_item():
   store_id = request.json['store_id'] # Store must be added for user to add items to that store, so this works
   qty = request.json['qty']
   description = request.json['description']
-  purchased = 0
+  purchased = 0 # All items start unpurchased
 
   new_item = ListItem(list_id, store_id, qty, description, purchased)
  

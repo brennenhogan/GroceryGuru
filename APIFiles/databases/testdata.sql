@@ -14,7 +14,8 @@ VALUES
     ('breezynbezgcneoqqwdjafvqh', 1),
     ('brickfertyhnbvsdfgreqewed', 1),
     ('brickfertyhnbvsdfgreqewed', 2),
-    ('brickfertyhnbvsdfgreqewed', 3);
+    ('brickfertyhnbvsdfgreqewed', 3),
+    ('brickfertyhnbvsdfgreqewed', 4);
 
 INSERT INTO list (list_id, name, old)
 VALUES
