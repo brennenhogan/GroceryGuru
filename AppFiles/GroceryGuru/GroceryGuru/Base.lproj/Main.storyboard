@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cCO-Av-7QZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ANm-xT-Hie">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -122,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="soD-ip-G6o" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="138"/>
+            <point key="canvasLocation" x="1048" y="207"/>
         </scene>
         <!--CreateNewListController-->
         <scene sceneID="0ku-ub-45d">
@@ -240,7 +240,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="45j-5N-wIm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057" y="138"/>
+            <point key="canvasLocation" x="1967" y="207"/>
         </scene>
         <!--LoginViewController-->
         <scene sceneID="JgS-Hj-Ffa">
@@ -255,7 +255,7 @@
                         </userGuides>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="YfT-f6-hA7">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GroceryGuruBanner" translatesAutoresizingMaskIntoConstraints="NO" id="RNV-rP-cd9">
                                         <rect key="frame" x="20" y="10" width="374" height="128"/>
@@ -264,7 +264,7 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="BTZ-Zz-Lbg">
-                                        <rect key="frame" x="20" y="154" width="374" height="654"/>
+                                        <rect key="frame" x="20" y="154" width="374" height="610"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Uzh-v6-7pE">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="239"/>
@@ -366,48 +366,54 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lJz-Iw-ens">
-                                                <rect key="frame" x="0.0" y="255" width="374" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="255" width="374" height="30"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="PMT-HZ-Aft">
-                                                        <rect key="frame" x="97.5" y="0.0" width="179" height="20.5"/>
+                                                        <rect key="frame" x="97.5" y="0.0" width="179" height="30"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Password?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uwn-yB-y6B">
-                                                                <rect key="frame" x="0.0" y="0.0" width="136" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="136" height="30"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9d-Jx-zii">
-                                                                <rect key="frame" x="140" y="0.0" width="39" height="20.5"/>
+                                                                <rect key="frame" x="140" y="0.0" width="39" height="30"/>
                                                                 <state key="normal" title="Reset">
                                                                     <color key="titleColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <segue destination="v5S-XY-VaW" kind="show" id="umc-oT-CbQ"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" verticalHuggingPriority="200" translatesAutoresizingMaskIntoConstraints="NO" id="Dgn-b1-nif">
-                                                <rect key="frame" x="0.0" y="291.5" width="374" height="326"/>
+                                                <rect key="frame" x="0.0" y="301" width="374" height="263"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yW5-px-MBn">
-                                                <rect key="frame" x="0.0" y="633.5" width="374" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="580" width="374" height="30"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="YB9-eu-p7A">
-                                                        <rect key="frame" x="69.5" y="0.0" width="235" height="20.5"/>
+                                                        <rect key="frame" x="69.5" y="0.0" width="235" height="30"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIB-Gz-M7S">
-                                                                <rect key="frame" x="0.0" y="0.0" width="179" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="179" height="30"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FyI-6r-78I">
-                                                                <rect key="frame" x="183" y="0.0" width="52" height="20.5"/>
+                                                                <rect key="frame" x="183" y="0.0" width="52" height="30"/>
                                                                 <state key="normal" title="Sign up">
                                                                     <color key="titleColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <segue destination="kLp-IX-E2O" kind="show" id="Kpf-qF-olj"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -432,12 +438,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C2g-4s-IQC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="-541"/>
+            <point key="canvasLocation" x="1047.8260869565217" y="-541.07142857142856"/>
         </scene>
         <!--SignUpViewController-->
         <scene sceneID="KsW-Zr-JAt">
             <objects>
-                <viewController title="SignUpViewController" id="kLp-IX-E2O" sceneMemberID="viewController">
+                <viewController title="SignUpViewController" id="kLp-IX-E2O" customClass="ViewController" customModule="GroceryGuru" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tRb-7I-pSS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -447,34 +453,22 @@
                         </userGuides>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TFt-4X-6KG">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="oen-uu-o5A">
-                                        <rect key="frame" x="20" y="10" width="374" height="342"/>
+                                        <rect key="frame" x="20" y="10" width="374" height="296"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="puQ-Qu-dhX">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="22"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTA-Uv-FOw">
-                                                        <rect key="frame" x="0.0" y="0.0" width="17.5" height="22"/>
-                                                        <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal" image="xmark" catalog="system">
-                                                            <color key="titleColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </state>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="WTT-Q5-ze7">
-                                                <rect key="frame" x="0.0" y="46" width="374" height="167"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="170"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your information to create account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QpS-fr-2ex">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="19"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="22"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yiE-5T-xgx" customClass="DesignableView" customModule="GroceryGuru" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="43" width="374" height="50"/>
+                                                        <rect key="frame" x="0.0" y="46" width="374" height="50"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4wt-TJ-CIO">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -508,7 +502,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ao-Wl-gyO" customClass="DesignableView" customModule="GroceryGuru" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="117" width="374" height="50"/>
+                                                        <rect key="frame" x="0.0" y="120" width="374" height="50"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q8A-8l-Eit">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -544,14 +538,14 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Yub-zb-7mD">
-                                                <rect key="frame" x="0.0" y="237" width="374" height="31"/>
+                                                <rect key="frame" x="0.0" y="194" width="374" height="28"/>
                                                 <subviews>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lbT-gg-ZNQ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="51" height="28"/>
                                                         <color key="onTintColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="200" text="I agree to terms and conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oe5-UP-WyZ">
-                                                        <rect key="frame" x="65" y="0.0" width="309" height="31"/>
+                                                        <rect key="frame" x="65" y="0.0" width="309" height="28"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -559,7 +553,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tMP-yK-i4X">
-                                                <rect key="frame" x="0.0" y="292" width="374" height="50"/>
+                                                <rect key="frame" x="0.0" y="246" width="374" height="50"/>
                                                 <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="960-AV-aSH"/>
@@ -573,11 +567,14 @@
                                                         <integer key="value" value="25"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="login:" destination="kLp-IX-E2O" eventType="primaryActionTriggered" id="ecb-55-acT"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="200" translatesAutoresizingMaskIntoConstraints="NO" id="5mp-ds-sHO">
-                                        <rect key="frame" x="20" y="368" width="374" height="440"/>
+                                        <rect key="frame" x="20" y="322" width="374" height="442"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -593,15 +590,21 @@
                             <constraint firstItem="TFt-4X-6KG" firstAttribute="top" secondItem="cqq-NE-Vkq" secondAttribute="top" id="cmQ-Lo-OCR"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Account Sign Up" id="XMc-s9-W3O"/>
+                    <connections>
+                        <outlet property="loginButton" destination="tMP-yK-i4X" id="xxP-ah-r8T"/>
+                        <outlet property="passwordText" destination="Q8A-8l-Eit" id="Sxf-pU-VK3"/>
+                        <outlet property="userText" destination="4wt-TJ-CIO" id="Art-Eg-o1j"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DVa-zi-qz4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057" y="-541"/>
+            <point key="canvasLocation" x="1966.6666666666667" y="-541.07142857142856"/>
         </scene>
         <!--ResetPasswordViewController-->
         <scene sceneID="SBi-Fm-idq">
             <objects>
-                <viewController storyboardIdentifier="ResetPasswordViewController" title="ResetPasswordViewController" id="v5S-XY-VaW" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResetPasswordViewController" title="ResetPasswordViewController" id="v5S-XY-VaW" customClass="ViewController" customModule="GroceryGuru" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ghe-oJ-SxT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -611,34 +614,22 @@
                         </userGuides>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rEz-YV-bty">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="bap-Um-K3H">
-                                        <rect key="frame" x="20" y="10" width="374" height="213"/>
+                                        <rect key="frame" x="20" y="10" width="374" height="170"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="iBO-3i-hMk">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="22"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j8g-Lj-xvg">
-                                                        <rect key="frame" x="0.0" y="0.0" width="17.5" height="22"/>
-                                                        <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal" image="xmark" catalog="system">
-                                                            <color key="titleColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </state>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="RRB-TU-85f">
-                                                <rect key="frame" x="0.0" y="46" width="374" height="93"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="96"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your email to reset your password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ye-Wa-WH6">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="19"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="22"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ub1-yL-ukK" customClass="DesignableView" customModule="GroceryGuru" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="43" width="374" height="50"/>
+                                                        <rect key="frame" x="0.0" y="46" width="374" height="50"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BGx-Fl-Vcy">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -674,7 +665,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kB2-z0-fKq">
-                                                <rect key="frame" x="0.0" y="163" width="374" height="50"/>
+                                                <rect key="frame" x="0.0" y="120" width="374" height="50"/>
                                                 <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="t2F-UR-SXk"/>
@@ -692,7 +683,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="200" translatesAutoresizingMaskIntoConstraints="NO" id="4uI-jo-zzI">
-                                        <rect key="frame" x="20" y="239" width="374" height="569"/>
+                                        <rect key="frame" x="20" y="196" width="374" height="568"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -708,16 +699,43 @@
                             <constraint firstItem="rEz-YV-bty" firstAttribute="top" secondItem="EZL-JX-8rJ" secondAttribute="top" id="cPW-xJ-HQh"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Reset Password" id="vfR-HG-Hj3">
+                        <barButtonItem key="backBarButtonItem" title="test`" id="NMs-pu-Ooy"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nbs-E1-x5i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1954" y="-541"/>
+            <point key="canvasLocation" x="2863.768115942029" y="-541.07142857142856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tuI-9q-NgX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ANm-xT-Hie" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="76U-jP-ZeY">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="r5u-YA-HRU">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="cCO-Av-7QZ" kind="relationship" relationship="rootViewController" id="LTW-KL-YZr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6sd-Lp-Tvv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="-541.07142857142856"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
         <image name="GroceryGuruBanner" width="1198" height="986"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
-        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

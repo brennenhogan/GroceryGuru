@@ -9,8 +9,10 @@ It will install flask, flask-sqlalchemy, flask-marshmallow, and marshmallow-sqla
 # Create DB (if not already created)
 $ python3
 >> import app
->> create()
+>> app.create()
 >> exit()
+
+Currently if the DB already exists, you must delete the existing database and recreate using the steps above if the schema has changed
 
 # Run Server (http://localhst:5000)
 python app.py
