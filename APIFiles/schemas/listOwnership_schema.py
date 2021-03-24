@@ -1,9 +1,10 @@
 from schemas.base_schema import ma
+from marshmallow import fields
 
 # List Schema
 class ListOwnershipSchema(ma.Schema):
-  class Meta:
-    fields = ('uuid', 'list_id')
+  uuid = fields.Str()
+  list_id = fields.Str()
 
 # Init schema
 listOwnership_schema = ListOwnershipSchema()

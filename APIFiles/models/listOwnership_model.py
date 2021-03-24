@@ -9,3 +9,6 @@ class ListOwnership(db.Model):
   def __init__(self, uuid, list_id):
     self.uuid = uuid
     self.list_id = list_id
+
+  def get_list_id(self):
+    return self.list_id

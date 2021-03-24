@@ -10,3 +10,9 @@ class List(db.Model):
     self.list_id = list_id
     self.name = name
     self.old = old
+
+  def get_name(self):
+    return self.name
+  
+  def get_old(self):
+    return self.old

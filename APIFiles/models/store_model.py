@@ -8,3 +8,9 @@ class Store(db.Model):
   def __init__(self, store_id, store_name):
     self.store_id = store_id
     self.store_name = store_name
+
+  def get_name(self):
+    return self.store_name
+
+  def get_id(self):
+    return self.store_id
