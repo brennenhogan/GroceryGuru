@@ -3,9 +3,9 @@ from models.login_model import Login
 
 # List Class/Model
 class ListOwnership(db.Model):
-  user_id = db.Column(db.Integer, db.ForeignKey('login.id'), primary_key=True)
+  uuid = db.Column(db.Integer, db.ForeignKey('login.uuid'), primary_key=True)
   list_id = db.Column(db.Integer, primary_key=True)
 
-  def __init__(self, user_id, list_id):
-    self.user_id = user_id
+  def __init__(self, uuid, list_id):
+    self.uuid = uuid
     self.list_id = list_id

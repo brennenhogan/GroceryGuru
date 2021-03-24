@@ -7,7 +7,6 @@ from schemas.store_schema import store_schema
 
 listItem_api = Blueprint('listItem_api', __name__)
 
-# TODO - Make ListOwnership user_id a fk to user_id in Users (maybe not necessary)
 # Add an item # TODO - sort out autoincrement on the item_id
 @listItem_api.route('/item', methods=['POST'])
 def add_item():
@@ -25,9 +24,8 @@ def add_item():
 
   return listItem_schema.jsonify(new_item)
 
-# Get a list # TODO - Make new schema for lists of lists - currently this method doesn't work b/c we pass a list to a method that expects a single instance of ListItem
+# Get a list
 @listItem_api.route('/list/<id>', methods=['GET'])
 def get_items(id):
   list_items = ListItem.query.filter_by(list_id=id).all()
-  print(list_items)
-  return listItem_schema.jsonify(list_items)
+  return listItem_schema.jsonify(list_items, many=True)
