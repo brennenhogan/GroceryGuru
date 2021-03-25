@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
+//  LandingPageViewController.swift
 //  GroceryGuru
 //
-//  Created by Brennen Hogan on 3/15/21.
+//  Created by Brennen Hogan on 3/24/21.
 //
 
 import UIKit
@@ -20,7 +20,7 @@ extension UIColor {
 
 }
 
-class ViewController: UIViewController {
+class LandingPageViewController: UIViewController {
     
     @IBOutlet weak var userText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
@@ -30,6 +30,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.setHidesBackButton(true, animated: false)
         configureNavigationBar()
     }
     
@@ -50,18 +51,6 @@ class ViewController: UIViewController {
         ]
         self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [NSAttributedString.Key : AnyObject]
         
-        // Sets the Back Button Sizing and Font
-        let fontAttr = [
-            NSAttributedString.Key.font: UIFont(name: "Roboto-Regular", size: 28)!
-        ]
-        
-        let buttonAppearance = UIBarButtonItemAppearance()
-        buttonAppearance.normal.titleTextAttributes = fontAttr
-        
-        let navbarAppearance = UINavigationBarAppearance()
-        navbarAppearance.buttonAppearance = buttonAppearance
-        UINavigationBar.appearance().standardAppearance = navbarAppearance
-        
     }
     
     @IBAction func login(_ sender: UIButton) {
@@ -75,6 +64,7 @@ class ViewController: UIViewController {
                 print(error)
             case .success(let login):
                 print(login.uuid)
+                //
                 self?.loginDetails = login
             }
         }

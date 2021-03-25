@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2E87AFBA25FFF4B800D3A575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFB925FFF4B800D3A575 /* AppDelegate.swift */; };
 		2E87AFBC25FFF4B800D3A575 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFBB25FFF4B800D3A575 /* SceneDelegate.swift */; };
-		2E87AFBE25FFF4B800D3A575 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFBD25FFF4B800D3A575 /* ViewController.swift */; };
+		2E87AFBE25FFF4B800D3A575 /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFBD25FFF4B800D3A575 /* LandingPageViewController.swift */; };
 		2E87AFC125FFF4B800D3A575 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E87AFBF25FFF4B800D3A575 /* Main.storyboard */; };
 		2E87AFC325FFF4B900D3A575 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E87AFC225FFF4B900D3A575 /* Assets.xcassets */; };
 		2E87AFC625FFF4B900D3A575 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E87AFC425FFF4B900D3A575 /* LaunchScreen.storyboard */; };
@@ -44,6 +44,12 @@
 		2E9ABE81260AAAFF0047DED3 /* Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABE80260AAAFF0047DED3 /* Designable.swift */; };
 		2E9ABE86260AAEF60047DED3 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABE85260AAEF60047DED3 /* Login.swift */; };
 		2E9ABE8B260AAF560047DED3 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABE8A260AAF560047DED3 /* LoginRequest.swift */; };
+		2E9ABE96260BC09F0047DED3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABE95260BC09F0047DED3 /* SignUpViewController.swift */; };
+		2E9ABE9B260BCEDA0047DED3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABE9A260BCEDA0047DED3 /* LoginViewController.swift */; };
+		2E9ABEA8260BCEFC0047DED3 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABEA7260BCEFC0047DED3 /* ResetPasswordViewController.swift */; };
+		2E9ABEC5260BF8990047DED3 /* NewUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABEC4260BF8990047DED3 /* NewUser.swift */; };
+		2E9ABECD260BF8CC0047DED3 /* NewUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABECC260BF8CC0047DED3 /* NewUserRequest.swift */; };
+		2E9ABED2260C03CD0047DED3 /* ResetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABED1260C03CD0047DED3 /* ResetPasswordRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +73,7 @@
 		2E87AFB625FFF4B800D3A575 /* GroceryGuru.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroceryGuru.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E87AFB925FFF4B800D3A575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E87AFBB25FFF4B800D3A575 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2E87AFBD25FFF4B800D3A575 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2E87AFBD25FFF4B800D3A575 /* LandingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
 		2E87AFC025FFF4B800D3A575 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2E87AFC225FFF4B900D3A575 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E87AFC525FFF4B900D3A575 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -107,6 +113,12 @@
 		2E9ABE80260AAAFF0047DED3 /* Designable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Designable.swift; sourceTree = "<group>"; };
 		2E9ABE85260AAEF60047DED3 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		2E9ABE8A260AAF560047DED3 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		2E9ABE95260BC09F0047DED3 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		2E9ABE9A260BCEDA0047DED3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2E9ABEA7260BCEFC0047DED3 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		2E9ABEC4260BF8990047DED3 /* NewUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUser.swift; sourceTree = "<group>"; };
+		2E9ABECC260BF8CC0047DED3 /* NewUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserRequest.swift; sourceTree = "<group>"; };
+		2E9ABED1260C03CD0047DED3 /* ResetPasswordRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +169,7 @@
 		2E87AFB825FFF4B800D3A575 /* GroceryGuru */ = {
 			isa = PBXGroup;
 			children = (
+				2E9ABEC3260BF84B0047DED3 /* API */,
 				2E9ABE5E260A91180047DED3 /* Fonts */,
 				2E87AFF625FFF5C100D3A575 /* CoreData */,
 				2E87AFEC25FFF56600D3A575 /* ViewControllers */,
@@ -167,8 +180,6 @@
 				2E87AFC425FFF4B900D3A575 /* LaunchScreen.storyboard */,
 				2E87AFC725FFF4B900D3A575 /* Info.plist */,
 				2E9ABE80260AAAFF0047DED3 /* Designable.swift */,
-				2E9ABE85260AAEF60047DED3 /* Login.swift */,
-				2E9ABE8A260AAF560047DED3 /* LoginRequest.swift */,
 			);
 			path = GroceryGuru;
 			sourceTree = "<group>";
@@ -194,7 +205,8 @@
 		2E87AFEC25FFF56600D3A575 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2E87AFBD25FFF4B800D3A575 /* ViewController.swift */,
+				2E9ABEBC260BCFBA0047DED3 /* Login */,
+				2E87AFBD25FFF4B800D3A575 /* LandingPageViewController.swift */,
 				2E87AFEE25FFF59200D3A575 /* AddListViewController.swift */,
 			);
 			path = ViewControllers;
@@ -253,6 +265,28 @@
 				2E9ABE6C260A91390047DED3 /* Roboto-Black.ttf */,
 			);
 			path = Roboto;
+			sourceTree = "<group>";
+		};
+		2E9ABEBC260BCFBA0047DED3 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2E9ABEA7260BCEFC0047DED3 /* ResetPasswordViewController.swift */,
+				2E9ABE95260BC09F0047DED3 /* SignUpViewController.swift */,
+				2E9ABE9A260BCEDA0047DED3 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		2E9ABEC3260BF84B0047DED3 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				2E9ABE8A260AAF560047DED3 /* LoginRequest.swift */,
+				2E9ABECC260BF8CC0047DED3 /* NewUserRequest.swift */,
+				2E9ABED1260C03CD0047DED3 /* ResetPasswordRequest.swift */,
+				2E9ABE85260AAEF60047DED3 /* Login.swift */,
+				2E9ABEC4260BF8990047DED3 /* NewUser.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -410,13 +444,19 @@
 			files = (
 				2E9ABE8B260AAF560047DED3 /* LoginRequest.swift in Sources */,
 				2E87AFF825FFF5DB00D3A575 /* CoreDataStack.swift in Sources */,
+				2E9ABEC5260BF8990047DED3 /* NewUser.swift in Sources */,
 				2E9ABE81260AAAFF0047DED3 /* Designable.swift in Sources */,
-				2E87AFBE25FFF4B800D3A575 /* ViewController.swift in Sources */,
+				2E9ABEA8260BCEFC0047DED3 /* ResetPasswordViewController.swift in Sources */,
+				2E87AFBE25FFF4B800D3A575 /* LandingPageViewController.swift in Sources */,
+				2E9ABE96260BC09F0047DED3 /* SignUpViewController.swift in Sources */,
 				2E87AFBA25FFF4B800D3A575 /* AppDelegate.swift in Sources */,
 				2E87AFEF25FFF59200D3A575 /* AddListViewController.swift in Sources */,
 				2E87AFBC25FFF4B800D3A575 /* SceneDelegate.swift in Sources */,
 				2E87B00125FFF60700D3A575 /* Lists.xcdatamodeld in Sources */,
 				2E9ABE86260AAEF60047DED3 /* Login.swift in Sources */,
+				2E9ABE9B260BCEDA0047DED3 /* LoginViewController.swift in Sources */,
+				2E9ABECD260BF8CC0047DED3 /* NewUserRequest.swift in Sources */,
+				2E9ABED2260C03CD0047DED3 /* ResetPasswordRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,7 +632,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 47J734W9F8;
 				INFOPLIST_FILE = GroceryGuru/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -600,6 +642,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Brennen.GroceryGuru;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = GroceryGuru;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -610,7 +653,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 47J734W9F8;
 				INFOPLIST_FILE = GroceryGuru/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -618,6 +663,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Brennen.GroceryGuru;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = GroceryGuru;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

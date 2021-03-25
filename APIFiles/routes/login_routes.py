@@ -28,6 +28,14 @@ def login():
 def create():
   name = request.json['name']
   password = request.json['password']
+
+  user =  Login.query.filter_by(name=name).first()
+  
+  # If the user already exists, throw an error
+  if user:
+    return {"uuid": "", "message": "ERROR: Account already exists for the user"}
+
+  # If the user does not exist, create an account
   uuid = "".join(random.choice(LETTERS) for i in range(25))
 
   new_login = Login(name, password, uuid)
@@ -35,10 +43,20 @@ def create():
   db.session.add(new_login)
   db.session.commit()
 
-  return {"uuid": new_login.uuid}
+  return {"uuid": new_login.uuid, "message": "Account created successfully"}
 
-# Get Single Login
-@login_api.route('/login/<id>', methods=['GET'])
-def get_login(id):
-  login = Login.query.get(id)
-  return login_schema.jsonify(login)
+# Reset password
+@login_api.route('/resetpass', methods=['PUT'])
+def reset_pass():
+  name = request.json['name']
+  password = request.json['password']
+  user =  Login.query.filter_by(name=name).first()
+  
+  # If the user exists, update their password and return the UUID
+  if user:
+    user.password = password
+    db.session.commit()
+    return {"uuid": user.uuid, "message": "Password successfully changed"}
+  
+  # IF the user does not exist, throw an error
+  return {"uuid": "", "message": "ERROR: User does not exist"}
