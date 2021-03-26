@@ -25,13 +25,26 @@ class LandingPageViewController: UIViewController {
     @IBOutlet weak var userText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet var tableView: UITableView!
     
     var loginDetails = LoginResponse()
+    
+    var allListData = AllListResponse() {
+        didSet {
+            DispatchQueue.main.async {
+                print("Table reload with new data")
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
         configureNavigationBar()
+        tableView.delegate = self
+        tableView.dataSource = self
+        self.getData()
     }
     
     private func configureNavigationBar() {
@@ -70,6 +83,58 @@ class LandingPageViewController: UIViewController {
         }
         
     }
+    
+    func getData() {
+        let allListRequest = AllListRequest()
+        allListRequest.getList { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print("Error getting data")
+                DispatchQueue.main.async {
+                    self?.CreateAlert(title: "Error", message: "\(error)")
+                }
+                print(error)
+            case .success(let allLists):
+                self?.allListData = allLists
+                print("Data received properly")
+            }
+        }
+    }
+    
+    func CreateAlert(title: String, message: String) {
+
+            let alertController = UIAlertController(title: title, message:
+                                                        message, preferredStyle: UIAlertController.Style.alert)
+
+        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default,handler: nil))
+        alertController.view.tintColor = UIColor(hex: 0x7A916E)
+
+            self.present(alertController, animated: true, completion: nil)
+    }
 
 }
 
+extension LandingPageViewController : UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("tapped cell!!")
+    }
+    
+}
+
+extension LandingPageViewController : UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return allListData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath)
+        
+        let item = allListData[indexPath.row]
+        
+        cell.textLabel?.text = item.listName
+        cell.detailTextLabel?.text = String(item.listID)
+        
+        return cell
+    }
+}
