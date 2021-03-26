@@ -30,6 +30,39 @@ def add_item():
 
   return {"result": True}
 
+# Update the quantity of an item
+@listItem_api.route('/item/qty', methods=['POST'])
+def update_qty():
+  item_id = request.json['item_id']
+  qty = request.json['qty']
+ 
+  item = ListItem.query.filter(ListItem.item_id==item_id).first() # Get the item from the DB
+  item.qty = qty # update the quantity
+
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    print(exc.SQLAlchemyError)
+    return {"result": False}
+
+  return {"result": True}
+
+# Delete an item
+@listItem_api.route('/item/delete', methods=['POST'])
+def delete_item():
+  item_id = request.json['item_id']
+ 
+  item = ListItem.query.filter(ListItem.item_id==item_id).first() # Get the item from the DB
+  db.session.delete(item)
+  
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    print(exc.SQLAlchemyError)
+    return {"result": False}
+
+  return {"result": True}
+
 # INDIVIDUAL LIST QUERY #
 # Get a list by ID
 @listItem_api.route('/list/<id>/<user_uuid>', methods=['GET'])

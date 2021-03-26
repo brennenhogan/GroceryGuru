@@ -18,17 +18,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": 3,\r\n    \"list_id\": 1\r\n}"
+					"raw": "{\r\n    \"store_name\": \"test store 123\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5000/owner",
+					"raw": "http://localhost:5000/store",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "5000",
 					"path": [
-						"owner"
+						"store"
 					]
 				}
 			},
@@ -47,17 +47,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"user_id\": 3,\r\n    \"list_id\": 1\r\n}"
+					"raw": "{\r\n    \"uuid\": \"brickfertyhnbvsdfgreqewed\",\r\n    \"list_id\": 10\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5000/owner",
+					"raw": "http://localhost:5000/share",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "5000",
 					"path": [
-						"owner"
+						"share"
 					]
 				}
 			},
@@ -76,15 +76,15 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:5000/list/1",
+					"raw": "http://localhost:5000/owner/brickfertyhnbvsdfgreqewed",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "5000",
 					"path": [
-						"list",
-						"1"
+						"owner",
+						"brickfertyhnbvsdfgreqewed"
 					]
 				}
 			},
@@ -103,17 +103,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"item_id\": \"3\",\r\n    \"list_id\": \"1\",\r\n    \"store\": \"1\",\r\n    \"qty\": \"2\",\r\n    \"description\": \"apples\",\r\n    \"purchased\": \"0\"\r\n}"
+					"raw": "{\r\n    \"uuid\": \"brickfertyhnbvsdfgreqewed\",\r\n    \"name\": \"testing123123\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:5000/item",
+					"raw": "http://localhost:5000/list",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "5000",
 					"path": [
-						"item"
+						"list"
 					]
 				}
 			},
@@ -132,7 +132,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:5000/list/1",
+					"raw": "http://localhost:5000/list/1/brickfertyhnbvsdfgreqewed",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -140,7 +140,8 @@
 					"port": "5000",
 					"path": [
 						"list",
-						"1"
+						"1",
+						"brickfertyhnbvsdfgreqewed"
 					]
 				}
 			},
@@ -159,7 +160,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"item_id\": \"3\",\r\n    \"list_id\": \"1\",\r\n    \"store\": \"1\",\r\n    \"qty\": \"2\",\r\n    \"description\": \"apples\",\r\n    \"purchased\": \"0\"\r\n}"
+					"raw": "{\r\n    \"list_id\": \"2\",\r\n    \"store_id\": \"1\",\r\n    \"qty\": \"20\",\r\n    \"description\": \"bricks\",\r\n    \"purchased\": \"0\"\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/item",
@@ -170,6 +171,65 @@
 					"port": "5000",
 					"path": [
 						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update item qty",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"item_id\": \"1\",\r\n    \"qty\": \"10\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/itemqty",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"itemqty"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an item",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"item_id\": \"10\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/item/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"item",
+						"delete"
 					]
 				}
 			},
