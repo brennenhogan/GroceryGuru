@@ -2,6 +2,7 @@ from flask import request, jsonify, Blueprint
 from models.base_model import db
 from models.listOwnership_model import ListOwnership
 from models.list_model import List
+from models.listItem_model import ListItem
 from schemas.listOwnership_schema import listOwnership_schema
 from schemas.list_schema import list_schema
 from schemas.listName_schema import listName_schema
@@ -38,7 +39,10 @@ def get_listids(user_uuid):
     ListOwnershipObj = l_obj._asdict()['ListOwnership'] # Get the models
     ListObj = l_obj._asdict()['List']
 
-    temp = {"list_id": ListOwnershipObj.get_list_id(), "list_name": ListObj.get_name(), "list_old": ListObj.get_old()} # Use the model methods to get the data
+    list_id = ListOwnershipObj.get_list_id()
+    list_qty = ListItem.query.filter(ListItem.list_id==list_id).count()
+
+    temp = {"list_id": list_id, "list_name": ListObj.get_name(), "list_old": ListObj.get_old(), "list_qty": list_qty} # Use the model methods to get the data
     all_lists.append(temp)
 
   return listName_schema.jsonify(all_lists, many=True) # Return the data using the listName schema

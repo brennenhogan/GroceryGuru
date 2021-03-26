@@ -79,7 +79,6 @@ def get_list(id, user_uuid):
   listFragments = []
   for store_id in distinct_store_ids:
     store = db.session.query(Store).filter(Store.store_id==store_id).one() # Store_ids are distinct
-    print(store_id, store.get_name())
 
     store_items = db.session.query(ListItem)\
       .filter(ListItem.list_id==id)\
