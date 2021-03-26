@@ -1,0 +1,27 @@
+//
+//  ListResponse.swift
+//  GroceryGuru
+//
+//  Created by Mobile App on 3/26/21.
+//
+
+import Foundation
+
+struct ListElement: Codable {
+    let items: [Item]
+    let name: String
+}
+
+struct Item : Codable {
+    let itemDescription: String
+    let itemID, listID, purchased, qty: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case itemDescription = "description"
+        case itemID = "item_id"
+        case listID = "list_id"
+        case purchased, qty
+    }
+}
+
+typealias ListResponse = [ListElement]
