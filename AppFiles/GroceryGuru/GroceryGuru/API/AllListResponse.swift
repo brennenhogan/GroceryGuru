@@ -8,13 +8,14 @@
 import Foundation
 
 struct AllListElement: Codable {
-    let listID, listOld: Int
+    let listID, listOld, listQty: Int
     let listName: String
     
     enum CodingKeys: String, CodingKey {
         case listID = "list_id"
         case listName = "list_name"
         case listOld = "list_old"
+        case listQty = "list_qty"
     }
 }
 

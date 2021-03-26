@@ -117,7 +117,8 @@ class LandingPageViewController: UIViewController {
 extension LandingPageViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("tapped cell!!")
+        print("This list was tapped: " + String(allListData[indexPath.row].listID))
+        print("Its name is: " + allListData[indexPath.row].listName)
     }
     
 }
@@ -133,7 +134,7 @@ extension LandingPageViewController : UITableViewDataSource {
         let item = allListData[indexPath.row]
         
         cell.textLabel?.text = item.listName
-        cell.detailTextLabel?.text = String(item.listID)
+        cell.detailTextLabel?.text = String(item.listQty)
         
         return cell
     }
