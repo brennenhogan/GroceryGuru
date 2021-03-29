@@ -42,8 +42,12 @@ class LandingPageViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
         configureNavigationBar()
+        
+        tableView.register(LandingListCell.nib(), forCellReuseIdentifier:LandingListCell.identifier)
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
         self.getData()
     }
     
@@ -129,13 +133,13 @@ extension LandingPageViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath)
-        
         let item = allListData[indexPath.row]
         
-        cell.textLabel?.text = item.listName
-        cell.detailTextLabel?.text = String(item.listQty)
+        let cell = tableView.dequeueReusableCell(withIdentifier: LandingListCell.identifier, for: indexPath) as! LandingListCell
+        
+        cell.configure(title: item.listName, qty: item.listQty)
         
         return cell
     }
+    
 }

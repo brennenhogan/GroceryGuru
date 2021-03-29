@@ -5,7 +5,7 @@ from models.store_model import Store
 from models.listOwnership_model import ListOwnership
 from schemas.listItem_schema import listItem_schema
 from schemas.store_schema import store_schema
-from schemas.listWrapper_schema import listWrapper_schema
+from schemas.completeList_schema import completeList_schema
 from sqlalchemy import exc
 
 listItem_api = Blueprint('listItem_api', __name__)
@@ -88,5 +88,4 @@ def get_list(id, user_uuid):
     listFragment = {"name": store.get_name(), "items": store_items}
     listFragments.append(listFragment)
   
-  wrapped = {"data": listFragments}
-  return listWrapper_schema.jsonify(wrapped)
+  return completeList_schema.jsonify(listFragments, many=True)

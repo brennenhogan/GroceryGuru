@@ -12,6 +12,12 @@
 		0211EF6F260E7C7600CAA05C /* ListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211EF6E260E7C7500CAA05C /* ListResponse.swift */; };
 		0211EF7C260E924A00CAA05C /* AllListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211EF7B260E924A00CAA05C /* AllListResponse.swift */; };
 		0211EF81260E92B000CAA05C /* AllListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211EF80260E92B000CAA05C /* AllListRequest.swift */; };
+		0211EF9626125C2300CAA05C /* ListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211EF9426125C2300CAA05C /* ListViewCell.swift */; };
+		0211EF9726125C2300CAA05C /* ListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0211EF9526125C2300CAA05C /* ListViewCell.xib */; };
+		0211EF9C2612759F00CAA05C /* ListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211EF9B2612759F00CAA05C /* ListHeaderView.swift */; };
+		0211EFB42612820500CAA05C /* ListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0211EFB32612820500CAA05C /* ListHeaderView.xib */; };
+		0211EFC12612878D00CAA05C /* LandingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211EFBF2612878D00CAA05C /* LandingListCell.swift */; };
+		0211EFC22612878D00CAA05C /* LandingListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0211EFC02612878D00CAA05C /* LandingListCell.xib */; };
 		2E87AFBA25FFF4B800D3A575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFB925FFF4B800D3A575 /* AppDelegate.swift */; };
 		2E87AFBC25FFF4B800D3A575 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFBB25FFF4B800D3A575 /* SceneDelegate.swift */; };
 		2E87AFBE25FFF4B800D3A575 /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFBD25FFF4B800D3A575 /* LandingPageViewController.swift */; };
@@ -80,6 +86,12 @@
 		0211EF6E260E7C7500CAA05C /* ListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListResponse.swift; sourceTree = "<group>"; };
 		0211EF7B260E924A00CAA05C /* AllListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListResponse.swift; sourceTree = "<group>"; };
 		0211EF80260E92B000CAA05C /* AllListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListRequest.swift; sourceTree = "<group>"; };
+		0211EF9426125C2300CAA05C /* ListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewCell.swift; sourceTree = "<group>"; };
+		0211EF9526125C2300CAA05C /* ListViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewCell.xib; sourceTree = "<group>"; };
+		0211EF9B2612759F00CAA05C /* ListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeaderView.swift; sourceTree = "<group>"; };
+		0211EFB32612820500CAA05C /* ListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListHeaderView.xib; sourceTree = "<group>"; };
+		0211EFBF2612878D00CAA05C /* LandingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingListCell.swift; sourceTree = "<group>"; };
+		0211EFC02612878D00CAA05C /* LandingListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LandingListCell.xib; sourceTree = "<group>"; };
 		2E87AFB625FFF4B800D3A575 /* GroceryGuru.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroceryGuru.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E87AFB925FFF4B800D3A575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E87AFBB25FFF4B800D3A575 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +168,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0211EF862612580600CAA05C /* IndividualList */ = {
+			isa = PBXGroup;
+			children = (
+				0211EF64260E77A100CAA05C /* ListViewController.swift */,
+				0211EF9426125C2300CAA05C /* ListViewCell.swift */,
+				0211EF9526125C2300CAA05C /* ListViewCell.xib */,
+				0211EF9B2612759F00CAA05C /* ListHeaderView.swift */,
+				0211EFB32612820500CAA05C /* ListHeaderView.xib */,
+			);
+			path = IndividualList;
+			sourceTree = "<group>";
+		};
+		0211EFBB2612864800CAA05C /* LandingPage */ = {
+			isa = PBXGroup;
+			children = (
+				2E87AFBD25FFF4B800D3A575 /* LandingPageViewController.swift */,
+				0211EFBF2612878D00CAA05C /* LandingListCell.swift */,
+				0211EFC02612878D00CAA05C /* LandingListCell.xib */,
+			);
+			path = LandingPage;
+			sourceTree = "<group>";
+		};
 		2E87AFAD25FFF4B800D3A575 = {
 			isa = PBXGroup;
 			children = (
@@ -215,10 +249,10 @@
 		2E87AFEC25FFF56600D3A575 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0211EF862612580600CAA05C /* IndividualList */,
 				2E9ABEBC260BCFBA0047DED3 /* Login */,
-				2E87AFBD25FFF4B800D3A575 /* LandingPageViewController.swift */,
+				0211EFBB2612864800CAA05C /* LandingPage */,
 				2E87AFEE25FFF59200D3A575 /* AddListViewController.swift */,
-				0211EF64260E77A100CAA05C /* ListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -414,6 +448,8 @@
 				2E9ABE53260A91040047DED3 /* OpenSans-ExtraBold.ttf in Resources */,
 				2E9ABE79260A91390047DED3 /* Roboto-Black.ttf in Resources */,
 				2E87AFC325FFF4B900D3A575 /* Assets.xcassets in Resources */,
+				0211EFB42612820500CAA05C /* ListHeaderView.xib in Resources */,
+				0211EFC22612878D00CAA05C /* LandingListCell.xib in Resources */,
 				2E9ABE6D260A91390047DED3 /* Roboto-Medium.ttf in Resources */,
 				2E9ABE76260A91390047DED3 /* Roboto-BlackItalic.ttf in Resources */,
 				2E9ABE6E260A91390047DED3 /* Roboto-Light.ttf in Resources */,
@@ -421,6 +457,7 @@
 				2E9ABE74260A91390047DED3 /* Roboto-Italic.ttf in Resources */,
 				2E9ABE52260A91040047DED3 /* OpenSans-Italic.ttf in Resources */,
 				2E9ABE55260A91040047DED3 /* OpenSans-Bold.ttf in Resources */,
+				0211EF9726125C2300CAA05C /* ListViewCell.xib in Resources */,
 				2E9ABE51260A91040047DED3 /* OpenSans-Light.ttf in Resources */,
 				2E9ABE54260A91040047DED3 /* OpenSans-LightItalic.ttf in Resources */,
 				2E9ABE5A260A91040047DED3 /* OpenSans-BoldItalic.ttf in Resources */,
@@ -458,6 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0211EF6F260E7C7600CAA05C /* ListResponse.swift in Sources */,
+				0211EFC12612878D00CAA05C /* LandingListCell.swift in Sources */,
 				2E9ABE8B260AAF560047DED3 /* LoginRequest.swift in Sources */,
 				2E87AFF825FFF5DB00D3A575 /* CoreDataStack.swift in Sources */,
 				2E9ABEC5260BF8990047DED3 /* NewUser.swift in Sources */,
@@ -465,11 +503,13 @@
 				2E9ABE81260AAAFF0047DED3 /* Designable.swift in Sources */,
 				2E9ABEA8260BCEFC0047DED3 /* ResetPasswordViewController.swift in Sources */,
 				2E87AFBE25FFF4B800D3A575 /* LandingPageViewController.swift in Sources */,
+				0211EF9C2612759F00CAA05C /* ListHeaderView.swift in Sources */,
 				2E9ABE96260BC09F0047DED3 /* SignUpViewController.swift in Sources */,
 				0211EF81260E92B000CAA05C /* AllListRequest.swift in Sources */,
 				2E87AFBA25FFF4B800D3A575 /* AppDelegate.swift in Sources */,
 				2E87AFEF25FFF59200D3A575 /* AddListViewController.swift in Sources */,
 				2E87AFBC25FFF4B800D3A575 /* SceneDelegate.swift in Sources */,
+				0211EF9626125C2300CAA05C /* ListViewCell.swift in Sources */,
 				2E87B00125FFF60700D3A575 /* Lists.xcdatamodeld in Sources */,
 				2E9ABE86260AAEF60047DED3 /* Login.swift in Sources */,
 				2E9ABE9B260BCEDA0047DED3 /* LoginViewController.swift in Sources */,

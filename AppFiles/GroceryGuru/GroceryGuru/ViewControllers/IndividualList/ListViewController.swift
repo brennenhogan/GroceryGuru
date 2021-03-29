@@ -15,6 +15,7 @@ class ListViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 print("Table reload with new data")
+                print(String(self.listData.count) + " sections")
                 self.tableView.reloadData()
                 self.navigationItem.title = "\(self.listData.count) Items"
             }
@@ -23,8 +24,13 @@ class ListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.register(ListViewCell.nib(), forCellReuseIdentifier:ListViewCell.identifier)
+        tableView.register(ListHeaderView.nib(), forHeaderFooterViewReuseIdentifier:ListHeaderView.identifier)
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
         self.getData()
     }
     
@@ -66,17 +72,32 @@ extension ListViewController : UITableViewDelegate {
 }
 
 extension ListViewController : UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return listData.count // The number of sections is the number of entries in the listData array
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50 // This is because the view is height 50 in the ListViewCell.xib
+    }
+    
+    // Use custom header
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListHeaderView.identifier) as! ListHeaderView
+        view.configure(title: listData[section].name) // TODO - add buttons here that do things
+        return view
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listData.count
+        return listData[section].items.count // Set the number of sections to the number of items in that section
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath)
+        let text = listData[indexPath.section].items[indexPath.row].itemDescription
+        let qty = listData[indexPath.section].items[indexPath.row].qty
         
-        let item = listData[0].items[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: ListViewCell.identifier, for: indexPath) as! ListViewCell
         
-        cell.textLabel?.text = item.itemDescription
-        cell.detailTextLabel?.text = String(item.qty)
+        cell.configure(title: text, qty: qty)
         
         return cell
     }

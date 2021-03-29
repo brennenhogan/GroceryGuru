@@ -9,7 +9,7 @@ import Foundation
 
 struct ListElement: Codable {
     let items: [Item]
-    let name: String
+    let name: String // name is the name of the store
 }
 
 struct Item : Codable {
