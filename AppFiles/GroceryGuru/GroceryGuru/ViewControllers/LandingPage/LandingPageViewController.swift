@@ -22,9 +22,7 @@ extension UIColor {
 
 class LandingPageViewController: UIViewController {
     
-    @IBOutlet weak var userText: UITextField!
-    @IBOutlet weak var passwordText: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var createListButton: UIButton!
     @IBOutlet var tableView: UITableView!
     
     var loginDetails = LoginResponse()
@@ -42,13 +40,23 @@ class LandingPageViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
         configureNavigationBar()
+        configureCreateListButton()
         
         tableView.register(LandingListCell.nib(), forCellReuseIdentifier:LandingListCell.identifier)
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+                
         self.getData()
+    }
+    
+    private func configureCreateListButton() {
+        let dark_sage = UIColor(hex: 0x7A916E)
+        let origImage = UIImage(systemName: "pencil")
+        let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+        createListButton.setImage(tintedImage, for: .normal)
+        createListButton.tintColor = dark_sage
+
     }
     
     private func configureNavigationBar() {
@@ -67,24 +75,6 @@ class LandingPageViewController: UIViewController {
             NSAttributedString.Key.font: UIFont(name: "Roboto-Regular", size: 28)!
         ]
         self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [NSAttributedString.Key : AnyObject]
-        
-    }
-    
-    @IBAction func login(_ sender: UIButton) {
-        
-        guard let userText = userText.text else {return}
-        guard let passwordText = passwordText.text else {return}
-        let loginRequest = LoginRequest(username: userText, password: passwordText)
-        loginRequest.postLogin { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let login):
-                print(login.uuid)
-                //
-                self?.loginDetails = login
-            }
-        }
         
     }
     

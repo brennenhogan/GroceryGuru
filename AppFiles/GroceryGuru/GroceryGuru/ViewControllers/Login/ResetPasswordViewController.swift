@@ -75,8 +75,7 @@ class ResetPasswordViewController: UIViewController {
                 }
                 print(error)
             case .success(let user):
-                print(user.uuid)
-                //
+                userUuid = user.uuid!
                 self?.userDetails = user
                 print("Now performing segue to landing page")
                 DispatchQueue.main.async{

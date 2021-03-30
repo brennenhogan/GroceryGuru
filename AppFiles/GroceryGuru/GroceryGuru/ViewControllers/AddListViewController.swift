@@ -8,18 +8,27 @@
 import UIKit
 import CoreData
 
+extension AddListViewController: UITextViewDelegate {
+    func textViewDidChangeSelection(_ textView: UITextView){
+        if createButton.isHidden {
+            textView.text.removeAll()
+            
+            createButton.isHidden = false
+            
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+}
+
 class AddListViewController: UIViewController {
 
-    // MARK: Properties
-    
-    var context: NSManagedObjectContext!
-    var list: List?
-    
     // MARK: Outlets
 
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var bottomContraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
@@ -33,12 +42,7 @@ class AddListViewController: UIViewController {
             object: nil
         )
         textView.becomeFirstResponder()
-        
-        if let list = list {
-            textView.text = list.title
-            textView.text = list.title
-            segmentedControl.selectedSegmentIndex = Int(list.items)
-        }
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
     }
     
     //MARK: Actions
@@ -57,52 +61,53 @@ class AddListViewController: UIViewController {
         
     }
     
-    fileprivate func dismissAndResign() {
-        dismiss(animated: true)
-        textView.resignFirstResponder()
+    func CreateAlert(title: String, message: String) {
+
+            let alertController = UIAlertController(title: title, message:
+                                                        message, preferredStyle: UIAlertController.Style.alert)
+
+        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default,handler: nil))
+        alertController.view.tintColor = UIColor(hex: 0x7A916E)
+
+            self.present(alertController, animated: true, completion: nil)
     }
     
-    @IBAction func cancel(_ sender: UIButton) {
-        dismissAndResign()
-    }
-    
-    @IBAction func done(_ sender: UIButton) {
-        guard let title = textView.text, !title.isEmpty else {
-            //Could add alert here
+    @IBAction func create(_ sender: UIButton) {
+        //Prevents creation of list with blank title
+        guard let listName = textView.text, !listName.isEmpty else {
             return
         }
         
-        // Update if created otherwise create a new list
-        if let list = self.list {
-            list.title = title
-            list.items = Int16(segmentedControl.selectedSegmentIndex)
-        } else {
-            let list = List(context: context)
-            list.title = title
-            list.items = Int16(segmentedControl.selectedSegmentIndex)
-        }
-        do {
-            try context.save()
-            dismissAndResign()
-        } catch {
-            print("Error saving list: \(error)")
-        }
-            }
-
-}
-
-extension AddListViewController: UITextViewDelegate {
-    func textViewDidChangeSelection(_ textView: UITextView){
-        if doneButton.isHidden {
-            textView.text.removeAll()
-            //textView.textColor = .white
+        // Creates a new list
+        // 0 for new list, 1 for previous list, 2 for recipes
+        let segment = Int16(segmentedControl.selectedSegmentIndex)
+        
+        if( segment == 0 ){
+            print("Create from scratch")
             
-            doneButton.isHidden = false
-            
-            UIView.animate(withDuration: 0.3) {
-                self.view.layoutIfNeeded()
+            let addListRequest = AddListRequest(listname: listName)
+            addListRequest.addList { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self?.CreateAlert(title: "Error", message: "\(error)")
+                    }
+                    print(error)
+                case .success(let response):
+                    let addListResponse = response
+                    print("Now performing segue to detailed list page \(addListResponse.list_id)")
+                    //TODO Set Global Varaible
+                    DispatchQueue.main.async{
+                        self?.performSegue(withIdentifier: "AddToDetailed", sender: self)
+                    }
+                }
             }
+            
+        } else if( segment == 1 ){
+            print("Create from old list")
+        } else if ( segment == 2 ){
+            print("Create from recipe")
         }
+        
     }
 }
-

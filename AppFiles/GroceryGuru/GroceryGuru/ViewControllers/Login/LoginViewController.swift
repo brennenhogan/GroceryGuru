@@ -7,6 +7,8 @@
 
 import UIKit
 
+public var userUuid = ""
+
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var userText: UITextField!
@@ -44,8 +46,7 @@ class LoginViewController: UIViewController {
                 }
                 print(error)
             case .success(let login):
-                print(login.uuid)
-                // TODO Core Data
+                userUuid = login.uuid!
                 self?.loginDetails = login
                 print("Now performing segue to landing page")
                 DispatchQueue.main.async{

@@ -24,6 +24,8 @@ def add_list():
   try:
     db.session.commit()
   except exc.SQLAlchemyError:
-    return {"result": False}
+    return {"list_id": -1,"result": False}
 
-  return {"result": True}
+  print(new_list.list_id)
+  print({"list_id": new_list.list_id, "result": True})
+  return {"list_id": new_list.list_id, "result": True}

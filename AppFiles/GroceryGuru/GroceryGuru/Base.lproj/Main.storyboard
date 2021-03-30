@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="awP-hX-zAc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ANm-xT-Hie">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -26,15 +26,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="104" translatesAutoresizingMaskIntoConstraints="NO" id="q6N-yQ-4O0">
-                                <rect key="frame" x="20" y="98" width="374" height="537.5"/>
+                                <rect key="frame" x="20" y="98" width="374" height="717"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UGY-qv-7sb">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="267.5"/>
-                                        <color key="backgroundColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="447"/>
+                                        <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="separatorColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </tableView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="66" translatesAutoresizingMaskIntoConstraints="NO" id="Dv4-1E-4D8">
-                                        <rect key="frame" x="0.0" y="371.5" width="374" height="166"/>
+                                        <rect key="frame" x="0.0" y="551" width="374" height="166"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="245" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zHR-Q3-Szf">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -64,6 +70,11 @@
                                                         <state key="normal" title="Recipes">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <integer key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="245" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9h-Uo-YPj">
                                                         <rect key="frame" x="195" y="0.0" width="179" height="50"/>
@@ -74,6 +85,11 @@
                                                         <state key="normal" title="Old Lists">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <integer key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -88,17 +104,18 @@
                             <constraint firstItem="ACt-K3-dvS" firstAttribute="trailing" secondItem="q6N-yQ-4O0" secondAttribute="trailing" constant="20" id="GLy-sl-jId"/>
                             <constraint firstItem="q6N-yQ-4O0" firstAttribute="top" secondItem="ACt-K3-dvS" secondAttribute="top" constant="10" id="Kf8-Ya-XyI"/>
                             <constraint firstItem="q6N-yQ-4O0" firstAttribute="leading" secondItem="ACt-K3-dvS" secondAttribute="leading" constant="20" id="LJr-ca-fCC"/>
-                            <constraint firstItem="q6N-yQ-4O0" firstAttribute="height" secondItem="uXr-9p-VUU" secondAttribute="height" multiplier="0.6" id="waZ-8a-DvT"/>
+                            <constraint firstItem="q6N-yQ-4O0" firstAttribute="height" secondItem="uXr-9p-VUU" secondAttribute="height" multiplier="0.8" id="waZ-8a-DvT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Active Lists" id="lK5-J1-I2a"/>
                     <connections>
+                        <outlet property="createListButton" destination="zHR-Q3-Szf" id="Ynm-2w-h34"/>
                         <outlet property="tableView" destination="UGY-qv-7sb" id="V1v-Sl-Qqd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="soD-ip-G6o" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1957.9710144927537" y="206.91964285714286"/>
+            <point key="canvasLocation" x="1048" y="124"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="xOX-z2-aTf">
@@ -114,12 +131,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hcE-Zz-exo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1967" y="988"/>
+            <point key="canvasLocation" x="1048" y="804"/>
         </scene>
-        <!--CreateNewListController-->
+        <!--AddListController-->
         <scene sceneID="0ku-ub-45d">
             <objects>
-                <viewController title="CreateNewListController" id="nRt-iz-LqB" customClass="AddListViewController" customModule="GroceryGuru" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="AddListController" id="nRt-iz-LqB" customClass="AddListViewController" customModule="GroceryGuru" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ngw-CG-Mf8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -145,7 +162,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="uaB-WY-ohm">
-                                <rect key="frame" x="20" y="709.5" width="374" height="152.5"/>
+                                <rect key="frame" x="20" y="760.5" width="374" height="101.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build from..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1l-St-odF">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="38.5"/>
@@ -157,24 +174,21 @@
                                         <rect key="frame" x="0.0" y="54.5" width="374" height="32"/>
                                         <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <segments>
-                                            <segment title="Recipes"/>
-                                            <segment title="Previous List"/>
                                             <segment title="New List"/>
+                                            <segment title="Previous List"/>
+                                            <segment title="Recipes"/>
                                         </segments>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="selectedSegmentTintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </segmentedControl>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EI7-hT-uwG">
-                                        <rect key="frame" x="0.0" y="101.5" width="374" height="51"/>
+                                        <rect key="frame" x="0.0" y="101.5" width="374" height="0.0"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Nl-Gy-nxf">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="51"/>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="245" restorationIdentifier="Create Button" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSK-b6-pVj" userLabel="Create Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="51"/>
                                                 <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="W7d-Qe-vjU"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="28"/>
-                                                <state key="normal" title="Cancel">
+                                                <state key="normal" title="Create">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -183,23 +197,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="cancel:" destination="nRt-iz-LqB" eventType="touchUpInside" id="Tws-j8-EFS"/>
-                                                </connections>
-                                            </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="245" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSK-b6-pVj">
-                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="51"/>
-                                                <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="28"/>
-                                                <state key="normal" title="Done">
-                                                    <color key="titleColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="8"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="done:" destination="nRt-iz-LqB" eventType="touchUpInside" id="lG5-T8-dCO"/>
+                                                    <action selector="create:" destination="nRt-iz-LqB" eventType="primaryActionTriggered" id="5u2-Pb-wTM"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -225,14 +223,15 @@
                     <navigationItem key="navigationItem" title="Create New List" id="lw6-Oy-su7"/>
                     <connections>
                         <outlet property="bottomContraint" destination="pEd-U8-Yv3" id="LIU-zL-BeG"/>
-                        <outlet property="doneButton" destination="rSK-b6-pVj" id="3p0-fn-Kc8"/>
+                        <outlet property="createButton" destination="rSK-b6-pVj" id="2Cr-ae-X4L"/>
                         <outlet property="segmentedControl" destination="Nyk-jv-Uax" id="bX5-jg-zNa"/>
                         <outlet property="textView" destination="MuT-uy-2eZ" id="Qal-73-GIq"/>
+                        <segue destination="GVW-bU-frF" kind="show" identifier="AddToDetailed" id="4nF-TC-L7i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="45j-5N-wIm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2876.811594202899" y="206.91964285714286"/>
+            <point key="canvasLocation" x="1967" y="124"/>
         </scene>
         <!--LoginViewController-->
         <scene sceneID="JgS-Hj-Ffa">
@@ -351,7 +350,7 @@
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <integer key="value" value="25"/>
+                                                                <integer key="value" value="10"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
@@ -434,7 +433,7 @@
                         <outlet property="loginButton" destination="fmw-Fv-gIO" id="g0j-Rl-psl"/>
                         <outlet property="passwordText" destination="Lxh-iW-fIG" id="WWT-El-qq7"/>
                         <outlet property="userText" destination="89y-DC-6w0" id="DsP-gI-VK1"/>
-                        <segue destination="awP-hX-zAc" kind="show" identifier="LoginToLanding" id="oY4-F8-1dd"/>
+                        <segue destination="IMX-vx-KnZ" kind="show" identifier="LoginToLanding" id="MAS-V4-j2s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C2g-4s-IQC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -568,7 +567,7 @@
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <integer key="value" value="25"/>
+                                                        <integer key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -600,7 +599,7 @@
                         <outlet property="passwordText" destination="Q8A-8l-Eit" id="Sxf-pU-VK3"/>
                         <outlet property="termsSwitch" destination="lbT-gg-ZNQ" id="rea-Zm-2l7"/>
                         <outlet property="userText" destination="4wt-TJ-CIO" id="Art-Eg-o1j"/>
-                        <segue destination="awP-hX-zAc" kind="show" identifier="SignUpToLanding" id="oPk-Yp-iqF"/>
+                        <segue destination="IMX-vx-KnZ" kind="show" identifier="SignUpToLanding" id="YPC-dN-Orv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DVa-zi-qz4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -740,7 +739,7 @@
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <integer key="value" value="25"/>
+                                                        <integer key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -771,35 +770,16 @@
                         <outlet property="loginButton" destination="U0Q-kg-lHv" id="1tL-Sn-h4U"/>
                         <outlet property="passwordText" destination="t4r-Pi-Ujo" id="OfS-3U-TfK"/>
                         <outlet property="userText" destination="dW9-AO-a9B" id="9VG-Qo-lUE"/>
-                        <segue destination="awP-hX-zAc" kind="show" identifier="ResetToLanding" id="NSd-JH-Bfb"/>
+                        <segue destination="IMX-vx-KnZ" kind="show" identifier="ResetToLanding" id="ceX-1p-A5Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iWP-vd-NZz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2806" y="-541"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="2fN-wu-gIR">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="awP-hX-zAc" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="2Fc-rN-miW"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EdM-FO-Rbu">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="IMX-vx-KnZ" kind="relationship" relationship="rootViewController" id="DOI-x7-R6Z"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6tx-1K-ak4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="206.91964285714286"/>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="oPk-Yp-iqF"/>
+        <segue reference="ceX-1p-A5Y"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
     <resources>

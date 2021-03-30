@@ -65,8 +65,7 @@ class SignUpViewController: UIViewController {
                 }
                 print(error)
             case .success(let newUser):
-                print(newUser.uuid)
-                //
+                userUuid = newUser.uuid!
                 self?.newUserDetails = newUser
                 print("Now performing segue to landing page")
                 DispatchQueue.main.async{
