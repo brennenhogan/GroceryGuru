@@ -16,8 +16,8 @@ enum ListError:Error {
 struct ListRequest {
     let requestURL:URLRequest
     
-    init() {
-        let resourceString = "http://127.0.0.1:5000/list/1/brickfertyhnbvsdfgreqewed"
+    init(list_id: String) {
+        let resourceString = "http://127.0.0.1:5000/list/" + list_id + "/brickfertyhnbvsdfgreqewed"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         var request = URLRequest(url: resourceURL)
         request.httpMethod = "GET"

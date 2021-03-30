@@ -123,6 +123,14 @@ extension LandingPageViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("This list was tapped: " + String(allListData[indexPath.row].listID))
         print("Its name is: " + allListData[indexPath.row].listName)
+        
+        tableView.deselectRow(at: indexPath, animated: true) // Unselect the previous list
+        
+        print("Now performing segue to individual list view!")
+        
+        let vc = ListViewController(listId: String(allListData[indexPath.row].listID))
+        vc.title = allListData[indexPath.row].listName
+        navigationController?.pushViewController(vc, animated:true)
     }
     
 }

@@ -8,8 +8,25 @@
 import UIKit
 
 class ListViewController: UIViewController {
-
-    @IBOutlet var tableView: UITableView!
+    
+    private let listId: String
+    
+    init(listId: String) {
+        self.listId = listId
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // This tableView must be created here, rather than in the story board to prevent weird errors
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(ListViewCell.nib(), forCellReuseIdentifier:ListViewCell.identifier)
+        tableView.register(ListHeaderView.nib(), forHeaderFooterViewReuseIdentifier:ListHeaderView.identifier)
+        return tableView
+    }()
     
     var listData = ListResponse() {
         didSet {
@@ -17,7 +34,6 @@ class ListViewController: UIViewController {
                 print("Table reload with new data")
                 print(String(self.listData.count) + " sections")
                 self.tableView.reloadData()
-                self.navigationItem.title = "\(self.listData.count) Items"
             }
         }
     }
@@ -25,8 +41,7 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(ListViewCell.nib(), forCellReuseIdentifier:ListViewCell.identifier)
-        tableView.register(ListHeaderView.nib(), forHeaderFooterViewReuseIdentifier:ListHeaderView.identifier)
+        view.addSubview(tableView)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -34,8 +49,13 @@ class ListViewController: UIViewController {
         self.getData()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
+    }
+    
     func getData() {
-        let listRequest = ListRequest()
+        let listRequest = ListRequest(list_id: listId)
         listRequest.getList { [weak self] result in
             switch result {
             case .failure(let error):
