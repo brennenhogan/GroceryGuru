@@ -21,24 +21,24 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="qLU-xa-i0d">
-                        <rect key="frame" x="20" y="0.0" width="300" height="50"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="220" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qLU-xa-i0d">
+                        <rect key="frame" x="10" y="0.0" width="310" height="50"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Iy-Jh-gGx">
-                                <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="225" height="50"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="lfR-M4-BKb">
-                                <rect key="frame" x="200" y="0.0" width="100" height="50"/>
+                                <rect key="frame" x="235" y="0.0" width="75" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vu6-mp-BJx">
-                                        <rect key="frame" x="0.0" y="0.0" width="65" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="50"/>
                                         <state key="normal" image="square.and.arrow.up" catalog="system"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qty" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T1B-2j-rFb">
-                                        <rect key="frame" x="70" y="0.0" width="30" height="50"/>
+                                        <rect key="frame" x="45" y="0.0" width="30" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="Tse-1n-WjM"/>
                                         </constraints>
@@ -47,6 +47,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="CbV-lb-Xwj"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <constraints>
@@ -58,7 +61,7 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="qLU-xa-i0d" secondAttribute="bottom" id="4IF-08-iH1"/>
                     <constraint firstAttribute="trailing" secondItem="qLU-xa-i0d" secondAttribute="trailing" id="BXV-OF-TDI"/>
-                    <constraint firstItem="qLU-xa-i0d" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="K8e-Lg-Y1V"/>
+                    <constraint firstItem="qLU-xa-i0d" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="K8e-Lg-Y1V"/>
                     <constraint firstItem="qLU-xa-i0d" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="fkK-HN-gRO"/>
                 </constraints>
             </tableViewCellContentView>

@@ -52,6 +52,10 @@ class LandingPageViewController: UIViewController {
         self.getData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.getData()
+    }
+    
     private func configureCreateListButton() {
         let dark_sage = UIColor(hex: 0x7A916E)
         let origImage = UIImage(systemName: "pencil")
