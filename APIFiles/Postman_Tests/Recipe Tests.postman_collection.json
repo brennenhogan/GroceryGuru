@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "eb5363e8-26ba-4f8a-aeda-d5d688698cbb",
+		"name": "Recipe Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add a recipe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"item_id\": \"10\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/item/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"item",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a recipe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"uuid\": \"brickfertyhnbvsdfgreqewed\",\r\n    \"name\": \"test recipe\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/recipe/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"recipe",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all recipes for a user",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/owner/brickfertyhnbvsdfgreqewed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"owner",
+						"brickfertyhnbvsdfgreqewed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Item (recipe)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"list_id\": \"2\",\r\n    \"store_id\": \"1\",\r\n    \"qty\": \"20\",\r\n    \"description\": \"bricks\",\r\n    \"purchased\": \"0\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update item qty (recipe)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"item_id\": \"1\",\r\n    \"qty\": \"50\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/recipe/qty",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"recipe",
+						"qty"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an item (recipe)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"item_id\": \"10\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/item/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"item",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Recipe Contents",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/recipe/1/brickfertyhnbvsdfgreqewed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"recipe",
+						"1",
+						"brickfertyhnbvsdfgreqewed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an item from recipe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"recipe_id\": 3\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/recipe/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"recipe",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

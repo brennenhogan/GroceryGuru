@@ -34,3 +34,16 @@ VALUES
     (6, 2, 1, 1, 'buns', 0),
     (7, 2, 2, 6, 'ketchup', 0),
     (8, 2, 3, 4, 'cheese', 0);
+
+INSERT INTO recipe (recipe_id, name, uuid)
+VALUES
+    (1, 'Fruit salad', 'brickfertyhnbvsdfgreqewed'),
+    (2, 'Cookout', 'brickfertyhnbvsdfgreqewed');
+
+INSERT INTO recipe_item (item_id, recipe_id, store_id, qty, description)
+VALUES
+    (1,1,1,5,'bananas'),
+    (2,1,1,5,'apples'),
+    (3,1,2,5,'pears'),
+    (4,1,2,5,'cherries'),
+    (5,2,1,5,'meat');
