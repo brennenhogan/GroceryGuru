@@ -20,6 +20,8 @@ extension UIColor {
 
 }
 
+public var deleted = true
+
 class LandingPageViewController: UIViewController {
     
     @IBOutlet weak var createListButton: UIButton!
@@ -104,6 +106,39 @@ class LandingPageViewController: UIViewController {
         alertController.view.tintColor = UIColor(hex: 0x7A916E)
 
             self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+        if (editingStyle == .delete){
+            let list_id = allListData[indexPath.row].listID
+            
+            let deleteRequest = DeleteListRequest(list_id: list_id)
+            deleteRequest.deleteList { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self?.CreateAlert(title: "Error", message: "\(error)")
+                        deleted = false
+                    }
+                    print(error)
+                case .success(let response):
+                    print("List has been deleted \(response)")
+                    deleted = response.result
+                }
+            }
+            
+            if(deleted){
+                allListData.remove(at: indexPath.item)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+            
+            return
+        }
+    }
+    
+    @IBAction func editAction(_ sender: UIBarButtonItem){
+        self.tableView.isEditing = !self.tableView.isEditing
+        sender.title = (self.tableView.isEditing) ? "Done" : "Edit"
     }
 
 }

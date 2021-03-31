@@ -107,7 +107,14 @@
                             <constraint firstItem="q6N-yQ-4O0" firstAttribute="height" secondItem="uXr-9p-VUU" secondAttribute="height" multiplier="0.8" id="waZ-8a-DvT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Active Lists" id="lK5-J1-I2a"/>
+                    <navigationItem key="navigationItem" title="Active Lists" id="lK5-J1-I2a">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="u3b-e4-O3K">
+                            <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="editAction:" destination="IMX-vx-KnZ" id="h0m-NR-Hk6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="createListButton" destination="zHR-Q3-Szf" id="Ynm-2w-h34"/>
                         <outlet property="tableView" destination="UGY-qv-7sb" id="V1v-Sl-Qqd"/>

@@ -17,7 +17,7 @@ struct ListRequest {
     let requestURL:URLRequest
     
     init(list_id: String) {
-        let resourceString = "http://127.0.0.1:5000/list/" + list_id + userUuid
+        let resourceString = "http://127.0.0.1:5000/list/\(list_id)/\(userUuid)"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         var request = URLRequest(url: resourceURL)
         request.httpMethod = "GET"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -17,34 +17,49 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="LandingListCell" customModule="GroceryGuru" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Iy-Jh-gGx">
-                        <rect key="frame" x="10" y="10" width="250" height="24"/>
-                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
-                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qty" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T1B-2j-rFb">
-                        <rect key="frame" x="280" y="10" width="30" height="24"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="qLU-xa-i0d">
+                        <rect key="frame" x="20" y="0.0" width="300" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Iy-Jh-gGx">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="lfR-M4-BKb">
+                                <rect key="frame" x="200" y="0.0" width="100" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vu6-mp-BJx">
+                                        <rect key="frame" x="0.0" y="0.0" width="65" height="50"/>
+                                        <state key="normal" image="square.and.arrow.up" catalog="system"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qty" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T1B-2j-rFb">
+                                        <rect key="frame" x="70" y="0.0" width="30" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="Tse-1n-WjM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
+                                        <color key="textColor" red="0.58039215686274503" green="0.66666666666666663" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="Tse-1n-WjM"/>
+                            <constraint firstAttribute="height" constant="50" id="sJC-JR-zGb"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
-                        <color key="textColor" red="0.58039215686274503" green="0.66666666666666663" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </stackView>
                 </subviews>
                 <color key="backgroundColor" red="0.38823529411764707" green="0.396078431372549" blue="0.40784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="8Iy-Jh-gGx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="6ea-21-D2D"/>
-                    <constraint firstAttribute="trailing" secondItem="T1B-2j-rFb" secondAttribute="trailing" constant="10" id="Beo-eL-JMo"/>
-                    <constraint firstAttribute="bottom" secondItem="T1B-2j-rFb" secondAttribute="bottom" constant="10" id="NzF-bn-afp"/>
-                    <constraint firstAttribute="bottom" secondItem="8Iy-Jh-gGx" secondAttribute="bottom" constant="10" id="UZf-6n-hkM"/>
-                    <constraint firstItem="8Iy-Jh-gGx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="qYv-NM-tXk"/>
-                    <constraint firstItem="T1B-2j-rFb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="ycb-Nu-i7k"/>
+                    <constraint firstAttribute="bottom" secondItem="qLU-xa-i0d" secondAttribute="bottom" id="4IF-08-iH1"/>
+                    <constraint firstAttribute="trailing" secondItem="qLU-xa-i0d" secondAttribute="trailing" id="BXV-OF-TDI"/>
+                    <constraint firstItem="qLU-xa-i0d" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="K8e-Lg-Y1V"/>
+                    <constraint firstItem="qLU-xa-i0d" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="fkK-HN-gRO"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -52,7 +67,10 @@
                 <outlet property="myLabel" destination="8Iy-Jh-gGx" id="z5p-0S-Swk"/>
                 <outlet property="myQty" destination="T1B-2j-rFb" id="6SN-TX-2TM"/>
             </connections>
-            <point key="canvasLocation" x="103" y="82"/>
+            <point key="canvasLocation" x="102.89855072463769" y="81.696428571428569"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+    </resources>
 </document>

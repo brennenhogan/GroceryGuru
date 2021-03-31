@@ -2,7 +2,7 @@
 //  LandingListCell.swift
 //  GroceryGuru
 //
-//  Created by Mobile App on 3/29/21.
+//  Created by Brendan Sailer on 3/29/21.
 //
 
 import UIKit
@@ -17,6 +17,8 @@ class LandingListCell: UITableViewCell {
     public func configure(title: String, qty: Int) {
         myLabel.text = title
         myQty.text = String(qty)
+        let sage = UIColor(hex: 0x94AA88)
+        self.tintColor = sage
     }
 
     @IBOutlet var myLabel: UILabel!
@@ -24,7 +26,8 @@ class LandingListCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        let theme_grey = UIColor(hex: 0x636568)
+        self.backgroundColor = theme_grey
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
