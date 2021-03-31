@@ -29,3 +29,48 @@ def add_list():
   print(new_list.list_id)
   print({"list_id": new_list.list_id, "result": True})
   return {"list_id": new_list.list_id, "result": True}
+
+# Update the name of a list
+@list_api.route('/list/update', methods=['POST'])
+def update_name():
+  name = request.json['name']
+  list_id = request.json['list_id']
+ 
+  selected_list = List.query.filter(List.list_id==list_id).first() # Get the list from the DB
+  selected_list.name = name
+
+  print(selected_list.name)
+  
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    print(exc.SQLAlchemyError)
+    return {"result": False}
+
+  return {"result": True}
+
+# Delete a list
+@list_api.route('/list/delete', methods=['POST'])
+def delete_list():
+  list_id = request.json['list_id']
+  uuid = request.json["uuid"]
+ 
+  ownership_lists = ListOwnership.query.filter(ListOwnership.list_id==list_id).all() # Get the list from the DB
+  current_list = List.query.filter(List.list_id==list_id).first() # Get the list from the DB
+  
+  # Deletes the entry from both tables if only one owner exists
+  if len(ownership_lists) == 1:
+    db.session.delete(current_list)
+    db.session.delete(ownership_lists[0])
+  else: #Deletes only the ownership for the current user if there are multiple owners
+    for owner in ownership_lists:
+      if owner.uuid == uuid:
+        db.session.delete(owner)
+  
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    print(exc.SQLAlchemyError)
+    return {"result": False}
+
+  return {"result": True}
