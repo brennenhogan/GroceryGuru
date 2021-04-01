@@ -20,8 +20,10 @@ extension UIColor {
 
 }
 
-class LandingPageViewController: UIViewController {
-    
+public var deleted = true
+
+class LandingPageViewController: UIViewController, TableViewCellDelegate {
+
     @IBOutlet weak var createListButton: UIButton!
     @IBOutlet var tableView: UITableView!
     
@@ -47,6 +49,10 @@ class LandingPageViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
                 
+        self.getData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         self.getData()
     }
     
@@ -105,6 +111,64 @@ class LandingPageViewController: UIViewController {
 
             self.present(alertController, animated: true, completion: nil)
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+        if (editingStyle == .delete){
+            let list_id = allListData[indexPath.row].listID
+            
+            let deleteRequest = DeleteListRequest(list_id: list_id)
+            deleteRequest.deleteList { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self?.CreateAlert(title: "Error", message: "\(error)")
+                        deleted = false
+                    }
+                    print(error)
+                case .success(let response):
+                    print("List has been deleted \(response)")
+                    deleted = response.result
+                }
+            }
+            
+            if(deleted){
+                allListData.remove(at: indexPath.item)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+            
+            return
+        }
+    }
+    
+    @IBAction func editAction(_ sender: UIBarButtonItem){
+        self.tableView.isEditing = !self.tableView.isEditing
+        sender.title = (self.tableView.isEditing) ? "Done" : "Edit"
+        tableView.visibleCells.forEach{ cell in
+            guard let cell = cell as? LandingListCell else { return }
+            cell.myText.isEnabled = tableView.isEditing
+        }
+    }
+    
+    func textFieldDidEndEditing(cell: LandingListCell, name: String) -> () {
+        
+        let path = tableView.indexPathForRow(at: cell.convert(cell.bounds.origin, to: tableView))
+        let list_id = allListData[path?.row ?? 0].listID
+        
+        let updateRequest = UpdateListRequest(name: name, list_id: list_id)
+        updateRequest.updateList { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let response):
+                print("List has been updated \(response)")
+            }
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 
 }
 
@@ -136,6 +200,8 @@ extension LandingPageViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: LandingListCell.identifier, for: indexPath) as! LandingListCell
         
         cell.configure(title: item.listName, qty: item.listQty)
+        cell.myText.isEnabled = tableView.isEditing
+        cell.delegate = self
         
         return cell
     }

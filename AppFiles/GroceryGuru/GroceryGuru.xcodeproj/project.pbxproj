@@ -20,6 +20,9 @@
 		0211EFC22612878D00CAA05C /* LandingListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0211EFC02612878D00CAA05C /* LandingListCell.xib */; };
 		2E3475F82613E7E500BA27D9 /* AddListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3475F72613E7E500BA27D9 /* AddListRequest.swift */; };
 		2E3475FD2613E91D00BA27D9 /* AddListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */; };
+		2E3476022615001500BA27D9 /* DeleteListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3476012615001500BA27D9 /* DeleteListRequest.swift */; };
+		2E3476072615004900BA27D9 /* DeleteListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3476062615004900BA27D9 /* DeleteListResponse.swift */; };
+		2E34760C26152F6200BA27D9 /* UpdateListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E34760B26152F6200BA27D9 /* UpdateListRequest.swift */; };
 		2E87AFBA25FFF4B800D3A575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFB925FFF4B800D3A575 /* AppDelegate.swift */; };
 		2E87AFBC25FFF4B800D3A575 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFBB25FFF4B800D3A575 /* SceneDelegate.swift */; };
 		2E87AFBE25FFF4B800D3A575 /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFBD25FFF4B800D3A575 /* LandingPageViewController.swift */; };
@@ -96,6 +99,9 @@
 		0211EFC02612878D00CAA05C /* LandingListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LandingListCell.xib; sourceTree = "<group>"; };
 		2E3475F72613E7E500BA27D9 /* AddListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListRequest.swift; sourceTree = "<group>"; };
 		2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListResponse.swift; sourceTree = "<group>"; };
+		2E3476012615001500BA27D9 /* DeleteListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteListRequest.swift; sourceTree = "<group>"; };
+		2E3476062615004900BA27D9 /* DeleteListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteListResponse.swift; sourceTree = "<group>"; };
+		2E34760B26152F6200BA27D9 /* UpdateListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateListRequest.swift; sourceTree = "<group>"; };
 		2E87AFB625FFF4B800D3A575 /* GroceryGuru.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroceryGuru.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E87AFB925FFF4B800D3A575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E87AFBB25FFF4B800D3A575 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -329,17 +335,20 @@
 		2E9ABEC3260BF84B0047DED3 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				2E9ABEC4260BF8990047DED3 /* NewUser.swift */,
 				2E9ABE8A260AAF560047DED3 /* LoginRequest.swift */,
 				2E9ABECC260BF8CC0047DED3 /* NewUserRequest.swift */,
 				2E9ABED1260C03CD0047DED3 /* ResetPasswordRequest.swift */,
 				2E9ABE85260AAEF60047DED3 /* Login.swift */,
-				2E9ABEC4260BF8990047DED3 /* NewUser.swift */,
-				0211EF69260E7C3800CAA05C /* ListRequest.swift */,
-				0211EF6E260E7C7500CAA05C /* ListResponse.swift */,
 				0211EF7B260E924A00CAA05C /* AllListResponse.swift */,
 				0211EF80260E92B000CAA05C /* AllListRequest.swift */,
+				0211EF69260E7C3800CAA05C /* ListRequest.swift */,
+				0211EF6E260E7C7500CAA05C /* ListResponse.swift */,
 				2E3475F72613E7E500BA27D9 /* AddListRequest.swift */,
 				2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */,
+				2E34760B26152F6200BA27D9 /* UpdateListRequest.swift */,
+				2E3476012615001500BA27D9 /* DeleteListRequest.swift */,
+				2E3476062615004900BA27D9 /* DeleteListResponse.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -501,6 +510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0211EF6F260E7C7600CAA05C /* ListResponse.swift in Sources */,
+				2E3476072615004900BA27D9 /* DeleteListResponse.swift in Sources */,
 				0211EFC12612878D00CAA05C /* LandingListCell.swift in Sources */,
 				2E9ABE8B260AAF560047DED3 /* LoginRequest.swift in Sources */,
 				2E87AFF825FFF5DB00D3A575 /* CoreDataStack.swift in Sources */,
@@ -513,11 +523,13 @@
 				2E9ABE96260BC09F0047DED3 /* SignUpViewController.swift in Sources */,
 				0211EF81260E92B000CAA05C /* AllListRequest.swift in Sources */,
 				2E87AFBA25FFF4B800D3A575 /* AppDelegate.swift in Sources */,
+				2E34760C26152F6200BA27D9 /* UpdateListRequest.swift in Sources */,
 				2E87AFEF25FFF59200D3A575 /* AddListViewController.swift in Sources */,
 				2E87AFBC25FFF4B800D3A575 /* SceneDelegate.swift in Sources */,
 				0211EF9626125C2300CAA05C /* ListViewCell.swift in Sources */,
 				2E87B00125FFF60700D3A575 /* Lists.xcdatamodeld in Sources */,
 				2E9ABE86260AAEF60047DED3 /* Login.swift in Sources */,
+				2E3476022615001500BA27D9 /* DeleteListRequest.swift in Sources */,
 				2E9ABE9B260BCEDA0047DED3 /* LoginViewController.swift in Sources */,
 				0211EF7C260E924A00CAA05C /* AllListResponse.swift in Sources */,
 				2E9ABECD260BF8CC0047DED3 /* NewUserRequest.swift in Sources */,
