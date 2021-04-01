@@ -5,6 +5,7 @@ from routes.listItem_routes import listItem_api
 from routes.store_routes import store_api
 from routes.listOwnership_routes import listOwnership_api
 from routes.list_routes import list_api
+from routes.recipe_routes import recipe_api
 from models.base_model import db
 from schemas.base_schema import ma
 import os
@@ -27,6 +28,7 @@ app.register_blueprint(listItem_api)
 app.register_blueprint(store_api)
 app.register_blueprint(listOwnership_api)
 app.register_blueprint(list_api)
+app.register_blueprint(recipe_api)
 
 # Create DB
 def create():
