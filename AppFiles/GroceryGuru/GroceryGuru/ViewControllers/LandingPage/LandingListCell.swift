@@ -7,7 +7,17 @@
 
 import UIKit
 
-class LandingListCell: UITableViewCell {
+protocol TableViewCellDelegate {
+    func textFieldDidEndEditing(cell: LandingListCell, name: String) -> ()
+}
+
+class LandingListCell: UITableViewCell, UITextFieldDelegate {
+    
+    var delegate: TableViewCellDelegate! = nil
+    
+    @IBOutlet weak var myText: UITextField!
+    @IBOutlet var myQty: UILabel!
+    
     static var identifier = "LandingListCell"
     
     static func nib() -> UINib {
@@ -15,25 +25,33 @@ class LandingListCell: UITableViewCell {
     }
     
     public func configure(title: String, qty: Int) {
-        myLabel.text = title
+        myText.text = title
         myQty.text = String(qty)
         let sage = UIColor(hex: 0x94AA88)
         self.tintColor = sage
     }
-
-    @IBOutlet var myLabel: UILabel!
-    @IBOutlet var myQty: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         let theme_grey = UIColor(hex: 0x636568)
         self.backgroundColor = theme_grey
+        myText.delegate = self
+        myText.returnKeyType = .done
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func textFieldDidEndEditing(_ myText: UITextField) {
+        self.delegate.textFieldDidEndEditing(cell: self, name: myText.text!)
+    }
+    
+    func textFieldShouldReturn(_ myText: UITextField) -> Bool {
+        myText.resignFirstResponder()
+        return true
     }
     
 }

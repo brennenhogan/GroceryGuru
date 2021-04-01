@@ -22,8 +22,8 @@ extension UIColor {
 
 public var deleted = true
 
-class LandingPageViewController: UIViewController {
-    
+class LandingPageViewController: UIViewController, TableViewCellDelegate {
+
     @IBOutlet weak var createListButton: UIButton!
     @IBOutlet var tableView: UITableView!
     
@@ -143,6 +143,31 @@ class LandingPageViewController: UIViewController {
     @IBAction func editAction(_ sender: UIBarButtonItem){
         self.tableView.isEditing = !self.tableView.isEditing
         sender.title = (self.tableView.isEditing) ? "Done" : "Edit"
+        tableView.visibleCells.forEach{ cell in
+            guard let cell = cell as? LandingListCell else { return }
+            cell.myText.isEnabled = tableView.isEditing
+        }
+    }
+    
+    func textFieldDidEndEditing(cell: LandingListCell, name: String) -> () {
+        
+        let path = tableView.indexPathForRow(at: cell.convert(cell.bounds.origin, to: tableView))
+        let list_id = allListData[path?.row ?? 0].listID
+        
+        let updateRequest = UpdateListRequest(name: name, list_id: list_id)
+        updateRequest.updateList { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let response):
+                print("List has been updated \(response)")
+            }
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 
 }
@@ -175,6 +200,8 @@ extension LandingPageViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: LandingListCell.identifier, for: indexPath) as! LandingListCell
         
         cell.configure(title: item.listName, qty: item.listQty)
+        cell.myText.isEnabled = tableView.isEditing
+        cell.delegate = self
         
         return cell
     }

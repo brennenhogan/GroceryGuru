@@ -25,11 +25,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="104" translatesAutoresizingMaskIntoConstraints="NO" id="q6N-yQ-4O0">
-                                <rect key="frame" x="20" y="98" width="374" height="717"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="q6N-yQ-4O0">
+                                <rect key="frame" x="20" y="98" width="374" height="761.5"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UGY-qv-7sb">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="447"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="570.5"/>
                                         <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="separatorColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -40,7 +40,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </tableView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="66" translatesAutoresizingMaskIntoConstraints="NO" id="Dv4-1E-4D8">
-                                        <rect key="frame" x="0.0" y="551" width="374" height="166"/>
+                                        <rect key="frame" x="0.0" y="595.5" width="374" height="166"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="245" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zHR-Q3-Szf">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -49,7 +49,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="28"/>
                                                 <state key="normal" title=" Create New List">
-                                                    <color key="titleColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.47843137254901957" green="0.56862745098039214" blue="0.43137254901960786" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                                     <imageReference key="image" image="pencil" catalog="system" symbolScale="large" renderingMode="original"/>
                                                 </state>
                                                 <connections>
@@ -104,7 +104,7 @@
                             <constraint firstItem="ACt-K3-dvS" firstAttribute="trailing" secondItem="q6N-yQ-4O0" secondAttribute="trailing" constant="20" id="GLy-sl-jId"/>
                             <constraint firstItem="q6N-yQ-4O0" firstAttribute="top" secondItem="ACt-K3-dvS" secondAttribute="top" constant="10" id="Kf8-Ya-XyI"/>
                             <constraint firstItem="q6N-yQ-4O0" firstAttribute="leading" secondItem="ACt-K3-dvS" secondAttribute="leading" constant="20" id="LJr-ca-fCC"/>
-                            <constraint firstItem="q6N-yQ-4O0" firstAttribute="height" secondItem="uXr-9p-VUU" secondAttribute="height" multiplier="0.8" id="waZ-8a-DvT"/>
+                            <constraint firstItem="q6N-yQ-4O0" firstAttribute="height" secondItem="uXr-9p-VUU" secondAttribute="height" multiplier="0.85" id="waZ-8a-DvT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Active Lists" id="lK5-J1-I2a">

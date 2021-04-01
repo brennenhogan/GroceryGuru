@@ -24,12 +24,13 @@
                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="220" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qLU-xa-i0d">
                         <rect key="frame" x="10" y="0.0" width="310" height="50"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Iy-Jh-gGx">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="myText" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kbm-jz-4bT">
                                 <rect key="frame" x="0.0" y="0.0" width="225" height="50"/>
-                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="tintColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="lfR-M4-BKb">
                                 <rect key="frame" x="235" y="0.0" width="75" height="50"/>
                                 <subviews>
@@ -67,8 +68,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="myLabel" destination="8Iy-Jh-gGx" id="z5p-0S-Swk"/>
                 <outlet property="myQty" destination="T1B-2j-rFb" id="6SN-TX-2TM"/>
+                <outlet property="myText" destination="Kbm-jz-4bT" id="pMr-b4-epf"/>
             </connections>
             <point key="canvasLocation" x="102.89855072463769" y="81.696428571428569"/>
         </tableViewCell>
