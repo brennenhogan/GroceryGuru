@@ -68,9 +68,25 @@ def create_from_oldlist():
  
   list_id = request.json['list_id']
 
+  # Create new stores for each item
+  store_mappings = {}
+  stores = db.session.query(ListItem.store_id).filter(ListItem.list_id==list_id).distinct().all()
+
+  for store_obj in stores:
+    store_id = store_obj._asdict()['store_id']
+    store = Store.query.filter(Store.store_id==store_id).first()
+
+    new_store = Store(store.get_name()) # Create new store
+    db.session.add(new_store) # Insert new store
+
+    db.session.flush() # Get the id from new_store
+
+    store_mappings[store.get_id()] = new_store.store_id # Update store_mappings with mappings so later we can use the new store ids
+
+  # Insert new items
   items = ListItem.query.filter(ListItem.list_id==list_id).all() # Get all items for the list with list_id == list_id
   for item in items:
-    new_item = ListItem(new_list.list_id, item.get_store(), item.get_qty(), item.get_description(), 0) # Items start off unpurchased
+    new_item = ListItem(new_list.list_id, store_mappings[item.get_store()], item.get_qty(), item.get_description(), 0) # Items start off unpurchased.  Use the new stores
     db.session.add(new_item)
 
   try:

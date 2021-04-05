@@ -117,7 +117,7 @@ def get_list(id, user_uuid):
       .filter(ListItem.store_id==store_id)\
       .all()
     
-    listFragment = {"name": store.get_name(), "items": store_items}
+    listFragment = {"name": store.get_name(), "store_id": store_id,"items": store_items}
     listFragments.append(listFragment)
   
   return completeList_schema.jsonify(listFragments, many=True)
