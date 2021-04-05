@@ -1,6 +1,8 @@
 from flask import request, jsonify, Blueprint
 from models.base_model import db
 from models.list_model import List
+from models.listItem_model import ListItem
+from models.store_model import Store
 from models.listOwnership_model import ListOwnership
 from sqlalchemy import exc
 
@@ -41,6 +43,36 @@ def update_name():
 
   print(selected_list.name)
   
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    print(exc.SQLAlchemyError)
+    return {"result": False}
+
+  return {"result": True}
+
+# Create a new list from old list
+@list_api.route('/list/old', methods=['POST'])
+def create_from_oldlist():
+  name = request.json['name']
+  uuid = request.json['uuid']
+  old = 0 # All lists start new
+
+  new_list = List(name, old) # Create the new list
+  db.session.add(new_list)
+
+  db.session.flush() # Get the id from new_list
+
+  new_owner = ListOwnership(uuid, new_list.list_id) # Update the ownership table with this new list so that the uuid owns it
+  db.session.add(new_owner)
+ 
+  list_id = request.json['list_id']
+
+  items = ListItem.query.filter(ListItem.list_id==list_id).all() # Get all items for the list with list_id == list_id
+  for item in items:
+    new_item = ListItem(new_list.list_id, item.get_store(), item.get_qty(), item.get_description(), 0) # Items start off unpurchased
+    db.session.add(new_item)
+
   try:
     db.session.commit()
   except exc.SQLAlchemyError:

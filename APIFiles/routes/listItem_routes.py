@@ -2,6 +2,7 @@ from flask import request, jsonify, Blueprint
 from models.base_model import db
 from models.listItem_model import ListItem
 from models.store_model import Store
+from models.list_model import List
 from models.listOwnership_model import ListOwnership
 from schemas.listItem_schema import listItem_schema
 from schemas.store_schema import store_schema
@@ -44,6 +45,37 @@ def update_qty():
   except exc.SQLAlchemyError:
     print(exc.SQLAlchemyError)
     return {"result": False}
+
+  return {"result": True}
+
+# Check off an item
+@listItem_api.route('/item/check', methods=['POST'])
+def update_purchased():
+  item_id = request.json['item_id']
+  purchased = request.json['purchased']
+ 
+  item = ListItem.query.filter(ListItem.item_id==item_id).first() # Get the item from the DB
+  item.purchased = purchased # update the purchased field
+  list_id = item.list_id # Store the list ID for later
+
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    print(exc.SQLAlchemyError)
+    return {"result": False}
+
+  # See if there are any un-purchased items on the list.  If not, mark it as an old list
+  unpurchased = ListItem.query.filter(ListItem.list_id==list_id).filter(ListItem.purchased==0).all()
+  if not unpurchased:
+    print("Marking list " + str(list_id) + " as an old list")
+    listObj = List.query.filter(List.list_id==list_id).first() # Get the item from the DB
+    listObj.old = 1 # update the old property of the list
+
+    try:
+      db.session.commit()
+    except exc.SQLAlchemyError:
+      print(exc.SQLAlchemyError)
+      return {"result": False}
 
   return {"result": True}
 

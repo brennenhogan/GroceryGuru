@@ -28,11 +28,12 @@ def add_owner():
 
 # LANDING PAGE QUERY #
 # See all lists for a user (ListOwnership.list_id, List.name, List.old)
-@listOwnership_api.route('/owner/<user_uuid>', methods=['GET'])
-def get_listids(user_uuid):
+@listOwnership_api.route('/owner/<user_uuid>/<old>', methods=['GET'])
+def get_listids(user_uuid, old):
   lists = db.session.query(ListOwnership, List)\
     .join(List, List.list_id == ListOwnership.list_id)\
-    .filter(ListOwnership.uuid==user_uuid).all()
+    .filter(ListOwnership.uuid==user_uuid)\
+    .filter(List.old==old).all()
 
   all_lists = [] # Extract the data from the queried objects
   for l_obj in lists:
