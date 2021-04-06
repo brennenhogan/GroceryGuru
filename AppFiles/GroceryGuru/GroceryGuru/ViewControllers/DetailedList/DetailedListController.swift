@@ -1,5 +1,5 @@
 //
-//  ListViewController.swift
+//  DetailedListController.swift
 //  GroceryGuru
 //
 //  Created by Mobile App on 3/26/21.
@@ -7,26 +7,10 @@
 
 import UIKit
 
-class ListViewController: UIViewController {
+class DetailedListController: UIViewController {
     
-    private let listId: String
-    
-    init(listId: String) {
-        self.listId = listId
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    // This tableView must be created here, rather than in the story board to prevent weird errors
-    private let tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.register(ListViewCell.nib(), forCellReuseIdentifier:ListViewCell.identifier)
-        tableView.register(ListHeaderView.nib(), forHeaderFooterViewReuseIdentifier:ListHeaderView.identifier)
-        return tableView
-    }()
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var listData = ListResponse() {
         didSet {
@@ -41,21 +25,25 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(tableView)
+        self.navigationItem.title = selected_list_name
+        
+        tableView.register(ListViewCell.nib(), forCellReuseIdentifier:ListViewCell.identifier)
+        tableView.register(ListHeaderView.nib(), forHeaderFooterViewReuseIdentifier:ListHeaderView.identifier)
         
         tableView.delegate = self
         tableView.dataSource = self
         
         self.getData()
+        
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
+    override func viewDidAppear(_ animated: Bool) {
+        self.getData()
     }
     
     func getData() {
-        let listRequest = ListRequest(list_id: listId)
+        let listRequest = ListRequest(list_id: selected_list_id)
         listRequest.getList { [weak self] result in
             switch result {
             case .failure(let error):
@@ -83,7 +71,7 @@ class ListViewController: UIViewController {
     }
 }
 
-extension ListViewController : UITableViewDelegate {
+extension DetailedListController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("tapped cell!!")
@@ -91,7 +79,7 @@ extension ListViewController : UITableViewDelegate {
     
 }
 
-extension ListViewController : UITableViewDataSource {
+extension DetailedListController : UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return listData.count // The number of sections is the number of entries in the listData array
     }

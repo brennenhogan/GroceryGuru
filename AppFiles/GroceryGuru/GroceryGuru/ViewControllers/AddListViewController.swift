@@ -96,7 +96,8 @@ class AddListViewController: UIViewController {
                 case .success(let response):
                     let addListResponse = response
                     print("Now performing segue to detailed list page \(addListResponse.list_id)")
-                    //TODO Set Global Varaible
+                    selected_list_id = String(addListResponse.list_id)
+                    selected_list_name = listName
                     DispatchQueue.main.async{
                         self?.performSegue(withIdentifier: "AddToDetailed", sender: self)
                     }

@@ -3,4 +3,114 @@
    uuid = "F490BC50-7C2C-4FDD-AD69-AA2102AC21FA"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1314FEF6-5C81-438E-88E7-3B788B95F85D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GroceryGuru/ViewControllers/LandingPage/LandingPageViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "LandingPageViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "1314FEF6-5C81-438E-88E7-3B788B95F85D - 1a1b1ced26e7b685"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GroceryGuru.LandingPageViewController.tableView.getter : Swift.Optional&lt;__C.UITableView&gt;"
+                  moduleName = "GroceryGuru"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/brennen/school/sr/mobile_dev/GroceryGuru/AppFiles/GroceryGuru/GroceryGuru/ViewControllers/LandingPage/LandingPageViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "126">
+               </Location>
+               <Location
+                  uuid = "1314FEF6-5C81-438E-88E7-3B788B95F85D - c07ec57593a5ea91"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GroceryGuru.LandingPageViewController.tableView.setter : Swift.Optional&lt;__C.UITableView&gt;"
+                  moduleName = "GroceryGuru"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/brennen/school/sr/mobile_dev/GroceryGuru/AppFiles/GroceryGuru/GroceryGuru/ViewControllers/LandingPage/LandingPageViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "164">
+               </Location>
+               <Location
+                  uuid = "1314FEF6-5C81-438E-88E7-3B788B95F85D - aee66744bcd3d5a2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GroceryGuru.LandingPageViewController.tableView.modify : Swift.Optional&lt;__C.UITableView&gt;"
+                  moduleName = "GroceryGuru"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/brennen/school/sr/mobile_dev/GroceryGuru/AppFiles/GroceryGuru/GroceryGuru/ViewControllers/LandingPage/LandingPageViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  uuid = "1314FEF6-5C81-438E-88E7-3B788B95F85D - 494afa5a472d5e6d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GroceryGuru.LandingPageViewController.tableView.modify : Swift.Optional&lt;__C.UITableView&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "GroceryGuru"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/brennen/school/sr/mobile_dev/GroceryGuru/AppFiles/GroceryGuru/GroceryGuru/ViewControllers/LandingPage/LandingPageViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  uuid = "1314FEF6-5C81-438E-88E7-3B788B95F85D - c89914a06e3f54a9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GroceryGuru.LandingPageViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; GroceryGuru.LandingPageViewController"
+                  moduleName = "GroceryGuru"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/brennen/school/sr/mobile_dev/GroceryGuru/AppFiles/GroceryGuru/GroceryGuru/ViewControllers/LandingPage/LandingPageViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "370">
+               </Location>
+               <Location
+                  uuid = "1314FEF6-5C81-438E-88E7-3B788B95F85D - 5ba21d645125b2c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GroceryGuru.LandingPageViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;GroceryGuru.LandingPageViewController&gt;"
+                  moduleName = "GroceryGuru"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/brennen/school/sr/mobile_dev/GroceryGuru/AppFiles/GroceryGuru/GroceryGuru/ViewControllers/LandingPage/LandingPageViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "311">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

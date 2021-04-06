@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0211EF65260E77A100CAA05C /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211EF64260E77A100CAA05C /* ListViewController.swift */; };
+		0211EF65260E77A100CAA05C /* DetailedListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211EF64260E77A100CAA05C /* DetailedListController.swift */; };
 		0211EF6A260E7C3800CAA05C /* ListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211EF69260E7C3800CAA05C /* ListRequest.swift */; };
 		0211EF6F260E7C7600CAA05C /* ListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211EF6E260E7C7500CAA05C /* ListResponse.swift */; };
 		0211EF7C260E924A00CAA05C /* AllListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211EF7B260E924A00CAA05C /* AllListResponse.swift */; };
@@ -86,7 +86,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0211EF64260E77A100CAA05C /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		0211EF64260E77A100CAA05C /* DetailedListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedListController.swift; sourceTree = "<group>"; };
 		0211EF69260E7C3800CAA05C /* ListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRequest.swift; sourceTree = "<group>"; };
 		0211EF6E260E7C7500CAA05C /* ListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListResponse.swift; sourceTree = "<group>"; };
 		0211EF7B260E924A00CAA05C /* AllListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListResponse.swift; sourceTree = "<group>"; };
@@ -178,16 +178,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0211EF862612580600CAA05C /* IndividualList */ = {
+		0211EF862612580600CAA05C /* DetailedList */ = {
 			isa = PBXGroup;
 			children = (
-				0211EF64260E77A100CAA05C /* ListViewController.swift */,
+				0211EF64260E77A100CAA05C /* DetailedListController.swift */,
 				0211EF9426125C2300CAA05C /* ListViewCell.swift */,
 				0211EF9526125C2300CAA05C /* ListViewCell.xib */,
 				0211EF9B2612759F00CAA05C /* ListHeaderView.swift */,
 				0211EFB32612820500CAA05C /* ListHeaderView.xib */,
 			);
-			path = IndividualList;
+			path = DetailedList;
 			sourceTree = "<group>";
 		};
 		0211EFBB2612864800CAA05C /* LandingPage */ = {
@@ -259,7 +259,7 @@
 		2E87AFEC25FFF56600D3A575 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				0211EF862612580600CAA05C /* IndividualList */,
+				0211EF862612580600CAA05C /* DetailedList */,
 				2E9ABEBC260BCFBA0047DED3 /* Login */,
 				0211EFBB2612864800CAA05C /* LandingPage */,
 				2E87AFEE25FFF59200D3A575 /* AddListViewController.swift */,
@@ -534,7 +534,7 @@
 				0211EF7C260E924A00CAA05C /* AllListResponse.swift in Sources */,
 				2E9ABECD260BF8CC0047DED3 /* NewUserRequest.swift in Sources */,
 				2E3475F82613E7E500BA27D9 /* AddListRequest.swift in Sources */,
-				0211EF65260E77A100CAA05C /* ListViewController.swift in Sources */,
+				0211EF65260E77A100CAA05C /* DetailedListController.swift in Sources */,
 				2E9ABED2260C03CD0047DED3 /* ResetPasswordRequest.swift in Sources */,
 				2E3475FD2613E91D00BA27D9 /* AddListResponse.swift in Sources */,
 			);

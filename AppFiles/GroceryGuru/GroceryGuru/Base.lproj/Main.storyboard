@@ -66,7 +66,7 @@
                                                             <constraint firstAttribute="height" constant="50" id="SUz-aD-Qiw"/>
                                                             <constraint firstAttribute="width" constant="175" id="nQ7-OL-Fto"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                                                         <state key="normal" title="Recipes">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -82,6 +82,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="175" id="uyU-7F-1fG"/>
                                                         </constraints>
+                                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                                                         <state key="normal" title="Old Lists">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -118,27 +119,114 @@
                     <connections>
                         <outlet property="createListButton" destination="zHR-Q3-Szf" id="Ynm-2w-h34"/>
                         <outlet property="tableView" destination="UGY-qv-7sb" id="V1v-Sl-Qqd"/>
+                        <segue destination="GVW-bU-frF" kind="show" identifier="LandingToDetailed" id="lTw-40-dyv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="soD-ip-G6o" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1048" y="124"/>
         </scene>
-        <!--List View Controller-->
+        <!--DetailedListController-->
         <scene sceneID="xOX-z2-aTf">
             <objects>
-                <viewController id="GVW-bU-frF" customClass="ListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailedListController" title="DetailedListController" id="GVW-bU-frF" customClass="DetailedListController" customModule="GroceryGuru" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hr3-HE-OYE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tON-v7-vn8">
+                                <rect key="frame" x="20" y="98" width="374" height="754"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5qX-I9-oGu">
+                                        <rect key="frame" x="47.5" y="0.0" width="279" height="31"/>
+                                        <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="y2O-Xm-naQ"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="All Items"/>
+                                            <segment title="Unpurchased Items"/>
+                                        </segments>
+                                        <color key="selectedSegmentTintColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </segmentedControl>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="912-EY-qfh">
+                                        <rect key="frame" x="4.5" y="50" width="365" height="634"/>
+                                        <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="375" id="DgG-ec-YFO"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="0t4-8g-UdL">
+                                                <rect key="frame" x="0.0" y="28" width="365" height="43.5"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0t4-8g-UdL" id="Q8S-Mu-vqB">
+                                                    <rect key="frame" x="0.0" y="0.0" width="365" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Eox-Be-AkE">
+                                        <rect key="frame" x="2" y="704" width="370" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqR-F6-qEB">
+                                                <rect key="frame" x="0.0" y="0.0" width="175" height="50"/>
+                                                <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="175" id="0IO-nM-c08"/>
+                                                    <constraint firstAttribute="height" constant="50" id="lZh-AI-OA9"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                                <state key="normal" title="Import Recipe">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NV9-ky-GT8">
+                                                <rect key="frame" x="195" y="0.0" width="175" height="50"/>
+                                                <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="175" id="NGm-ZW-HXF"/>
+                                                    <constraint firstAttribute="height" constant="50" id="wKC-e3-BvK"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                                <state key="normal" title="Add Store">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="9Xq-ut-olg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9Xq-ut-olg" firstAttribute="trailing" secondItem="tON-v7-vn8" secondAttribute="trailing" constant="20" id="099-bk-A60"/>
+                            <constraint firstItem="9Xq-ut-olg" firstAttribute="bottom" secondItem="tON-v7-vn8" secondAttribute="bottom" constant="10" id="PpD-C5-pf4"/>
+                            <constraint firstItem="tON-v7-vn8" firstAttribute="leading" secondItem="9Xq-ut-olg" secondAttribute="leading" constant="20" id="Tce-Jv-yR4"/>
+                            <constraint firstItem="tON-v7-vn8" firstAttribute="top" secondItem="9Xq-ut-olg" secondAttribute="top" constant="10" id="brQ-Ei-Lvp"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nAk-nq-BqT"/>
+                    <connections>
+                        <outlet property="segmentedControl" destination="5qX-I9-oGu" id="Htk-qs-FCw"/>
+                        <outlet property="tableView" destination="912-EY-qfh" id="PCe-XK-1Xb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hcE-Zz-exo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1048" y="804"/>
+            <point key="canvasLocation" x="1047.8260869565217" y="803.57142857142856"/>
         </scene>
         <!--AddListController-->
         <scene sceneID="0ku-ub-45d">
@@ -186,7 +274,7 @@
                                             <segment title="Recipes"/>
                                         </segments>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="selectedSegmentTintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="selectedSegmentTintColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </segmentedControl>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EI7-hT-uwG">
                                         <rect key="frame" x="0.0" y="101.5" width="374" height="0.0"/>
@@ -786,7 +874,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ceX-1p-A5Y"/>
+        <segue reference="lTw-40-dyv"/>
+        <segue reference="YPC-dN-Orv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
     <resources>

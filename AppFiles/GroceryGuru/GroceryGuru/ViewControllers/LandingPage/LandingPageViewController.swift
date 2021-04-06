@@ -21,6 +21,8 @@ extension UIColor {
 }
 
 public var deleted = true
+public var selected_list_id = ""
+public var selected_list_name = ""
 
 class LandingPageViewController: UIViewController, TableViewCellDelegate {
 
@@ -182,9 +184,13 @@ extension LandingPageViewController : UITableViewDelegate {
         
         print("Now performing segue to individual list view!")
         
-        let vc = ListViewController(listId: String(allListData[indexPath.row].listID))
-        vc.title = allListData[indexPath.row].listName
-        navigationController?.pushViewController(vc, animated:true)
+        selected_list_id = String(allListData[indexPath.row].listID)
+        selected_list_name = allListData[indexPath.row].listName
+        print(selected_list_id)
+        print(selected_list_name)
+        DispatchQueue.main.async{
+            self.performSegue(withIdentifier: "LandingToDetailed", sender: self)
+        }
     }
     
 }
