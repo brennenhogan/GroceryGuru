@@ -122,11 +122,11 @@ def get_list(id, user_uuid):
     print("INVALID REQUEST - No permissions")
     return {"result": False}
 
-  stores = db.session.query(ListItem.store_id).filter(ListItem.list_id==id).distinct().all()
-  distinct_store_ids = [store._asdict()['store_id'] for store in stores] # Get the ids of the stores for a list
+  stores = Store.query.filter(Store.list_id==id).all()
   
   listFragments = []
-  for store_id in distinct_store_ids:
+  for store in stores:
+    store_id = store.get_id()
     store = db.session.query(Store).filter(Store.store_id==store_id).one() # Store_ids are distinct
 
     store_items = db.session.query(ListItem)\

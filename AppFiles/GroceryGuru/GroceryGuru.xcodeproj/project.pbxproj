@@ -68,6 +68,7 @@
 		2E9ABED2260C03CD0047DED3 /* ResetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABED1260C03CD0047DED3 /* ResetPasswordRequest.swift */; };
 		2E9C6596261CCA1000107A9B /* DeleteItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9C6595261CCA1000107A9B /* DeleteItemRequest.swift */; };
 		2E9C659E261CEBCE00107A9B /* UpdateItemDescriptionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9C659D261CEBCE00107A9B /* UpdateItemDescriptionRequest.swift */; };
+		2E9C65A3261D254900107A9B /* AddStoreRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9C65A2261D254900107A9B /* AddStoreRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +156,7 @@
 		2E9ABED1260C03CD0047DED3 /* ResetPasswordRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordRequest.swift; sourceTree = "<group>"; };
 		2E9C6595261CCA1000107A9B /* DeleteItemRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteItemRequest.swift; sourceTree = "<group>"; };
 		2E9C659D261CEBCE00107A9B /* UpdateItemDescriptionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateItemDescriptionRequest.swift; sourceTree = "<group>"; };
+		2E9C65A2261D254900107A9B /* AddStoreRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStoreRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +354,7 @@
 				2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */,
 				2E34760B26152F6200BA27D9 /* UpdateListRequest.swift */,
 				2E9C659D261CEBCE00107A9B /* UpdateItemDescriptionRequest.swift */,
+				2E9C65A2261D254900107A9B /* AddStoreRequest.swift */,
 				2E9C6595261CCA1000107A9B /* DeleteItemRequest.swift */,
 				2E3476012615001500BA27D9 /* DeleteListRequest.swift */,
 				2E3476062615004900BA27D9 /* DeleteListResponse.swift */,
@@ -536,6 +539,7 @@
 				2E87AFBC25FFF4B800D3A575 /* SceneDelegate.swift in Sources */,
 				0211EF9626125C2300CAA05C /* ListViewCell.swift in Sources */,
 				2E87B00125FFF60700D3A575 /* Lists.xcdatamodeld in Sources */,
+				2E9C65A3261D254900107A9B /* AddStoreRequest.swift in Sources */,
 				2E9ABE86260AAEF60047DED3 /* Login.swift in Sources */,
 				2E3476022615001500BA27D9 /* DeleteListRequest.swift in Sources */,
 				2E9ABE9B260BCEDA0047DED3 /* LoginViewController.swift in Sources */,

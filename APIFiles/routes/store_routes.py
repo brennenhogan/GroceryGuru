@@ -10,8 +10,9 @@ store_api = Blueprint('store_api', __name__)
 @store_api.route('/store', methods=['POST'])
 def add_store():
   store_name = request.json['store_name']
+  list_id = request.json['list_id']
 
-  new_store = Store(store_name)
+  new_store = Store(store_name, list_id)
 
   db.session.add(new_store)
   try:

@@ -124,9 +124,52 @@ class DetailedListController: UIViewController, ListViewCellDelegate {
         }
     }
     
+    @IBAction func addStore(_ sender: UIButton){
+        let alert = UIAlertController(title: "Enter a Store Name", message: "", preferredStyle: .alert)
+
+        alert.addTextField { (textField) in
+            textField.text = ""
+        }
+
+        alert.view.tintColor = UIColor(hex: 0x7A916E)
+        self.present(alert, animated: true, completion: nil)
+        
+        // Grab the value from the text field when the user clicks Create
+        let createAction = UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            //Create List Action
+            let addStoreRequest = AddStoreRequest(storename: (textField?.text)!)
+            addStoreRequest.addStore { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let response):
+                    print("Store has been created \(response)")
+                    self?.getData()
+                }
+            }
+            print("Text field: \(textField?.text)")
+        })
+        
+        createAction.isEnabled = false
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
+        
+        // adding the notification observer here
+        NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object:alert.textFields?[0], queue: OperationQueue.main) { (notification) -> Void in
+                    let textFieldName = alert.textFields?[0] as! UITextField
+            createAction.isEnabled = !textFieldName.text!.isEmpty
+            }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(createAction)
+        
+    }
+    
     @IBAction func editAction(_ sender: UIBarButtonItem){
         self.tableView.isEditing = !self.tableView.isEditing
         sender.title = (self.tableView.isEditing) ? "Done" : "Edit"
+                
         tableView.visibleCells.forEach{ cell in
             guard let cell = cell as? ListViewCell else { return }
             cell.itemName.isEnabled = tableView.isEditing
@@ -178,6 +221,7 @@ extension DetailedListController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListHeaderView.identifier) as! ListHeaderView
         view.configure(title: listData[section].name) // TODO - add buttons here that do things
+        view.storeName.isEnabled = tableView.isEditing
         return view
     }
     
@@ -195,8 +239,7 @@ extension DetailedListController : UITableViewDataSource {
         cell.itemName.isEnabled = tableView.isEditing
         cell.itemQty.isEnabled = tableView.isEditing
         cell.delegate = self
-
-        
+                
         return cell
     }
 }
