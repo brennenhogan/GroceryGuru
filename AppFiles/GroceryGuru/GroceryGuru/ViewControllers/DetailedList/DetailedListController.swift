@@ -98,8 +98,8 @@ class DetailedListController: UIViewController, ListViewCellDelegate {
         if (editingStyle == .delete){
             let item_id = listData[indexPath.section].items[indexPath.row].itemID
 
-            /*let deleteRequest = DeleteItemRequest(list_id: item_id)
-            deleteRequest.deleteList { [weak self] result in
+            let deleteRequest = DeleteItemRequest(item_id: item_id)
+            deleteRequest.deleteItem { [weak self] result in
                 switch result {
                 case .failure(let error):
                     DispatchQueue.main.async {
@@ -114,9 +114,11 @@ class DetailedListController: UIViewController, ListViewCellDelegate {
             }
             
             if(deleted){
-                listData.remove(at: indexPath.item)
+                var items = listData[indexPath.section].items
+                items.remove(at: indexPath.row)
+                listData[indexPath.section].items = items
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-            }*/
+            }
             
             return
         }

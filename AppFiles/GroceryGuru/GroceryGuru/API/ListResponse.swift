@@ -8,7 +8,7 @@
 import Foundation
 
 struct ListElement: Codable {
-    let items: [Item]
+    var items: [Item]
     let name: String // name is the name of the store
 }
 

@@ -11,7 +11,7 @@ import Foundation
 enum DeleteItemError:Error {
     case NoDataAvailable
     case CanNotProcessData
-    case ListDeletionFailed
+    case ItemDeletionFailed
 }
 
 struct DeleteItemRequest {
@@ -19,7 +19,6 @@ struct DeleteItemRequest {
     
     init(item_id:Int) {
         let resourceString = "http://127.0.0.1:5000/item/delete"
-        //TODO Revisit
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         let parameterDictionary = ["item_id": item_id] as [String : Any]
         var request = URLRequest(url: resourceURL)
@@ -30,7 +29,7 @@ struct DeleteItemRequest {
         self.requestURL = request
     }
     
-    func deleteList (completion: @escaping(Result<DeleteListResponse, DeleteListError>) -> Void) {
+    func deleteItem (completion: @escaping(Result<DeleteListResponse, DeleteItemError>) -> Void) {
         let dataTask = URLSession.shared.dataTask(with: requestURL) { data, _, _ in
             guard let jsonData = data else {
                 completion(.failure(.NoDataAvailable))
@@ -44,7 +43,7 @@ struct DeleteItemRequest {
                     completion(.success(deleteListResponse))
                 }
                 else {
-                    completion(.failure(.ListDeletionFailed))
+                    completion(.failure(.ItemDeletionFailed))
                 }
             } catch{
                 completion(.failure(.CanNotProcessData))
