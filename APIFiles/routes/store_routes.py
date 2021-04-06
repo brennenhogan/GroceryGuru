@@ -27,7 +27,7 @@ def add_store():
 # Delete a store (and all of its items!)
 @store_api.route('/store/delete', methods=['POST'])
 def delete_store():
-  store_id = request.json['store_id'] # store ids are unique to each list but for safety we require the list_id anyways
+  store_id = request.json['store_id'] # store ids are unique to each list so we can delete items that belong to the store safely
   list_id = request.json['list_id']
   uuid = request.json["uuid"]
 
@@ -37,7 +37,7 @@ def delete_store():
     print("INVALID REQUEST - No permissions")
     return {"result": False}
 
-  items = ListItem.query.filter(ListItem.store_id==store_id).all() # Get all items for the list with list_id == list_id
+  items = ListItem.query.filter(ListItem.store_id==store_id).all() # Get all items for the list with store_id == store_id
 
   for item in items:
     db.session.delete(item)
