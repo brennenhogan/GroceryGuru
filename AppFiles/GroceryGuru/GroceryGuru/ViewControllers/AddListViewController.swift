@@ -99,7 +99,7 @@ class AddListViewController: UIViewController {
                     selected_list_id = String(addListResponse.list_id)
                     selected_list_name = listName
                     DispatchQueue.main.async{
-                        self?.performSegue(withIdentifier: "AddToDetailed", sender: self)
+                        self?.performSegue(withIdentifier: "unwindToLanding", sender: self)
                     }
                 }
             }

@@ -109,6 +109,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Active Lists" id="lK5-J1-I2a">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="3r6-d6-iSk"/>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="u3b-e4-O3K">
                             <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -135,13 +136,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tON-v7-vn8">
-                                <rect key="frame" x="20" y="98" width="374" height="754"/>
+                                <rect key="frame" x="10" y="98" width="394" height="754"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5qX-I9-oGu">
-                                        <rect key="frame" x="47.5" y="0.0" width="279" height="31"/>
+                                        <rect key="frame" x="57.5" y="0.0" width="279" height="31"/>
                                         <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="y2O-Xm-naQ"/>
+                                            <constraint firstAttribute="height" constant="30" id="MQZ-XL-j5D"/>
                                         </constraints>
                                         <segments>
                                             <segment title="All Items"/>
@@ -149,26 +150,15 @@
                                         </segments>
                                         <color key="selectedSegmentTintColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </segmentedControl>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="912-EY-qfh">
-                                        <rect key="frame" x="4.5" y="50" width="365" height="634"/>
-                                        <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="tintColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8un-y3-HG4">
+                                        <rect key="frame" x="9.5" y="50" width="375" height="634"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="375" id="DgG-ec-YFO"/>
+                                            <constraint firstAttribute="width" constant="375" id="RjW-y2-eW2"/>
                                         </constraints>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="0t4-8g-UdL">
-                                                <rect key="frame" x="0.0" y="28" width="365" height="43.5"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0t4-8g-UdL" id="Q8S-Mu-vqB">
-                                                    <rect key="frame" x="0.0" y="0.0" width="365" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </tableViewCellContentView>
-                                            </tableViewCell>
-                                        </prototypes>
                                     </tableView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Eox-Be-AkE">
-                                        <rect key="frame" x="2" y="704" width="370" height="50"/>
+                                        <rect key="frame" x="12" y="704" width="370" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqR-F6-qEB">
                                                 <rect key="frame" x="0.0" y="0.0" width="175" height="50"/>
@@ -212,16 +202,23 @@
                         <viewLayoutGuide key="safeArea" id="9Xq-ut-olg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="9Xq-ut-olg" firstAttribute="trailing" secondItem="tON-v7-vn8" secondAttribute="trailing" constant="20" id="099-bk-A60"/>
+                            <constraint firstItem="9Xq-ut-olg" firstAttribute="trailing" secondItem="tON-v7-vn8" secondAttribute="trailing" constant="10" id="099-bk-A60"/>
                             <constraint firstItem="9Xq-ut-olg" firstAttribute="bottom" secondItem="tON-v7-vn8" secondAttribute="bottom" constant="10" id="PpD-C5-pf4"/>
-                            <constraint firstItem="tON-v7-vn8" firstAttribute="leading" secondItem="9Xq-ut-olg" secondAttribute="leading" constant="20" id="Tce-Jv-yR4"/>
+                            <constraint firstItem="tON-v7-vn8" firstAttribute="leading" secondItem="9Xq-ut-olg" secondAttribute="leading" constant="10" id="Tce-Jv-yR4"/>
                             <constraint firstItem="tON-v7-vn8" firstAttribute="top" secondItem="9Xq-ut-olg" secondAttribute="top" constant="10" id="brQ-Ei-Lvp"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="nAk-nq-BqT"/>
+                    <navigationItem key="navigationItem" id="nAk-nq-BqT">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="kC4-uM-pTa">
+                            <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="editAction:" destination="GVW-bU-frF" id="TKn-15-kDS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="segmentedControl" destination="5qX-I9-oGu" id="Htk-qs-FCw"/>
-                        <outlet property="tableView" destination="912-EY-qfh" id="PCe-XK-1Xb"/>
+                        <outlet property="tableView" destination="8un-y3-HG4" id="ldP-gl-UPH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hcE-Zz-exo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -322,9 +319,11 @@
                         <outlet property="segmentedControl" destination="Nyk-jv-Uax" id="bX5-jg-zNa"/>
                         <outlet property="textView" destination="MuT-uy-2eZ" id="Qal-73-GIq"/>
                         <segue destination="GVW-bU-frF" kind="show" identifier="AddToDetailed" id="4nF-TC-L7i"/>
+                        <segue destination="ZJO-B2-k3K" kind="unwind" identifier="unwindToLanding" unwindAction="unwind:" id="kDB-Gv-hSK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="45j-5N-wIm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="ZJO-B2-k3K" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1967" y="124"/>
         </scene>
@@ -874,8 +873,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lTw-40-dyv"/>
-        <segue reference="YPC-dN-Orv"/>
+        <segue reference="4nF-TC-L7i"/>
+        <segue reference="MAS-V4-j2s"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
     <resources>

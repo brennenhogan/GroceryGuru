@@ -66,6 +66,7 @@
 		2E9ABEC5260BF8990047DED3 /* NewUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABEC4260BF8990047DED3 /* NewUser.swift */; };
 		2E9ABECD260BF8CC0047DED3 /* NewUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABECC260BF8CC0047DED3 /* NewUserRequest.swift */; };
 		2E9ABED2260C03CD0047DED3 /* ResetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABED1260C03CD0047DED3 /* ResetPasswordRequest.swift */; };
+		2E9C6596261CCA1000107A9B /* DeleteItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9C6595261CCA1000107A9B /* DeleteItemRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +152,7 @@
 		2E9ABEC4260BF8990047DED3 /* NewUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUser.swift; sourceTree = "<group>"; };
 		2E9ABECC260BF8CC0047DED3 /* NewUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserRequest.swift; sourceTree = "<group>"; };
 		2E9ABED1260C03CD0047DED3 /* ResetPasswordRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordRequest.swift; sourceTree = "<group>"; };
+		2E9C6595261CCA1000107A9B /* DeleteItemRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteItemRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,6 +349,7 @@
 				2E3475F72613E7E500BA27D9 /* AddListRequest.swift */,
 				2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */,
 				2E34760B26152F6200BA27D9 /* UpdateListRequest.swift */,
+				2E9C6595261CCA1000107A9B /* DeleteItemRequest.swift */,
 				2E3476012615001500BA27D9 /* DeleteListRequest.swift */,
 				2E3476062615004900BA27D9 /* DeleteListResponse.swift */,
 			);
@@ -524,6 +527,7 @@
 				0211EF81260E92B000CAA05C /* AllListRequest.swift in Sources */,
 				2E87AFBA25FFF4B800D3A575 /* AppDelegate.swift in Sources */,
 				2E34760C26152F6200BA27D9 /* UpdateListRequest.swift in Sources */,
+				2E9C6596261CCA1000107A9B /* DeleteItemRequest.swift in Sources */,
 				2E87AFEF25FFF59200D3A575 /* AddListViewController.swift in Sources */,
 				2E87AFBC25FFF4B800D3A575 /* SceneDelegate.swift in Sources */,
 				0211EF9626125C2300CAA05C /* ListViewCell.swift in Sources */,

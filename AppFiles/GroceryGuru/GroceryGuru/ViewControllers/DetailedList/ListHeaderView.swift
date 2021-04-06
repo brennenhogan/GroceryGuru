@@ -9,7 +9,7 @@ import UIKit
 
 class ListHeaderView: UITableViewHeaderFooterView {
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var storeName: UITextField!
     
     static var identifier = "ListHeaderView"
     
@@ -18,7 +18,7 @@ class ListHeaderView: UITableViewHeaderFooterView {
     }
     
     public func configure(title: String) {
-        titleLabel.text = title
+        storeName.text = title
     }
     
     override func awakeFromNib() {

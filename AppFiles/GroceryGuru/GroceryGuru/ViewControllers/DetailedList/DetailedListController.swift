@@ -26,6 +26,7 @@ class DetailedListController: UIViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = selected_list_name
+        configureNavigationBar()
         
         tableView.register(ListViewCell.nib(), forCellReuseIdentifier:ListViewCell.identifier)
         tableView.register(ListHeaderView.nib(), forHeaderFooterViewReuseIdentifier:ListHeaderView.identifier)
@@ -40,6 +41,30 @@ class DetailedListController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.getData()
+    }
+    
+    private func configureNavigationBar() {
+        // Nav Bar Colors
+        let white = UIColor(hex: 0xFFFFFF)
+        let dark_sage = UIColor(hex: 0x7A916E)
+        
+        // Sets Bar Tint and Tint Color
+        self.navigationController?.navigationBar.barTintColor = white
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.tintColor = dark_sage
+        
+        // Sets the Title Color, Sizing, and Font
+        let titleDict: NSDictionary = [
+            NSAttributedString.Key.foregroundColor: dark_sage,
+            NSAttributedString.Key.font: UIFont(name: "Roboto-Regular", size: 28)!
+        ]
+        self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [NSAttributedString.Key : AnyObject]
+        
+        //For back button in navigation bar
+        let backButton = UIBarButtonItem()
+        backButton.title = "Back"
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        
     }
     
     func getData() {
@@ -69,6 +94,45 @@ class DetailedListController: UIViewController {
 
             self.present(alertController, animated: true, completion: nil)
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+        if (editingStyle == .delete){
+            let item_id = listData[indexPath.section].items[indexPath.row].itemID
+
+            /*let deleteRequest = DeleteItemRequest(list_id: item_id)
+            deleteRequest.deleteList { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self?.CreateAlert(title: "Error", message: "\(error)")
+                        deleted = false
+                    }
+                    print(error)
+                case .success(let response):
+                    print("List has been deleted \(response)")
+                    deleted = response.result
+                }
+            }
+            
+            if(deleted){
+                listData.remove(at: indexPath.item)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }*/
+            
+            return
+        }
+    }
+    
+    @IBAction func editAction(_ sender: UIBarButtonItem){
+        self.tableView.isEditing = !self.tableView.isEditing
+        sender.title = (self.tableView.isEditing) ? "Done" : "Edit"
+        tableView.visibleCells.forEach{ cell in
+            guard let cell = cell as? ListViewCell else { return }
+            cell.itemName.isEnabled = tableView.isEditing
+            cell.itemQty.isEnabled = tableView.isEditing
+        }
+    }
+    
 }
 
 extension DetailedListController : UITableViewDelegate {
@@ -106,6 +170,9 @@ extension DetailedListController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListViewCell.identifier, for: indexPath) as! ListViewCell
         
         cell.configure(title: text, qty: qty)
+        cell.itemName.isEnabled = tableView.isEditing
+        cell.itemQty.isEnabled = tableView.isEditing
+
         
         return cell
     }

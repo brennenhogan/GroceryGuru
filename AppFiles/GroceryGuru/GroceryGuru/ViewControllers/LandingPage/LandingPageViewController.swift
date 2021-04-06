@@ -171,7 +171,8 @@ class LandingPageViewController: UIViewController, TableViewCellDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    @IBAction func unwind(_ segue: UIStoryboardSegue) {}
 }
 
 extension LandingPageViewController : UITableViewDelegate {

@@ -15,12 +15,12 @@ class ListViewCell: UITableViewCell {
     }
     
     public func configure(title: String, qty: Int) {
-        myLabel.text = title
-        myQty.text = String(qty)
+        itemName.text = title
+        itemQty.text = String(qty)
     }
 
-    @IBOutlet var myLabel: UILabel!
-    @IBOutlet var myQty: UILabel!
+    @IBOutlet var itemName: UITextField!
+    @IBOutlet var itemQty: UITextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()
