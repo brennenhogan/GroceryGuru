@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailedListController: UIViewController {
+class DetailedListController: UIViewController, ListViewCellDelegate {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -24,7 +24,6 @@ class DetailedListController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationItem.title = selected_list_name
         configureNavigationBar()
         
@@ -133,6 +132,27 @@ class DetailedListController: UIViewController {
         }
     }
     
+    func textFieldDidEndEditing(cell: ListViewCell, item_description: String) -> () {
+        let path = tableView.indexPathForRow(at: cell.convert(cell.bounds.origin, to: tableView))
+        let item_id = listData[path?.section ?? 0].items[path?.row ?? 0].itemID
+        
+        let updateItemDescriptionRequest = UpdateItemDescriptionRequest(item_description: item_description, item_id: item_id)
+        updateItemDescriptionRequest.updateItemDescription { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let response):
+                print("List has been updated \(response)")
+            }
+        }
+        return
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
 }
 
 extension DetailedListController : UITableViewDelegate {
@@ -172,6 +192,7 @@ extension DetailedListController : UITableViewDataSource {
         cell.configure(title: text, qty: qty)
         cell.itemName.isEnabled = tableView.isEditing
         cell.itemQty.isEnabled = tableView.isEditing
+        cell.delegate = self
 
         
         return cell

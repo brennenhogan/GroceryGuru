@@ -48,6 +48,23 @@ def update_qty():
 
   return {"result": True}
 
+# Update the name of an item
+@listItem_api.route('/item/description', methods=['POST'])
+def update_description():
+  item_id = request.json['item_id']
+  description = request.json['description']
+ 
+  item = ListItem.query.filter(ListItem.item_id==item_id).first() # Get the item from the DB
+  item.description = description # update the description
+
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    print(exc.SQLAlchemyError)
+    return {"result": False}
+
+  return {"result": True}
+
 # Check off an item
 @listItem_api.route('/item/check', methods=['POST'])
 def update_purchased():

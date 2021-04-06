@@ -7,7 +7,13 @@
 
 import UIKit
 
-class ListViewCell: UITableViewCell {
+protocol ListViewCellDelegate {
+    func textFieldDidEndEditing(cell: ListViewCell, item_description: String) -> ()
+}
+
+class ListViewCell: UITableViewCell, UITextFieldDelegate {
+    var delegate: ListViewCellDelegate! = nil
+    
     static var identifier = "ListViewCell"
     
     static func nib() -> UINib {
@@ -24,9 +30,19 @@ class ListViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        itemName.delegate = self
+        itemName.returnKeyType = .done
+    }
+    
+    func textFieldDidEndEditing(_ itemName: UITextField) {
+        self.delegate.textFieldDidEndEditing(cell: self, item_description: itemName.text!)
     }
 
+    func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
+        itemName.resignFirstResponder()
+        return true
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

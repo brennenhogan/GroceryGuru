@@ -67,6 +67,7 @@
 		2E9ABECD260BF8CC0047DED3 /* NewUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABECC260BF8CC0047DED3 /* NewUserRequest.swift */; };
 		2E9ABED2260C03CD0047DED3 /* ResetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABED1260C03CD0047DED3 /* ResetPasswordRequest.swift */; };
 		2E9C6596261CCA1000107A9B /* DeleteItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9C6595261CCA1000107A9B /* DeleteItemRequest.swift */; };
+		2E9C659E261CEBCE00107A9B /* UpdateItemDescriptionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9C659D261CEBCE00107A9B /* UpdateItemDescriptionRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +154,7 @@
 		2E9ABECC260BF8CC0047DED3 /* NewUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserRequest.swift; sourceTree = "<group>"; };
 		2E9ABED1260C03CD0047DED3 /* ResetPasswordRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordRequest.swift; sourceTree = "<group>"; };
 		2E9C6595261CCA1000107A9B /* DeleteItemRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteItemRequest.swift; sourceTree = "<group>"; };
+		2E9C659D261CEBCE00107A9B /* UpdateItemDescriptionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateItemDescriptionRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,6 +351,7 @@
 				2E3475F72613E7E500BA27D9 /* AddListRequest.swift */,
 				2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */,
 				2E34760B26152F6200BA27D9 /* UpdateListRequest.swift */,
+				2E9C659D261CEBCE00107A9B /* UpdateItemDescriptionRequest.swift */,
 				2E9C6595261CCA1000107A9B /* DeleteItemRequest.swift */,
 				2E3476012615001500BA27D9 /* DeleteListRequest.swift */,
 				2E3476062615004900BA27D9 /* DeleteListResponse.swift */,
@@ -514,6 +517,7 @@
 			files = (
 				0211EF6F260E7C7600CAA05C /* ListResponse.swift in Sources */,
 				2E3476072615004900BA27D9 /* DeleteListResponse.swift in Sources */,
+				2E9C659E261CEBCE00107A9B /* UpdateItemDescriptionRequest.swift in Sources */,
 				0211EFC12612878D00CAA05C /* LandingListCell.swift in Sources */,
 				2E9ABE8B260AAF560047DED3 /* LoginRequest.swift in Sources */,
 				2E87AFF825FFF5DB00D3A575 /* CoreDataStack.swift in Sources */,
