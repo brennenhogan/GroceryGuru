@@ -9,6 +9,7 @@ import Foundation
 
 struct ListElement: Codable {
     var items: [Item]
+    var store_id: Int
     let name: String // name is the name of the store
 }
 
