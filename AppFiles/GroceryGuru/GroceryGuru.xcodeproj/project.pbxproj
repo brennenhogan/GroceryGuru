@@ -18,6 +18,8 @@
 		0211EFB42612820500CAA05C /* ListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0211EFB32612820500CAA05C /* ListHeaderView.xib */; };
 		0211EFC12612878D00CAA05C /* LandingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211EFBF2612878D00CAA05C /* LandingListCell.swift */; };
 		0211EFC22612878D00CAA05C /* LandingListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0211EFC02612878D00CAA05C /* LandingListCell.xib */; };
+		0211EFE7261E5B9C00CAA05C /* OldListsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211EFE5261E5B9C00CAA05C /* OldListsCell.swift */; };
+		0211EFE8261E5B9C00CAA05C /* OldListsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0211EFE6261E5B9C00CAA05C /* OldListsCell.xib */; };
 		2E3475F82613E7E500BA27D9 /* AddListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3475F72613E7E500BA27D9 /* AddListRequest.swift */; };
 		2E3475FD2613E91D00BA27D9 /* AddListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */; };
 		2E3476022615001500BA27D9 /* DeleteListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3476012615001500BA27D9 /* DeleteListRequest.swift */; };
@@ -100,6 +102,8 @@
 		0211EFB32612820500CAA05C /* ListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListHeaderView.xib; sourceTree = "<group>"; };
 		0211EFBF2612878D00CAA05C /* LandingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingListCell.swift; sourceTree = "<group>"; };
 		0211EFC02612878D00CAA05C /* LandingListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LandingListCell.xib; sourceTree = "<group>"; };
+		0211EFE5261E5B9C00CAA05C /* OldListsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldListsCell.swift; sourceTree = "<group>"; };
+		0211EFE6261E5B9C00CAA05C /* OldListsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OldListsCell.xib; sourceTree = "<group>"; };
 		2E3475F72613E7E500BA27D9 /* AddListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListRequest.swift; sourceTree = "<group>"; };
 		2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListResponse.swift; sourceTree = "<group>"; };
 		2E3476012615001500BA27D9 /* DeleteListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteListRequest.swift; sourceTree = "<group>"; };
@@ -206,6 +210,16 @@
 			path = LandingPage;
 			sourceTree = "<group>";
 		};
+		0211EFE1261E594900CAA05C /* NewList */ = {
+			isa = PBXGroup;
+			children = (
+				2E87AFEE25FFF59200D3A575 /* AddListViewController.swift */,
+				0211EFE5261E5B9C00CAA05C /* OldListsCell.swift */,
+				0211EFE6261E5B9C00CAA05C /* OldListsCell.xib */,
+			);
+			path = NewList;
+			sourceTree = "<group>";
+		};
 		2E87AFAD25FFF4B800D3A575 = {
 			isa = PBXGroup;
 			children = (
@@ -265,10 +279,10 @@
 		2E87AFEC25FFF56600D3A575 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0211EFE1261E594900CAA05C /* NewList */,
 				0211EF862612580600CAA05C /* DetailedList */,
 				2E9ABEBC260BCFBA0047DED3 /* Login */,
 				0211EFBB2612864800CAA05C /* LandingPage */,
-				2E87AFEE25FFF59200D3A575 /* AddListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -490,6 +504,7 @@
 				2E9ABE6F260A91390047DED3 /* Roboto-Regular.ttf in Resources */,
 				2E9ABE59260A91040047DED3 /* OpenSans-Regular.ttf in Resources */,
 				2E9ABE71260A91390047DED3 /* Roboto-ThinItalic.ttf in Resources */,
+				0211EFE8261E5B9C00CAA05C /* OldListsCell.xib in Resources */,
 				2E9ABE70260A91390047DED3 /* Roboto-MediumItalic.ttf in Resources */,
 				2E9ABE72260A91390047DED3 /* Roboto-BoldItalic.ttf in Resources */,
 				2E9ABE78260A91390047DED3 /* Roboto-Thin.ttf in Resources */,
@@ -545,6 +560,7 @@
 				2E9ABE9B260BCEDA0047DED3 /* LoginViewController.swift in Sources */,
 				0211EF7C260E924A00CAA05C /* AllListResponse.swift in Sources */,
 				2E9ABECD260BF8CC0047DED3 /* NewUserRequest.swift in Sources */,
+				0211EFE7261E5B9C00CAA05C /* OldListsCell.swift in Sources */,
 				2E3475F82613E7E500BA27D9 /* AddListRequest.swift in Sources */,
 				0211EF65260E77A100CAA05C /* DetailedListController.swift in Sources */,
 				2E9ABED2260C03CD0047DED3 /* ResetPasswordRequest.swift in Sources */,

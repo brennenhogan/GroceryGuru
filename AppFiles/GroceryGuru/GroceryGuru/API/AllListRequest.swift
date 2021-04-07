@@ -16,8 +16,8 @@ enum AllListError:Error {
 struct AllListRequest {
     let requestURL:URLRequest
     
-    init() {
-        let resourceString = "http://127.0.0.1:5000/owner/\(userUuid)/0"
+    init(status: Int) {
+        let resourceString = "http://127.0.0.1:5000/owner/\(userUuid)/" + String(status)
         print(resourceString)
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         var request = URLRequest(url: resourceURL)

@@ -87,7 +87,7 @@ class LandingPageViewController: UIViewController, TableViewCellDelegate {
     }
     
     func getData() {
-        let allListRequest = AllListRequest()
+        let allListRequest = AllListRequest(status: 0)
         allListRequest.getList { [weak self] result in
             switch result {
             case .failure(let error):
