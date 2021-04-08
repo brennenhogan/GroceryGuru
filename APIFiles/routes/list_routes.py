@@ -76,7 +76,7 @@ def create_from_oldlist():
     store_id = store_obj._asdict()['store_id']
     store = Store.query.filter(Store.store_id==store_id).first()
 
-    new_store = Store(store.get_name()) # Create new store
+    new_store = Store(store.get_name(), new_list.list_id) # Create new store
     db.session.add(new_store) # Insert new store
 
     db.session.flush() # Get the id from new_store
@@ -93,9 +93,9 @@ def create_from_oldlist():
     db.session.commit()
   except exc.SQLAlchemyError:
     print(exc.SQLAlchemyError)
-    return {"result": False}
+    return {"result": False, "list_id": 0}
 
-  return {"result": True}
+  return {"result": True, "list_id": new_list.list_id}
 
 # Delete a list
 @list_api.route('/list/delete', methods=['POST'])
