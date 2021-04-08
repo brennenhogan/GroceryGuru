@@ -73,14 +73,12 @@ class AddListViewController: UIViewController {
     }
     
     func CreateAlert(title: String, message: String) {
-
-            let alertController = UIAlertController(title: title, message:
-                                                        message, preferredStyle: UIAlertController.Style.alert)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
 
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default,handler: nil))
         alertController.view.tintColor = UIColor(hex: 0x7A916E)
 
-            self.present(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
@@ -175,13 +173,41 @@ extension AddListViewController : UITableViewDelegate {
         
         tableView.deselectRow(at: indexPath, animated: true) // Unselect the previous list
         
-        print("Now performing segue to individual list view!")
+        let listId = String(allListData[indexPath.row].listID)
         
-        selected_list_id = String(allListData[indexPath.row].listID)
-        // TODO - seque
-        /*DispatchQueue.main.async{
-            self.performSegue(withIdentifier: "LandingToDetailed", sender: self)
-        }*/
+        let alert = UIAlertController(title: "Enter a New List Name", message: "", preferredStyle: .alert)
+
+        alert.addTextField { (textField) in
+            textField.text = ""
+        }
+
+        alert.view.tintColor = UIColor(hex: 0x7A916E)
+        self.present(alert, animated: true, completion: nil)
+        
+        // Grab the value from the text field when the user clicks Create
+        let createAction = UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists
+            let createListRequest = CreatFromOldListRequest(name: (textField?.text)!, list_id: listId)
+            createListRequest.createList { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let response):
+                    print("List has been created with id = \(response.list_id)")
+                    selected_list_id = String(response.list_id)
+                    
+                    print("Now performing segue to individual list view!")
+                    DispatchQueue.main.async{
+                        self?.performSegue(withIdentifier: "AddToDetailed", sender: self)
+                    }
+                }
+            }
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(createAction)
     }
     
 }
