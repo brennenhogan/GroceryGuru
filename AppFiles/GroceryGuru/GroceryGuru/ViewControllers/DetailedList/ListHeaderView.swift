@@ -11,9 +11,14 @@ protocol AddItemDelegate {
     func addItem(storeID: String)
 }
 
+protocol DeleteStoreDelegate {
+    func deleteStore(storeID: String)
+}
+
 class ListHeaderView: UITableViewHeaderFooterView {
 
     @IBOutlet weak var storeName: UITextField!
+    @IBOutlet weak var deleteButton: UIButton!
     
     static var identifier = "ListHeaderView"
     
@@ -41,10 +46,14 @@ class ListHeaderView: UITableViewHeaderFooterView {
     }
     
     var addItemDelegate: AddItemDelegate?
+    var deleteStoreDelegate: DeleteStoreDelegate?
     
     @IBAction func addStore(_ sender: UIButton){
-        print("In xib")
         addItemDelegate?.addItem(storeID: store_id)
+    }
+    
+    @IBAction func deleteStore(_ sender: UIButton){
+        deleteStoreDelegate?.deleteStore(storeID: store_id)
     }
 
 }

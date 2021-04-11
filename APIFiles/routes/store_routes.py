@@ -43,6 +43,9 @@ def delete_store():
   for item in items:
     db.session.delete(item)
 
+  store = Store.query.filter(Store.store_id==store_id).one()
+  db.session.delete(store)
+
   try:
     db.session.commit()
   except exc.SQLAlchemyError:

@@ -175,6 +175,11 @@ class DetailedListController: UIViewController, ListViewCellDelegate {
             cell.itemName.isEnabled = tableView.isEditing
             cell.itemQty.isEnabled = tableView.isEditing
         }
+        
+        for i in 0...listData.count {
+            guard let header = tableView.headerView(forSection: i) as? ListHeaderView else { return }
+            header.deleteButton.isHidden = !header.deleteButton.isHidden // Flip to the opposite state as before
+        }
     }
     
     func textFieldDidEndEditing(cell: ListViewCell, item_description: String) -> () {
@@ -224,6 +229,8 @@ extension DetailedListController : UITableViewDataSource {
         view.storeName.isEnabled = tableView.isEditing
         
         view.addItemDelegate = self // Be listening for the button tap in the header
+        view.deleteStoreDelegate = self
+        view.deleteButton.isHidden = true // Trash can icon should be hidden at the start
         
         return view
     }
@@ -281,5 +288,25 @@ extension DetailedListController: AddItemDelegate {
         
         alert.addAction(cancelAction)
         alert.addAction(createAction)
+    }
+}
+
+extension DetailedListController: DeleteStoreDelegate {
+    func deleteStore(storeID: String) {
+        print("deleting store: " + storeID)
+        let deleteStoreRequest = DeleteStoreRequest(store_id: storeID, list_id: selected_list_id)
+        deleteStoreRequest.deleteStore { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print("Error deleting store")
+                DispatchQueue.main.async {
+                    self?.CreateAlert(title: "Error", message: "\(error)")
+                }
+                print(error)
+            case .success(let list):
+                print("Store deleted")
+                self?.getData()
+            }
+        }
     }
 }
