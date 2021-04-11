@@ -194,11 +194,10 @@ extension AddListViewController : UITableViewDelegate {
                     print(error)
                 case .success(let response):
                     print("List has been created with id = \(response.list_id)")
-                    selected_list_id = String(response.list_id)
                     
-                    print("Now performing segue to individual list view!")
+                    print("Now performing segue to landing page!")
                     DispatchQueue.main.async{
-                        self?.performSegue(withIdentifier: "AddToDetailed", sender: self)
+                        self?.performSegue(withIdentifier: "unwindToLanding", sender: self)
                     }
                 }
             }

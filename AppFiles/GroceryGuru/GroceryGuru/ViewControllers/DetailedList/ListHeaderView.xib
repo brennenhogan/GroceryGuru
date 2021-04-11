@@ -45,6 +45,9 @@
                                         <state key="normal">
                                             <imageReference key="image" image="plus.circle" catalog="system" symbolScale="large"/>
                                         </state>
+                                        <connections>
+                                            <action selector="addStore:" destination="iN0-l3-epB" eventType="touchDown" id="ZF1-37-8Hc"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.38823529411764707" green="0.396078431372549" blue="0.40784313725490196" alpha="1" colorSpace="calibratedRGB"/>

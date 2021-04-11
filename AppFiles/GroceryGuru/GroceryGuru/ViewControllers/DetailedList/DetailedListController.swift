@@ -220,8 +220,11 @@ extension DetailedListController : UITableViewDataSource {
     // Use custom header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListHeaderView.identifier) as! ListHeaderView
-        view.configure(title: listData[section].name) // TODO - add buttons here that do things
+        view.configure(title: listData[section].name, storeID: String(listData[section].store_id)) // TODO - add buttons here that do things
         view.storeName.isEnabled = tableView.isEditing
+        
+        view.addItemDelegate = self // Be listening for the button tap in the header
+        
         return view
     }
     
@@ -241,5 +244,42 @@ extension DetailedListController : UITableViewDataSource {
         cell.delegate = self
                 
         return cell
+    }
+}
+
+extension DetailedListController: AddItemDelegate {
+    func addItem(storeID: String) {
+        print("In Delegate")
+        let alert = UIAlertController(title: "Enter an Item Name", message: "", preferredStyle: .alert)
+
+        alert.addTextField { (textField) in
+            textField.text = ""
+        }
+
+        alert.view.tintColor = UIColor(hex: 0x7A916E)
+        self.present(alert, animated: true, completion: nil)
+        
+        // Grab the value from the text field when the user clicks Add
+        let createAction = UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            // Add Item Action
+            let addItemRequest = AddItemRequest(description: (textField?.text)!, list_id: selected_list_id, store_id: storeID, qty: "1")
+            
+            addItemRequest.addItem { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let response):
+                    print("Item has been created \(response)")
+                    self?.getData()
+                }
+            }
+            print("Text field: \(textField?.text)")
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(createAction)
     }
 }

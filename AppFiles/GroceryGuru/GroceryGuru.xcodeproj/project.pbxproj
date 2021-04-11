@@ -21,6 +21,7 @@
 		0211EFE7261E5B9C00CAA05C /* OldListsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211EFE5261E5B9C00CAA05C /* OldListsCell.swift */; };
 		0211EFE8261E5B9C00CAA05C /* OldListsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0211EFE6261E5B9C00CAA05C /* OldListsCell.xib */; };
 		0211EFF0261EA5E200CAA05C /* CreateFromOldListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211EFEF261EA5E200CAA05C /* CreateFromOldListRequest.swift */; };
+		0211EFF5262377AA00CAA05C /* AddItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0211EFF4262377A900CAA05C /* AddItemRequest.swift */; };
 		2E3475F82613E7E500BA27D9 /* AddListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3475F72613E7E500BA27D9 /* AddListRequest.swift */; };
 		2E3475FD2613E91D00BA27D9 /* AddListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */; };
 		2E3476022615001500BA27D9 /* DeleteListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3476012615001500BA27D9 /* DeleteListRequest.swift */; };
@@ -106,6 +107,7 @@
 		0211EFE5261E5B9C00CAA05C /* OldListsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldListsCell.swift; sourceTree = "<group>"; };
 		0211EFE6261E5B9C00CAA05C /* OldListsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OldListsCell.xib; sourceTree = "<group>"; };
 		0211EFEF261EA5E200CAA05C /* CreateFromOldListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFromOldListRequest.swift; sourceTree = "<group>"; };
+		0211EFF4262377A900CAA05C /* AddItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemRequest.swift; sourceTree = "<group>"; };
 		2E3475F72613E7E500BA27D9 /* AddListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListRequest.swift; sourceTree = "<group>"; };
 		2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListResponse.swift; sourceTree = "<group>"; };
 		2E3476012615001500BA27D9 /* DeleteListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteListRequest.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				2E3476012615001500BA27D9 /* DeleteListRequest.swift */,
 				2E3476062615004900BA27D9 /* DeleteListResponse.swift */,
 				0211EFEF261EA5E200CAA05C /* CreateFromOldListRequest.swift */,
+				0211EFF4262377A900CAA05C /* AddItemRequest.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				2E9ABE9B260BCEDA0047DED3 /* LoginViewController.swift in Sources */,
 				0211EF7C260E924A00CAA05C /* AllListResponse.swift in Sources */,
 				2E9ABECD260BF8CC0047DED3 /* NewUserRequest.swift in Sources */,
+				0211EFF5262377AA00CAA05C /* AddItemRequest.swift in Sources */,
 				0211EFE7261E5B9C00CAA05C /* OldListsCell.swift in Sources */,
 				2E3475F82613E7E500BA27D9 /* AddListRequest.swift in Sources */,
 				0211EF65260E77A100CAA05C /* DetailedListController.swift in Sources */,
