@@ -30,8 +30,19 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="X05-mr-FqD">
                                 <rect key="frame" x="10" y="0.0" width="355" height="50"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Expand" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lgd-yk-PE2" userLabel="Expand">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="Av4-Hz-3kw"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" image="rectangle.expand.vertical" catalog="system"/>
+                                        <connections>
+                                            <action selector="expandSection:" destination="iN0-l3-epB" eventType="primaryActionTriggered" id="yz6-96-XYY"/>
+                                        </connections>
+                                    </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rdd-9Z-nmN">
-                                        <rect key="frame" x="0.0" y="0.0" width="245" height="50"/>
+                                        <rect key="frame" x="60" y="0.0" width="185" height="50"/>
                                         <color key="backgroundColor" red="0.38823529411764707" green="0.396078431372549" blue="0.40784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
@@ -91,6 +102,7 @@
             <connections>
                 <outlet property="addButton" destination="35i-e6-qfr" id="Ug4-pq-V0l"/>
                 <outlet property="deleteButton" destination="3WZ-q9-TiO" id="Tyg-HG-M6X"/>
+                <outlet property="expandButton" destination="Lgd-yk-PE2" id="1ua-xG-1mN"/>
                 <outlet property="storeName" destination="rdd-9Z-nmN" id="upu-gI-nVG"/>
             </connections>
             <point key="canvasLocation" x="74.637681159420296" y="81.696428571428569"/>
@@ -98,6 +110,7 @@
     </objects>
     <resources>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
+        <image name="rectangle.expand.vertical" catalog="system" width="128" height="122"/>
         <image name="trash.fill" catalog="system" width="121" height="128"/>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

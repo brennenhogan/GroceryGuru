@@ -22,6 +22,8 @@ class DetailedListController: UIViewController, ListViewCellDelegate {
         }
     }
     
+    var hiddenSections = Set<Int>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = selected_list_name
@@ -232,17 +234,22 @@ extension DetailedListController : UITableViewDataSource {
         view.storeName.isEnabled = tableView.isEditing
         view.addButton.isHidden = tableView.isEditing
         view.deleteButton.isHidden = !tableView.isEditing
-
+        view.expandButton.tag = section
         
         view.addItemDelegate = self // Be listening for the button tap in the header
         view.deleteStoreDelegate = self
         view.editStoreDelegate = self
+        view.expandSectionDelegate = self
         
         return view
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listData[section].items.count // Set the number of sections to the number of items in that section
+        if (self.hiddenSections.contains(section)){
+            return 0
+        } else{
+            return listData[section].items.count // Set the number of sections to the number of items in that section
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -331,6 +338,31 @@ extension DetailedListController: EditStoreDelegate {
             case .success(let list):
                 print("Store edited")
             }
+        }
+    }
+}
+
+extension DetailedListController: ExpandSectionDelegate {
+    func expandSection(section: Int) {
+        func indexPathsForSection() -> [IndexPath] {
+            var indexPaths = [IndexPath]()
+            
+            for row in 0..<self.listData[section].items.count {
+                indexPaths.append(IndexPath(row: row,
+                                            section: section))
+            }
+            
+            return indexPaths
+        }
+        
+        if self.hiddenSections.contains(section) {
+            self.hiddenSections.remove(section)
+            self.tableView.insertRows(at: indexPathsForSection(),
+                                      with: .fade)
+        } else {
+            self.hiddenSections.insert(section)
+            self.tableView.deleteRows(at: indexPathsForSection(),
+                                      with: .fade)
         }
     }
 }

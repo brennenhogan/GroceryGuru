@@ -19,11 +19,16 @@ protocol DeleteStoreDelegate {
     func deleteStore(storeID: String)
 }
 
+protocol ExpandSectionDelegate {
+    func expandSection(section: Int)
+}
+
 class ListHeaderView: UITableViewHeaderFooterView {
 
     @IBOutlet weak var storeName: UITextField!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var expandButton: UIButton!
     
     static var identifier = "ListHeaderView"
     
@@ -60,6 +65,7 @@ class ListHeaderView: UITableViewHeaderFooterView {
     var addItemDelegate: AddItemDelegate?
     var deleteStoreDelegate: DeleteStoreDelegate?
     var editStoreDelegate: EditStoreDelegate?
+    var expandSectionDelegate: ExpandSectionDelegate?
     
     @IBAction func editStore(_ sender: UITextField){
         editStoreDelegate?.editStore(storeID: store_id, store_name: storeName.text!)
@@ -71,6 +77,11 @@ class ListHeaderView: UITableViewHeaderFooterView {
     
     @IBAction func deleteStore(_ sender: UIButton){
         deleteStoreDelegate?.deleteStore(storeID: store_id)
+    }
+    
+    @IBAction func expandSection(_ sender: UIButton){
+        let section = sender.tag
+        expandSectionDelegate?.expandSection(section: section)
     }
 
 }
