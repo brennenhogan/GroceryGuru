@@ -178,7 +178,9 @@ class DetailedListController: UIViewController, ListViewCellDelegate {
         
         for i in 0...listData.count {
             guard let header = tableView.headerView(forSection: i) as? ListHeaderView else { return }
-            header.deleteButton.isHidden = !header.deleteButton.isHidden // Flip to the opposite state as before
+            header.deleteButton.isHidden = !tableView.isEditing
+            header.storeName.isEnabled = tableView.isEditing
+            header.addButton.isHidden = tableView.isEditing
         }
     }
     
@@ -226,11 +228,15 @@ extension DetailedListController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListHeaderView.identifier) as! ListHeaderView
         view.configure(title: listData[section].name, storeID: String(listData[section].store_id)) // TODO - add buttons here that do things
+
         view.storeName.isEnabled = tableView.isEditing
+        view.addButton.isHidden = tableView.isEditing
+        view.deleteButton.isHidden = !tableView.isEditing
+
         
         view.addItemDelegate = self // Be listening for the button tap in the header
         view.deleteStoreDelegate = self
-        view.deleteButton.isHidden = true // Trash can icon should be hidden at the start
+        view.editStoreDelegate = self
         
         return view
     }
@@ -306,6 +312,24 @@ extension DetailedListController: DeleteStoreDelegate {
             case .success(let list):
                 print("Store deleted")
                 self?.getData()
+            }
+        }
+    }
+}
+
+extension DetailedListController: EditStoreDelegate {
+    func editStore(storeID: String, store_name: String) {
+        let editStoreNameRequest = EditStoreNameRequest(store_name: store_name, store_id: storeID, list_id: selected_list_id)
+        editStoreNameRequest.editStoreName { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print("Error editing store")
+                DispatchQueue.main.async {
+                    self?.CreateAlert(title: "Error", message: "\(error)")
+                }
+                print(error)
+            case .success(let list):
+                print("Store edited")
             }
         }
     }

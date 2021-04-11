@@ -31,38 +31,46 @@
                                 <rect key="frame" x="10" y="0.0" width="355" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rdd-9Z-nmN">
-                                        <rect key="frame" x="0.0" y="0.0" width="235" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="245" height="50"/>
                                         <color key="backgroundColor" red="0.38823529411764707" green="0.396078431372549" blue="0.40784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="editStore:" destination="iN0-l3-epB" eventType="editingDidEnd" id="QlS-0h-204"/>
+                                        </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3WZ-q9-TiO" userLabel="Trash">
-                                        <rect key="frame" x="245" y="0.0" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="lPd-hh-kfI"/>
-                                        </constraints>
-                                        <color key="tintColor" systemColor="systemRedColor"/>
-                                        <state key="normal">
-                                            <imageReference key="image" image="trash.fill" catalog="system" symbolScale="large"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="deleteStore:" destination="iN0-l3-epB" eventType="touchDown" id="ebw-ek-ywT"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35i-e6-qfr">
-                                        <rect key="frame" x="305" y="0.0" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="0h9-NY-c60"/>
-                                        </constraints>
-                                        <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal">
-                                            <imageReference key="image" image="plus.circle" catalog="system" symbolScale="large"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="addStore:" destination="iN0-l3-epB" eventType="touchDown" id="ZF1-37-8Hc"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTg-U1-54O">
+                                        <rect key="frame" x="255" y="0.0" width="100" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3WZ-q9-TiO" userLabel="Trash">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="lPd-hh-kfI"/>
+                                                </constraints>
+                                                <color key="tintColor" systemColor="systemRedColor"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="trash.fill" catalog="system" symbolScale="large"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="deleteStore:" destination="iN0-l3-epB" eventType="touchDown" id="ebw-ek-ywT"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35i-e6-qfr">
+                                                <rect key="frame" x="50" y="0.0" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="0h9-NY-c60"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="plus.circle" catalog="system" symbolScale="large"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="addStore:" destination="iN0-l3-epB" eventType="touchDown" id="ZF1-37-8Hc"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.38823529411764707" green="0.396078431372549" blue="0.40784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                             </stackView>
@@ -81,6 +89,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="addButton" destination="35i-e6-qfr" id="Ug4-pq-V0l"/>
                 <outlet property="deleteButton" destination="3WZ-q9-TiO" id="Tyg-HG-M6X"/>
                 <outlet property="storeName" destination="rdd-9Z-nmN" id="upu-gI-nVG"/>
             </connections>

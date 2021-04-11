@@ -25,6 +25,26 @@ def add_store():
 
   return {"result": True}
 
+# Edit a store
+@store_api.route('/store/description', methods=['POST'])
+def edit_store():
+  store_name = request.json['store_name']
+  store_id = request.json['store_id']
+  list_id = request.json['list_id']
+ 
+  selected_store = Store.query.filter(Store.store_id==store_id).filter(Store.list_id==list_id).first() # Get the list from the DB
+  selected_store.store_name = store_name
+
+  print(selected_store.store_name)
+  
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    print(exc.SQLAlchemyError)
+    return {"result": False}
+
+  return {"result": True}
+
 # Delete a store (and all of its items!)
 @store_api.route('/store/delete', methods=['POST'])
 def delete_store():

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol EditStoreDelegate {
+    func editStore(storeID: String, store_name: String)
+}
+
 protocol AddItemDelegate {
     func addItem(storeID: String)
 }
@@ -19,9 +23,11 @@ class ListHeaderView: UITableViewHeaderFooterView {
 
     @IBOutlet weak var storeName: UITextField!
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var addButton: UIButton!
     
     static var identifier = "ListHeaderView"
     
+        
     var store_id: String = "0" // Temporary value that gets overwritten
     
     static func nib() -> UINib {
@@ -35,6 +41,12 @@ class ListHeaderView: UITableViewHeaderFooterView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        storeName.returnKeyType = .done
+    }
+
+    func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
+        itemName.resignFirstResponder()
+        return true
     }
     
     override init(reuseIdentifier: String?) {
@@ -47,7 +59,12 @@ class ListHeaderView: UITableViewHeaderFooterView {
     
     var addItemDelegate: AddItemDelegate?
     var deleteStoreDelegate: DeleteStoreDelegate?
+    var editStoreDelegate: EditStoreDelegate?
     
+    @IBAction func editStore(_ sender: UITextField){
+        editStoreDelegate?.editStore(storeID: store_id, store_name: storeName.text!)
+    }
+
     @IBAction func addStore(_ sender: UIButton){
         addItemDelegate?.addItem(storeID: store_id)
     }

@@ -91,9 +91,14 @@ class AddListViewController: UIViewController {
         } else if (sender.selectedSegmentIndex == 1) {
             newListView.isHidden = true
             newListLabel.isHidden = true
+            createButton.isHidden = true
             tableView.isHidden = false
             print(selection)
         } else if (sender.selectedSegmentIndex == 2) {
+            newListView.isHidden = false
+            newListLabel.isHidden = false
+            createButton.isHidden = false
+            tableView.isHidden = true
             print(selection)
         }
     }
