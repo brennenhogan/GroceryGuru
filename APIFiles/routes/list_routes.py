@@ -110,6 +110,13 @@ def delete_list():
   if len(ownership_lists) == 1:
     db.session.delete(current_list)
     db.session.delete(ownership_lists[0])
+
+    stores = Store.query.filter(Store.list_id==list_id).all()
+    items = ListItem.query.filter(ListItem.list_id==list_id).all()
+    for store in stores:
+      db.session.delete(store)
+    for item in items:
+      db.session.delete(item)
   else: #Deletes only the ownership for the current user if there are multiple owners
     for owner in ownership_lists:
       if owner.uuid == uuid:
