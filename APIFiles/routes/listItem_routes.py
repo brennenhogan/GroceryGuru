@@ -35,7 +35,7 @@ def add_item():
 @listItem_api.route('/item/qty', methods=['POST'])
 def update_qty():
   item_id = request.json['item_id']
-  qty = request.json['qty']
+  qty = request.json['item_qty']
  
   item = ListItem.query.filter(ListItem.item_id==item_id).first() # Get the item from the DB
   item.qty = qty # update the quantity

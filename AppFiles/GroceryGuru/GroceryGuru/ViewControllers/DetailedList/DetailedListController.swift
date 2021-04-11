@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailedListController: UIViewController, ListViewCellDelegate {
+class DetailedListController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -185,23 +185,7 @@ class DetailedListController: UIViewController, ListViewCellDelegate {
             header.addButton.isHidden = tableView.isEditing
         }
     }
-    
-    func textFieldDidEndEditing(cell: ListViewCell, item_description: String) -> () {
-        let path = tableView.indexPathForRow(at: cell.convert(cell.bounds.origin, to: tableView))
-        let item_id = listData[path?.section ?? 0].items[path?.row ?? 0].itemID
-        
-        let updateItemDescriptionRequest = UpdateItemDescriptionRequest(item_description: item_description, item_id: item_id)
-        updateItemDescriptionRequest.updateItemDescription { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let response):
-                print("List has been updated \(response)")
-            }
-        }
-        return
-    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -255,13 +239,17 @@ extension DetailedListController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let text = listData[indexPath.section].items[indexPath.row].itemDescription
         let qty = listData[indexPath.section].items[indexPath.row].qty
+        let item_id = listData[indexPath.section].items[indexPath.row].itemID
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ListViewCell.identifier, for: indexPath) as! ListViewCell
         
         cell.configure(title: text, qty: qty)
         cell.itemName.isEnabled = tableView.isEditing
         cell.itemQty.isEnabled = tableView.isEditing
-        cell.delegate = self
+        cell.itemName.tag = item_id
+        cell.itemQty.tag = item_id
+        cell.itemQuantityDelegate = self
+        cell.itemDescriptionDelegate = self
                 
         return cell
     }
@@ -339,6 +327,39 @@ extension DetailedListController: EditStoreDelegate {
                 print("Store edited")
             }
         }
+    }
+}
+
+extension DetailedListController: ItemQuantityDelegate {
+    func editQty(item_id: Int, item_qty: String) {
+        let editStoreNameRequest = EditItemQuantityRequest(item_id: item_id, item_qty: item_qty)
+        editStoreNameRequest.editStoreName { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print("Error editing item quantity")
+                DispatchQueue.main.async {
+                    self?.CreateAlert(title: "Error", message: "\(error)")
+                }
+                print(error)
+            case .success(let list):
+                print("Quantity edited")
+            }
+        }
+    }
+}
+
+extension DetailedListController: ItemDescriptionDelegate {
+    func editDescription(item_id: Int, item_description: String) {
+        let updateItemDescriptionRequest = UpdateItemDescriptionRequest(item_id: item_id, item_description: item_description)
+        updateItemDescriptionRequest.updateItemDescription { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let response):
+                print("List has been updated \(response)")
+            }
+        }
+        return
     }
 }
 

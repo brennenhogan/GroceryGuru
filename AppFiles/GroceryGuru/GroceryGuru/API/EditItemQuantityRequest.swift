@@ -1,25 +1,25 @@
 //
-//  UpdateListRequest.swift
+//  EditItemQuantityRequest.swift
 //  GroceryGuru
 //
-//  Created by Brennen Hogan on 3/31/21.
+//  Created by Brennen Hogan on 4/11/21.
 //
 
 import Foundation
 
-enum UpdateItemDescriptionError:Error {
+enum EditItemQuantityError:Error {
     case NoDataAvailable
     case CanNotProcessData
-    case ItemDescriptionUpdateFailed
+    case ItemQuantityUpdateFailed
 }
 
-struct UpdateItemDescriptionRequest {
+struct EditItemQuantityRequest {
     let requestURL:URLRequest
     
-    init(item_id:Int, item_description:String) {
-        let resourceString = "http://127.0.0.1:5000/item/description"
+    init(item_id:Int, item_qty:String) {
+        let resourceString = "http://127.0.0.1:5000/item/qty"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
-        let parameterDictionary = ["description": item_description, "item_id": item_id] as [String : Any]
+        let parameterDictionary = ["item_id": item_id, "item_qty": item_qty] as [String : Any]
         var request = URLRequest(url: resourceURL)
         request.httpMethod = "POST"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
@@ -28,7 +28,7 @@ struct UpdateItemDescriptionRequest {
         self.requestURL = request
     }
     
-    func updateItemDescription (completion: @escaping(Result<DeleteListResponse, UpdateItemDescriptionError>) -> Void) {
+    func editStoreName (completion: @escaping(Result<DeleteListResponse, EditItemQuantityError>) -> Void) {
         let dataTask = URLSession.shared.dataTask(with: requestURL) { data, _, _ in
             guard let jsonData = data else {
                 completion(.failure(.NoDataAvailable))
@@ -37,12 +37,12 @@ struct UpdateItemDescriptionRequest {
             
             do {
                 let decoder = JSONDecoder()
-                let updateDescriptionResponse = try decoder.decode(DeleteListResponse.self, from: jsonData)
-                if (updateDescriptionResponse.result) {
-                    completion(.success(updateDescriptionResponse))
+                let editQtyResponse = try decoder.decode(DeleteListResponse.self, from: jsonData)
+                if (editQtyResponse.result) {
+                    completion(.success(editQtyResponse))
                 }
                 else {
-                    completion(.failure(.ItemDescriptionUpdateFailed))
+                    completion(.failure(.ItemQuantityUpdateFailed))
                 }
             } catch{
                 completion(.failure(.CanNotProcessData))
@@ -53,4 +53,3 @@ struct UpdateItemDescriptionRequest {
     }
     
 }
-

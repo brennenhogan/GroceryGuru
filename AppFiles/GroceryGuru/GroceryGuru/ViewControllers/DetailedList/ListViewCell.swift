@@ -7,13 +7,15 @@
 
 import UIKit
 
-protocol ListViewCellDelegate {
-    func textFieldDidEndEditing(cell: ListViewCell, item_description: String) -> ()
+protocol ItemDescriptionDelegate {
+    func editDescription(item_id: Int, item_description: String)
 }
 
-class ListViewCell: UITableViewCell, UITextFieldDelegate {
-    var delegate: ListViewCellDelegate! = nil
-    
+protocol ItemQuantityDelegate {
+    func editQty(item_id: Int, item_qty: String)
+}
+
+class ListViewCell: UITableViewCell {
     static var identifier = "ListViewCell"
     
     static func nib() -> UINib {
@@ -30,14 +32,8 @@ class ListViewCell: UITableViewCell, UITextFieldDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        itemName.delegate = self
-        itemName.returnKeyType = .done
     }
     
-    func textFieldDidEndEditing(_ itemName: UITextField) {
-        self.delegate.textFieldDidEndEditing(cell: self, item_description: itemName.text!)
-    }
-
     func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
         itemName.resignFirstResponder()
         return true
@@ -47,6 +43,20 @@ class ListViewCell: UITableViewCell, UITextFieldDelegate {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    var itemQuantityDelegate: ItemQuantityDelegate?
+    var itemDescriptionDelegate: ItemDescriptionDelegate?
+
+
+    @IBAction func editDescription(_ sender: UITextField){
+        let item_id = sender.tag
+        itemDescriptionDelegate?.editDescription(item_id: item_id, item_description: sender.text!)
+    }
+    
+    @IBAction func editQty(_ sender: UITextField){
+        let item_id = sender.tag
+        itemQuantityDelegate?.editQty(item_id: item_id, item_qty: sender.text!)
     }
     
 }
