@@ -1,26 +1,25 @@
 //
-//  DeleteListRequest.swift
+//  AddStoreRequest.swift
 //  GroceryGuru
 //
-//  Created by Brennen Hogan on 3/31/21.
+//  Created by Brennen Hogan on 4/6/21.
 //
 
 import Foundation
 
-
-enum DeleteItemError:Error {
+enum AddStoreError:Error {
     case NoDataAvailable
     case CanNotProcessData
-    case ItemDeletionFailed
+    case StoreCreationFailed
 }
 
-struct DeleteItemRequest {
+struct AddStoreRequest {
     let requestURL:URLRequest
     
-    init(item_id:Int) {
-        let resourceString = "http://127.0.0.1:5000/item/delete"
+    init(storename:String) {
+        let resourceString = "http://127.0.0.1:5000/store"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
-        let parameterDictionary = ["item_id": item_id] as [String : Any]
+        let parameterDictionary = ["store_name" : storename, "list_id": selected_list_id]
         var request = URLRequest(url: resourceURL)
         request.httpMethod = "POST"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
@@ -29,7 +28,7 @@ struct DeleteItemRequest {
         self.requestURL = request
     }
     
-    func deleteItem (completion: @escaping(Result<DeleteListResponse, DeleteItemError>) -> Void) {
+    func addStore (completion: @escaping(Result<BooleanResponse, AddStoreError>) -> Void) {
         let dataTask = URLSession.shared.dataTask(with: requestURL) { data, _, _ in
             guard let jsonData = data else {
                 completion(.failure(.NoDataAvailable))
@@ -38,12 +37,12 @@ struct DeleteItemRequest {
             
             do {
                 let decoder = JSONDecoder()
-                let deleteListResponse = try decoder.decode(DeleteListResponse.self, from: jsonData)
-                if (deleteListResponse.result) {
-                    completion(.success(deleteListResponse))
+                let addStoreResponse = try decoder.decode(BooleanResponse.self, from: jsonData)
+                if (addStoreResponse.result) {
+                    completion(.success(addStoreResponse))
                 }
                 else {
-                    completion(.failure(.ItemDeletionFailed))
+                    completion(.failure(.StoreCreationFailed))
                 }
             } catch{
                 completion(.failure(.CanNotProcessData))

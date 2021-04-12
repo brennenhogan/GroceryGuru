@@ -1,5 +1,5 @@
 //
-//  NewUser.swift
+//  NewUserResponse.swift
 //  GroceryGuru
 //
 //  Created by Brennen Hogan on 3/24/21.

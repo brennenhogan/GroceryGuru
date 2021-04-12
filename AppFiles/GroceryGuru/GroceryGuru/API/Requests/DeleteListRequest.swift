@@ -29,7 +29,7 @@ struct DeleteListRequest {
         self.requestURL = request
     }
     
-    func deleteList (completion: @escaping(Result<DeleteListResponse, DeleteListError>) -> Void) {
+    func deleteList (completion: @escaping(Result<BooleanResponse, DeleteListError>) -> Void) {
         let dataTask = URLSession.shared.dataTask(with: requestURL) { data, _, _ in
             guard let jsonData = data else {
                 completion(.failure(.NoDataAvailable))
@@ -38,7 +38,7 @@ struct DeleteListRequest {
             
             do {
                 let decoder = JSONDecoder()
-                let deleteListResponse = try decoder.decode(DeleteListResponse.self, from: jsonData)
+                let deleteListResponse = try decoder.decode(BooleanResponse.self, from: jsonData)
                 if (deleteListResponse.result) {
                     completion(.success(deleteListResponse))
                 }

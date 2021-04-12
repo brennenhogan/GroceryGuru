@@ -26,7 +26,7 @@
 		2E3475F82613E7E500BA27D9 /* AddListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3475F72613E7E500BA27D9 /* AddListRequest.swift */; };
 		2E3475FD2613E91D00BA27D9 /* AddListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */; };
 		2E3476022615001500BA27D9 /* DeleteListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3476012615001500BA27D9 /* DeleteListRequest.swift */; };
-		2E3476072615004900BA27D9 /* DeleteListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3476062615004900BA27D9 /* DeleteListResponse.swift */; };
+		2E3476072615004900BA27D9 /* BooleanResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3476062615004900BA27D9 /* BooleanResponse.swift */; };
 		2E34760C26152F6200BA27D9 /* UpdateListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E34760B26152F6200BA27D9 /* UpdateListRequest.swift */; };
 		2E492D3A2623A775001BC07B /* EditStoreNameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E492D392623A775001BC07B /* EditStoreNameRequest.swift */; };
 		2E492D3F2623BB67001BC07B /* EditItemQuantityRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E492D3E2623BB67001BC07B /* EditItemQuantityRequest.swift */; };
@@ -40,8 +40,6 @@
 		2E87AFD125FFF4B900D3A575 /* GroceryGuruTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFD025FFF4B900D3A575 /* GroceryGuruTests.swift */; };
 		2E87AFDC25FFF4B900D3A575 /* GroceryGuruUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFDB25FFF4B900D3A575 /* GroceryGuruUITests.swift */; };
 		2E87AFEF25FFF59200D3A575 /* AddListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFEE25FFF59200D3A575 /* AddListViewController.swift */; };
-		2E87AFF825FFF5DB00D3A575 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFF725FFF5DB00D3A575 /* CoreDataStack.swift */; };
-		2E87B00125FFF60700D3A575 /* Lists.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFFF25FFF60700D3A575 /* Lists.xcdatamodeld */; };
 		2E9ABE50260A91040047DED3 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E9ABE45260A91040047DED3 /* OpenSans-SemiBold.ttf */; };
 		2E9ABE51260A91040047DED3 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E9ABE46260A91040047DED3 /* OpenSans-Light.ttf */; };
 		2E9ABE52260A91040047DED3 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E9ABE47260A91040047DED3 /* OpenSans-Italic.ttf */; };
@@ -66,12 +64,12 @@
 		2E9ABE78260A91390047DED3 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E9ABE6B260A91390047DED3 /* Roboto-Thin.ttf */; };
 		2E9ABE79260A91390047DED3 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E9ABE6C260A91390047DED3 /* Roboto-Black.ttf */; };
 		2E9ABE81260AAAFF0047DED3 /* Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABE80260AAAFF0047DED3 /* Designable.swift */; };
-		2E9ABE86260AAEF60047DED3 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABE85260AAEF60047DED3 /* Login.swift */; };
+		2E9ABE86260AAEF60047DED3 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABE85260AAEF60047DED3 /* LoginResponse.swift */; };
 		2E9ABE8B260AAF560047DED3 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABE8A260AAF560047DED3 /* LoginRequest.swift */; };
 		2E9ABE96260BC09F0047DED3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABE95260BC09F0047DED3 /* SignUpViewController.swift */; };
 		2E9ABE9B260BCEDA0047DED3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABE9A260BCEDA0047DED3 /* LoginViewController.swift */; };
 		2E9ABEA8260BCEFC0047DED3 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABEA7260BCEFC0047DED3 /* ResetPasswordViewController.swift */; };
-		2E9ABEC5260BF8990047DED3 /* NewUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABEC4260BF8990047DED3 /* NewUser.swift */; };
+		2E9ABEC5260BF8990047DED3 /* NewUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABEC4260BF8990047DED3 /* NewUserResponse.swift */; };
 		2E9ABECD260BF8CC0047DED3 /* NewUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABECC260BF8CC0047DED3 /* NewUserRequest.swift */; };
 		2E9ABED2260C03CD0047DED3 /* ResetPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ABED1260C03CD0047DED3 /* ResetPasswordRequest.swift */; };
 		2E9C6596261CCA1000107A9B /* DeleteItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9C6595261CCA1000107A9B /* DeleteItemRequest.swift */; };
@@ -116,7 +114,7 @@
 		2E3475F72613E7E500BA27D9 /* AddListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListRequest.swift; sourceTree = "<group>"; };
 		2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListResponse.swift; sourceTree = "<group>"; };
 		2E3476012615001500BA27D9 /* DeleteListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteListRequest.swift; sourceTree = "<group>"; };
-		2E3476062615004900BA27D9 /* DeleteListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteListResponse.swift; sourceTree = "<group>"; };
+		2E3476062615004900BA27D9 /* BooleanResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooleanResponse.swift; sourceTree = "<group>"; };
 		2E34760B26152F6200BA27D9 /* UpdateListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateListRequest.swift; sourceTree = "<group>"; };
 		2E492D392623A775001BC07B /* EditStoreNameRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStoreNameRequest.swift; sourceTree = "<group>"; };
 		2E492D3E2623BB67001BC07B /* EditItemQuantityRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditItemQuantityRequest.swift; sourceTree = "<group>"; };
@@ -136,8 +134,6 @@
 		2E87AFDB25FFF4B900D3A575 /* GroceryGuruUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryGuruUITests.swift; sourceTree = "<group>"; };
 		2E87AFDD25FFF4B900D3A575 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E87AFEE25FFF59200D3A575 /* AddListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListViewController.swift; sourceTree = "<group>"; };
-		2E87AFF725FFF5DB00D3A575 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		2E87B00025FFF60700D3A575 /* Lists.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lists.xcdatamodel; sourceTree = "<group>"; };
 		2E9ABE45260A91040047DED3 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		2E9ABE46260A91040047DED3 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		2E9ABE47260A91040047DED3 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
@@ -162,12 +158,12 @@
 		2E9ABE6B260A91390047DED3 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		2E9ABE6C260A91390047DED3 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		2E9ABE80260AAAFF0047DED3 /* Designable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Designable.swift; sourceTree = "<group>"; };
-		2E9ABE85260AAEF60047DED3 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		2E9ABE85260AAEF60047DED3 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		2E9ABE8A260AAF560047DED3 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		2E9ABE95260BC09F0047DED3 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		2E9ABE9A260BCEDA0047DED3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2E9ABEA7260BCEFC0047DED3 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
-		2E9ABEC4260BF8990047DED3 /* NewUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUser.swift; sourceTree = "<group>"; };
+		2E9ABEC4260BF8990047DED3 /* NewUserResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserResponse.swift; sourceTree = "<group>"; };
 		2E9ABECC260BF8CC0047DED3 /* NewUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserRequest.swift; sourceTree = "<group>"; };
 		2E9ABED1260C03CD0047DED3 /* ResetPasswordRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordRequest.swift; sourceTree = "<group>"; };
 		2E9C6595261CCA1000107A9B /* DeleteItemRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteItemRequest.swift; sourceTree = "<group>"; };
@@ -232,6 +228,43 @@
 			path = NewList;
 			sourceTree = "<group>";
 		};
+		2E492D4B2624B4A9001BC07B /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				0211EFF4262377A900CAA05C /* AddItemRequest.swift */,
+				2E3475F72613E7E500BA27D9 /* AddListRequest.swift */,
+				2E9C65A2261D254900107A9B /* AddStoreRequest.swift */,
+				0211EF80260E92B000CAA05C /* AllListRequest.swift */,
+				0211EFEF261EA5E200CAA05C /* CreateFromOldListRequest.swift */,
+				2E3476012615001500BA27D9 /* DeleteListRequest.swift */,
+				2E9C6595261CCA1000107A9B /* DeleteItemRequest.swift */,
+				0211EFF92623885300CAA05C /* DeleteStoreRequest.swift */,
+				2E492D3E2623BB67001BC07B /* EditItemQuantityRequest.swift */,
+				2E492D392623A775001BC07B /* EditStoreNameRequest.swift */,
+				2E9ABE8A260AAF560047DED3 /* LoginRequest.swift */,
+				0211EF69260E7C3800CAA05C /* ListRequest.swift */,
+				2E9ABECC260BF8CC0047DED3 /* NewUserRequest.swift */,
+				2E9ABED1260C03CD0047DED3 /* ResetPasswordRequest.swift */,
+				2E9C659D261CEBCE00107A9B /* UpdateItemDescriptionRequest.swift */,
+				2E34760B26152F6200BA27D9 /* UpdateListRequest.swift */,
+				2E492D4326248E9F001BC07B /* UpdatePurchasedRequest.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		2E492D4C2624B4B0001BC07B /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */,
+				0211EF7B260E924A00CAA05C /* AllListResponse.swift */,
+				2E3476062615004900BA27D9 /* BooleanResponse.swift */,
+				0211EF6E260E7C7500CAA05C /* ListResponse.swift */,
+				2E9ABE85260AAEF60047DED3 /* LoginResponse.swift */,
+				2E9ABEC4260BF8990047DED3 /* NewUserResponse.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
 		2E87AFAD25FFF4B800D3A575 = {
 			isa = PBXGroup;
 			children = (
@@ -257,12 +290,11 @@
 			children = (
 				2E9ABEC3260BF84B0047DED3 /* API */,
 				2E9ABE5E260A91180047DED3 /* Fonts */,
-				2E87AFF625FFF5C100D3A575 /* CoreData */,
 				2E87AFEC25FFF56600D3A575 /* ViewControllers */,
-				2E87AFB925FFF4B800D3A575 /* AppDelegate.swift */,
-				2E87AFBB25FFF4B800D3A575 /* SceneDelegate.swift */,
 				2E87AFBF25FFF4B800D3A575 /* Main.storyboard */,
 				2E87AFC225FFF4B900D3A575 /* Assets.xcassets */,
+				2E87AFB925FFF4B800D3A575 /* AppDelegate.swift */,
+				2E87AFBB25FFF4B800D3A575 /* SceneDelegate.swift */,
 				2E87AFC425FFF4B900D3A575 /* LaunchScreen.storyboard */,
 				2E87AFC725FFF4B900D3A575 /* Info.plist */,
 				2E9ABE80260AAAFF0047DED3 /* Designable.swift */,
@@ -297,15 +329,6 @@
 				0211EFBB2612864800CAA05C /* LandingPage */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		2E87AFF625FFF5C100D3A575 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				2E87AFF725FFF5DB00D3A575 /* CoreDataStack.swift */,
-				2E87AFFF25FFF60700D3A575 /* Lists.xcdatamodeld */,
-			);
-			path = CoreData;
 			sourceTree = "<group>";
 		};
 		2E9ABE44260A91040047DED3 /* Open_Sans */ = {
@@ -367,29 +390,8 @@
 		2E9ABEC3260BF84B0047DED3 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				2E9ABEC4260BF8990047DED3 /* NewUser.swift */,
-				2E9ABE8A260AAF560047DED3 /* LoginRequest.swift */,
-				2E9ABECC260BF8CC0047DED3 /* NewUserRequest.swift */,
-				2E9ABED1260C03CD0047DED3 /* ResetPasswordRequest.swift */,
-				2E9ABE85260AAEF60047DED3 /* Login.swift */,
-				0211EF7B260E924A00CAA05C /* AllListResponse.swift */,
-				0211EF80260E92B000CAA05C /* AllListRequest.swift */,
-				0211EF69260E7C3800CAA05C /* ListRequest.swift */,
-				0211EF6E260E7C7500CAA05C /* ListResponse.swift */,
-				2E3475F72613E7E500BA27D9 /* AddListRequest.swift */,
-				2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */,
-				2E34760B26152F6200BA27D9 /* UpdateListRequest.swift */,
-				2E9C659D261CEBCE00107A9B /* UpdateItemDescriptionRequest.swift */,
-				2E492D4326248E9F001BC07B /* UpdatePurchasedRequest.swift */,
-				2E492D392623A775001BC07B /* EditStoreNameRequest.swift */,
-				2E492D3E2623BB67001BC07B /* EditItemQuantityRequest.swift */,
-				2E9C65A2261D254900107A9B /* AddStoreRequest.swift */,
-				2E9C6595261CCA1000107A9B /* DeleteItemRequest.swift */,
-				2E3476012615001500BA27D9 /* DeleteListRequest.swift */,
-				2E3476062615004900BA27D9 /* DeleteListResponse.swift */,
-				0211EFEF261EA5E200CAA05C /* CreateFromOldListRequest.swift */,
-				0211EFF4262377A900CAA05C /* AddItemRequest.swift */,
-				0211EFF92623885300CAA05C /* DeleteStoreRequest.swift */,
+				2E492D4C2624B4B0001BC07B /* Responses */,
+				2E492D4B2624B4A9001BC07B /* Requests */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -552,12 +554,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0211EF6F260E7C7600CAA05C /* ListResponse.swift in Sources */,
-				2E3476072615004900BA27D9 /* DeleteListResponse.swift in Sources */,
+				2E3476072615004900BA27D9 /* BooleanResponse.swift in Sources */,
 				2E9C659E261CEBCE00107A9B /* UpdateItemDescriptionRequest.swift in Sources */,
 				0211EFC12612878D00CAA05C /* LandingListCell.swift in Sources */,
 				2E9ABE8B260AAF560047DED3 /* LoginRequest.swift in Sources */,
-				2E87AFF825FFF5DB00D3A575 /* CoreDataStack.swift in Sources */,
-				2E9ABEC5260BF8990047DED3 /* NewUser.swift in Sources */,
+				2E9ABEC5260BF8990047DED3 /* NewUserResponse.swift in Sources */,
 				0211EF6A260E7C3800CAA05C /* ListRequest.swift in Sources */,
 				2E9ABE81260AAAFF0047DED3 /* Designable.swift in Sources */,
 				2E9ABEA8260BCEFC0047DED3 /* ResetPasswordViewController.swift in Sources */,
@@ -571,12 +572,11 @@
 				2E87AFEF25FFF59200D3A575 /* AddListViewController.swift in Sources */,
 				2E87AFBC25FFF4B800D3A575 /* SceneDelegate.swift in Sources */,
 				0211EF9626125C2300CAA05C /* ListViewCell.swift in Sources */,
-				2E87B00125FFF60700D3A575 /* Lists.xcdatamodeld in Sources */,
 				0211EFF0261EA5E200CAA05C /* CreateFromOldListRequest.swift in Sources */,
 				0211EFFA2623885300CAA05C /* DeleteStoreRequest.swift in Sources */,
 				2E9C65A3261D254900107A9B /* AddStoreRequest.swift in Sources */,
 				2E492D3F2623BB67001BC07B /* EditItemQuantityRequest.swift in Sources */,
-				2E9ABE86260AAEF60047DED3 /* Login.swift in Sources */,
+				2E9ABE86260AAEF60047DED3 /* LoginResponse.swift in Sources */,
 				2E492D4426248E9F001BC07B /* UpdatePurchasedRequest.swift in Sources */,
 				2E3476022615001500BA27D9 /* DeleteListRequest.swift in Sources */,
 				2E9ABE9B260BCEDA0047DED3 /* LoginViewController.swift in Sources */,
@@ -921,19 +921,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		2E87AFFF25FFF60700D3A575 /* Lists.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				2E87B00025FFF60700D3A575 /* Lists.xcdatamodel */,
-			);
-			currentVersion = 2E87B00025FFF60700D3A575 /* Lists.xcdatamodel */;
-			path = Lists.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 2E87AFAE25FFF4B800D3A575 /* Project object */;
 }

@@ -1,25 +1,25 @@
 //
-//  UpdateListRequest.swift
+//  UpdatePurchasedRequest.swift
 //  GroceryGuru
 //
-//  Created by Brennen Hogan on 3/31/21.
+//  Created by Brennen Hogan on 4/12/21.
 //
 
 import Foundation
 
-enum UpdateItemDescriptionError:Error {
+enum UpdatePurchasedError:Error {
     case NoDataAvailable
     case CanNotProcessData
-    case ItemDescriptionUpdateFailed
+    case ItemPurchasedUpdateError
 }
 
-struct UpdateItemDescriptionRequest {
+struct UpdatePurchasedRequest {
     let requestURL:URLRequest
     
-    init(item_id:Int, item_description:String) {
-        let resourceString = "http://127.0.0.1:5000/item/description"
+    init(item_id:Int, purchased:Int) {
+        let resourceString = "http://127.0.0.1:5000/item/check"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
-        let parameterDictionary = ["description": item_description, "item_id": item_id] as [String : Any]
+        let parameterDictionary = ["item_id": item_id, "purchased": purchased] as [String : Any]
         var request = URLRequest(url: resourceURL)
         request.httpMethod = "POST"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
@@ -28,7 +28,7 @@ struct UpdateItemDescriptionRequest {
         self.requestURL = request
     }
     
-    func updateItemDescription (completion: @escaping(Result<DeleteListResponse, UpdateItemDescriptionError>) -> Void) {
+    func updateItemPurchased (completion: @escaping(Result<BooleanResponse, UpdatePurchasedError>) -> Void) {
         let dataTask = URLSession.shared.dataTask(with: requestURL) { data, _, _ in
             guard let jsonData = data else {
                 completion(.failure(.NoDataAvailable))
@@ -37,12 +37,12 @@ struct UpdateItemDescriptionRequest {
             
             do {
                 let decoder = JSONDecoder()
-                let updateDescriptionResponse = try decoder.decode(DeleteListResponse.self, from: jsonData)
-                if (updateDescriptionResponse.result) {
-                    completion(.success(updateDescriptionResponse))
+                let updatePurchasedResponse = try decoder.decode(BooleanResponse.self, from: jsonData)
+                if (updatePurchasedResponse.result) {
+                    completion(.success(updatePurchasedResponse))
                 }
                 else {
-                    completion(.failure(.ItemDescriptionUpdateFailed))
+                    completion(.failure(.ItemPurchasedUpdateError))
                 }
             } catch{
                 completion(.failure(.CanNotProcessData))

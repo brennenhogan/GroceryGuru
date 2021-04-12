@@ -1,25 +1,25 @@
 //
-//  EditItemQuantityRequest.swift
+//  CreatFromOldListRequest.swift
 //  GroceryGuru
 //
-//  Created by Brennen Hogan on 4/11/21.
+//  Created by Brendan Sailer on 4/7/21.
 //
 
 import Foundation
 
-enum EditItemQuantityError:Error {
+enum CreatFromOldListRequestError:Error {
     case NoDataAvailable
     case CanNotProcessData
-    case ItemQuantityUpdateFailed
+    case ListCreationFailed
 }
 
-struct EditItemQuantityRequest {
+struct CreatFromOldListRequest {
     let requestURL:URLRequest
     
-    init(item_id:Int, item_qty:String) {
-        let resourceString = "http://127.0.0.1:5000/item/qty"
+    init(name: String, list_id: String) {
+        let resourceString = "http://127.0.0.1:5000/list/old"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
-        let parameterDictionary = ["item_id": item_id, "item_qty": item_qty] as [String : Any]
+        let parameterDictionary = ["name" : name, "list_id": list_id, "uuid": userUuid]
         var request = URLRequest(url: resourceURL)
         request.httpMethod = "POST"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
@@ -28,7 +28,7 @@ struct EditItemQuantityRequest {
         self.requestURL = request
     }
     
-    func editStoreName (completion: @escaping(Result<DeleteListResponse, EditItemQuantityError>) -> Void) {
+    func createList (completion: @escaping(Result<AddListResponse, CreatFromOldListRequestError>) -> Void) {
         let dataTask = URLSession.shared.dataTask(with: requestURL) { data, _, _ in
             guard let jsonData = data else {
                 completion(.failure(.NoDataAvailable))
@@ -37,12 +37,12 @@ struct EditItemQuantityRequest {
             
             do {
                 let decoder = JSONDecoder()
-                let editQtyResponse = try decoder.decode(DeleteListResponse.self, from: jsonData)
-                if (editQtyResponse.result) {
-                    completion(.success(editQtyResponse))
+                let addListResponse = try decoder.decode(AddListResponse.self, from: jsonData)
+                if (addListResponse.result) {
+                    completion(.success(addListResponse))
                 }
                 else {
-                    completion(.failure(.ItemQuantityUpdateFailed))
+                    completion(.failure(.ListCreationFailed))
                 }
             } catch{
                 completion(.failure(.CanNotProcessData))
@@ -51,5 +51,4 @@ struct EditItemQuantityRequest {
         }
         dataTask.resume()
     }
-    
 }

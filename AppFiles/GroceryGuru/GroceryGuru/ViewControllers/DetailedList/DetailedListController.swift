@@ -403,6 +403,7 @@ extension DetailedListController: CheckButtonDelegate {
                 print(error)
             case .success(let response):
                 print("Item purchased has been updated \(response)")
+                self?.getData()
             }
         }
         return

@@ -28,7 +28,7 @@ struct UpdateListRequest {
         self.requestURL = request
     }
     
-    func updateList (completion: @escaping(Result<DeleteListResponse, UpdateListError>) -> Void) {
+    func updateList (completion: @escaping(Result<BooleanResponse, UpdateListError>) -> Void) {
         let dataTask = URLSession.shared.dataTask(with: requestURL) { data, _, _ in
             guard let jsonData = data else {
                 completion(.failure(.NoDataAvailable))
@@ -37,9 +37,9 @@ struct UpdateListRequest {
             
             do {
                 let decoder = JSONDecoder()
-                let deleteListResponse = try decoder.decode(DeleteListResponse.self, from: jsonData)
-                if (deleteListResponse.result) {
-                    completion(.success(deleteListResponse))
+                let updateListResponse = try decoder.decode(BooleanResponse.self, from: jsonData)
+                if (updateListResponse.result) {
+                    completion(.success(updateListResponse))
                 }
                 else {
                     completion(.failure(.ListUpdateFailed))
