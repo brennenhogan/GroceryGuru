@@ -320,8 +320,8 @@ extension DetailedListController: DeleteStoreDelegate {
 
 extension DetailedListController: EditStoreDelegate {
     func editStore(storeID: String, store_name: String) {
-        let editStoreNameRequest = EditStoreNameRequest(store_name: store_name, store_id: storeID, list_id: selected_list_id)
-        editStoreNameRequest.editStoreName { [weak self] result in
+        let updateStoreNameRequest = UpdateStoreNameRequest(store_name: store_name, store_id: storeID, list_id: selected_list_id)
+        updateStoreNameRequest.updateStoreName { [weak self] result in
             switch result {
             case .failure(let error):
                 print("Error editing store")
@@ -331,6 +331,7 @@ extension DetailedListController: EditStoreDelegate {
                 print(error)
             case .success(let list):
                 print("Store edited")
+                self?.getData()
             }
         }
     }
@@ -338,8 +339,8 @@ extension DetailedListController: EditStoreDelegate {
 
 extension DetailedListController: ItemQuantityDelegate {
     func editQty(item_id: Int, item_qty: String) {
-        let editStoreNameRequest = EditItemQuantityRequest(item_id: item_id, item_qty: item_qty)
-        editStoreNameRequest.editStoreName { [weak self] result in
+        let updateStoreNameRequest = UpdateItemQuantityRequest(item_id: item_id, item_qty: item_qty)
+        updateStoreNameRequest.updateStoreName { [weak self] result in
             switch result {
             case .failure(let error):
                 print("Error editing item quantity")
@@ -349,6 +350,7 @@ extension DetailedListController: ItemQuantityDelegate {
                 print(error)
             case .success(let list):
                 print("Quantity edited")
+                self?.getData()
             }
         }
     }
@@ -363,6 +365,7 @@ extension DetailedListController: ItemDescriptionDelegate {
                 print(error)
             case .success(let response):
                 print("List has been updated \(response)")
+                self?.getData()
             }
         }
         return

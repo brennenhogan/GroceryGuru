@@ -1,5 +1,5 @@
 //
-//  EditStoreNameRequest.swift
+//  UpdateItemQuantityRequest.swift
 //  GroceryGuru
 //
 //  Created by Brennen Hogan on 4/11/21.
@@ -7,19 +7,19 @@
 
 import Foundation
 
-enum EditStoreNameError:Error {
+enum UpdateItemQuantityError:Error {
     case NoDataAvailable
     case CanNotProcessData
-    case StoreNameUpdateFailed
+    case ItemQuantityUpdateFailed
 }
 
-struct EditStoreNameRequest {
+struct UpdateItemQuantityRequest {
     let requestURL:URLRequest
     
-    init(store_name:String, store_id:String, list_id:String) {
-        let resourceString = "http://127.0.0.1:5000/store/description"
+    init(item_id:Int, item_qty:String) {
+        let resourceString = "http://127.0.0.1:5000/item/qty"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
-        let parameterDictionary = ["store_name": store_name, "store_id": store_id, "list_id": list_id] as [String : Any]
+        let parameterDictionary = ["item_id": item_id, "item_qty": item_qty] as [String : Any]
         var request = URLRequest(url: resourceURL)
         request.httpMethod = "POST"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
@@ -28,7 +28,7 @@ struct EditStoreNameRequest {
         self.requestURL = request
     }
     
-    func editStoreName (completion: @escaping(Result<BooleanResponse, EditStoreNameError>) -> Void) {
+    func updateStoreName (completion: @escaping(Result<BooleanResponse, UpdateItemQuantityError>) -> Void) {
         let dataTask = URLSession.shared.dataTask(with: requestURL) { data, _, _ in
             guard let jsonData = data else {
                 completion(.failure(.NoDataAvailable))
@@ -37,12 +37,12 @@ struct EditStoreNameRequest {
             
             do {
                 let decoder = JSONDecoder()
-                let editNameResponse = try decoder.decode(BooleanResponse.self, from: jsonData)
-                if (editNameResponse.result) {
-                    completion(.success(editNameResponse))
+                let editQtyResponse = try decoder.decode(BooleanResponse.self, from: jsonData)
+                if (editQtyResponse.result) {
+                    completion(.success(editQtyResponse))
                 }
                 else {
-                    completion(.failure(.StoreNameUpdateFailed))
+                    completion(.failure(.ItemQuantityUpdateFailed))
                 }
             } catch{
                 completion(.failure(.CanNotProcessData))
