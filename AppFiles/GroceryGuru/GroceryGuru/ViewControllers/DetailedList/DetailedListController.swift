@@ -150,7 +150,6 @@ class DetailedListController: UIViewController {
                     self?.getData()
                 }
             }
-            print("Text field: \(textField?.text)")
         })
         
         createAction.isEnabled = false
@@ -159,7 +158,7 @@ class DetailedListController: UIViewController {
         
         // adding the notification observer here
         NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object:alert.textFields?[0], queue: OperationQueue.main) { (notification) -> Void in
-                    let textFieldName = alert.textFields?[0] as! UITextField
+            let textFieldName = (alert.textFields?[0])! as UITextField
             createAction.isEnabled = !textFieldName.text!.isEmpty
             }
         
@@ -288,7 +287,6 @@ extension DetailedListController: AddItemDelegate {
                     self?.getData()
                 }
             }
-            print("Text field: \(textField?.text)")
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
@@ -310,7 +308,7 @@ extension DetailedListController: DeleteStoreDelegate {
                     self?.CreateAlert(title: "Error", message: "\(error)")
                 }
                 print(error)
-            case .success(let list):
+            case .success(_):
                 print("Store deleted")
                 self?.getData()
             }
@@ -329,7 +327,7 @@ extension DetailedListController: EditStoreDelegate {
                     self?.CreateAlert(title: "Error", message: "\(error)")
                 }
                 print(error)
-            case .success(let list):
+            case .success(_):
                 print("Store edited")
                 self?.getData()
             }
@@ -348,7 +346,7 @@ extension DetailedListController: ItemQuantityDelegate {
                     self?.CreateAlert(title: "Error", message: "\(error)")
                 }
                 print(error)
-            case .success(let list):
+            case .success(_):
                 print("Quantity edited")
                 self?.getData()
             }

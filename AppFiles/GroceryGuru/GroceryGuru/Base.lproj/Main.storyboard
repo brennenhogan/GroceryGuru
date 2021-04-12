@@ -60,11 +60,10 @@
                                                 <rect key="frame" x="0.0" y="116" width="374" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dr5-LF-u9X">
-                                                        <rect key="frame" x="0.0" y="0.0" width="175" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="180" height="50"/>
                                                         <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="SUz-aD-Qiw"/>
-                                                            <constraint firstAttribute="width" constant="175" id="nQ7-OL-Fto"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                                                         <state key="normal" title="Recipes">
@@ -77,10 +76,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9h-Uo-YPj">
-                                                        <rect key="frame" x="195" y="0.0" width="179" height="50"/>
+                                                        <rect key="frame" x="200" y="0.0" width="174" height="50"/>
                                                         <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="175" id="uyU-7F-1fG"/>
+                                                            <constraint firstAttribute="width" constant="174" id="9zr-7U-K7g"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                                                         <state key="normal" title="Old Lists">
@@ -158,13 +157,12 @@
                                         </constraints>
                                     </tableView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Eox-Be-AkE">
-                                        <rect key="frame" x="12" y="704" width="370" height="50"/>
+                                        <rect key="frame" x="9.5" y="704" width="375" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqR-F6-qEB">
-                                                <rect key="frame" x="0.0" y="0.0" width="175" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="181" height="50"/>
                                                 <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="175" id="0IO-nM-c08"/>
                                                     <constraint firstAttribute="height" constant="50" id="lZh-AI-OA9"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
@@ -178,10 +176,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NV9-ky-GT8">
-                                                <rect key="frame" x="195" y="0.0" width="175" height="50"/>
+                                                <rect key="frame" x="201" y="0.0" width="174" height="50"/>
                                                 <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="175" id="NGm-ZW-HXF"/>
+                                                    <constraint firstAttribute="width" constant="174" id="NGm-ZW-HXF"/>
                                                     <constraint firstAttribute="height" constant="50" id="wKC-e3-BvK"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
@@ -198,6 +196,9 @@
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="375" id="pXi-VR-zaD"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                             </stackView>
@@ -893,7 +894,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lTw-40-dyv"/>
+        <segue reference="4nF-TC-L7i"/>
         <segue reference="MAS-V4-j2s"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>

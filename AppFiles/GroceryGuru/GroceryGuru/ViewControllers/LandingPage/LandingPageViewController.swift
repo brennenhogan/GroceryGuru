@@ -163,6 +163,7 @@ class LandingPageViewController: UIViewController, TableViewCellDelegate {
                 print(error)
             case .success(let response):
                 print("List has been updated \(response)")
+                self?.getData()
             }
         }
     }
