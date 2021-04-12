@@ -30,6 +30,7 @@
 		2E34760C26152F6200BA27D9 /* UpdateListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E34760B26152F6200BA27D9 /* UpdateListRequest.swift */; };
 		2E492D3A2623A775001BC07B /* EditStoreNameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E492D392623A775001BC07B /* EditStoreNameRequest.swift */; };
 		2E492D3F2623BB67001BC07B /* EditItemQuantityRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E492D3E2623BB67001BC07B /* EditItemQuantityRequest.swift */; };
+		2E492D4426248E9F001BC07B /* UpdatePurchasedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E492D4326248E9F001BC07B /* UpdatePurchasedRequest.swift */; };
 		2E87AFBA25FFF4B800D3A575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFB925FFF4B800D3A575 /* AppDelegate.swift */; };
 		2E87AFBC25FFF4B800D3A575 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFBB25FFF4B800D3A575 /* SceneDelegate.swift */; };
 		2E87AFBE25FFF4B800D3A575 /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87AFBD25FFF4B800D3A575 /* LandingPageViewController.swift */; };
@@ -119,6 +120,7 @@
 		2E34760B26152F6200BA27D9 /* UpdateListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateListRequest.swift; sourceTree = "<group>"; };
 		2E492D392623A775001BC07B /* EditStoreNameRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStoreNameRequest.swift; sourceTree = "<group>"; };
 		2E492D3E2623BB67001BC07B /* EditItemQuantityRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditItemQuantityRequest.swift; sourceTree = "<group>"; };
+		2E492D4326248E9F001BC07B /* UpdatePurchasedRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePurchasedRequest.swift; sourceTree = "<group>"; };
 		2E87AFB625FFF4B800D3A575 /* GroceryGuru.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroceryGuru.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E87AFB925FFF4B800D3A575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E87AFBB25FFF4B800D3A575 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */,
 				2E34760B26152F6200BA27D9 /* UpdateListRequest.swift */,
 				2E9C659D261CEBCE00107A9B /* UpdateItemDescriptionRequest.swift */,
+				2E492D4326248E9F001BC07B /* UpdatePurchasedRequest.swift */,
 				2E492D392623A775001BC07B /* EditStoreNameRequest.swift */,
 				2E492D3E2623BB67001BC07B /* EditItemQuantityRequest.swift */,
 				2E9C65A2261D254900107A9B /* AddStoreRequest.swift */,
@@ -574,6 +577,7 @@
 				2E9C65A3261D254900107A9B /* AddStoreRequest.swift in Sources */,
 				2E492D3F2623BB67001BC07B /* EditItemQuantityRequest.swift in Sources */,
 				2E9ABE86260AAEF60047DED3 /* Login.swift in Sources */,
+				2E492D4426248E9F001BC07B /* UpdatePurchasedRequest.swift in Sources */,
 				2E3476022615001500BA27D9 /* DeleteListRequest.swift in Sources */,
 				2E9ABE9B260BCEDA0047DED3 /* LoginViewController.swift in Sources */,
 				0211EF7C260E924A00CAA05C /* AllListResponse.swift in Sources */,

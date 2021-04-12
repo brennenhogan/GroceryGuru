@@ -176,6 +176,7 @@ class DetailedListController: UIViewController {
             guard let cell = cell as? ListViewCell else { return }
             cell.itemName.isEnabled = tableView.isEditing
             cell.itemQty.isEnabled = tableView.isEditing
+            cell.checkBtn.isHidden = tableView.isEditing
         }
         
         for i in 0...listData.count {
@@ -240,16 +241,21 @@ extension DetailedListController : UITableViewDataSource {
         let text = listData[indexPath.section].items[indexPath.row].itemDescription
         let qty = listData[indexPath.section].items[indexPath.row].qty
         let item_id = listData[indexPath.section].items[indexPath.row].itemID
+        let purchased = listData[indexPath.section].items[indexPath.row].purchased
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ListViewCell.identifier, for: indexPath) as! ListViewCell
         
         cell.configure(title: text, qty: qty)
         cell.itemName.isEnabled = tableView.isEditing
         cell.itemQty.isEnabled = tableView.isEditing
+        cell.checkBtn.isHidden = tableView.isEditing
+        cell.checkBtn.isSelected = (purchased == 1)
         cell.itemName.tag = item_id
         cell.itemQty.tag = item_id
+        cell.checkBtn.tag = item_id
         cell.itemQuantityDelegate = self
         cell.itemDescriptionDelegate = self
+        cell.checkButtonDelegate = self
                 
         return cell
     }
@@ -387,3 +393,19 @@ extension DetailedListController: ExpandSectionDelegate {
         }
     }
 }
+
+extension DetailedListController: CheckButtonDelegate {
+    func markItem(item_id: Int, check: Int) {
+        let updatePurchasedRequest = UpdatePurchasedRequest(item_id: item_id, purchased: check)
+        updatePurchasedRequest.updateItemPurchased { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let response):
+                print("Item purchased has been updated \(response)")
+            }
+        }
+        return
+    }
+}
+
