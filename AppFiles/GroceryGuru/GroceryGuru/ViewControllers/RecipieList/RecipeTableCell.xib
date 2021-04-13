@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeTableCell" id="gmK-w8-I96" userLabel="Recipie Table Cell" customClass="RecipeTableCell" customModule="GroceryGuru" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="gmK-w8-I96" id="HBY-ev-tmj">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="220" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BSN-Q2-QZp">
+                        <rect key="frame" x="10" y="0.0" width="310" height="50"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="myText" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a0x-rP-fke">
+                                <rect key="frame" x="0.0" y="0.0" width="225" height="50"/>
+                                <color key="tintColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="RAT-FJ-WQM">
+                                <rect key="frame" x="235" y="0.0" width="75" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fWT-vJ-aq5">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="50"/>
+                                        <state key="normal" image="square.and.arrow.up" catalog="system"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qty" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ia3-86-Byo">
+                                        <rect key="frame" x="45" y="0.0" width="30" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="HHV-4p-3OF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
+                                        <color key="textColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="Q0y-mQ-8me"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="eUt-Lg-6Lh"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="BSN-Q2-QZp" firstAttribute="top" secondItem="HBY-ev-tmj" secondAttribute="top" id="6uQ-3O-cn6"/>
+                    <constraint firstAttribute="bottom" secondItem="BSN-Q2-QZp" secondAttribute="bottom" id="Nyf-rW-2Bg"/>
+                    <constraint firstAttribute="trailing" secondItem="BSN-Q2-QZp" secondAttribute="trailing" id="m37-Rm-fRm"/>
+                    <constraint firstItem="BSN-Q2-QZp" firstAttribute="leading" secondItem="HBY-ev-tmj" secondAttribute="leading" constant="10" id="yXv-AY-TQi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="5Cp-Zi-Fwo"/>
+            <connections>
+                <outlet property="myQty" destination="ia3-86-Byo" id="bGp-Om-4nO"/>
+                <outlet property="myText" destination="a0x-rP-fke" id="4og-sQ-jdE"/>
+            </connections>
+            <point key="canvasLocation" x="102.89855072463769" y="81.696428571428569"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+    </resources>
+</document>

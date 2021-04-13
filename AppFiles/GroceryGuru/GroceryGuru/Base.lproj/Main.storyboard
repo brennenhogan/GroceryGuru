@@ -74,6 +74,9 @@
                                                                 <integer key="value" value="10"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <segue destination="zY4-ig-aiy" kind="show" id="yTe-o3-OsN"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9h-Uo-YPj">
                                                         <rect key="frame" x="200" y="0.0" width="174" height="50"/>
@@ -125,6 +128,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="soD-ip-G6o" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1048" y="124"/>
+        </scene>
+        <!--RecipePageViewController-->
+        <scene sceneID="qbl-ws-4Wc">
+            <objects>
+                <viewController title="RecipePageViewController" id="zY4-ig-aiy" userLabel="RecipePageViewController" customClass="RecipePageViewController" customModule="GroceryGuru" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KFf-xG-2eY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="db9-ai-RXT">
+                                <rect key="frame" x="20" y="98" width="374" height="761.5"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Unl-fU-ygs">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="761.5"/>
+                                        <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="separatorColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="43l-kq-L5U"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="db9-ai-RXT" firstAttribute="leading" secondItem="43l-kq-L5U" secondAttribute="leading" constant="20" id="Epr-pO-131"/>
+                            <constraint firstItem="db9-ai-RXT" firstAttribute="top" secondItem="43l-kq-L5U" secondAttribute="top" constant="10" id="HB6-0q-aOE"/>
+                            <constraint firstItem="db9-ai-RXT" firstAttribute="height" secondItem="KFf-xG-2eY" secondAttribute="height" multiplier="0.85" id="Kmi-j9-fba"/>
+                            <constraint firstItem="43l-kq-L5U" firstAttribute="trailing" secondItem="db9-ai-RXT" secondAttribute="trailing" constant="20" id="buW-Mo-ol7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Recipes" id="VCr-OX-Mpn" userLabel="Recipies">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="sdR-g7-6oh"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Unl-fU-ygs" id="dYo-eY-r8H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N9i-0M-cOR" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="124"/>
         </scene>
         <!--DetailedListController-->
         <scene sceneID="xOX-z2-aTf">
@@ -894,7 +942,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4nF-TC-L7i"/>
+        <segue reference="lTw-40-dyv"/>
         <segue reference="MAS-V4-j2s"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>

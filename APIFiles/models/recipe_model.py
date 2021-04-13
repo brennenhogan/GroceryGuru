@@ -12,3 +12,6 @@ class Recipe(db.Model):
 
   def get_name(self):
     return self.name
+
+  def get_id(self):
+    return self.recipe_id

@@ -48,7 +48,12 @@ def delete_recipe():
 def get_recipes(user_uuid):
   recipes = Recipe.query.filter(Recipe.uuid==user_uuid).all()
 
-  return recipe_schema.jsonify(recipes, many=True)
+  all_recipes = []
+  for recipe in recipes:
+    count = RecipeItem.query.filter(RecipeItem.recipe_id==recipe.get_id()).count()
+    all_recipes.append({"recipe_id": recipe.get_id(), "name": recipe.get_name(), "recipe_qty": count})
+
+  return recipe_schema.jsonify(all_recipes, many=True)
 
 # Add an item to a recipe
 @recipe_api.route('/recipe/add', methods=['POST'])
