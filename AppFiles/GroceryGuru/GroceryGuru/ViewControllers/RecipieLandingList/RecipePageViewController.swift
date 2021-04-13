@@ -7,6 +7,9 @@
 
 import UIKit
 
+public var selected_recipe_id = ""
+public var selected_recipe_name = ""
+
 class RecipePageViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
@@ -67,6 +70,18 @@ extension RecipePageViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("This recipe was tapped: " + String(allRecipieData[indexPath.row].recipeQty))
         print("Its name is: " + allRecipieData[indexPath.row].recipeName)
+        
+        tableView.deselectRow(at: indexPath, animated: true) // Unselect the previous list
+        
+        print("Now performing segue to individual recipe view!")
+        
+        selected_recipe_id = String(allRecipieData[indexPath.row].recipeID)
+        selected_recipe_name = allRecipieData[indexPath.row].recipeName
+        print(selected_recipe_id)
+        print(selected_recipe_name)
+        DispatchQueue.main.async{
+            self.performSegue(withIdentifier: "LandingToDetailedRecipe", sender: self)
+        }
     }
     
 }

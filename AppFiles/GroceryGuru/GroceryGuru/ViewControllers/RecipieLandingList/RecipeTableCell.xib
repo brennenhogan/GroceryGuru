@@ -24,7 +24,7 @@
                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="220" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BSN-Q2-QZp">
                         <rect key="frame" x="10" y="0.0" width="310" height="50"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="myText" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a0x-rP-fke">
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="myText" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a0x-rP-fke">
                                 <rect key="frame" x="0.0" y="0.0" width="225" height="50"/>
                                 <color key="tintColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

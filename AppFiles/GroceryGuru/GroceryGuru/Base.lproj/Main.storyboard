@@ -168,6 +168,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Unl-fU-ygs" id="dYo-eY-r8H"/>
+                        <segue destination="0yz-ct-IcC" kind="show" identifier="LandingToDetailedRecipe" id="2sq-di-56d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N9i-0M-cOR" sceneMemberID="firstResponder"/>
@@ -939,6 +940,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iWP-vd-NZz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2806" y="-541"/>
+        </scene>
+        <!--DetailedRecipeController-->
+        <scene sceneID="dPv-fc-lET">
+            <objects>
+                <viewController storyboardIdentifier="DetailedRecipeController" title="DetailedRecipeController" id="0yz-ct-IcC" userLabel="DetailedRecipeController" customClass="DetailedRecipeController" customModule="GroceryGuru" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ymt-IA-Qi4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Iyn-fY-OqE">
+                                <rect key="frame" x="10" y="98" width="394" height="754"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nRW-12-drX">
+                                        <rect key="frame" x="9.5" y="0.0" width="375" height="754"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="375" id="Qvd-M6-2lY"/>
+                                        </constraints>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3bO-ja-50m"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3bO-ja-50m" firstAttribute="trailing" secondItem="Iyn-fY-OqE" secondAttribute="trailing" constant="10" id="3YA-Ho-G08"/>
+                            <constraint firstItem="Iyn-fY-OqE" firstAttribute="leading" secondItem="3bO-ja-50m" secondAttribute="leading" constant="10" id="K3e-XR-det"/>
+                            <constraint firstItem="Iyn-fY-OqE" firstAttribute="top" secondItem="3bO-ja-50m" secondAttribute="top" constant="10" id="kQ5-81-Zs3"/>
+                            <constraint firstItem="3bO-ja-50m" firstAttribute="bottom" secondItem="Iyn-fY-OqE" secondAttribute="bottom" constant="10" id="u5P-dM-xKc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="6wp-Xc-upJ">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="aOn-xH-7YH">
+                            <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="editAction:" destination="0yz-ct-IcC" id="FxH-C8-WLX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="nRW-12-drX" id="XZF-yp-vEd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l8Z-r3-t6L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="804"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

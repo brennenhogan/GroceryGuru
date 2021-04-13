@@ -5,6 +5,7 @@ from schemas.recipeItem_schema import RecipeItemSchema
 # List Schema
 class CompleteRecipeSchema(ma.Schema):
   name = fields.Str()
+  store_id = fields.Integer()
   items = fields.Nested(RecipeItemSchema(many=True)) # We want many recipe items for each store
 
 # Init schema

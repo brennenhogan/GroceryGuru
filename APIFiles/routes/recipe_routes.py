@@ -109,7 +109,7 @@ def delete_item():
 
 # Get a recipe by ID
 @recipe_api.route('/recipe/<id>/<user_uuid>', methods=['GET'])
-def get_list(id, user_uuid):
+def get_recipe(id, user_uuid):
   owner = Recipe.query.filter(Recipe.uuid==user_uuid).filter(Recipe.recipe_id==id).all()
   
   if not owner:
@@ -117,7 +117,6 @@ def get_list(id, user_uuid):
     return {"result": False}
 
   stores = db.session.query(RecipeItem.store_id).filter(RecipeItem.recipe_id==id).distinct().all()
-  print(stores)
   distinct_store_ids = [store._asdict()['store_id'] for store in stores] # Get the ids of the stores for a list
   
   recipeFragments = []
@@ -126,7 +125,7 @@ def get_list(id, user_uuid):
 
     store_items = RecipeItem.query.filter(RecipeItem.recipe_id==id).filter(RecipeItem.store_id==store_id).all()
     
-    recipeFragment = {"name": store.get_name(), "items": store_items}
+    recipeFragment = {"name": store.get_name(), "store_id": store_id, "items": store_items}
     recipeFragments.append(recipeFragment)
   
   return completeRecipe_schema.jsonify(recipeFragments, many=True)
