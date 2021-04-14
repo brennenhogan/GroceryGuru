@@ -43,6 +43,23 @@ def delete_recipe():
 
   return {"result": True}
 
+# Updates the name of a recipe
+@recipe_api.route('/recipe/update', methods=['POST'])
+def update_recipe():
+  name = request.json['name']
+  recipe_id = request.json['recipe_id']
+ 
+  recipe = Recipe.query.filter(Recipe.recipe_id==recipe_id).first() # Get the item from the DB
+  recipe.name = name
+  
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    print(exc.SQLAlchemyError)
+    return {"result": False}
+
+  return {"result": True}
+
 # Get all recipes
 @recipe_api.route('/recipe/<user_uuid>', methods=['Get'])
 def get_recipes(user_uuid):

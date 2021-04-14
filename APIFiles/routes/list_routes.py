@@ -40,8 +40,6 @@ def update_name():
  
   selected_list = List.query.filter(List.list_id==list_id).first() # Get the list from the DB
   selected_list.name = name
-
-  print(selected_list.name)
   
   try:
     db.session.commit()
@@ -70,7 +68,7 @@ def create_from_oldlist():
 
   # Create new stores for each item
   store_mappings = {}
-  stores = db.session.query(ListItem.store_id).filter(ListItem.list_id==list_id).distinct().all()
+  stores = db.session.query(Store.store_id).filter(Store.list_id==list_id).distinct().all()
 
   for store_obj in stores:
     store_id = store_obj._asdict()['store_id']

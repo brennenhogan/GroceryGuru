@@ -16,7 +16,7 @@ protocol AddItemDelegate {
 }
 
 protocol DeleteStoreDelegate {
-    func deleteStore(storeID: String)
+    func deleteStore(storeID: String, section: Int)
 }
 
 protocol ExpandSectionDelegate {
@@ -76,7 +76,8 @@ class ListHeaderView: UITableViewHeaderFooterView {
     }
     
     @IBAction func deleteStore(_ sender: UIButton){
-        deleteStoreDelegate?.deleteStore(storeID: store_id)
+        let section = sender.tag
+        deleteStoreDelegate?.deleteStore(storeID: store_id, section: section)
     }
     
     @IBAction func expandSection(_ sender: UIButton){

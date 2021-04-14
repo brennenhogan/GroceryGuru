@@ -114,8 +114,8 @@ def delete_item():
 
 # INDIVIDUAL LIST QUERY #
 # Get a list by ID
-@listItem_api.route('/list/<id>/<user_uuid>', methods=['GET'])
-def get_list(id, user_uuid):
+@listItem_api.route('/list/<id>/<user_uuid>/<purchased>', methods=['GET'])
+def get_list(id, user_uuid, purchased):
   owner = db.session.query(ListOwnership).filter(ListOwnership.uuid==user_uuid).filter(ListOwnership.list_id==id).all()
   
   if not owner:
@@ -129,10 +129,18 @@ def get_list(id, user_uuid):
     store_id = store.get_id()
     store = db.session.query(Store).filter(Store.store_id==store_id).one() # Store_ids are distinct
 
-    store_items = db.session.query(ListItem)\
-      .filter(ListItem.list_id==id)\
-      .filter(ListItem.store_id==store_id)\
-      .all()
+    store_items = None
+    if purchased == '1':
+      store_items = db.session.query(ListItem)\
+        .filter(ListItem.list_id==id)\
+        .filter(ListItem.store_id==store_id)\
+        .filter(ListItem.purchased==0)\
+        .all()
+    else:
+      store_items = db.session.query(ListItem)\
+        .filter(ListItem.list_id==id)\
+        .filter(ListItem.store_id==store_id)\
+        .all()
     
     listFragment = {"name": store.get_name(), "store_id": store_id,"items": store_items}
     listFragments.append(listFragment)

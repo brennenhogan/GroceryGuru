@@ -35,6 +35,8 @@
 		02A8F9B02625EBA80083FE19 /* RecipeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02A8F9AF2625EBA80083FE19 /* RecipeHeaderView.xib */; };
 		02A8F9B52625EC6F0083FE19 /* RecipeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8F9B42625EC6F0083FE19 /* RecipeRequest.swift */; };
 		02A8F9BA2625ECC30083FE19 /* RecipeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8F9B92625ECC30083FE19 /* RecipeResponse.swift */; };
+		2E213DF9262678F000E8B23C /* AddRecipeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E213DF8262678F000E8B23C /* AddRecipeRequest.swift */; };
+		2E213E0126267CCE00E8B23C /* DeleteRecipeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E213E0026267CCE00E8B23C /* DeleteRecipeRequest.swift */; };
 		2E3475F82613E7E500BA27D9 /* AddListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3475F72613E7E500BA27D9 /* AddListRequest.swift */; };
 		2E3475FD2613E91D00BA27D9 /* AddListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */; };
 		2E3476022615001500BA27D9 /* DeleteListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3476012615001500BA27D9 /* DeleteListRequest.swift */; };
@@ -135,6 +137,8 @@
 		02A8F9AF2625EBA80083FE19 /* RecipeHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeHeaderView.xib; sourceTree = "<group>"; };
 		02A8F9B42625EC6F0083FE19 /* RecipeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRequest.swift; sourceTree = "<group>"; };
 		02A8F9B92625ECC30083FE19 /* RecipeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResponse.swift; sourceTree = "<group>"; };
+		2E213DF8262678F000E8B23C /* AddRecipeRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeRequest.swift; sourceTree = "<group>"; };
+		2E213E0026267CCE00E8B23C /* DeleteRecipeRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteRecipeRequest.swift; sourceTree = "<group>"; };
 		2E3475F72613E7E500BA27D9 /* AddListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListRequest.swift; sourceTree = "<group>"; };
 		2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListResponse.swift; sourceTree = "<group>"; };
 		2E3476012615001500BA27D9 /* DeleteListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteListRequest.swift; sourceTree = "<group>"; };
@@ -280,11 +284,13 @@
 				0211EFF4262377A900CAA05C /* AddItemRequest.swift */,
 				2E3475F72613E7E500BA27D9 /* AddListRequest.swift */,
 				2E9C65A2261D254900107A9B /* AddStoreRequest.swift */,
+				2E213DF8262678F000E8B23C /* AddRecipeRequest.swift */,
 				0211EF80260E92B000CAA05C /* AllListRequest.swift */,
 				0211EFEF261EA5E200CAA05C /* CreateFromOldListRequest.swift */,
 				2E3476012615001500BA27D9 /* DeleteListRequest.swift */,
 				2E9C6595261CCA1000107A9B /* DeleteItemRequest.swift */,
 				0211EFF92623885300CAA05C /* DeleteStoreRequest.swift */,
+				2E213E0026267CCE00E8B23C /* DeleteRecipeRequest.swift */,
 				2E9ABE8A260AAF560047DED3 /* LoginRequest.swift */,
 				0211EF69260E7C3800CAA05C /* ListRequest.swift */,
 				2E9ABECC260BF8CC0047DED3 /* NewUserRequest.swift */,
@@ -615,6 +621,7 @@
 				2E9ABE8B260AAF560047DED3 /* LoginRequest.swift in Sources */,
 				2E9ABEC5260BF8990047DED3 /* NewUserResponse.swift in Sources */,
 				02A8F9AB2625EB560083FE19 /* RecipeHeaderView.swift in Sources */,
+				2E213DF9262678F000E8B23C /* AddRecipeRequest.swift in Sources */,
 				0211EF6A260E7C3800CAA05C /* ListRequest.swift in Sources */,
 				2E9ABE81260AAAFF0047DED3 /* Designable.swift in Sources */,
 				2E9ABEA8260BCEFC0047DED3 /* ResetPasswordViewController.swift in Sources */,
@@ -635,6 +642,7 @@
 				2E492D3F2623BB67001BC07B /* UpdateItemQuantityRequest.swift in Sources */,
 				2E9ABE86260AAEF60047DED3 /* LoginResponse.swift in Sources */,
 				2E492D4426248E9F001BC07B /* UpdatePurchasedRequest.swift in Sources */,
+				2E213E0126267CCE00E8B23C /* DeleteRecipeRequest.swift in Sources */,
 				02A8F9B52625EC6F0083FE19 /* RecipeRequest.swift in Sources */,
 				2E3476022615001500BA27D9 /* DeleteListRequest.swift in Sources */,
 				2E9ABE9B260BCEDA0047DED3 /* LoginViewController.swift in Sources */,

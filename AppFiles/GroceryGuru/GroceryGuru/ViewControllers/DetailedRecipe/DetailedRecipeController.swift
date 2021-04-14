@@ -292,7 +292,7 @@ extension DetailedRecipeController: AddItemDelegate {
 }
 
 extension DetailedRecipeController: DeleteStoreDelegate {
-    func deleteStore(storeID: String) {
+    func deleteStore(storeID: String, section: Int) {
         print("deleting store: " + storeID)
         let deleteStoreRequest = DeleteStoreRequest(store_id: storeID, list_id: selected_recipe_id)
         deleteStoreRequest.deleteStore { [weak self] result in

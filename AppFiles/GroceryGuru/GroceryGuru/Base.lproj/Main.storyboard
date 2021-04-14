@@ -141,7 +141,7 @@
                                 <rect key="frame" x="20" y="98" width="374" height="761.5"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Unl-fU-ygs">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="761.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="686.5"/>
                                         <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="separatorColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -151,6 +151,24 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swv-M0-dLF">
+                                        <rect key="frame" x="0.0" y="711.5" width="374" height="50"/>
+                                        <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="dOQ-hc-XeV"/>
+                                        </constraints>
+                                        <state key="normal" title="Add Recipe">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="addRecipe:" destination="zY4-ig-aiy" eventType="primaryActionTriggered" id="wb7-3F-75z"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -165,6 +183,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Recipes" id="VCr-OX-Mpn" userLabel="Recipies">
                         <barButtonItem key="backBarButtonItem" title="Back" id="sdR-g7-6oh"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="I2N-O0-FIt">
+                            <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="editAction:" destination="zY4-ig-aiy" id="3AU-D6-c7o"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Unl-fU-ygs" id="dYo-eY-r8H"/>
@@ -197,6 +221,9 @@
                                             <segment title="Unpurchased Items"/>
                                         </segments>
                                         <color key="selectedSegmentTintColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="didChangeSegment:" destination="GVW-bU-frF" eventType="valueChanged" id="aRR-CA-7DD"/>
+                                        </connections>
                                     </segmentedControl>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8un-y3-HG4">
                                         <rect key="frame" x="9.5" y="50" width="375" height="634"/>

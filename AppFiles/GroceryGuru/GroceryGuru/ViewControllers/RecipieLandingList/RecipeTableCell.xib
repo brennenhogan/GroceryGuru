@@ -22,36 +22,21 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="220" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BSN-Q2-QZp">
-                        <rect key="frame" x="10" y="0.0" width="310" height="50"/>
+                        <rect key="frame" x="10" y="0.0" width="300" height="50"/>
                         <subviews>
-                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="myText" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a0x-rP-fke">
-                                <rect key="frame" x="0.0" y="0.0" width="225" height="50"/>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="recipeTitle" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a0x-rP-fke">
+                                <rect key="frame" x="0.0" y="0.0" width="260" height="50"/>
                                 <color key="tintColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="RAT-FJ-WQM">
-                                <rect key="frame" x="235" y="0.0" width="75" height="50"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fWT-vJ-aq5">
-                                        <rect key="frame" x="0.0" y="0.0" width="40" height="50"/>
-                                        <state key="normal" image="square.and.arrow.up" catalog="system"/>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qty" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ia3-86-Byo">
-                                        <rect key="frame" x="45" y="0.0" width="30" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="HHV-4p-3OF"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
-                                        <color key="textColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="75" id="Q0y-mQ-8me"/>
-                                </constraints>
-                            </stackView>
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Qty" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DpI-t0-Iw8">
+                                <rect key="frame" x="270" y="0.0" width="30" height="50"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="eUt-Lg-6Lh"/>
@@ -62,19 +47,16 @@
                 <constraints>
                     <constraint firstItem="BSN-Q2-QZp" firstAttribute="top" secondItem="HBY-ev-tmj" secondAttribute="top" id="6uQ-3O-cn6"/>
                     <constraint firstAttribute="bottom" secondItem="BSN-Q2-QZp" secondAttribute="bottom" id="Nyf-rW-2Bg"/>
-                    <constraint firstAttribute="trailing" secondItem="BSN-Q2-QZp" secondAttribute="trailing" id="m37-Rm-fRm"/>
+                    <constraint firstAttribute="trailing" secondItem="BSN-Q2-QZp" secondAttribute="trailing" constant="10" id="m37-Rm-fRm"/>
                     <constraint firstItem="BSN-Q2-QZp" firstAttribute="leading" secondItem="HBY-ev-tmj" secondAttribute="leading" constant="10" id="yXv-AY-TQi"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="5Cp-Zi-Fwo"/>
             <connections>
-                <outlet property="myQty" destination="ia3-86-Byo" id="bGp-Om-4nO"/>
-                <outlet property="myText" destination="a0x-rP-fke" id="4og-sQ-jdE"/>
+                <outlet property="recipeQty" destination="DpI-t0-Iw8" id="uBC-li-aBd"/>
+                <outlet property="recipeTitle" destination="a0x-rP-fke" id="tQA-Tb-qcO"/>
             </connections>
             <point key="canvasLocation" x="102.89855072463769" y="81.696428571428569"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
-    </resources>
 </document>

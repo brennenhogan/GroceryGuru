@@ -63,6 +63,86 @@ class RecipePageViewController: UIViewController {
 
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+        if (editingStyle == .delete){
+            let recipe_id = String(allRecipieData[indexPath.row].recipeID)
+            
+            let deleteRequest = DeleteRecipeRequest(recipe_id: recipe_id)
+            deleteRequest.deleteRecipe { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self?.CreateAlert(title: "Error", message: "\(error)")
+                        deleted = false
+                    }
+                    print(error)
+                case .success(let response):
+                    print("List has been deleted \(response)")
+                    deleted = response.result
+                }
+            }
+            
+            if(deleted){
+                allRecipieData.remove(at: indexPath.item)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+            
+            return
+        }
+    }
+    
+    @IBAction func editAction(_ sender: UIBarButtonItem){
+        self.tableView.isEditing = !self.tableView.isEditing
+        sender.title = (self.tableView.isEditing) ? "Done" : "Edit"
+        tableView.visibleCells.forEach{ cell in
+            guard let cell = cell as? RecipeTableCell else { return }
+            print(self.tableView.isEditing)
+            cell.recipeTitle.isEnabled = self.tableView.isEditing
+        }
+    }
+    
+    @IBAction func addRecipe(_ sender: UIButton){
+        let alert = UIAlertController(title: "Enter a Recipe Name", message: "", preferredStyle: .alert)
+
+        alert.addTextField { (textField) in
+            textField.text = ""
+        }
+
+        alert.view.tintColor = UIColor(hex: 0x7A916E)
+        self.present(alert, animated: true, completion: nil)
+        
+        // Grab the value from the text field when the user clicks Create
+        let createAction = UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            //Create List Action
+            let addRecipeRequest = AddRecipeRequest(name: (textField?.text)!)
+            addRecipeRequest.addRecipe { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let response):
+                    print("Store has been created \(response)")
+                    self?.getData()
+                }
+            }
+        })
+        
+        createAction.isEnabled = false
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
+        
+        // adding the notification observer here
+        NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object:alert.textFields?[0], queue: OperationQueue.main) { (notification) -> Void in
+            let textFieldName = (alert.textFields?[0])! as UITextField
+            createAction.isEnabled = !textFieldName.text!.isEmpty
+            }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(createAction)
+    }
+    
+    
 }
 
 extension RecipePageViewController : UITableViewDelegate {
@@ -97,7 +177,8 @@ extension RecipePageViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: RecipeTableCell.identifier, for: indexPath) as! RecipeTableCell
         
         cell.configure(title: item.recipeName, qty: item.recipeQty)
-        
+        cell.recipeTitle.isEnabled = self.tableView.isEditing
+
         return cell
     }
     

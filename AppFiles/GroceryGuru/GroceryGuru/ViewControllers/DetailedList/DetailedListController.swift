@@ -7,6 +7,8 @@
 
 import UIKit
 
+public var filter_selection = 0
+
 class DetailedListController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
@@ -69,7 +71,7 @@ class DetailedListController: UIViewController {
     }
     
     func getData() {
-        let listRequest = ListRequest(list_id: selected_list_id)
+        let listRequest = ListRequest(list_id: selected_list_id, filter: filter_selection)
         listRequest.getList { [weak self] result in
             switch result {
             case .failure(let error):
@@ -185,6 +187,11 @@ class DetailedListController: UIViewController {
             header.addButton.isHidden = tableView.isEditing
         }
     }
+    
+    @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
+        filter_selection = sender.selectedSegmentIndex
+        self.getData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -218,6 +225,7 @@ extension DetailedListController : UITableViewDataSource {
         view.storeName.isEnabled = tableView.isEditing
         view.addButton.isHidden = tableView.isEditing
         view.deleteButton.isHidden = !tableView.isEditing
+        view.deleteButton.tag = section
         view.expandButton.tag = section
         
         view.addItemDelegate = self // Be listening for the button tap in the header
@@ -297,22 +305,38 @@ extension DetailedListController: AddItemDelegate {
 }
 
 extension DetailedListController: DeleteStoreDelegate {
-    func deleteStore(storeID: String) {
+    func deleteStore(storeID: String, section: Int) {
         print("deleting store: " + storeID)
-        let deleteStoreRequest = DeleteStoreRequest(store_id: storeID, list_id: selected_list_id)
-        deleteStoreRequest.deleteStore { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print("Error deleting store")
-                DispatchQueue.main.async {
-                    self?.CreateAlert(title: "Error", message: "\(error)")
+        let alert = UIAlertController(title: "Are you sure you want to delete \"\(listData[section].name)\" and all items in the section?", message: "", preferredStyle: .alert)
+
+        alert.view.tintColor = UIColor(hex: 0x7A916E)
+        self.present(alert, animated: true, completion: nil)
+        
+        // Grab the value from the text field when the user clicks Create
+        let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { [weak alert] (_) in
+            //Create List Action
+            let deleteStoreRequest = DeleteStoreRequest(store_id: storeID, list_id: selected_list_id)
+            deleteStoreRequest.deleteStore { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    print("Error deleting store")
+                    DispatchQueue.main.async {
+                        self?.CreateAlert(title: "Error", message: "\(error)")
+                    }
+                    print(error)
+                case .success(_):
+                    print("Store deleted")
+                    self?.getData()
                 }
-                print(error)
-            case .success(_):
-                print("Store deleted")
-                self?.getData()
             }
-        }
+        })
+        
+        deleteAction.isEnabled = true
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
     }
 }
 
