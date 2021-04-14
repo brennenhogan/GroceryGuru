@@ -35,6 +35,9 @@
 		02A8F9B02625EBA80083FE19 /* RecipeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02A8F9AF2625EBA80083FE19 /* RecipeHeaderView.xib */; };
 		02A8F9B52625EC6F0083FE19 /* RecipeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8F9B42625EC6F0083FE19 /* RecipeRequest.swift */; };
 		02A8F9BA2625ECC30083FE19 /* RecipeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8F9B92625ECC30083FE19 /* RecipeResponse.swift */; };
+		02A8F9C32627955D0083FE19 /* RecipeCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8F9C22627955D0083FE19 /* RecipeCheckViewController.swift */; };
+		02A8F9CC2627A0A20083FE19 /* RecipeCheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8F9CA2627A0A20083FE19 /* RecipeCheckCell.swift */; };
+		02A8F9CD2627A0A20083FE19 /* RecipeCheckCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02A8F9CB2627A0A20083FE19 /* RecipeCheckCell.xib */; };
 		2E213DF9262678F000E8B23C /* AddRecipeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E213DF8262678F000E8B23C /* AddRecipeRequest.swift */; };
 		2E213E0126267CCE00E8B23C /* DeleteRecipeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E213E0026267CCE00E8B23C /* DeleteRecipeRequest.swift */; };
 		2E213E062626810500E8B23C /* UpdateRecipeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E213E052626810500E8B23C /* UpdateRecipeTitle.swift */; };
@@ -145,6 +148,9 @@
 		02A8F9AF2625EBA80083FE19 /* RecipeHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeHeaderView.xib; sourceTree = "<group>"; };
 		02A8F9B42625EC6F0083FE19 /* RecipeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRequest.swift; sourceTree = "<group>"; };
 		02A8F9B92625ECC30083FE19 /* RecipeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResponse.swift; sourceTree = "<group>"; };
+		02A8F9C22627955D0083FE19 /* RecipeCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCheckViewController.swift; sourceTree = "<group>"; };
+		02A8F9CA2627A0A20083FE19 /* RecipeCheckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCheckCell.swift; sourceTree = "<group>"; };
+		02A8F9CB2627A0A20083FE19 /* RecipeCheckCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeCheckCell.xib; sourceTree = "<group>"; };
 		2E213DF8262678F000E8B23C /* AddRecipeRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeRequest.swift; sourceTree = "<group>"; };
 		2E213E0026267CCE00E8B23C /* DeleteRecipeRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteRecipeRequest.swift; sourceTree = "<group>"; };
 		2E213E052626810500E8B23C /* UpdateRecipeTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRecipeTitle.swift; sourceTree = "<group>"; };
@@ -294,6 +300,16 @@
 			path = DetailedRecipe;
 			sourceTree = "<group>";
 		};
+		02A8F9C1262795450083FE19 /* RecipeCheck */ = {
+			isa = PBXGroup;
+			children = (
+				02A8F9C22627955D0083FE19 /* RecipeCheckViewController.swift */,
+				02A8F9CA2627A0A20083FE19 /* RecipeCheckCell.swift */,
+				02A8F9CB2627A0A20083FE19 /* RecipeCheckCell.xib */,
+			);
+			path = RecipeCheck;
+			sourceTree = "<group>";
+		};
 		2E492D4B2624B4A9001BC07B /* Requests */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +395,7 @@
 		2E87AFEC25FFF56600D3A575 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				02A8F9C1262795450083FE19 /* RecipeCheck */,
 				0211EFE1261E594900CAA05C /* AddNewList */,
 				0211EF862612580600CAA05C /* DetailedList */,
 				02A8F9972625E8DE0083FE19 /* DetailedRecipe */,
@@ -655,6 +672,7 @@
 				02A8F9A62625EA3A0083FE19 /* RecipeViewCell.xib in Resources */,
 				2E9ABE77260A91390047DED3 /* Roboto-Bold.ttf in Resources */,
 				2E9ABE6F260A91390047DED3 /* Roboto-Regular.ttf in Resources */,
+				02A8F9CD2627A0A20083FE19 /* RecipeCheckCell.xib in Resources */,
 				2E9ABE59260A91040047DED3 /* OpenSans-Regular.ttf in Resources */,
 				2E9ABE71260A91390047DED3 /* Roboto-ThinItalic.ttf in Resources */,
 				0211EFE8261E5B9C00CAA05C /* OldListsCell.xib in Resources */,
@@ -700,6 +718,7 @@
 				2E9ABEA8260BCEFC0047DED3 /* ResetPasswordViewController.swift in Sources */,
 				2E87AFBE25FFF4B800D3A575 /* LandingPageViewController.swift in Sources */,
 				02A8F99026251D7D0083FE19 /* AllRecipeResponse.swift in Sources */,
+				02A8F9CC2627A0A20083FE19 /* RecipeCheckCell.swift in Sources */,
 				0211EF9C2612759F00CAA05C /* ListHeaderView.swift in Sources */,
 				2E9ABE96260BC09F0047DED3 /* SignUpViewController.swift in Sources */,
 				2E213E062626810500E8B23C /* UpdateRecipeTitle.swift in Sources */,
@@ -733,6 +752,7 @@
 				02A8F98B26251B830083FE19 /* AllRecipeRequest.swift in Sources */,
 				02A8F9A52625EA3A0083FE19 /* RecipeViewCell.swift in Sources */,
 				02A8F982262519520083FE19 /* RecipeTableCell.swift in Sources */,
+				02A8F9C32627955D0083FE19 /* RecipeCheckViewController.swift in Sources */,
 				2E3475F82613E7E500BA27D9 /* AddListRequest.swift in Sources */,
 				02A8F976262517880083FE19 /* RecipePageViewController.swift in Sources */,
 				0211EF65260E77A100CAA05C /* DetailedListController.swift in Sources */,
