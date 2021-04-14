@@ -33,6 +33,7 @@
                                 <state key="normal" image="circle" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                 </state>
+                                <state key="selected" image="checkmark.circle.fill" catalog="system"/>
                             </button>
                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Qty" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IMm-mR-mEh">
                                 <rect key="frame" x="77" y="0.0" width="50" height="44"/>
@@ -68,6 +69,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>

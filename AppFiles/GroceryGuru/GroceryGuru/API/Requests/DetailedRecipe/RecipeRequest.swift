@@ -33,7 +33,6 @@ struct RecipeRequest {
             
             do {
                 let decoder = JSONDecoder()
-                print(jsonData)
                 let recipeResponse = try decoder.decode(RecipeResponse.self, from: jsonData)
                 completion(.success(recipeResponse))
             } catch{

@@ -15,13 +15,14 @@ struct RecipeElement: Codable {
 
 struct RecipeItem : Codable {
     let itemDescription: String
-    let itemID, recipeID, qty: Int
+    let itemID, recipeID, qty, checked: Int
     
     enum CodingKeys: String, CodingKey {
         case itemDescription = "description"
         case itemID = "item_id"
         case recipeID = "recipe_id"
         case qty
+        case checked
     }
 }
 

@@ -76,13 +76,15 @@ class RecipeCheckViewController: UIViewController {
         // Grab the value from the text field when the user clicks Create
         let createAction = UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists
-            let createListRequest = CreatFromOldListRequest(name: (textField?.text)!, list_id: selected_recipe_id)
+            let createListRequest = CreateListFromRecipeRequest(name: (textField?.text)!, recipe_id: selected_recipe_id)
             createListRequest.createList { [weak self] result in
                 switch result {
                 case .failure(let error):
                     print(error)
                 case .success(let response):
                     print("List has been created with id = \(response.list_id)")
+                    selected_list_id = String(response.list_id)
+                    selected_list_name = (textField?.text)!
                     
                     /*print("Now performing segue to landing page!")
                     DispatchQueue.main.async{
@@ -138,14 +140,15 @@ extension RecipeCheckViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let text = recipeData[indexPath.section].items[indexPath.row].itemDescription
         let qty = recipeData[indexPath.section].items[indexPath.row].qty
-        let item_id = recipeData[indexPath.section].items[indexPath.row].itemID
+        let checked = recipeData[indexPath.section].items[indexPath.row].checked
+        print(checked == 1)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: RecipeCheckCell.identifier, for: indexPath) as! RecipeCheckCell
         
         cell.configure(title: text, qty: qty)
         
         cell.checkBtn.isHidden = false
-        cell.checkBtn.isSelected = (1 != 0) // TODO - api work here
+        cell.checkBtn.isSelected = (1 == checked)
         cell.checkButtonDelegate = self
                 
         return cell
@@ -154,13 +157,13 @@ extension RecipeCheckViewController: UITableViewDataSource {
 
 extension RecipeCheckViewController: CheckRecipeButtonDelegate {
     func markItem(item_id: Int, check: Int) {
-        let updatePurchasedRequest = UpdatePurchasedRequest(item_id: item_id, purchased: check)
-        updatePurchasedRequest.updateItemPurchased { [weak self] result in
+        let updateCheckedRequest = UpdateCheckedRequest(item_id: item_id, checked: check)
+        updateCheckedRequest.updateItemChecked { [weak self] result in
             switch result {
             case .failure(let error):
                 print(error)
             case .success(let response):
-                print("Item purchased has been updated \(response)")
+                print("Item checked has been updated \(response)")
                 self?.getData()
             }
         }

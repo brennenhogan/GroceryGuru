@@ -1092,7 +1092,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="buttonTapped:" destination="wd3-fr-8Nt" eventType="valueChanged" id="bDQ-JP-zmN"/>
+                                                    <action selector="buttonTapped:" destination="wd3-fr-8Nt" eventType="touchDown" id="fIW-QF-xqs"/>
                                                 </connections>
                                             </button>
                                         </subviews>
