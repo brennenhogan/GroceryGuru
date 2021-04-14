@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol RecipeTitleDelegate {
+    func editTitle(recipe_id: Int, recipe_title: String)
+}
+
 class RecipeTableCell: UITableViewCell {
     
     @IBOutlet weak var recipeTitle: UITextField!
@@ -41,6 +45,12 @@ class RecipeTableCell: UITableViewCell {
     func textFieldShouldReturn(_ myText: UITextField) -> Bool {
         myText.resignFirstResponder()
         return true
+    }
+    
+    var recipeTitleDelegate: RecipeTitleDelegate?
+    
+    @IBAction func editTitle(_ sender: UITextField){
+        recipeTitleDelegate?.editTitle(recipe_id: sender.tag, recipe_title: sender.text!)
     }
         
 }

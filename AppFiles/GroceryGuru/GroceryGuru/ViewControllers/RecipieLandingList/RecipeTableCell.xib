@@ -30,6 +30,9 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="editTitle:" destination="gmK-w8-I96" eventType="editingDidEnd" id="qRU-ya-fiD"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Qty" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DpI-t0-Iw8">
                                 <rect key="frame" x="270" y="0.0" width="30" height="50"/>

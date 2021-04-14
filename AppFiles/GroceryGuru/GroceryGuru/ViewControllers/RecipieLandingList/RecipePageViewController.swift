@@ -177,9 +177,30 @@ extension RecipePageViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: RecipeTableCell.identifier, for: indexPath) as! RecipeTableCell
         
         cell.configure(title: item.recipeName, qty: item.recipeQty)
+        cell.recipeTitle.tag = item.recipeID
         cell.recipeTitle.isEnabled = self.tableView.isEditing
+        cell.recipeTitleDelegate = self
 
         return cell
     }
     
+}
+
+extension RecipePageViewController: RecipeTitleDelegate {
+    func editTitle(recipe_id: Int, recipe_title: String) {
+        let updateRecipeTitleRequest = UpdateRecipeTitleRequest(recipe_title: recipe_title, recipe_id: recipe_id)
+        updateRecipeTitleRequest.updateRecipeTitle { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print("Error editing recipe")
+                DispatchQueue.main.async {
+                    self?.CreateAlert(title: "Error", message: "\(error)")
+                }
+                print(error)
+            case .success(_):
+                print("Recipe edited")
+                self?.getData()
+            }
+        }
+    }
 }

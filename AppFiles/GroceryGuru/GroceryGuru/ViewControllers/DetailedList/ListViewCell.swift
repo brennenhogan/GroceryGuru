@@ -62,8 +62,7 @@ class ListViewCell: UITableViewCell {
     }
     
     @IBAction func editQty(_ sender: UITextField){
-        let item_id = sender.tag
-        itemQuantityDelegate?.editQty(item_id: item_id, item_qty: sender.text!)
+        itemQuantityDelegate?.editQty(item_id: sender.tag, item_qty: sender.text!)
     }
     
     @IBAction func markItem(_ sender: UIButton){
