@@ -49,10 +49,10 @@ VALUES
     (2,"Second Store", 1),
     (3,"Meat Store", 2);
 
-INSERT INTO recipe_item (item_id, recipe_id, store_id, qty, description)
+INSERT INTO recipe_item (item_id, recipe_id, store_id, qty, description, checked)
 VALUES
-    (1,1,1,5,'bananas'),
-    (2,1,1,5,'apples'),
-    (3,1,2,5,'pears'),
-    (4,1,2,5,'cherries'),
-    (5,2,3,5,'meat');
+    (1,1,1,5,'bananas', 0),
+    (2,1,1,5,'apples', 1),
+    (3,1,2,5,'pears', 0),
+    (4,1,2,5,'cherries', 0),
+    (5,2,3,5,'meat', 0);

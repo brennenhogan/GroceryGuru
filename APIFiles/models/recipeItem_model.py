@@ -9,12 +9,14 @@ class RecipeItem(db.Model):
   store_id = db.Column(db.Integer, db.ForeignKey('recipe_store.store_id'), nullable=False)
   qty = db.Column(db.Integer, nullable=False)
   description = db.Column(db.String(100), nullable=False)
+  checked = db.Column(db.Integer, nullable=False)
 
   def __init__(self, recipe_id, store_id, qty, description):
     self.recipe_id = recipe_id
     self.store_id = store_id
     self.qty = qty
     self.description = description
+    self.checked = 0 # Items start off unchecked
 
   def get_store(self):
     return self.store_id

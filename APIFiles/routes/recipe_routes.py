@@ -186,6 +186,23 @@ def edit_store():
 
   return {"result": True}
 
+# Check off an item
+@recipe_api.route('/recipe/check', methods=['POST'])
+def update_checked():
+  item_id = request.json['item_id']
+  checked = request.json['checked']
+ 
+  item = RecipeItem.query.filter(RecipeItem.item_id==item_id).first() # Get the item from the DB
+  item.checked = checked # update the checked field
+
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    print(exc.SQLAlchemyError)
+    return {"result": False}
+
+  return {"result": True}
+
 # Delete a store (and all of its items!)
 @recipe_api.route('/recipe/store/delete', methods=['POST'])
 def delete_store():

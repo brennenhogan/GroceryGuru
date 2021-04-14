@@ -68,7 +68,7 @@ def create_list_from_recipe():
 
   # Create new stores for each item
   store_mappings = {}
-  stores = db.session.query(RecipeStore.store_id).filter(RecipeStore.recipe_id==recipe_id).distinct().all()
+  stores = db.session.query(RecipeItem.store_id).filter(RecipeItem.recipe_id==recipe_id).filter(RecipeItem.checked=='0').distinct().all()
 
   for store_obj in stores:
     store_id = store_obj._asdict()['store_id']
@@ -81,7 +81,7 @@ def create_list_from_recipe():
 
     store_mappings[store_id] = new_store.store_id # Update store_mappings with mappings so later we can use the new store ids
 
-  items = RecipeItem.query.filter(RecipeItem.recipe_id==recipe_id).all() # Get all items for the recipe
+  items = RecipeItem.query.filter(RecipeItem.recipe_id==recipe_id).filter(RecipeItem.checked=='0').all() # Get all items for the recipe
   for item in items:
     new_item = ListItem(new_list_id, store_mappings[item.get_store()], item.get_qty(), item.get_description(), 0) # All items start unpurchased - hence the 0
     db.session.add(new_item)
