@@ -305,6 +305,12 @@ extension DetailedListController: AddItemDelegate {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
         
+        // adding the notification observer here
+        NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object:alert.textFields?[0], queue: OperationQueue.main) { (notification) -> Void in
+            let textFieldName = (alert.textFields?[0])! as UITextField
+            createAction.isEnabled = !textFieldName.text!.isEmpty
+            }
+        
         alert.addAction(cancelAction)
         alert.addAction(createAction)
     }

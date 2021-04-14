@@ -62,6 +62,9 @@
                                                 <state key="normal">
                                                     <imageReference key="image" image="trash.fill" catalog="system" symbolScale="large"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="deleteRecipeStore:" destination="YD7-s1-sur" eventType="primaryActionTriggered" id="KQY-aG-Aub"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmD-3j-xwR">
                                                 <rect key="frame" x="50" y="0.0" width="50" height="50"/>
@@ -72,6 +75,9 @@
                                                 <state key="normal">
                                                     <imageReference key="image" image="plus.circle" catalog="system" symbolScale="large"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="addRecipeItem:" destination="YD7-s1-sur" eventType="primaryActionTriggered" id="id9-EG-FYr"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

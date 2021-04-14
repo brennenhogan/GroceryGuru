@@ -11,15 +11,15 @@ import UIKit
  protocol EditStoreDelegate {
      func editStore(storeID: String, store_name: String)
  }
-
- protocol AddItemDelegate {
-     func addItem(storeID: String)
- }
-
- protocol DeleteStoreDelegate {
-     func deleteStore(storeID: String)
- }
 */
+ protocol AddRecipeItemDelegate {
+     func addRecipeItem(storeID: String)
+ }
+
+ protocol DeleteRecipeStoreDelegate {
+    func deleteRecipeStore(storeID: String, section: Int)
+ }
+
  protocol ExpandRecipeSectionDelegate {
      func expandSection(section: Int)
  }
@@ -66,23 +66,21 @@ class RecipeHeaderView: UITableViewHeaderFooterView {
     }
 
     var expandRecipeSectionDelegate: ExpandRecipeSectionDelegate?
-
-    /*
-    var addItemDelegate: AddItemDelegate?
-    var deleteStoreDelegate: DeleteStoreDelegate?
-    var editStoreDelegate: EditStoreDelegate?
+    var addRecipeItemDelegate: AddRecipeItemDelegate?
+    var deleteRecipeStoreDelegate: DeleteRecipeStoreDelegate?
+    //var editStoreDelegate: EditStoreDelegate?
     
-    @IBAction func editStore(_ sender: UITextField){
+    /*@IBAction func editStore(_ sender: UITextField){
         editStoreDelegate?.editStore(storeID: store_id, store_name: storeName.text!)
-    }
+    }*/
 
-    @IBAction func addStore(_ sender: UIButton){
-        addItemDelegate?.addItem(storeID: store_id)
+    @IBAction func addRecipeItem(_ sender: UIButton){
+        addRecipeItemDelegate?.addRecipeItem(storeID: store_id)
     }
     
-    @IBAction func deleteStore(_ sender: UIButton){
-        deleteStoreDelegate?.deleteStore(storeID: store_id)
-    }*/
+    @IBAction func deleteRecipeStore(_ sender: UIButton){
+        deleteRecipeStoreDelegate?.deleteRecipeStore(storeID: store_id, section: sender.tag)
+    }
     
     @IBAction func expandSection(_ sender: UIButton){
         let section = sender.tag

@@ -207,16 +207,17 @@ extension DetailedRecipeController : UITableViewDataSource {
     // Use custom header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: RecipeHeaderView.identifier) as! RecipeHeaderView
-        view.configure(title: recipeData[section].name, storeID: String(recipeData[section].store_id)) // TODO - add buttons here that do things
+        view.configure(title: recipeData[section].name, storeID: String(recipeData[section].store_id))
 
         view.storeName.isEnabled = tableView.isEditing
         view.addButton.isHidden = tableView.isEditing
         view.deleteButton.isHidden = !tableView.isEditing
         view.expandButton.tag = section
+        view.deleteButton.tag = section
         
-        /*view.addItemDelegate = self // Be listening for the button tap in the header
-        view.deleteStoreDelegate = self
-        view.editStoreDelegate = self*/
+        //view.editStoreDelegate = self
+        view.addRecipeItemDelegate = self
+        view.deleteRecipeStoreDelegate = self
         view.expandRecipeSectionDelegate = self
         
         if(hiddenSections.contains(section)){
@@ -255,62 +256,6 @@ extension DetailedRecipeController : UITableViewDataSource {
         cell.checkButtonDelegate = self*/
                 
         return cell
-    }
-}
-
-extension DetailedRecipeController: AddItemDelegate {
-    func addItem(storeID: String) {
-        print("In Delegate")
-        let alert = UIAlertController(title: "Enter an Item Name", message: "", preferredStyle: .alert)
-
-        alert.addTextField { (textField) in
-            textField.text = ""
-        }
-
-        alert.view.tintColor = UIColor(hex: 0x7A916E)
-        self.present(alert, animated: true, completion: nil)
-        
-        // Grab the value from the text field when the user clicks Add
-        let createAction = UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            // Add Item Action
-            let addItemRequest = AddItemRequest(description: (textField?.text)!, list_id: selected_recipe_id, store_id: storeID, qty: "1")
-            
-            addItemRequest.addItem { [weak self] result in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let response):
-                    print("Item has been created \(response)")
-                    self?.getData()
-                }
-            }
-        })
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
-        
-        alert.addAction(cancelAction)
-        alert.addAction(createAction)
-    }
-}
-
-extension DetailedRecipeController: DeleteStoreDelegate {
-    func deleteStore(storeID: String, section: Int) {
-        print("deleting store: " + storeID)
-        let deleteStoreRequest = DeleteStoreRequest(store_id: storeID, list_id: selected_recipe_id)
-        deleteStoreRequest.deleteStore { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print("Error deleting store")
-                DispatchQueue.main.async {
-                    self?.CreateAlert(title: "Error", message: "\(error)")
-                }
-                print(error)
-            case .success(_):
-                print("Store deleted")
-                self?.getData()
-            }
-        }
     }
 }
 
@@ -393,3 +338,64 @@ extension DetailedRecipeController: ExpandRecipeSectionDelegate {
     }
 }
 
+extension DetailedRecipeController: DeleteRecipeStoreDelegate {
+    func deleteRecipeStore(storeID: String, section: Int) {
+        print("deleting store: " + storeID)
+        let deleteRecipeStoreRequest = DeleteRecipeStoreRequest(store_id: storeID, recipe_id: selected_recipe_id)
+        deleteRecipeStoreRequest.deleteRecipeStore { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print("Error deleting store")
+                DispatchQueue.main.async {
+                    self?.CreateAlert(title: "Error", message: "\(error)")
+                }
+                print(error)
+            case .success(_):
+                print("Store deleted")
+                self?.getData()
+            }
+        }
+    }
+}
+
+extension DetailedRecipeController: AddRecipeItemDelegate {
+    func addRecipeItem(storeID: String) {
+        print("In Delegate")
+        let alert = UIAlertController(title: "Enter an Item Name", message: "", preferredStyle: .alert)
+
+        alert.addTextField { (textField) in
+            textField.text = ""
+        }
+
+        alert.view.tintColor = UIColor(hex: 0x7A916E)
+        self.present(alert, animated: true, completion: nil)
+        
+        // Grab the value from the text field when the user clicks Add
+        let createAction = UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            // Add Item Action
+            let addRecipeItemRequest = AddRecipeItemRequest(description: (textField?.text)!, store_id: storeID, qty: "1")
+            
+            addRecipeItemRequest.addRecipeItem { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let response):
+                    print("Item has been created \(response)")
+                    self?.getData()
+                }
+            }
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
+        
+        // adding the notification observer here
+        NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object:alert.textFields?[0], queue: OperationQueue.main) { (notification) -> Void in
+            let textFieldName = (alert.textFields?[0])! as UITextField
+            createAction.isEnabled = !textFieldName.text!.isEmpty
+            }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(createAction)
+    }
+}
