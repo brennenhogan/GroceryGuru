@@ -3,7 +3,9 @@ from models.base_model import db
 from models.list_model import List
 from models.listItem_model import ListItem
 from models.store_model import Store
+from models.recipeStore_model import RecipeStore
 from models.listOwnership_model import ListOwnership
+from models.recipeItem_model import RecipeItem
 from sqlalchemy import exc
 
 list_api = Blueprint('list_api', __name__)
@@ -46,6 +48,50 @@ def update_name():
     return {"result": False}
 
   return {"result": True}
+
+# Create a list from a recipe
+@list_api.route('/list/recipecreate', methods=['POST'])
+def create_list_from_recipe():
+  name = request.json['name']
+  uuid = request.json['uuid']
+  recipe_id = request.json['recipe_id']
+  old = 0 # All lists start new
+
+  new_list = List(name, old) # Create the new list
+  db.session.add(new_list)
+
+  db.session.flush() # Get the id from new_list
+  new_list_id = new_list.list_id
+
+  new_owner = ListOwnership(uuid, new_list_id) # Update the ownership table with this new list so that the uuid owns it
+  db.session.add(new_owner)
+
+  # Create new stores for each item
+  store_mappings = {}
+  stores = db.session.query(RecipeStore.store_id).filter(RecipeStore.recipe_id==recipe_id).distinct().all()
+
+  for store_obj in stores:
+    store_id = store_obj._asdict()['store_id']
+    store = RecipeStore.query.filter(RecipeStore.store_id==store_id).first()
+
+    new_store = Store(store.get_name(), new_list_id) # Create new store
+    db.session.add(new_store) # Insert new store
+
+    db.session.flush() # Get the id from new_store
+
+    store_mappings[store_id] = new_store.store_id # Update store_mappings with mappings so later we can use the new store ids
+
+  items = RecipeItem.query.filter(RecipeItem.recipe_id==recipe_id).all() # Get all items for the recipe
+  for item in items:
+    new_item = ListItem(new_list_id, store_mappings[item.get_store()], item.get_qty(), item.get_description(), 0) # All items start unpurchased - hence the 0
+    db.session.add(new_item)
+
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    return {"list_id": -1,"result": False}
+
+  return {"list_id": new_list.list_id, "result": True}
 
 # Create a new list from old list
 @list_api.route('/list/old', methods=['POST'])

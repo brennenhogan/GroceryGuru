@@ -18,3 +18,9 @@ class RecipeItem(db.Model):
 
   def get_store(self):
     return self.store_id
+  
+  def get_qty(self):
+    return self.qty
+
+  def get_description(self):
+    return self.description

@@ -43,10 +43,16 @@ VALUES
     (1, 'Fruit salad', 'brickfertyhnbvsdfgreqewed'),
     (2, 'Cookout', 'brickfertyhnbvsdfgreqewed');
 
+INSERT INTO recipe_store (store_id, store_name, recipe_id)
+VALUES
+    (1,"First Store", 1),
+    (2,"Second Store", 1),
+    (3,"Meat Store", 2);
+
 INSERT INTO recipe_item (item_id, recipe_id, store_id, qty, description)
 VALUES
     (1,1,1,5,'bananas'),
     (2,1,1,5,'apples'),
     (3,1,2,5,'pears'),
     (4,1,2,5,'cherries'),
-    (5,2,1,5,'meat');
+    (5,2,3,5,'meat');
