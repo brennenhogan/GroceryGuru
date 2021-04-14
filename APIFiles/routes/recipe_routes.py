@@ -2,7 +2,7 @@ from flask import request, jsonify, Blueprint
 from models.base_model import db
 from models.recipeItem_model import RecipeItem
 from models.recipe_model import Recipe
-from models.store_model import Store
+from models.recipeStore_model import RecipeStore
 from schemas.recipeItem_schema import recipeItem_schema
 from schemas.recipe_schema import recipe_schema
 from schemas.completeRecipe_schema import completeRecipe_schema
@@ -34,6 +34,13 @@ def delete_recipe():
  
   recipe = Recipe.query.filter(Recipe.recipe_id==recipe_id).first() # Get the item from the DB
   db.session.delete(recipe)
+
+  stores = RecipeStore.query.filter(RecipeStore.recipe_id==recipe_id).all()
+  items = RecipeItem.query.filter(RecipeItem.recipe_id==recipe_id).all()
+  for store in stores:
+    db.session.delete(store)
+  for item in items:
+    db.session.delete(item)
   
   try:
     db.session.commit()
@@ -133,16 +140,78 @@ def get_recipe(id, user_uuid):
     print("INVALID REQUEST - No permissions")
     return {"result": False}
 
-  stores = db.session.query(RecipeItem.store_id).filter(RecipeItem.recipe_id==id).distinct().all()
-  distinct_store_ids = [store._asdict()['store_id'] for store in stores] # Get the ids of the stores for a list
-  
+  stores = RecipeStore.query.filter(RecipeStore.recipe_id==id).distinct().all()
   recipeFragments = []
-  for store_id in distinct_store_ids:
-    store = Store.query.filter(Store.store_id==store_id).one() # Store_ids are distinct
+  for store_obj in stores:
+    store_id = store_obj.get_id()
 
     store_items = RecipeItem.query.filter(RecipeItem.recipe_id==id).filter(RecipeItem.store_id==store_id).all()
     
-    recipeFragment = {"name": store.get_name(), "store_id": store_id, "items": store_items}
+    recipeFragment = {"name": store_obj.get_name(), "store_id": store_id, "items": store_items}
     recipeFragments.append(recipeFragment)
   
   return completeRecipe_schema.jsonify(recipeFragments, many=True)
+
+# Add a store
+@recipe_api.route('/recipe/store', methods=['POST'])
+def add_store():
+  store_name = request.json['store_name']
+  recipe_id = request.json['recipe_id']
+
+  new_store = RecipeStore(store_name, recipe_id)
+
+  db.session.add(new_store)
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    print(exc.SQLAlchemyError)
+    return {"result": False}
+
+  return {"result": True}
+
+# Edit a store
+@recipe_api.route('/recipe/store/name', methods=['POST'])
+def edit_store():
+  store_name = request.json['store_name']
+  store_id = request.json['store_id']
+  recipe_id = request.json['recipe_id']
+ 
+  selected_store = RecipeStore.query.filter(RecipeStore.store_id==store_id).filter(RecipeStore.recipe_id==recipe_id).first() # Get the list from the DB
+  selected_store.store_name = store_name
+  
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    print(exc.SQLAlchemyError)
+    return {"result": False}
+
+  return {"result": True}
+
+# Delete a store (and all of its items!)
+@recipe_api.route('/recipe/store/delete', methods=['POST'])
+def delete_store():
+  store_id = request.json['store_id']
+  recipe_id = request.json['recipe_id']
+  uuid = request.json["uuid"]
+
+  owner = db.session.query(Recipe).filter(Recipe.uuid==uuid).filter(Recipe.recipe_id==recipe_id).all()
+  
+  if not owner: # Make sure they have permission to delete this store
+    print("INVALID REQUEST - No permissions")
+    return {"result": False}
+
+  items = RecipeItem.query.filter(RecipeItem.store_id==store_id).all() # Get all items for the list with store_id == store_id
+
+  for item in items:
+    db.session.delete(item)
+
+  store = RecipeStore.query.filter(RecipeStore.store_id==store_id).one()
+  db.session.delete(store)
+
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    print(exc.SQLAlchemyError)
+    return {"result": False}
+
+  return {"result": True}

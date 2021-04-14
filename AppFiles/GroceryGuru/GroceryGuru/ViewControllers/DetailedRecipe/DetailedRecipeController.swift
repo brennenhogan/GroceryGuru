@@ -135,8 +135,8 @@ class DetailedRecipeController: UIViewController {
         let createAction = UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
             //Create recipe_id Action
-            let addStoreRequest = AddStoreRequest(storename: (textField?.text)!)
-            addStoreRequest.addStore { [weak self] result in
+            let addRecipeStoreRequest = AddRecipeStoreRequest(storename: (textField?.text)!)
+            addRecipeStoreRequest.addRecipeStore { [weak self] result in
                 switch result {
                 case .failure(let error):
                     print(error)

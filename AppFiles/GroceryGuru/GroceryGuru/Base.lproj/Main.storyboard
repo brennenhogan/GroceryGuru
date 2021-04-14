@@ -157,6 +157,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="dOQ-hc-XeV"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                                         <state key="normal" title="Add Recipe">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -980,13 +981,36 @@
                                 <rect key="frame" x="10" y="98" width="394" height="754"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nRW-12-drX">
-                                        <rect key="frame" x="9.5" y="0.0" width="375" height="754"/>
+                                        <rect key="frame" x="9.5" y="0.0" width="375" height="684"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="375" id="Qvd-M6-2lY"/>
                                         </constraints>
                                     </tableView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Lnn-oC-YUP">
+                                        <rect key="frame" x="10" y="704" width="374" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYy-eI-2PB">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                                <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="YgN-Ui-Ey7"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                                <state key="normal" title="Add Store">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="addStore:" destination="0yz-ct-IcC" eventType="primaryActionTriggered" id="o2w-pi-uJU"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="Lnn-oC-YUP" firstAttribute="leading" secondItem="Iyn-fY-OqE" secondAttribute="leading" constant="10" id="RA1-84-Nzy"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lnn-oC-YUP" secondAttribute="trailing" id="kpV-zi-h9A"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3bO-ja-50m"/>
