@@ -245,52 +245,16 @@ extension DetailedRecipeController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: RecipeViewCell.identifier, for: indexPath) as! RecipeViewCell
         
         cell.configure(title: text, qty: qty)
+        
         cell.itemName.isEnabled = tableView.isEditing
         cell.itemQty.isEnabled = tableView.isEditing
-        //cell.checkBtn.isSelected = (purchased == 1)
         cell.itemName.tag = item_id
         cell.itemQty.tag = item_id
         
-        /*cell.itemQuantityDelegate = self
-        cell.itemDescriptionDelegate = self
-        cell.checkButtonDelegate = self*/
+        cell.recipeItemQuantityDelegate = self
+        cell.recipeItemDescriptionDelegate = self
                 
         return cell
-    }
-}
-
-extension DetailedRecipeController: ItemQuantityDelegate {
-    func editQty(item_id: Int, item_qty: String) {
-        let updateStoreNameRequest = UpdateItemQuantityRequest(item_id: item_id, item_qty: item_qty)
-        updateStoreNameRequest.updateStoreName { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print("Error editing item quantity")
-                DispatchQueue.main.async {
-                    self?.CreateAlert(title: "Error", message: "\(error)")
-                }
-                print(error)
-            case .success(_):
-                print("Quantity edited")
-                self?.getData()
-            }
-        }
-    }
-}
-
-extension DetailedRecipeController: ItemDescriptionDelegate {
-    func editDescription(item_id: Int, item_description: String) {
-        let updateItemDescriptionRequest = UpdateItemDescriptionRequest(item_id: item_id, item_description: item_description)
-        updateItemDescriptionRequest.updateItemDescription { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let response):
-                print("Recipe has been updated \(response)")
-                self?.getData()
-            }
-        }
-        return
     }
 }
 
@@ -329,7 +293,7 @@ extension DetailedRecipeController: DeleteRecipeStoreDelegate {
         self.present(alert, animated: true, completion: nil)
         
         // Grab the value from the text field when the user clicks Create
-        let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { [weak alert] (_) in
+        let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { _ in
             
             let deleteRecipeStoreRequest = DeleteRecipeStoreRequest(store_id: storeID, recipe_id: selected_recipe_id)
             deleteRecipeStoreRequest.deleteRecipeStore { [weak self] result in
@@ -410,6 +374,41 @@ extension DetailedRecipeController: UpdateRecipeStoreDelegate {
                 print(error)
             case .success(_):
                 print("Store edited")
+                self?.getData()
+            }
+        }
+    }
+}
+
+extension DetailedRecipeController: RecipeItemDescriptionDelegate {
+    func updateRecipeItemDescription(item_id: Int, item_description: String) {
+        let updateRecipeItemDescriptionRequest = UpdateRecipeItemDescriptionRequest(item_id: item_id, item_description: item_description)
+        updateRecipeItemDescriptionRequest.updateRecipeItemDescription { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let response):
+                print("Recipe has been updated \(response)")
+                self?.getData()
+            }
+        }
+        return
+    }
+}
+
+extension DetailedRecipeController: RecipeItemQuantityDelegate {
+    func updateRecipeItemQty(item_id: Int, item_qty: String) {
+        let updateRecipeItemQuantityRequest = UpdateRecipeItemQuantityRequest(item_id: item_id, item_qty: item_qty)
+        updateRecipeItemQuantityRequest.updateRecipeItemQty { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print("Error editing item quantity")
+                DispatchQueue.main.async {
+                    self?.CreateAlert(title: "Error", message: "\(error)")
+                }
+                print(error)
+            case .success(_):
+                print("Quantity edited")
                 self?.getData()
             }
         }

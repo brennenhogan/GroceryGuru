@@ -99,13 +99,30 @@ def add_recipeItem():
   return {"result": True}
 
 # Update the quantity of an item
-@recipe_api.route('/recipe/qty', methods=['POST'])
+@recipe_api.route('/recipe/item/qty', methods=['POST'])
 def update_qty():
   item_id = request.json['item_id']
-  qty = request.json['qty']
+  qty = request.json['item_qty']
  
   item = RecipeItem.query.filter(RecipeItem.item_id==item_id).first() # Get the item from the DB
   item.qty = qty # update the quantity
+
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    print(exc.SQLAlchemyError)
+    return {"result": False}
+
+  return {"result": True}
+
+# Update the description of an item
+@recipe_api.route('/recipe/item/description', methods=['POST'])
+def update_description():
+  item_id = request.json['item_id']
+  description = request.json['item_description']
+ 
+  item = RecipeItem.query.filter(RecipeItem.item_id==item_id).first() # Get the item from the DB
+  item.description = description # update the description
 
   try:
     db.session.commit()

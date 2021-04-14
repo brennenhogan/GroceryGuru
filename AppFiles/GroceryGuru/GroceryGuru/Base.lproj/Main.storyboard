@@ -1014,7 +1014,6 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Lnn-oC-YUP" firstAttribute="leading" secondItem="Iyn-fY-OqE" secondAttribute="leading" constant="10" id="RA1-84-Nzy"/>
-                                    <constraint firstAttribute="trailing" secondItem="Lnn-oC-YUP" secondAttribute="trailing" id="kpV-zi-h9A"/>
                                 </constraints>
                             </stackView>
                         </subviews>

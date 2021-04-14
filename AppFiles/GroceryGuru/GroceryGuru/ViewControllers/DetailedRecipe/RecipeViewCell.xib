@@ -22,7 +22,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="cX4-8U-gR4">
-                        <rect key="frame" x="10" y="0.0" width="330" height="44"/>
+                        <rect key="frame" x="60" y="0.0" width="280" height="44"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Qty" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zet-5C-fKn">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
@@ -32,15 +32,15 @@
                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                 <connections>
-                                    <action selector="editQty:" destination="WUK-7O-jCk" eventType="editingDidEnd" id="tFb-aS-WDC"/>
+                                    <action selector="updateRecipeItemQty:" destination="WUK-7O-jCk" eventType="editingDidEnd" id="ak9-x3-Z5K"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AZI-Sr-Ajv">
-                                <rect key="frame" x="77" y="0.0" width="253" height="44"/>
+                                <rect key="frame" x="77" y="0.0" width="203" height="44"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <connections>
-                                    <action selector="editDescription:" destination="WUK-7O-jCk" eventType="editingDidEnd" id="A56-tB-1pe"/>
+                                    <action selector="updateRecipeItemDescription:" destination="WUK-7O-jCk" eventType="editingDidEnd" id="E5D-Xh-nE7"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -49,7 +49,7 @@
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="cX4-8U-gR4" secondAttribute="bottom" id="4k4-vo-lGY"/>
-                    <constraint firstItem="cX4-8U-gR4" firstAttribute="leading" secondItem="jyE-9F-hHn" secondAttribute="leading" constant="10" id="Gtz-0G-Gio"/>
+                    <constraint firstItem="cX4-8U-gR4" firstAttribute="leading" secondItem="jyE-9F-hHn" secondAttribute="leading" constant="60" id="Gtz-0G-Gio"/>
                     <constraint firstItem="cX4-8U-gR4" firstAttribute="top" secondItem="jyE-9F-hHn" secondAttribute="top" id="elK-MF-fhF"/>
                     <constraint firstAttribute="trailing" secondItem="cX4-8U-gR4" secondAttribute="trailing" constant="10" id="iNk-gm-3FX"/>
                 </constraints>
