@@ -233,6 +233,12 @@ extension DetailedListController : UITableViewDataSource {
         view.editStoreDelegate = self
         view.expandSectionDelegate = self
         
+        if(hiddenSections.contains(section)){
+            view.expandButton.isSelected = true
+        } else {
+            view.expandButton.isSelected = false
+        }
+        
         return view
     }
     

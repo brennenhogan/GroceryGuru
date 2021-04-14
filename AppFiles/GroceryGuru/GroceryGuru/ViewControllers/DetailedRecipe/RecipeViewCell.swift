@@ -26,7 +26,6 @@ class RecipeViewCell: UITableViewCell {
     
     @IBOutlet var itemName: UITextField!
     @IBOutlet var itemQty: UITextField!
-    @IBOutlet var checkBtn: UIButton!
     
     static func nib() -> UINib {
         return UINib(nibName: "RecipeViewCell", bundle: nil)
@@ -39,8 +38,6 @@ class RecipeViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        checkBtn.setImage(UIImage(systemName: "circle"), for: .normal)
-        checkBtn.setImage(UIImage(systemName:"checkmark.circle.fill"), for: .selected)
     }
     
     func textFieldShouldReturn(_ itemName: UITextField) -> Bool {

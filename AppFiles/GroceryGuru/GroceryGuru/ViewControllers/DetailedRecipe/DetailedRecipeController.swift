@@ -170,7 +170,6 @@ class DetailedRecipeController: UIViewController {
             guard let cell = cell as? RecipeViewCell else { return }
             cell.itemName.isEnabled = tableView.isEditing
             cell.itemQty.isEnabled = tableView.isEditing
-            cell.checkBtn.isHidden = tableView.isEditing
         }
         
         for i in 0...recipeData.count {
@@ -217,8 +216,14 @@ extension DetailedRecipeController : UITableViewDataSource {
         
         /*view.addItemDelegate = self // Be listening for the button tap in the header
         view.deleteStoreDelegate = self
-        view.editStoreDelegate = self
-        view.expandSectionDelegate = self */
+        view.editStoreDelegate = self*/
+        view.expandRecipeSectionDelegate = self
+        
+        if(hiddenSections.contains(section)){
+            view.expandButton.isSelected = true
+        } else {
+            view.expandButton.isSelected = false
+        }
         
         return view
     }
@@ -241,11 +246,9 @@ extension DetailedRecipeController : UITableViewDataSource {
         cell.configure(title: text, qty: qty)
         cell.itemName.isEnabled = tableView.isEditing
         cell.itemQty.isEnabled = tableView.isEditing
-        cell.checkBtn.isHidden = tableView.isEditing
         //cell.checkBtn.isSelected = (purchased == 1)
         cell.itemName.tag = item_id
         cell.itemQty.tag = item_id
-        cell.checkBtn.tag = item_id
         
         /*cell.itemQuantityDelegate = self
         cell.itemDescriptionDelegate = self
@@ -365,7 +368,7 @@ extension DetailedRecipeController: ItemDescriptionDelegate {
     }
 }
 
-extension DetailedRecipeController: ExpandSectionDelegate {
+extension DetailedRecipeController: ExpandRecipeSectionDelegate {
     func expandSection(section: Int) {
         func indexPathsForSection() -> [IndexPath] {
             var indexPaths = [IndexPath]()
@@ -387,22 +390,6 @@ extension DetailedRecipeController: ExpandSectionDelegate {
             self.tableView.deleteRows(at: indexPathsForSection(),
                                       with: .fade)
         }
-    }
-}
-
-extension DetailedRecipeController: CheckButtonDelegate {
-    func markItem(item_id: Int, check: Int) {
-        let updatePurchasedRequest = UpdatePurchasedRequest(item_id: item_id, purchased: check)
-        updatePurchasedRequest.updateItemPurchased { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let response):
-                print("Item purchased has been updated \(response)")
-                self?.getData()
-            }
-        }
-        return
     }
 }
 

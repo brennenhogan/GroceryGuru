@@ -19,11 +19,11 @@ import UIKit
  protocol DeleteStoreDelegate {
      func deleteStore(storeID: String)
  }
-
- protocol ExpandSectionDelegate {
+*/
+ protocol ExpandRecipeSectionDelegate {
      func expandSection(section: Int)
  }
- */
+ 
 
 class RecipeHeaderView: UITableViewHeaderFooterView {
 
@@ -48,6 +48,8 @@ class RecipeHeaderView: UITableViewHeaderFooterView {
     override func awakeFromNib() {
         super.awakeFromNib()
         storeName.returnKeyType = .done
+        expandButton.setImage(UIImage(systemName: "arrowtriangle.down"), for: .normal)
+        expandButton.setImage(UIImage(systemName:"arrowtriangle.right"), for: .selected)
     }
 
     func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
@@ -62,11 +64,13 @@ class RecipeHeaderView: UITableViewHeaderFooterView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+
+    var expandRecipeSectionDelegate: ExpandRecipeSectionDelegate?
+
     /*
     var addItemDelegate: AddItemDelegate?
     var deleteStoreDelegate: DeleteStoreDelegate?
     var editStoreDelegate: EditStoreDelegate?
-    var expandSectionDelegate: ExpandSectionDelegate?
     
     @IBAction func editStore(_ sender: UITextField){
         editStoreDelegate?.editStore(storeID: store_id, store_name: storeName.text!)
@@ -78,11 +82,13 @@ class RecipeHeaderView: UITableViewHeaderFooterView {
     
     @IBAction func deleteStore(_ sender: UIButton){
         deleteStoreDelegate?.deleteStore(storeID: store_id)
-    }
+    }*/
     
     @IBAction func expandSection(_ sender: UIButton){
         let section = sender.tag
-        expandSectionDelegate?.expandSection(section: section)
-    } */
+        sender.isSelected = !sender.isSelected
+        
+        expandRecipeSectionDelegate?.expandSection(section: section)
+    }
 
 }

@@ -47,6 +47,8 @@ class ListHeaderView: UITableViewHeaderFooterView {
     override func awakeFromNib() {
         super.awakeFromNib()
         storeName.returnKeyType = .done
+        expandButton.setImage(UIImage(systemName: "arrowtriangle.down"), for: .normal)
+        expandButton.setImage(UIImage(systemName:"arrowtriangle.right"), for: .selected)
     }
 
     func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
@@ -82,6 +84,8 @@ class ListHeaderView: UITableViewHeaderFooterView {
     
     @IBAction func expandSection(_ sender: UIButton){
         let section = sender.tag
+        sender.isSelected = !sender.isSelected
+
         expandSectionDelegate?.expandSection(section: section)
     }
 

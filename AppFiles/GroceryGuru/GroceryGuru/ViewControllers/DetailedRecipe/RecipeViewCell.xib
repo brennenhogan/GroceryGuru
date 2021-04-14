@@ -24,21 +24,8 @@
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="cX4-8U-gR4">
                         <rect key="frame" x="10" y="0.0" width="330" height="44"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rF5-Tz-pqp">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="Fmr-Y8-B2X"/>
-                                </constraints>
-                                <color key="tintColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="circle" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
-                                </state>
-                                <connections>
-                                    <action selector="markItem:" destination="WUK-7O-jCk" eventType="touchDown" id="SVm-Xq-ueX"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Qty" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zet-5C-fKn">
-                                <rect key="frame" x="77" y="0.0" width="50" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Awp-vl-Eyb"/>
                                 </constraints>
@@ -49,7 +36,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AZI-Sr-Ajv">
-                                <rect key="frame" x="154" y="0.0" width="176" height="44"/>
+                                <rect key="frame" x="77" y="0.0" width="253" height="44"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <connections>
@@ -69,14 +56,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="ptT-Se-8Xl"/>
             <connections>
-                <outlet property="checkBtn" destination="rF5-Tz-pqp" id="3Tt-Eg-OYt"/>
                 <outlet property="itemName" destination="AZI-Sr-Ajv" id="Xas-ng-yzc"/>
                 <outlet property="itemQty" destination="Zet-5C-fKn" id="y2p-mr-5Vj"/>
             </connections>
             <point key="canvasLocation" x="127.53623188405798" y="107.8125"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="circle" catalog="system" width="128" height="121"/>
-    </resources>
 </document>

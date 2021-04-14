@@ -36,7 +36,9 @@
                                             <constraint firstAttribute="width" constant="50" id="Av4-Hz-3kw"/>
                                         </constraints>
                                         <color key="tintColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" image="rectangle.expand.vertical" catalog="system"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="arrowtriangle.right" catalog="system" symbolScale="large"/>
+                                        </state>
                                         <connections>
                                             <action selector="expandSection:" destination="iN0-l3-epB" eventType="primaryActionTriggered" id="yz6-96-XYY"/>
                                         </connections>
@@ -109,8 +111,8 @@
         </view>
     </objects>
     <resources>
+        <image name="arrowtriangle.right" catalog="system" width="128" height="113"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
-        <image name="rectangle.expand.vertical" catalog="system" width="128" height="122"/>
         <image name="trash.fill" catalog="system" width="121" height="128"/>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
