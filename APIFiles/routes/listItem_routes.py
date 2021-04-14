@@ -84,7 +84,6 @@ def update_purchased():
   # See if there are any un-purchased items on the list.  If not, mark it as an old list
   unpurchased = ListItem.query.filter(ListItem.list_id==list_id).filter(ListItem.purchased==0).all()
   if not unpurchased:
-    print("Marking list " + str(list_id) + " as an old list")
     listObj = List.query.filter(List.list_id==list_id).first() # Get the item from the DB
     listObj.old = 1 # update the old property of the list
 
@@ -119,7 +118,6 @@ def get_list(id, user_uuid, purchased):
   owner = db.session.query(ListOwnership).filter(ListOwnership.uuid==user_uuid).filter(ListOwnership.list_id==id).all()
   
   if not owner:
-    print("INVALID REQUEST - No permissions")
     return {"result": False}
 
   stores = Store.query.filter(Store.list_id==id).all()

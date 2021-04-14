@@ -34,8 +34,6 @@ def edit_store():
  
   selected_store = Store.query.filter(Store.store_id==store_id).filter(Store.list_id==list_id).first() # Get the list from the DB
   selected_store.store_name = store_name
-
-  print(selected_store.store_name)
   
   try:
     db.session.commit()
@@ -55,7 +53,6 @@ def delete_store():
   owner = db.session.query(ListOwnership).filter(ListOwnership.uuid==uuid).filter(ListOwnership.list_id==list_id).all()
   
   if not owner: # Make sure they have permission to delete this store
-    print("INVALID REQUEST - No permissions")
     return {"result": False}
 
   items = ListItem.query.filter(ListItem.store_id==store_id).all() # Get all items for the list with store_id == store_id

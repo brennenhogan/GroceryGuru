@@ -137,7 +137,6 @@ def get_recipe(id, user_uuid):
   owner = Recipe.query.filter(Recipe.uuid==user_uuid).filter(Recipe.recipe_id==id).all()
   
   if not owner:
-    print("INVALID REQUEST - No permissions")
     return {"result": False}
 
   stores = RecipeStore.query.filter(RecipeStore.recipe_id==id).distinct().all()
@@ -197,7 +196,6 @@ def delete_store():
   owner = db.session.query(Recipe).filter(Recipe.uuid==uuid).filter(Recipe.recipe_id==recipe_id).all()
   
   if not owner: # Make sure they have permission to delete this store
-    print("INVALID REQUEST - No permissions")
     return {"result": False}
 
   items = RecipeItem.query.filter(RecipeItem.store_id==store_id).all() # Get all items for the list with store_id == store_id

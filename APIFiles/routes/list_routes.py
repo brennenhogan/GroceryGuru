@@ -28,8 +28,6 @@ def add_list():
   except exc.SQLAlchemyError:
     return {"list_id": -1,"result": False}
 
-  print(new_list.list_id)
-  print({"list_id": new_list.list_id, "result": True})
   return {"list_id": new_list.list_id, "result": True}
 
 # Update the name of a list

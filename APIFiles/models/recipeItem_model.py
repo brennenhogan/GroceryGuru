@@ -6,7 +6,7 @@ from models.recipe_model import Recipe
 class RecipeItem(db.Model):
   item_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
   recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.recipe_id'))
-  store_id = db.Column(db.Integer, db.ForeignKey('store.store_id'), nullable=False)
+  store_id = db.Column(db.Integer, db.ForeignKey('recipe_store.store_id'), nullable=False)
   qty = db.Column(db.Integer, nullable=False)
   description = db.Column(db.String(100), nullable=False)
 
