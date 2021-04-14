@@ -215,7 +215,7 @@ extension DetailedRecipeController : UITableViewDataSource {
         view.expandButton.tag = section
         view.deleteButton.tag = section
         
-        //view.editStoreDelegate = self
+        view.updateRecipeStoreDelegate = self
         view.addRecipeItemDelegate = self
         view.deleteRecipeStoreDelegate = self
         view.expandRecipeSectionDelegate = self
@@ -256,25 +256,6 @@ extension DetailedRecipeController : UITableViewDataSource {
         cell.checkButtonDelegate = self*/
                 
         return cell
-    }
-}
-
-extension DetailedRecipeController: EditStoreDelegate {
-    func editStore(storeID: String, store_name: String) {
-        let updateStoreNameRequest = UpdateStoreNameRequest(store_name: store_name, store_id: storeID, list_id: selected_recipe_id)
-        updateStoreNameRequest.updateStoreName { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print("Error editing store")
-                DispatchQueue.main.async {
-                    self?.CreateAlert(title: "Error", message: "\(error)")
-                }
-                print(error)
-            case .success(_):
-                print("Store edited")
-                self?.getData()
-            }
-        }
     }
 }
 
@@ -413,5 +394,24 @@ extension DetailedRecipeController: AddRecipeItemDelegate {
         
         alert.addAction(cancelAction)
         alert.addAction(createAction)
+    }
+}
+
+extension DetailedRecipeController: UpdateRecipeStoreDelegate {
+    func updateRecipeStore(storeID: String, store_name: String) {
+        let updateRecipeStoreNameRequest = UpdateRecipeStoreNameRequest(store_name: store_name, store_id: storeID)
+        updateRecipeStoreNameRequest.updateRecipeStoreName { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print("Error editing store")
+                DispatchQueue.main.async {
+                    self?.CreateAlert(title: "Error", message: "\(error)")
+                }
+                print(error)
+            case .success(_):
+                print("Store edited")
+                self?.getData()
+            }
+        }
     }
 }

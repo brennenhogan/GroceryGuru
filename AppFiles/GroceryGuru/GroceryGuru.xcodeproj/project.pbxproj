@@ -94,6 +94,7 @@
 		2EEF494B262752180001B10E /* AddRecipeItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF494A262752180001B10E /* AddRecipeItemRequest.swift */; };
 		2EEF4950262752DF0001B10E /* DeleteRecipeStoreRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF494F262752DF0001B10E /* DeleteRecipeStoreRequest.swift */; };
 		2EEF495E262766ED0001B10E /* DeleteRecipeItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF495D262766ED0001B10E /* DeleteRecipeItemRequest.swift */; };
+		2EEF49662627695B0001B10E /* UpdateRecipeStoreNameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF49652627695B0001B10E /* UpdateRecipeStoreNameRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,6 +208,7 @@
 		2EEF494A262752180001B10E /* AddRecipeItemRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeItemRequest.swift; sourceTree = "<group>"; };
 		2EEF494F262752DF0001B10E /* DeleteRecipeStoreRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteRecipeStoreRequest.swift; sourceTree = "<group>"; };
 		2EEF495D262766ED0001B10E /* DeleteRecipeItemRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeleteRecipeItemRequest.swift; path = GroceryGuru/API/Requests/DetailedRecipe/DeleteRecipeItemRequest.swift; sourceTree = SOURCE_ROOT; };
+		2EEF49652627695B0001B10E /* UpdateRecipeStoreNameRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdateRecipeStoreNameRequest.swift; path = GroceryGuru/API/Requests/DetailedRecipe/UpdateRecipeStoreNameRequest.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -452,6 +454,7 @@
 		2EEF495426275D4D0001B10E /* DetailedRecipe */ = {
 			isa = PBXGroup;
 			children = (
+				2EEF49652627695B0001B10E /* UpdateRecipeStoreNameRequest.swift */,
 				2EEF494A262752180001B10E /* AddRecipeItemRequest.swift */,
 				2EEF49452627488E0001B10E /* AddRecipeStoreRequest.swift */,
 				2EEF494F262752DF0001B10E /* DeleteRecipeStoreRequest.swift */,
@@ -713,6 +716,7 @@
 				02A8F9B52625EC6F0083FE19 /* RecipeRequest.swift in Sources */,
 				2E3476022615001500BA27D9 /* DeleteListRequest.swift in Sources */,
 				2E9ABE9B260BCEDA0047DED3 /* LoginViewController.swift in Sources */,
+				2EEF49662627695B0001B10E /* UpdateRecipeStoreNameRequest.swift in Sources */,
 				0211EF7C260E924A00CAA05C /* AllListResponse.swift in Sources */,
 				2E9ABECD260BF8CC0047DED3 /* NewUserRequest.swift in Sources */,
 				02A8F99F2625E9A00083FE19 /* DetailedRecipeController.swift in Sources */,
