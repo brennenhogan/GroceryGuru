@@ -95,8 +95,8 @@ class DetailedRecipeController: UIViewController {
         if (editingStyle == .delete){
             let item_id = recipeData[indexPath.section].items[indexPath.row].itemID
 
-            let deleteRequest = DeleteItemRequest(item_id: item_id)
-            deleteRequest.deleteItem { [weak self] result in
+            let deleteRecipeRequest = DeleteRecipeItemRequest(item_id: item_id)
+            deleteRecipeRequest.deleteRecipeItem { [weak self] result in
                 switch result {
                 case .failure(let error):
                     DispatchQueue.main.async {
