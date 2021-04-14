@@ -341,20 +341,36 @@ extension DetailedRecipeController: ExpandRecipeSectionDelegate {
 extension DetailedRecipeController: DeleteRecipeStoreDelegate {
     func deleteRecipeStore(storeID: String, section: Int) {
         print("deleting store: " + storeID)
-        let deleteRecipeStoreRequest = DeleteRecipeStoreRequest(store_id: storeID, recipe_id: selected_recipe_id)
-        deleteRecipeStoreRequest.deleteRecipeStore { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print("Error deleting store")
-                DispatchQueue.main.async {
-                    self?.CreateAlert(title: "Error", message: "\(error)")
+        
+        let alert = UIAlertController(title: "Are you sure you want to delete \"\(recipeData[section].name)\" and all items in the section?", message: "", preferredStyle: .alert)
+
+        alert.view.tintColor = UIColor(hex: 0x7A916E)
+        self.present(alert, animated: true, completion: nil)
+        
+        // Grab the value from the text field when the user clicks Create
+        let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { [weak alert] (_) in
+            
+            let deleteRecipeStoreRequest = DeleteRecipeStoreRequest(store_id: storeID, recipe_id: selected_recipe_id)
+            deleteRecipeStoreRequest.deleteRecipeStore { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    print("Error deleting store")
+                    DispatchQueue.main.async {
+                        self?.CreateAlert(title: "Error", message: "\(error)")
+                    }
+                    print(error)
+                case .success(_):
+                    print("Store deleted")
+                    self?.getData()
                 }
-                print(error)
-            case .success(_):
-                print("Store deleted")
-                self?.getData()
             }
-        }
+        })
+        deleteAction.isEnabled = true
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
     }
 }
 
