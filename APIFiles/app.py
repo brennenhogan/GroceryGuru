@@ -1,5 +1,4 @@
 from flask import Flask
-from routes.product_routes import product_api
 from routes.login_routes import login_api
 from routes.listItem_routes import listItem_api
 from routes.store_routes import store_api
@@ -22,7 +21,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 ma.init_app(app)
 
-app.register_blueprint(product_api)
 app.register_blueprint(login_api)
 app.register_blueprint(listItem_api)
 app.register_blueprint(store_api)
