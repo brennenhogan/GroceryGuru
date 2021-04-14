@@ -32,7 +32,8 @@ class AddListViewController: UIViewController {
     @IBOutlet weak var bottomContraint: NSLayoutConstraint!
     @IBOutlet weak var newListView: UIView!
     @IBOutlet weak var newListLabel: UILabel!
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet var oldListTableView: UITableView!
+    @IBOutlet var recipeTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,13 +48,18 @@ class AddListViewController: UIViewController {
         textView.becomeFirstResponder()
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         
-        tableView.register(OldListsCell.nib(), forCellReuseIdentifier:OldListsCell.identifier)
+        oldListTableView.register(OldListsCell.nib(), forCellReuseIdentifier:OldListsCell.identifier)
+        oldListTableView.delegate = self
+        oldListTableView.dataSource = self
+        oldListTableView.isHidden = true
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.isHidden = true
+        recipeTableView.register(RecipeTableCell.nib(), forCellReuseIdentifier:RecipeTableCell.identifier)
+        recipeTableView.delegate = self
+        recipeTableView.dataSource = self
+        recipeTableView.isHidden = true
         
-        self.getData()
+        self.getListData()
+        self.getRecipeData()
     }
     
     //MARK: Actions
@@ -87,18 +93,21 @@ class AddListViewController: UIViewController {
             print(selection)
             newListView.isHidden = false
             newListLabel.isHidden = false
-            tableView.isHidden = true
+            oldListTableView.isHidden = true
+            recipeTableView.isHidden = true
         } else if (sender.selectedSegmentIndex == 1) {
             newListView.isHidden = true
             newListLabel.isHidden = true
             createButton.isHidden = true
-            tableView.isHidden = false
+            oldListTableView.isHidden = false
+            recipeTableView.isHidden = true
             print(selection)
         } else if (sender.selectedSegmentIndex == 2) {
-            newListView.isHidden = false
-            newListLabel.isHidden = false
-            createButton.isHidden = false
-            tableView.isHidden = true
+            newListView.isHidden = true
+            newListLabel.isHidden = true
+            createButton.isHidden = true
+            oldListTableView.isHidden = true
+            recipeTableView.isHidden = false
             print(selection)
         }
     }
@@ -147,12 +156,12 @@ class AddListViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 print("Table reload with new data")
-                self.tableView.reloadData()
+                self.oldListTableView.reloadData()
             }
         }
     }
     
-    func getData() {
+    func getListData() {
         let allListRequest = AllListRequest(status: 1)
         allListRequest.getList { [weak self] result in
             switch result {
@@ -168,67 +177,127 @@ class AddListViewController: UIViewController {
             }
         }
     }
+    
+    var allRecipieData = AllRecipeResponse() {
+        didSet {
+            DispatchQueue.main.async {
+                print("Table reload with new data")
+                self.recipeTableView.reloadData()
+            }
+        }
+    }
+    
+    func getRecipeData() {
+        let allRecipeRequest = AllRecipeRequest()
+        allRecipeRequest.getRecipe { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print("Error getting data")
+                DispatchQueue.main.async {
+                    self?.CreateAlert(title: "Error", message: "\(error)")
+                }
+                print(error)
+            case .success(let allRecipes):
+                self?.allRecipieData = allRecipes
+                print("Data received properly")
+            }
+        }
+    }
 }
 
 extension AddListViewController : UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("This list was tapped: " + String(allListData[indexPath.row].listID))
-        print("Its name is: " + allListData[indexPath.row].listName)
-        
-        tableView.deselectRow(at: indexPath, animated: true) // Unselect the previous list
-        
-        let listId = String(allListData[indexPath.row].listID)
-        
-        let alert = UIAlertController(title: "Enter a New List Name", message: "", preferredStyle: .alert)
+        if tableView == oldListTableView {
+            print("This list was tapped: " + String(allListData[indexPath.row].listID))
+            print("Its name is: " + allListData[indexPath.row].listName)
+            
+            tableView.deselectRow(at: indexPath, animated: true) // Unselect the previous list
+            
+            let listId = String(allListData[indexPath.row].listID)
+            
+            let alert = UIAlertController(title: "Enter a New List Name", message: "", preferredStyle: .alert)
 
-        alert.addTextField { (textField) in
-            textField.text = ""
-        }
+            alert.addTextField { (textField) in
+                textField.text = ""
+            }
 
-        alert.view.tintColor = UIColor(hex: 0x7A916E)
-        self.present(alert, animated: true, completion: nil)
-        
-        // Grab the value from the text field when the user clicks Create
-        let createAction = UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists
-            let createListRequest = CreatFromOldListRequest(name: (textField?.text)!, list_id: listId)
-            createListRequest.createList { [weak self] result in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let response):
-                    print("List has been created with id = \(response.list_id)")
-                    
-                    print("Now performing segue to landing page!")
-                    DispatchQueue.main.async{
-                        self?.performSegue(withIdentifier: "unwindToLanding", sender: self)
+            alert.view.tintColor = UIColor(hex: 0x7A916E)
+            self.present(alert, animated: true, completion: nil)
+            
+            // Grab the value from the text field when the user clicks Create
+            let createAction = UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
+                let textField = alert?.textFields![0] // Force unwrapping because we know it exists
+                let createListRequest = CreatFromOldListRequest(name: (textField?.text)!, list_id: listId)
+                createListRequest.createList { [weak self] result in
+                    switch result {
+                    case .failure(let error):
+                        print(error)
+                    case .success(let response):
+                        print("List has been created with id = \(response.list_id)")
+                        
+                        print("Now performing segue to landing page!")
+                        DispatchQueue.main.async{
+                            self?.performSegue(withIdentifier: "unwindToLanding", sender: self)
+                        }
                     }
                 }
+            })
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
+            
+            alert.addAction(cancelAction)
+            alert.addAction(createAction)
+        } else if tableView == recipeTableView {
+            print("This recipe was tapped: " + String(allRecipieData[indexPath.row].recipeID))
+            print("Its name is: " + allRecipieData[indexPath.row].recipeName)
+            
+            selected_recipe_id = String(allRecipieData[indexPath.row].recipeID)
+            selected_recipe_name = allRecipieData[indexPath.row].recipeName
+            
+            print("Now performing segue to recipe checking page!")
+            DispatchQueue.main.async{
+                self.performSegue(withIdentifier: "NewListToRecipeCheck", sender: self)
             }
-        })
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
-        
-        alert.addAction(cancelAction)
-        alert.addAction(createAction)
+        } else {
+            print("Error: Table View tapped does not exist")
+        }
     }
     
 }
 
 extension AddListViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allListData.count
+        if tableView == oldListTableView {
+            return allListData.count
+        } else if tableView == recipeTableView {
+            return allRecipieData.count
+        } else {
+            return 0 // Required
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = allListData[indexPath.row]
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: OldListsCell.identifier, for: indexPath) as! OldListsCell
-        
-        cell.configure(title: item.listName, qty: item.listQty)
-        
-        return cell
+        if tableView == oldListTableView {
+            let item = allListData[indexPath.row]
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: OldListsCell.identifier, for: indexPath) as! OldListsCell
+            
+            cell.configure(title: item.listName, qty: item.listQty)
+            
+            return cell
+        } else if tableView == recipeTableView {
+            let item = allRecipieData[indexPath.row]
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: RecipeTableCell.identifier, for: indexPath) as! RecipeTableCell
+            
+            cell.configure(title: item.recipeName, qty: item.recipeQty)
+            cell.recipeTitle.tag = item.recipeID
+            cell.recipeTitle.isEnabled = false
+            
+            return cell
+        } else {
+            return UITableViewCell() // Required
+        }
     }
     
 }

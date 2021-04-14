@@ -325,7 +325,7 @@ extension DetailedListController: DeleteStoreDelegate {
         self.present(alert, animated: true, completion: nil)
         
         // Grab the value from the text field when the user clicks Create
-        let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { [weak alert] (_) in
+        let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { _ in
             //Create List Action
             let deleteStoreRequest = DeleteStoreRequest(store_id: storeID, list_id: selected_list_id)
             deleteStoreRequest.deleteStore { [weak self] result in

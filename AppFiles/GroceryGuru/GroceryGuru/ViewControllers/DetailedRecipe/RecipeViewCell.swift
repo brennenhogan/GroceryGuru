@@ -7,18 +7,13 @@
 
 import UIKit
 
-/*
-protocol ItemDescriptionDelegate {
-    func editDescription(item_id: Int, item_description: String)
+protocol RecipeItemDescriptionDelegate {
+    func updateRecipeItemDescription(item_id: Int, item_description: String)
 }
 
-protocol ItemQuantityDelegate {
-    func editQty(item_id: Int, item_qty: String)
+protocol RecipeItemQuantityDelegate {
+    func updateRecipeItemQty(item_id: Int, item_qty: String)
 }
-
-protocol CheckButtonDelegate {
-    func markItem(item_id: Int, check: Int)
-} */
 
 class RecipeViewCell: UITableViewCell {
 
@@ -51,30 +46,14 @@ class RecipeViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    /*var itemQuantityDelegate: ItemQuantityDelegate?
-    var itemDescriptionDelegate: ItemDescriptionDelegate?
-    var checkButtonDelegate: CheckButtonDelegate?
-
-    @IBAction func editDescription(_ sender: UITextField){
-        let item_id = sender.tag
-        itemDescriptionDelegate?.editDescription(item_id: item_id, item_description: sender.text!)
+    var recipeItemDescriptionDelegate: RecipeItemDescriptionDelegate?
+    var recipeItemQuantityDelegate: RecipeItemQuantityDelegate?
+    
+    @IBAction func updateRecipeItemDescription(_ sender: UITextField){
+        recipeItemDescriptionDelegate?.updateRecipeItemDescription(item_id: sender.tag, item_description: sender.text!)
     }
     
-    @IBAction func editQty(_ sender: UITextField){
-        let item_id = sender.tag
-        itemQuantityDelegate?.editQty(item_id: item_id, item_qty: sender.text!)
+    @IBAction func updateRecipeItemQty(_ sender: UITextField){
+        recipeItemQuantityDelegate?.updateRecipeItemQty(item_id: sender.tag, item_qty: sender.text!)
     }
-    
-    @IBAction func markItem(_ sender: UIButton){
-        let item_id = sender.tag
-        sender.isSelected = !sender.isSelected
-        var result = 0
-        
-        if(sender.isSelected){
-            result = 1
-        }
-        
-        checkButtonDelegate?.markItem(item_id: item_id, check: result)
-    }*/
-    
 }

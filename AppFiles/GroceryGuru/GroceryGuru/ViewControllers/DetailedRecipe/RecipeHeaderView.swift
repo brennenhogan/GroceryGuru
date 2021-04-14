@@ -23,6 +23,10 @@ import UIKit
  protocol ExpandRecipeSectionDelegate {
      func expandSection(section: Int)
  }
+
+protocol UpdateRecipeStoreDelegate{
+    func updateRecipeStore(storeID: String, store_name: String)
+}
  
 
 class RecipeHeaderView: UITableViewHeaderFooterView {
@@ -68,11 +72,11 @@ class RecipeHeaderView: UITableViewHeaderFooterView {
     var expandRecipeSectionDelegate: ExpandRecipeSectionDelegate?
     var addRecipeItemDelegate: AddRecipeItemDelegate?
     var deleteRecipeStoreDelegate: DeleteRecipeStoreDelegate?
-    //var editStoreDelegate: EditStoreDelegate?
+    var updateRecipeStoreDelegate: UpdateRecipeStoreDelegate?
     
-    /*@IBAction func editStore(_ sender: UITextField){
-        editStoreDelegate?.editStore(storeID: store_id, store_name: storeName.text!)
-    }*/
+    @IBAction func updateStore(_ sender: UITextField){
+        updateRecipeStoreDelegate?.updateRecipeStore(storeID: store_id, store_name: storeName.text!)
+    }
 
     @IBAction func addRecipeItem(_ sender: UIButton){
         addRecipeItemDelegate?.addRecipeItem(storeID: store_id)
