@@ -53,7 +53,7 @@ class AddListViewController: UIViewController {
         oldListTableView.dataSource = self
         oldListTableView.isHidden = true
         
-        recipeTableView.register(RecipeTableCell.nib(), forCellReuseIdentifier:RecipeTableCell.identifier)
+        recipeTableView.register(OldListsCell.nib(), forCellReuseIdentifier:OldListsCell.identifier)
         recipeTableView.delegate = self
         recipeTableView.dataSource = self
         recipeTableView.isHidden = true
@@ -288,11 +288,11 @@ extension AddListViewController : UITableViewDataSource {
         } else if tableView == recipeTableView {
             let item = allRecipieData[indexPath.row]
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: RecipeTableCell.identifier, for: indexPath) as! RecipeTableCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: OldListsCell.identifier, for: indexPath) as! OldListsCell
             
             cell.configure(title: item.recipeName, qty: item.recipeQty)
-            cell.recipeTitle.tag = item.recipeID
-            cell.recipeTitle.isEnabled = false
+            cell.myText.tag = item.recipeID
+            cell.myText.isEnabled = false
             
             return cell
         } else {
