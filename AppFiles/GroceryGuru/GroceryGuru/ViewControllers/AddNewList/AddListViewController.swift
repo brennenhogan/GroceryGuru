@@ -144,12 +144,7 @@ class AddListViewController: UIViewController {
                 }
             }
             
-        } else if( segment == 1 ){
-            print("Create from old list")
-        } else if ( segment == 2 ){
-            print("Create from recipe")
         }
-        
     }
     
     var allListData = AllListResponse() {

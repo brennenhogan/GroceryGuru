@@ -251,6 +251,9 @@
                                                         <integer key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <segue destination="xVn-Ji-ImL" kind="show" id="Q6l-GI-rdp"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NV9-ky-GT8">
                                                 <rect key="frame" x="201" y="0.0" width="174" height="50"/>
@@ -357,16 +360,16 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="uaB-WY-ohm">
-                                <rect key="frame" x="20" y="760.5" width="374" height="101.5"/>
+                                <rect key="frame" x="20" y="766" width="374" height="96"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build from..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1l-St-odF">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="38.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="33"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="28"/>
                                         <color key="textColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Nyk-jv-Uax">
-                                        <rect key="frame" x="0.0" y="54.5" width="374" height="32"/>
+                                        <rect key="frame" x="0.0" y="49" width="374" height="32"/>
                                         <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <segments>
                                             <segment title="New List"/>
@@ -380,10 +383,10 @@
                                         </connections>
                                     </segmentedControl>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EI7-hT-uwG">
-                                        <rect key="frame" x="0.0" y="101.5" width="374" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="96" width="374" height="0.0"/>
                                         <subviews>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="245" restorationIdentifier="Create Button" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSK-b6-pVj" userLabel="Create Button">
-                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="51"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="45"/>
                                                 <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="28"/>
                                                 <state key="normal" title="Create">
@@ -1123,10 +1126,56 @@
             </objects>
             <point key="canvasLocation" x="2806" y="124"/>
         </scene>
+        <!--DetailedRecipeController-->
+        <scene sceneID="sxh-8P-o13">
+            <objects>
+                <viewController storyboardIdentifier="ImportRecipeController" title="ImportRecipeController" id="xVn-Ji-ImL" userLabel="DetailedRecipeController" customClass="ImportRecipeViewController" customModule="GroceryGuru" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9ck-2j-2Ra">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="IYT-5a-k5I">
+                                <rect key="frame" x="10" y="98" width="394" height="754"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hFL-2l-JzZ">
+                                        <rect key="frame" x="9.5" y="0.0" width="375" height="754"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="375" id="kBd-nk-hhJ"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0k4-tD-gjR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IYT-5a-k5I" firstAttribute="top" secondItem="0k4-tD-gjR" secondAttribute="top" constant="10" id="MpS-NB-5oW"/>
+                            <constraint firstItem="0k4-tD-gjR" firstAttribute="bottom" secondItem="IYT-5a-k5I" secondAttribute="bottom" constant="10" id="SFe-OZ-HcK"/>
+                            <constraint firstItem="IYT-5a-k5I" firstAttribute="leading" secondItem="0k4-tD-gjR" secondAttribute="leading" constant="10" id="Twj-VC-dK0"/>
+                            <constraint firstItem="0k4-tD-gjR" firstAttribute="trailing" secondItem="IYT-5a-k5I" secondAttribute="trailing" constant="10" id="agN-2L-Lca"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ozU-Ok-wSx"/>
+                    <connections>
+                        <outlet property="tableView" destination="hFL-2l-JzZ" id="XI3-Bk-4iG"/>
+                        <segue destination="wd3-fr-8Nt" kind="show" identifier="RecipeImportToRecipeCheck" id="RVP-7Q-Hyg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zhu-f6-fj3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1967" y="804"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4nF-TC-L7i"/>
-        <segue reference="MAS-V4-j2s"/>
+        <segue reference="RVP-7Q-Hyg"/>
+        <segue reference="lTw-40-dyv"/>
+        <segue reference="ceX-1p-A5Y"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
