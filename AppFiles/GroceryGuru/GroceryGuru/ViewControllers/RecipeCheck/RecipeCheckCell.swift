@@ -46,7 +46,6 @@ class RecipeCheckCell: UITableViewCell {
     var checkButtonDelegate: CheckRecipeButtonDelegate?
     
     @IBAction func markItem(_ sender: UIButton){
-        let item_id = sender.tag
         sender.isSelected = !sender.isSelected
         var result = 0
         
@@ -54,6 +53,6 @@ class RecipeCheckCell: UITableViewCell {
             result = 1
         }
         
-        checkButtonDelegate?.markItem(item_id: item_id, check: result)
+        checkButtonDelegate?.markItem(item_id: sender.tag, check: result)
     }
 }

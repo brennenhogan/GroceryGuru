@@ -86,10 +86,10 @@ class RecipeCheckViewController: UIViewController {
                     selected_list_id = String(response.list_id)
                     selected_list_name = (textField?.text)!
                     
-                    /*print("Now performing segue to landing page!")
+                    print("Now performing segue to landing page!")
                     DispatchQueue.main.async{
-                        self?.performSegue(withIdentifier: "unwindToLanding", sender: self)
-                    }*/
+                        self?.performSegue(withIdentifier: "recipeCheckToLanding", sender: self)
+                    }
                 }
             }
         })
@@ -147,6 +147,7 @@ extension RecipeCheckViewController: UITableViewDataSource {
         
         cell.configure(title: text, qty: qty)
         
+        cell.checkBtn.tag = recipeData[indexPath.section].items[indexPath.row].itemID
         cell.checkBtn.isHidden = false
         cell.checkBtn.isSelected = (1 == checked)
         cell.checkButtonDelegate = self

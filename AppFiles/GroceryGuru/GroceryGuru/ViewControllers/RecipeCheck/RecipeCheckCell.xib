@@ -34,6 +34,9 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                 </state>
                                 <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="markItem:" destination="GGT-6p-tyQ" eventType="primaryActionTriggered" id="Hqt-UO-oKK"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Qty" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IMm-mR-mEh">
                                 <rect key="frame" x="77" y="0.0" width="50" height="44"/>

@@ -851,19 +851,19 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="fcQ-fQ-q4d">
-                                        <rect key="frame" x="20" y="10" width="374" height="244"/>
+                                        <rect key="frame" x="20" y="10" width="374" height="241"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="k0f-uA-gVv">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="170"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="167"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your email to reset password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24L-KU-dI1">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="22"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="19"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="122-ff-rZf" customClass="DesignableView" customModule="GroceryGuru" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="46" width="374" height="50"/>
+                                                        <rect key="frame" x="0.0" y="43" width="374" height="50"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dW9-AO-a9B">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -897,7 +897,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="32u-Gw-4SW" customClass="DesignableView" customModule="GroceryGuru" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="120" width="374" height="50"/>
+                                                        <rect key="frame" x="0.0" y="117" width="374" height="50"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t4r-Pi-Ujo">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -933,7 +933,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U0Q-kg-lHv">
-                                                <rect key="frame" x="0.0" y="194" width="374" height="50"/>
+                                                <rect key="frame" x="0.0" y="191" width="374" height="50"/>
                                                 <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="v0H-pb-OtR"/>
@@ -954,7 +954,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="200" translatesAutoresizingMaskIntoConstraints="NO" id="T0K-QP-THM">
-                                        <rect key="frame" x="20" y="270" width="374" height="494"/>
+                                        <rect key="frame" x="20" y="267" width="374" height="497"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -1115,9 +1115,11 @@
                     <navigationItem key="navigationItem" id="8h5-Jc-Ubu"/>
                     <connections>
                         <outlet property="tableView" destination="rXS-CA-R0l" id="J0Y-uk-KhF"/>
+                        <segue destination="pJk-UA-vjJ" kind="unwind" identifier="recipeCheckToLanding" unwindAction="unwind:" id="vix-fF-fPs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="frD-R9-4tJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="pJk-UA-vjJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2806" y="124"/>
         </scene>
