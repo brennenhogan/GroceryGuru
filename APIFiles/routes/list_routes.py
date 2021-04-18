@@ -110,12 +110,12 @@ def import_recipe():
   # Check for a matching store in the list (otherwise create a new store)
   store_mappings = {}
   for store_name, store_id in store_names:
-    search = "{}%".format(store_name[:3])
-    corresponding_store = Store.query.filter(Store.store_name.like(search)).first()
+    search = "{}%".format(store_name[:3]) # Search for a store that already exists for that list with the same name
+    corresponding_store = Store.query.filter(Store.list_id==list_id).filter(Store.store_name.like(search)).first()
 
-    if corresponding_store: # Found coresponding store
+    if corresponding_store: # Found a corresponding store
       store_mappings[store_id] = corresponding_store.get_id()
-    else: # Didn't find coresponding store - create a new store
+    else: # Didn't find a coresponding store - so create a new store
       new_store = Store(store_name, list_id)
       db.session.add(new_store)
       db.session.flush()
