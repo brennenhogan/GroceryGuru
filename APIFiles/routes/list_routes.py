@@ -91,7 +91,48 @@ def create_list_from_recipe():
   except exc.SQLAlchemyError:
     return {"list_id": -1,"result": False}
 
-  return {"list_id": new_list.list_id, "result": True}
+  return {"list_id": new_list_id, "result": True}
+
+# Import a recipe into a list
+@list_api.route('/list/recipeimport', methods=['POST'])
+def import_recipe():
+  list_id = request.json['list_id']
+  recipe_id = request.json['recipe_id']
+
+  # Get the store names for the recipe
+  store_names = []
+  store_ids = db.session.query(RecipeItem.store_id).filter(RecipeItem.recipe_id==recipe_id).filter(RecipeItem.checked=='0').distinct().all()
+  for store_obj in store_ids:
+    store_id = store_obj._asdict()['store_id']
+    store = RecipeStore.query.filter(RecipeStore.store_id==store_id).first()
+    store_names.append((store.get_name(), store_id))
+
+  # Check for a matching store in the list (otherwise create a new store)
+  store_mappings = {}
+  for store_name, store_id in store_names:
+    search = "{}%".format(store_name[:3])
+    corresponding_store = Store.query.filter(Store.store_name.like(search)).first()
+
+    if corresponding_store: # Found coresponding store
+      store_mappings[store_id] = corresponding_store.get_id()
+    else: # Didn't find coresponding store - create a new store
+      new_store = Store(store_name, list_id)
+      db.session.add(new_store)
+      db.session.flush()
+      store_mappings[store_id] = new_store.store_id # Update store_mappings so later we can use the new store ids
+
+
+  items = RecipeItem.query.filter(RecipeItem.recipe_id==recipe_id).filter(RecipeItem.checked=='0').all() # Get all items for the recipe
+  for item in items:
+    new_item = ListItem(list_id, store_mappings[item.get_store()], item.get_qty(), item.get_description(), 0) # All items start unpurchased - hence the 0
+    db.session.add(new_item)
+
+  try:
+    db.session.commit()
+  except exc.SQLAlchemyError:
+    return {"result": False}
+
+  return {"result": True}
 
 # Create a new list from old list
 @list_api.route('/list/old', methods=['POST'])
