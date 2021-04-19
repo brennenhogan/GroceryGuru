@@ -8,6 +8,7 @@ from schemas.listItem_schema import listItem_schema
 from schemas.store_schema import store_schema
 from schemas.completeList_schema import completeList_schema
 from sqlalchemy import exc
+from routes.utils import update_version
 
 listItem_api = Blueprint('listItem_api', __name__)
 
@@ -29,6 +30,7 @@ def add_item():
     print(exc.SQLAlchemyError)
     return {"result": False}
 
+  update_version(list_id)
   return {"result": True}
 
 # Update the quantity of an item
@@ -46,6 +48,7 @@ def update_qty():
     print(exc.SQLAlchemyError)
     return {"result": False}
 
+  update_version(item.list_id)
   return {"result": True}
 
 # Update the name of an item
@@ -63,6 +66,7 @@ def update_description():
     print(exc.SQLAlchemyError)
     return {"result": False}
 
+  update_version(item.list_id)
   return {"result": True}
 
 # Check off an item
@@ -93,6 +97,7 @@ def update_purchased():
       print(exc.SQLAlchemyError)
       return {"result": False}
 
+  update_version(item.list_id)
   return {"result": True}
 
 # Delete an item
@@ -109,6 +114,7 @@ def delete_item():
     print(exc.SQLAlchemyError)
     return {"result": False}
 
+  update_version(item.list_id)
   return {"result": True}
 
 # INDIVIDUAL LIST QUERY #
