@@ -8,8 +8,13 @@
 import Foundation
 
 struct ListResponse: Codable {
-    var version: Int
-    var stores: [ListResponse]
+    var stores: [ListElement]
+    let version: String
+    
+    init() {
+        stores = [] // Initialize this as empty
+        version = "1"
+    }
 }
 
 struct ListElement: Codable {
