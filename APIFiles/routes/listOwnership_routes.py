@@ -5,7 +5,6 @@ from models.list_model import List
 from models.listItem_model import ListItem
 from models.login_model import Login
 from schemas.listOwnership_schema import listOwnership_schema
-from schemas.list_schema import list_schema
 from schemas.listName_schema import listName_schema
 from sqlalchemy import exc
 

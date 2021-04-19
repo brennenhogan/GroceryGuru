@@ -4,10 +4,9 @@ from models.listItem_model import ListItem
 from models.store_model import Store
 from models.list_model import List
 from models.listOwnership_model import ListOwnership
-from schemas.listItem_schema import listItem_schema
-from schemas.store_schema import store_schema
-from schemas.completeList_schema import completeList_schema
+from schemas.list_schema import list_schema
 from sqlalchemy import exc
+from routes.utils import update_version
 
 listItem_api = Blueprint('listItem_api', __name__)
 
@@ -29,6 +28,7 @@ def add_item():
     print(exc.SQLAlchemyError)
     return {"result": False}
 
+  update_version(list_id)
   return {"result": True}
 
 # Update the quantity of an item
@@ -46,6 +46,7 @@ def update_qty():
     print(exc.SQLAlchemyError)
     return {"result": False}
 
+  update_version(item.list_id)
   return {"result": True}
 
 # Update the name of an item
@@ -63,6 +64,7 @@ def update_description():
     print(exc.SQLAlchemyError)
     return {"result": False}
 
+  update_version(item.list_id)
   return {"result": True}
 
 # Check off an item
@@ -93,6 +95,7 @@ def update_purchased():
       print(exc.SQLAlchemyError)
       return {"result": False}
 
+  update_version(item.list_id)
   return {"result": True}
 
 # Delete an item
@@ -109,6 +112,7 @@ def delete_item():
     print(exc.SQLAlchemyError)
     return {"result": False}
 
+  update_version(item.list_id)
   return {"result": True}
 
 # INDIVIDUAL LIST QUERY #
@@ -143,4 +147,6 @@ def get_list(id, user_uuid, purchased):
     listFragment = {"name": store.get_name(), "store_id": store_id,"items": store_items}
     listFragments.append(listFragment)
   
-  return completeList_schema.jsonify(listFragments, many=True)
+  matchingList = List.query.filter(List.list_id==id).first()
+
+  return list_schema.jsonify({"version": matchingList.get_version(), "stores": listFragments})

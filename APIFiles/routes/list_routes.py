@@ -212,3 +212,18 @@ def delete_list():
     return {"result": False}
 
   return {"result": True}
+
+# Get a list's version number
+@list_api.route('/list/<id>/<user_uuid>/version', methods=['GET'])
+def get_list(id, user_uuid):
+  owner = db.session.query(ListOwnership).filter(ListOwnership.uuid==user_uuid).filter(ListOwnership.list_id==id).all()
+  
+  if not owner:
+    return {"result": False}
+
+  matchingList = List.query.filter(List.list_id==id).first()
+
+  if not matchingList:
+    return {"version": 0, "result": False}
+  else:
+    return {"version": matchingList.get_version(), "result": True}

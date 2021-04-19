@@ -5,6 +5,7 @@ from models.listItem_model import ListItem
 from models.listOwnership_model import ListOwnership
 from schemas.store_schema import store_schema
 from sqlalchemy import exc
+from routes.utils import update_version
 
 store_api = Blueprint('store_api', __name__)
 
@@ -23,9 +24,10 @@ def add_store():
     print(exc.SQLAlchemyError)
     return {"result": False}
 
+  update_version(list_id)
   return {"result": True}
 
-# Edit a store
+# Edit a store name
 @store_api.route('/store/description', methods=['POST'])
 def edit_store():
   store_name = request.json['store_name']
@@ -41,6 +43,7 @@ def edit_store():
     print(exc.SQLAlchemyError)
     return {"result": False}
 
+  update_version(list_id)
   return {"result": True}
 
 # Delete a store (and all of its items!)
@@ -69,4 +72,5 @@ def delete_store():
     print(exc.SQLAlchemyError)
     return {"result": False}
 
+  update_version(list_id)
   return {"result": True}
