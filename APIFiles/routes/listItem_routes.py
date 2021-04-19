@@ -4,9 +4,7 @@ from models.listItem_model import ListItem
 from models.store_model import Store
 from models.list_model import List
 from models.listOwnership_model import ListOwnership
-from schemas.listItem_schema import listItem_schema
-from schemas.store_schema import store_schema
-from schemas.completeList_schema import completeList_schema
+from schemas.list_schema import list_schema
 from sqlalchemy import exc
 from routes.utils import update_version
 
@@ -149,4 +147,6 @@ def get_list(id, user_uuid, purchased):
     listFragment = {"name": store.get_name(), "store_id": store_id,"items": store_items}
     listFragments.append(listFragment)
   
-  return completeList_schema.jsonify(listFragments, many=True)
+  matchingList = List.query.filter(List.list_id==id).first()
+
+  return list_schema.jsonify({"version": matchingList.get_version(), "stores": listFragments})
