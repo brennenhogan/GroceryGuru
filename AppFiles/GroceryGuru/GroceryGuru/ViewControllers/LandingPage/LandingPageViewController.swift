@@ -235,7 +235,7 @@ extension LandingPageViewController: ShareListButtonDelegate {
         self.present(alert, animated: true, completion: nil)
         
         // Grab the value from the text field when the user clicks Create
-        let createAction = UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
+        let createAction = UIAlertAction(title: "Share", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
             //Share List Action
             let name = (textField?.text)!
