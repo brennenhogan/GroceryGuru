@@ -17,7 +17,7 @@ struct AllListRequest {
     let requestURL:URLRequest
     
     init(status: Int) {
-        let resourceString = "http://127.0.0.1:5000/owner/\(userUuid)/" + String(status)
+        let resourceString = "http://3.138.192.51:8080/owner/\(userUuid)/" + String(status)
         print(resourceString)
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         var request = URLRequest(url: resourceURL)

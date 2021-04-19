@@ -17,7 +17,7 @@ struct AddStoreRequest {
     let requestURL:URLRequest
     
     init(storename:String) {
-        let resourceString = "http://127.0.0.1:5000/store"
+        let resourceString = "http://3.138.192.51:8080/store"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         let parameterDictionary = ["store_name" : storename, "list_id": selected_list_id]
         var request = URLRequest(url: resourceURL)

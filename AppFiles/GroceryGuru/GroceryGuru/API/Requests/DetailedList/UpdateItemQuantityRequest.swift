@@ -17,7 +17,7 @@ struct UpdateItemQuantityRequest {
     let requestURL:URLRequest
     
     init(item_id:Int, item_qty:String) {
-        let resourceString = "http://127.0.0.1:5000/item/qty"
+        let resourceString = "http://3.138.192.51:8080/item/qty"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         let parameterDictionary = ["item_id": item_id, "item_qty": item_qty] as [String : Any]
         var request = URLRequest(url: resourceURL)

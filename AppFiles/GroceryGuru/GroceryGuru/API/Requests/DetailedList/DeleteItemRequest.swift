@@ -18,7 +18,7 @@ struct DeleteItemRequest {
     let requestURL:URLRequest
     
     init(item_id:Int) {
-        let resourceString = "http://127.0.0.1:5000/item/delete"
+        let resourceString = "http://3.138.192.51:8080/item/delete"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         let parameterDictionary = ["item_id": item_id] as [String : Any]
         var request = URLRequest(url: resourceURL)

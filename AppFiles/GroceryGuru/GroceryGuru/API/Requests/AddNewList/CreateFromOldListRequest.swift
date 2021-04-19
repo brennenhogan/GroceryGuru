@@ -17,7 +17,7 @@ struct CreatFromOldListRequest {
     let requestURL:URLRequest
     
     init(name: String, list_id: String) {
-        let resourceString = "http://127.0.0.1:5000/list/old"
+        let resourceString = "http://3.138.192.51:8080/list/old"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         let parameterDictionary = ["name" : name, "list_id": list_id, "uuid": userUuid]
         var request = URLRequest(url: resourceURL)

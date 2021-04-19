@@ -17,7 +17,7 @@ struct ImportRecipeRequest {
     let requestURL:URLRequest
     
     init(list_id:String, recipe_id:String) {
-        let resourceString = "http://127.0.0.1:5000/list/recipeimport"
+        let resourceString = "http://3.138.192.51:8080/list/recipeimport"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         let parameterDictionary = ["recipe_id": recipe_id, "list_id": list_id] as [String : Any]
         var request = URLRequest(url: resourceURL)

@@ -17,7 +17,7 @@ struct AddListRequest {
     let requestURL:URLRequest
     
     init(listname:String) {
-        let resourceString = "http://127.0.0.1:5000/list"
+        let resourceString = "http://3.138.192.51:8080/list"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         let parameterDictionary = ["name" : listname, "uuid": userUuid]
         var request = URLRequest(url: resourceURL)

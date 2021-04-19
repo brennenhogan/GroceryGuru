@@ -17,7 +17,7 @@ struct NewUserRequest {
     let requestURL:URLRequest
     
     init(username:String, password:String) {
-        let resourceString = "http://127.0.0.1:5000/users"
+        let resourceString = "http://3.138.192.51:8080/users"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         let parameterDictionary = ["name" : username, "password": password]
         var request = URLRequest(url: resourceURL)
