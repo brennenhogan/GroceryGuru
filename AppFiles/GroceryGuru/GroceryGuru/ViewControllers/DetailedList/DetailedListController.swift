@@ -18,7 +18,7 @@ class DetailedListController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 print("Table reload with new data")
-                print(String(self.listData.count) + " sections")
+                print(String(self.listData.stores.count) + " sections")
                 self.tableView.reloadData()
             }
         }
@@ -100,7 +100,7 @@ class DetailedListController: UIViewController {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if (editingStyle == .delete){
-            let item_id = listData[indexPath.section].items[indexPath.row].itemID
+            let item_id = listData.stores[indexPath.section].items[indexPath.row].itemID
 
             let deleteRequest = DeleteItemRequest(item_id: item_id)
             deleteRequest.deleteItem { [weak self] result in
@@ -118,9 +118,9 @@ class DetailedListController: UIViewController {
             }
             
             if(deleted){
-                var items = listData[indexPath.section].items
+                var items = listData.stores[indexPath.section].items
                 items.remove(at: indexPath.row)
-                listData[indexPath.section].items = items
+                listData.stores[indexPath.section].items = items
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }
             
@@ -180,7 +180,7 @@ class DetailedListController: UIViewController {
             cell.checkBtn.isHidden = tableView.isEditing
         }
         
-        for i in 0...listData.count {
+        for i in 0...listData.stores.count {
             guard let header = tableView.headerView(forSection: i) as? ListHeaderView else { return }
             header.deleteButton.isHidden = !tableView.isEditing
             header.storeName.isEnabled = tableView.isEditing
@@ -210,7 +210,7 @@ extension DetailedListController : UITableViewDelegate {
 
 extension DetailedListController : UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return listData.count // The number of sections is the number of entries in the listData array
+        return listData.stores.count // The number of sections is the number of entries in the listData array
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -220,7 +220,7 @@ extension DetailedListController : UITableViewDataSource {
     // Use custom header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListHeaderView.identifier) as! ListHeaderView
-        view.configure(title: listData[section].name, storeID: String(listData[section].store_id)) // TODO - add buttons here that do things
+        view.configure(title: listData.stores[section].name, storeID: String(listData.stores[section].store_id)) // TODO - add buttons here that do things
 
         view.storeName.isEnabled = tableView.isEditing
         view.addButton.isHidden = tableView.isEditing
@@ -246,15 +246,15 @@ extension DetailedListController : UITableViewDataSource {
         if (self.hiddenSections.contains(section)){
             return 0
         } else{
-            return listData[section].items.count // Set the number of sections to the number of items in that section
+            return listData.stores[section].items.count // Set the number of sections to the number of items in that section
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let text = listData[indexPath.section].items[indexPath.row].itemDescription
-        let qty = listData[indexPath.section].items[indexPath.row].qty
-        let item_id = listData[indexPath.section].items[indexPath.row].itemID
-        let purchased = listData[indexPath.section].items[indexPath.row].purchased
+        let text = listData.stores[indexPath.section].items[indexPath.row].itemDescription
+        let qty = listData.stores[indexPath.section].items[indexPath.row].qty
+        let item_id = listData.stores[indexPath.section].items[indexPath.row].itemID
+        let purchased = listData.stores[indexPath.section].items[indexPath.row].purchased
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ListViewCell.identifier, for: indexPath) as! ListViewCell
         
@@ -319,7 +319,7 @@ extension DetailedListController: AddItemDelegate {
 extension DetailedListController: DeleteStoreDelegate {
     func deleteStore(storeID: String, section: Int) {
         print("deleting store: " + storeID)
-        let alert = UIAlertController(title: "Are you sure you want to delete \"\(listData[section].name)\" and all items in the section?", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Are you sure you want to delete \"\(listData.stores[section].name)\" and all items in the section?", message: "", preferredStyle: .alert)
 
         alert.view.tintColor = UIColor(hex: 0x7A916E)
         self.present(alert, animated: true, completion: nil)
@@ -411,7 +411,7 @@ extension DetailedListController: ExpandSectionDelegate {
         func indexPathsForSection() -> [IndexPath] {
             var indexPaths = [IndexPath]()
             
-            for row in 0..<self.listData[section].items.count {
+            for row in 0..<self.listData.stores[section].items.count {
                 indexPaths.append(IndexPath(row: row,
                                             section: section))
             }

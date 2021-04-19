@@ -17,7 +17,7 @@ struct AddRecipeStoreRequest {
     let requestURL:URLRequest
     
     init(storename:String) {
-        let resourceString = "http://3.138.192.51:8080/recipe/store"
+        let resourceString = "http://18.188.0.221:8080/recipe/store"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         let parameterDictionary = ["store_name" : storename, "recipe_id": selected_recipe_id]
         var request = URLRequest(url: resourceURL)

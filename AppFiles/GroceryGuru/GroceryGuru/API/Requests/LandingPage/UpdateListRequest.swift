@@ -17,7 +17,7 @@ struct UpdateListRequest {
     let requestURL:URLRequest
     
     init(name:String, list_id:Int) {
-        let resourceString = "http://3.138.192.51:8080/list/update"
+        let resourceString = "http://18.188.0.221:8080/list/update"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         let parameterDictionary = ["name": name, "list_id": list_id] as [String : Any]
         var request = URLRequest(url: resourceURL)

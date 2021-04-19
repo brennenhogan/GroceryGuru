@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct ListResponse: Codable {
+    var version: Int
+    var stores: [ListResponse]
+}
+
 struct ListElement: Codable {
     var items: [Item]
     var store_id: Int
@@ -24,5 +29,3 @@ struct Item : Codable {
         case purchased, qty
     }
 }
-
-typealias ListResponse = [ListElement]

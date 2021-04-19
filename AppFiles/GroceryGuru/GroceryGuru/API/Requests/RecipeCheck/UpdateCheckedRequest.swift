@@ -17,7 +17,7 @@ struct UpdateCheckedRequest {
     let requestURL:URLRequest
     
     init(item_id:Int, checked:Int) {
-        let resourceString = "http://3.138.192.51:8080/recipe/check"
+        let resourceString = "http://18.188.0.221:8080/recipe/check"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         let parameterDictionary = ["item_id": item_id, "checked": checked] as [String : Any]
         var request = URLRequest(url: resourceURL)

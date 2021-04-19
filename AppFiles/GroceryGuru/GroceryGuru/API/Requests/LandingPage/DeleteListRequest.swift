@@ -18,7 +18,7 @@ struct DeleteListRequest {
     let requestURL:URLRequest
     
     init(list_id:Int) {
-        let resourceString = "http://3.138.192.51:8080/list/delete"
+        let resourceString = "http://18.188.0.221:8080/list/delete"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         let parameterDictionary = ["list_id": list_id, "uuid": userUuid] as [String : Any]
         var request = URLRequest(url: resourceURL)

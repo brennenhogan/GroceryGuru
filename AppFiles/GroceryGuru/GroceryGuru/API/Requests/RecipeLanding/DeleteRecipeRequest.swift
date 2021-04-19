@@ -17,7 +17,7 @@ struct DeleteRecipeRequest {
     let requestURL:URLRequest
     
     init(recipe_id: String) {
-        let resourceString = "http://3.138.192.51:8080/recipe/delete"
+        let resourceString = "http://18.188.0.221:8080/recipe/delete"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         let parameterDictionary = ["recipe_id": recipe_id]
         var request = URLRequest(url: resourceURL)

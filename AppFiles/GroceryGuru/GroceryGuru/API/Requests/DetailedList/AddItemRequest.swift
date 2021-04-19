@@ -17,7 +17,7 @@ struct AddItemRequest {
     let requestURL:URLRequest
     
     init(description: String, list_id: String, store_id: String, qty: String) {
-        let resourceString = "http://3.138.192.51:8080/item"
+        let resourceString = "http://18.188.0.221:8080/item"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         let parameterDictionary = ["store_id" : store_id, "list_id": list_id, "qty": qty, "description": description]
         var request = URLRequest(url: resourceURL)

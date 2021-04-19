@@ -17,7 +17,7 @@ struct AllRecipeRequest {
     let requestURL:URLRequest
     
     init() {
-        let resourceString = "http://3.138.192.51:8080/recipe/\(userUuid)"
+        let resourceString = "http://18.188.0.221:8080/recipe/\(userUuid)"
         print(resourceString)
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         var request = URLRequest(url: resourceURL)

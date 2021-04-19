@@ -17,7 +17,7 @@ struct UpdateStoreNameRequest {
     let requestURL:URLRequest
     
     init(store_name:String, store_id:String, list_id:String) {
-        let resourceString = "http://3.138.192.51:8080/store/description"
+        let resourceString = "http://18.188.0.221:8080/store/description"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         let parameterDictionary = ["store_name": store_name, "store_id": store_id, "list_id": list_id] as [String : Any]
         var request = URLRequest(url: resourceURL)

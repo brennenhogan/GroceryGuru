@@ -17,7 +17,7 @@ struct ListRequest {
     let requestURL:URLRequest
     
     init(list_id: String, filter: Int) {
-        let resourceString = "http://3.138.192.51:8080/list/\(list_id)/\(userUuid)/\(filter)"
+        let resourceString = "http://18.188.0.221:8080/list/\(list_id)/\(userUuid)/\(filter)"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         var request = URLRequest(url: resourceURL)
         request.httpMethod = "GET"
