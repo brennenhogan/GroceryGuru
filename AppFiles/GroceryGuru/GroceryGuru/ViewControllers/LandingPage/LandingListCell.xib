@@ -37,6 +37,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vu6-mp-BJx">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="50"/>
                                         <state key="normal" image="square.and.arrow.up" catalog="system"/>
+                                        <connections>
+                                            <action selector="shareList:" destination="KGk-i7-Jjw" eventType="primaryActionTriggered" id="h98-jg-G7e"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qty" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T1B-2j-rFb">
                                         <rect key="frame" x="45" y="0.0" width="30" height="50"/>
@@ -70,6 +73,7 @@
             <connections>
                 <outlet property="myQty" destination="T1B-2j-rFb" id="6SN-TX-2TM"/>
                 <outlet property="myText" destination="Kbm-jz-4bT" id="pMr-b4-epf"/>
+                <outlet property="shareBtn" destination="vu6-mp-BJx" id="UAD-SL-mae"/>
             </connections>
             <point key="canvasLocation" x="102.89855072463769" y="81.696428571428569"/>
         </tableViewCell>

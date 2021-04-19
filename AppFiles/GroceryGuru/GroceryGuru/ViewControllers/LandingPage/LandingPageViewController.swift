@@ -208,10 +208,69 @@ extension LandingPageViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: LandingListCell.identifier, for: indexPath) as! LandingListCell
         
         cell.configure(title: item.listName, qty: item.listQty)
+        cell.shareBtn.tag = item.listID
         cell.myText.isEnabled = tableView.isEditing
         cell.delegate = self
+        cell.shareListButtonDelegate = self
         
         return cell
     }
     
+}
+
+
+extension LandingPageViewController: ShareListButtonDelegate {
+    
+    
+    func shareList(list_id: Int) {
+        
+        
+        let alert = UIAlertController(title: "Enter a user to share with", message: "", preferredStyle: .alert)
+
+        alert.addTextField { (textField) in
+            textField.text = ""
+        }
+
+        alert.view.tintColor = UIColor(hex: 0x7A916E)
+        self.present(alert, animated: true, completion: nil)
+        
+        // Grab the value from the text field when the user clicks Create
+        let createAction = UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            //Share List Action
+            let name = (textField?.text)!
+            let shareListRequest = ShareListRequest(name: name, list_id: list_id)
+            shareListRequest.shareList { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self?.CreateAlert(title: "Error", message: "\(error)")
+                    }
+                    print(error)
+                case .success(let response):
+                    DispatchQueue.main.async {
+                        self?.CreateAlert(title: "Success", message: "List has been shared with \(name)")
+                    }
+                    print("Share permissions have been updated \(response)")
+                    self?.getData()
+                }
+            }
+            return
+            
+        })
+        
+        createAction.isEnabled = false
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
+        
+        // adding the notification observer here
+        NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object:alert.textFields?[0], queue: OperationQueue.main) { (notification) -> Void in
+            let textFieldName = (alert.textFields?[0])! as UITextField
+            createAction.isEnabled = !textFieldName.text!.isEmpty
+            }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(createAction)
+        
+    }
 }

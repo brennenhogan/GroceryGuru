@@ -3,6 +3,7 @@ from models.base_model import db
 from models.listOwnership_model import ListOwnership
 from models.list_model import List
 from models.listItem_model import ListItem
+from models.login_model import Login
 from schemas.listOwnership_schema import listOwnership_schema
 from schemas.list_schema import list_schema
 from schemas.listName_schema import listName_schema
@@ -13,18 +14,32 @@ listOwnership_api = Blueprint('listOwnership_api', __name__)
 # Share a list to another user)
 @listOwnership_api.route('/share', methods=['POST'])
 def add_owner():
-  uuid = request.json['uuid']
+  name = request.json['name']
   list_id = request.json['list_id']
 
-  new_owner = ListOwnership(uuid, list_id)
+  user = Login.query.filter_by(name=name).first()
+
+  # If the user does not already exist, throw an error
+  if not user:
+    return {"result": False, "message": "User does not exist"}
+  
+  owners = ListOwnership.query.filter_by(list_id=list_id).all()
+
+  # If the user is already an owner, do not share with the user
+  for owner in owners:
+    if owner.uuid == user.uuid:
+      return {"result": False, "message": "User is already an owner"}
+
+  print(user.uuid)
+  new_owner = ListOwnership(user.uuid, list_id)
 
   db.session.add(new_owner)
   try:
     db.session.commit()
   except exc.SQLAlchemyError:
-    return {"result": False}
+    return {"result": False, "message": "SQLAlchemy Error"}
 
-  return {"result": True}
+  return {"result": True, "message": "Share successful"}
 
 # LANDING PAGE QUERY #
 # See all lists for a user (ListOwnership.list_id, List.name, List.old)

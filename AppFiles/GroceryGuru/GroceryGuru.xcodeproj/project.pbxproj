@@ -40,6 +40,8 @@
 		02A8F9CD2627A0A20083FE19 /* RecipeCheckCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02A8F9CB2627A0A20083FE19 /* RecipeCheckCell.xib */; };
 		02A8F9D22627B0180083FE19 /* UpdateCheckedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8F9D12627B0180083FE19 /* UpdateCheckedRequest.swift */; };
 		02A8F9D82627B1DD0083FE19 /* CreateListFromRecipeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8F9D72627B1DD0083FE19 /* CreateListFromRecipeRequest.swift */; };
+		2E0847B7262DCA28008E738D /* ShareListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0847B6262DCA28008E738D /* ShareListRequest.swift */; };
+		2E0847BC262DCD3F008E738D /* BooleanResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0847BB262DCD3F008E738D /* BooleanResponseMessage.swift */; };
 		2E213DF9262678F000E8B23C /* AddRecipeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E213DF8262678F000E8B23C /* AddRecipeRequest.swift */; };
 		2E213E0126267CCE00E8B23C /* DeleteRecipeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E213E0026267CCE00E8B23C /* DeleteRecipeRequest.swift */; };
 		2E213E062626810500E8B23C /* UpdateRecipeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E213E052626810500E8B23C /* UpdateRecipeTitle.swift */; };
@@ -159,6 +161,8 @@
 		02A8F9CB2627A0A20083FE19 /* RecipeCheckCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeCheckCell.xib; sourceTree = "<group>"; };
 		02A8F9D12627B0180083FE19 /* UpdateCheckedRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCheckedRequest.swift; sourceTree = "<group>"; };
 		02A8F9D72627B1DD0083FE19 /* CreateListFromRecipeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateListFromRecipeRequest.swift; sourceTree = "<group>"; };
+		2E0847B6262DCA28008E738D /* ShareListRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareListRequest.swift; sourceTree = "<group>"; };
+		2E0847BB262DCD3F008E738D /* BooleanResponseMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooleanResponseMessage.swift; sourceTree = "<group>"; };
 		2E213DF8262678F000E8B23C /* AddRecipeRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeRequest.swift; sourceTree = "<group>"; };
 		2E213E0026267CCE00E8B23C /* DeleteRecipeRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteRecipeRequest.swift; sourceTree = "<group>"; };
 		2E213E052626810500E8B23C /* UpdateRecipeTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRecipeTitle.swift; sourceTree = "<group>"; };
@@ -352,6 +356,7 @@
 				2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */,
 				0211EF7B260E924A00CAA05C /* AllListResponse.swift */,
 				2E3476062615004900BA27D9 /* BooleanResponse.swift */,
+				2E0847BB262DCD3F008E738D /* BooleanResponseMessage.swift */,
 				0211EF6E260E7C7500CAA05C /* ListResponse.swift */,
 				2E9ABE85260AAEF60047DED3 /* LoginResponse.swift */,
 				2E9ABEC4260BF8990047DED3 /* NewUserResponse.swift */,
@@ -573,6 +578,7 @@
 				0211EF80260E92B000CAA05C /* AllListRequest.swift */,
 				2E3476012615001500BA27D9 /* DeleteListRequest.swift */,
 				2E34760B26152F6200BA27D9 /* UpdateListRequest.swift */,
+				2E0847B6262DCA28008E738D /* ShareListRequest.swift */,
 			);
 			path = LandingPage;
 			sourceTree = "<group>";
@@ -750,6 +756,7 @@
 				2E213DF9262678F000E8B23C /* AddRecipeRequest.swift in Sources */,
 				0211EF6A260E7C3800CAA05C /* ListRequest.swift in Sources */,
 				02A8F9D82627B1DD0083FE19 /* CreateListFromRecipeRequest.swift in Sources */,
+				2E0847BC262DCD3F008E738D /* BooleanResponseMessage.swift in Sources */,
 				2E9ABE81260AAAFF0047DED3 /* Designable.swift in Sources */,
 				2EEF49462627488E0001B10E /* AddRecipeStoreRequest.swift in Sources */,
 				2E9ABEA8260BCEFC0047DED3 /* ResetPasswordViewController.swift in Sources */,
@@ -776,6 +783,7 @@
 				2E9ABE86260AAEF60047DED3 /* LoginResponse.swift in Sources */,
 				2E492D4426248E9F001BC07B /* UpdatePurchasedRequest.swift in Sources */,
 				02A8F9D22627B0180083FE19 /* UpdateCheckedRequest.swift in Sources */,
+				2E0847B7262DCA28008E738D /* ShareListRequest.swift in Sources */,
 				2EEF495E262766ED0001B10E /* DeleteRecipeItemRequest.swift in Sources */,
 				2E213E0126267CCE00E8B23C /* DeleteRecipeRequest.swift in Sources */,
 				02A8F9B52625EC6F0083FE19 /* RecipeRequest.swift in Sources */,

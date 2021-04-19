@@ -11,12 +11,17 @@ protocol TableViewCellDelegate {
     func textFieldDidEndEditing(cell: LandingListCell, name: String) -> ()
 }
 
+protocol ShareListButtonDelegate{
+    func shareList(list_id: Int)
+}
+
 class LandingListCell: UITableViewCell, UITextFieldDelegate {
     
     var delegate: TableViewCellDelegate! = nil
     
     @IBOutlet weak var myText: UITextField!
     @IBOutlet var myQty: UILabel!
+    @IBOutlet var shareBtn: UIButton!
     
     static var identifier = "LandingListCell"
     
@@ -45,6 +50,8 @@ class LandingListCell: UITableViewCell, UITextFieldDelegate {
         // Configure the view for the selected state
     }
     
+    var shareListButtonDelegate: ShareListButtonDelegate?
+    
     func textFieldDidEndEditing(_ myText: UITextField) {
         self.delegate.textFieldDidEndEditing(cell: self, name: myText.text!)
     }
@@ -52,6 +59,10 @@ class LandingListCell: UITableViewCell, UITextFieldDelegate {
     func textFieldShouldReturn(_ myText: UITextField) -> Bool {
         myText.resignFirstResponder()
         return true
+    }
+    
+    @IBAction func shareList(_ sender: UIButton){
+        shareListButtonDelegate?.shareList(list_id: sender.tag)
     }
     
 }
