@@ -55,6 +55,7 @@ class LandingPageViewController: UIViewController, TableViewCellDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        detailed_list_active = 0
         self.getData()
     }
     

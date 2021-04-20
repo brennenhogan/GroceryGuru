@@ -252,6 +252,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
+                                                    <action selector="recipeImport:" destination="GVW-bU-frF" eventType="primaryActionTriggered" id="GbI-fF-qUk"/>
                                                     <segue destination="xVn-Ji-ImL" kind="show" id="Q6l-GI-rdp"/>
                                                 </connections>
                                             </button>
@@ -1169,7 +1170,8 @@
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hFL-2l-JzZ">
                                         <rect key="frame" x="9.5" y="0.0" width="375" height="754"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="375" id="kBd-nk-hhJ"/>
                                         </constraints>

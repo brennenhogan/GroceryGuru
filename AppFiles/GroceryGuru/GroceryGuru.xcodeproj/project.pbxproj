@@ -50,6 +50,8 @@
 		2E3476022615001500BA27D9 /* DeleteListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3476012615001500BA27D9 /* DeleteListRequest.swift */; };
 		2E3476072615004900BA27D9 /* BooleanResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3476062615004900BA27D9 /* BooleanResponse.swift */; };
 		2E34760C26152F6200BA27D9 /* UpdateListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E34760B26152F6200BA27D9 /* UpdateListRequest.swift */; };
+		2E3D719C262F4B6600406A6B /* ListVersionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D719B262F4B6600406A6B /* ListVersionRequest.swift */; };
+		2E3D71A1262F4BBD00406A6B /* BooleanResponseVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D71A0262F4BBD00406A6B /* BooleanResponseVersion.swift */; };
 		2E492D3A2623A775001BC07B /* UpdateStoreNameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E492D392623A775001BC07B /* UpdateStoreNameRequest.swift */; };
 		2E492D3F2623BB67001BC07B /* UpdateItemQuantityRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E492D3E2623BB67001BC07B /* UpdateItemQuantityRequest.swift */; };
 		2E492D4426248E9F001BC07B /* UpdatePurchasedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E492D4326248E9F001BC07B /* UpdatePurchasedRequest.swift */; };
@@ -171,6 +173,8 @@
 		2E3476012615001500BA27D9 /* DeleteListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteListRequest.swift; sourceTree = "<group>"; };
 		2E3476062615004900BA27D9 /* BooleanResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooleanResponse.swift; sourceTree = "<group>"; };
 		2E34760B26152F6200BA27D9 /* UpdateListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateListRequest.swift; sourceTree = "<group>"; };
+		2E3D719B262F4B6600406A6B /* ListVersionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListVersionRequest.swift; sourceTree = "<group>"; };
+		2E3D71A0262F4BBD00406A6B /* BooleanResponseVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooleanResponseVersion.swift; sourceTree = "<group>"; };
 		2E492D392623A775001BC07B /* UpdateStoreNameRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateStoreNameRequest.swift; sourceTree = "<group>"; };
 		2E492D3E2623BB67001BC07B /* UpdateItemQuantityRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateItemQuantityRequest.swift; sourceTree = "<group>"; };
 		2E492D4326248E9F001BC07B /* UpdatePurchasedRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePurchasedRequest.swift; sourceTree = "<group>"; };
@@ -357,6 +361,7 @@
 				0211EF7B260E924A00CAA05C /* AllListResponse.swift */,
 				2E3476062615004900BA27D9 /* BooleanResponse.swift */,
 				2E0847BB262DCD3F008E738D /* BooleanResponseMessage.swift */,
+				2E3D71A0262F4BBD00406A6B /* BooleanResponseVersion.swift */,
 				0211EF6E260E7C7500CAA05C /* ListResponse.swift */,
 				2E9ABE85260AAEF60047DED3 /* LoginResponse.swift */,
 				2E9ABEC4260BF8990047DED3 /* NewUserResponse.swift */,
@@ -554,6 +559,7 @@
 				2E9C6595261CCA1000107A9B /* DeleteItemRequest.swift */,
 				0211EFF92623885300CAA05C /* DeleteStoreRequest.swift */,
 				0211EF69260E7C3800CAA05C /* ListRequest.swift */,
+				2E3D719B262F4B6600406A6B /* ListVersionRequest.swift */,
 				2E9C659D261CEBCE00107A9B /* UpdateItemDescriptionRequest.swift */,
 				2E492D3E2623BB67001BC07B /* UpdateItemQuantityRequest.swift */,
 				2E492D392623A775001BC07B /* UpdateStoreNameRequest.swift */,
@@ -767,8 +773,10 @@
 				2E9ABE96260BC09F0047DED3 /* SignUpViewController.swift in Sources */,
 				2E213E062626810500E8B23C /* UpdateRecipeTitle.swift in Sources */,
 				0211EF81260E92B000CAA05C /* AllListRequest.swift in Sources */,
+				2E3D71A1262F4BBD00406A6B /* BooleanResponseVersion.swift in Sources */,
 				2EAA0922262CEFFE001B4F12 /* ImportRecipeCell.swift in Sources */,
 				2E87AFBA25FFF4B800D3A575 /* AppDelegate.swift in Sources */,
+				2E3D719C262F4B6600406A6B /* ListVersionRequest.swift in Sources */,
 				2EEF4950262752DF0001B10E /* DeleteRecipeStoreRequest.swift in Sources */,
 				2E34760C26152F6200BA27D9 /* UpdateListRequest.swift in Sources */,
 				2E9C6596261CCA1000107A9B /* DeleteItemRequest.swift in Sources */,

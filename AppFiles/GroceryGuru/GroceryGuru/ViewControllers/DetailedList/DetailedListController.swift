@@ -8,6 +8,8 @@
 import UIKit
 
 public var filter_selection = 0
+public var detailed_list_active = 0
+public var current_version = -1
 
 class DetailedListController: UIViewController {
     
@@ -25,6 +27,10 @@ class DetailedListController: UIViewController {
     }
     
     var hiddenSections = Set<Int>()
+    var timer = Timer()
+    var observed_version = -1
+    var current_version = -1
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +50,41 @@ class DetailedListController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.getData()
+        detailed_list_active = 1
+        
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
+            // Invalidate the timer if we are no longer on the detailed list page
+            if(detailed_list_active==0){
+                self.timer.invalidate()
+            }
+
+            print("Timer fired!")
+            
+            // Gets the current version of the list
+            let listVersionRequest = ListVersionRequest(list_id: selected_list_id)
+            listVersionRequest.getVersion { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let list):
+                    self!.observed_version = list.version
+                    print("Data received properly")
+                }
+            }
+            
+            print(self.observed_version)
+            print(self.current_version)
+            
+            // Check to see if the version of the list matches our current version
+            if(self.observed_version != self.current_version){
+                self.getData()
+                self.current_version = self.observed_version
+            }
+
+        }
+        timer.tolerance = 0.2
+        RunLoop.current.add(timer, forMode: .common)
+
     }
     
     private func configureNavigationBar() {
@@ -64,10 +105,17 @@ class DetailedListController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [NSAttributedString.Key : AnyObject]
         
         //For back button in navigation bar
+        
         let backButton = UIBarButtonItem()
+        backButton.action = #selector(barButtonAction)
         backButton.title = "Back"
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
+        
+    }
+    
+    @objc func barButtonAction(){
+        self.timer.invalidate()
     }
     
     func getData() {
@@ -81,6 +129,7 @@ class DetailedListController: UIViewController {
                 }
                 print(error)
             case .success(let list):
+                self!.current_version = Int(list.version)!
                 self?.listData = list
                 print("Data received properly")
             }
@@ -128,6 +177,10 @@ class DetailedListController: UIViewController {
             
             return
         }
+    }
+    
+    @IBAction func recipeImport(_ sender: UIButton){
+        self.timer.invalidate()
     }
     
     @IBAction func addStore(_ sender: UIButton){
