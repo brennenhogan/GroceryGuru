@@ -98,6 +98,8 @@ class DetailedListController: UIViewController {
             self.present(alertController, animated: true, completion: nil)
     }
     
+    @IBAction func unwindToDetail(_ segue: UIStoryboardSegue) {}
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if (editingStyle == .delete){
             let item_id = listData.stores[indexPath.section].items[indexPath.row].itemID

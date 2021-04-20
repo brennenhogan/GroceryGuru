@@ -10,6 +10,7 @@ import UIKit
 class RecipeCheckViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var createBtn: UIButton!
     
     var recipeData = RecipeResponse() {
         didSet {
@@ -23,6 +24,15 @@ class RecipeCheckViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigationBar()
+        
+        if(create_recipe_import==0){
+            self.navigationItem.title = "Create from Recipe"
+            createBtn.setTitle("Create List", for: .normal)
+        } else{
+            self.navigationItem.title = "Import Recipe"
+            createBtn.setTitle("Import Recipe", for: .normal)
+        }
         
         tableView.register(RecipeCheckCell.nib(), forCellReuseIdentifier:RecipeCheckCell.identifier)
         tableView.register(RecipeHeaderView.nib(), forHeaderFooterViewReuseIdentifier:RecipeHeaderView.identifier)
@@ -35,6 +45,30 @@ class RecipeCheckViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.getData()
+    }
+    
+    private func configureNavigationBar() {
+        // Nav Bar Colors
+        let white = UIColor(hex: 0xFFFFFF)
+        let dark_sage = UIColor(hex: 0x7A916E)
+        
+        // Sets Bar Tint and Tint Color
+        self.navigationController?.navigationBar.barTintColor = white
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.tintColor = dark_sage
+        
+        // Sets the Title Color, Sizing, and Font
+        let titleDict: NSDictionary = [
+            NSAttributedString.Key.foregroundColor: dark_sage,
+            NSAttributedString.Key.font: UIFont(name: "Roboto-Regular", size: 28)!
+        ]
+        self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [NSAttributedString.Key : AnyObject]
+     
+        //For back button in navigation bar
+        let backButton = UIBarButtonItem()
+        backButton.title = "Back"
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        
     }
     
     func getData() {
@@ -117,7 +151,7 @@ class RecipeCheckViewController: UIViewController {
                         print("Now performing segue to landing page!")
                         DispatchQueue.main.async{
                             create_recipe_import = 0
-                            self?.performSegue(withIdentifier: "recipeCheckToLanding", sender: self)
+                            self?.performSegue(withIdentifier: "unwindToDetail", sender: self)
                         }
                     }
                 }
