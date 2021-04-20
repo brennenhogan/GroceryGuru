@@ -7,6 +7,7 @@ from models.recipeStore_model import RecipeStore
 from models.listOwnership_model import ListOwnership
 from models.recipeItem_model import RecipeItem
 from sqlalchemy import exc
+from routes.utils import update_version
 
 list_api = Blueprint('list_api', __name__)
 
@@ -132,7 +133,7 @@ def import_recipe():
   except exc.SQLAlchemyError:
     return {"result": False}
 
-  update_version(int(list_id))
+  update_version(list_id)
   return {"result": True}
 
 # Create a new list from old list
