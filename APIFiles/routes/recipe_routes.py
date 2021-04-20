@@ -7,8 +7,6 @@ from schemas.recipeItem_schema import recipeItem_schema
 from schemas.recipe_schema import recipe_schema
 from schemas.completeRecipe_schema import completeRecipe_schema
 from sqlalchemy import exc
-from routes.utils import update_version
-
 
 recipe_api = Blueprint('recipe_api', __name__)
 
