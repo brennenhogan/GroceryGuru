@@ -9,7 +9,6 @@ import UIKit
 
 public var filter_selection = 0
 public var detailed_list_active = 0
-public var current_version = -1
 
 class DetailedListController: UIViewController {
     
@@ -28,7 +27,7 @@ class DetailedListController: UIViewController {
     
     var hiddenSections = Set<Int>()
     var timer = Timer()
-    var observed_version = -1
+    var latest_version = -1
     var current_version = -1
 
     
@@ -67,18 +66,18 @@ class DetailedListController: UIViewController {
                 case .failure(let error):
                     print(error)
                 case .success(let list):
-                    self!.observed_version = list.version
+                    self!.latest_version = list.version
                     print("Data received properly")
                 }
             }
             
-            print(self.observed_version)
+            print(self.latest_version)
             print(self.current_version)
             
             // Check to see if the version of the list matches our current version
-            if(self.observed_version != self.current_version){
+            if(self.latest_version != self.current_version){
                 self.getData()
-                self.current_version = self.observed_version
+                self.current_version = self.latest_version
             }
 
         }
