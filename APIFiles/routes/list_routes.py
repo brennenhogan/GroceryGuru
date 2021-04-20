@@ -132,7 +132,7 @@ def import_recipe():
   except exc.SQLAlchemyError:
     return {"result": False}
 
-  update_version(list_id)
+  update_version(int(list_id))
   return {"result": True}
 
 # Create a new list from old list
