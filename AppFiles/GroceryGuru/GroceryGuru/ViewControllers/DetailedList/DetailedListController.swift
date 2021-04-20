@@ -193,7 +193,7 @@ class DetailedListController: UIViewController {
         self.present(alert, animated: true, completion: nil)
         
         // Grab the value from the text field when the user clicks Create
-        let createAction = UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
+        let createAction = UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
             //Create List Action
             let addStoreRequest = AddStoreRequest(storename: (textField?.text)!)
@@ -357,13 +357,15 @@ extension DetailedListController: AddItemDelegate {
             }
         })
         
+        createAction.isEnabled = false
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
         
         // adding the notification observer here
         NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object:alert.textFields?[0], queue: OperationQueue.main) { (notification) -> Void in
             let textFieldName = (alert.textFields?[0])! as UITextField
             createAction.isEnabled = !textFieldName.text!.isEmpty
-            }
+        }
         
         alert.addAction(cancelAction)
         alert.addAction(createAction)
