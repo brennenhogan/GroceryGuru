@@ -8,7 +8,7 @@
 import UIKit
 
 protocol EditStoreDelegate {
-    func editStore(storeID: String, store_name: String)
+    func editStore(storeID: String, store_name: String, section: Int)
 }
 
 protocol AddItemDelegate {
@@ -70,7 +70,7 @@ class ListHeaderView: UITableViewHeaderFooterView {
     var expandSectionDelegate: ExpandSectionDelegate?
     
     @IBAction func editStore(_ sender: UITextField){
-        editStoreDelegate?.editStore(storeID: store_id, store_name: storeName.text!)
+        editStoreDelegate?.editStore(storeID: store_id, store_name: storeName.text!, section: sender.tag)
     }
 
     @IBAction func addStore(_ sender: UIButton){

@@ -8,11 +8,11 @@
 import UIKit
 
 protocol RecipeItemDescriptionDelegate {
-    func updateRecipeItemDescription(item_id: Int, item_description: String)
+    func updateRecipeItemDescription(item_id: Int, item_description: String, section: Int, row: Int)
 }
 
 protocol RecipeItemQuantityDelegate {
-    func updateRecipeItemQty(item_id: Int, item_qty: String)
+    func updateRecipeItemQty(item_id: Int, item_qty: String, section: Int, row: Int)
 }
 
 class RecipeViewCell: UITableViewCell {
@@ -50,10 +50,12 @@ class RecipeViewCell: UITableViewCell {
     var recipeItemQuantityDelegate: RecipeItemQuantityDelegate?
     
     @IBAction func updateRecipeItemDescription(_ sender: UITextField){
-        recipeItemDescriptionDelegate?.updateRecipeItemDescription(item_id: sender.tag, item_description: sender.text!)
+        let arr = sender.accessibilityLabel?.components(separatedBy: ",")
+        recipeItemDescriptionDelegate?.updateRecipeItemDescription(item_id: Int(arr![2])!, item_description: sender.text!, section: Int(arr![0])!, row: Int(arr![1])!)
     }
     
     @IBAction func updateRecipeItemQty(_ sender: UITextField){
-        recipeItemQuantityDelegate?.updateRecipeItemQty(item_id: sender.tag, item_qty: sender.text!)
+        let arr = sender.accessibilityLabel?.components(separatedBy: ",")
+        recipeItemQuantityDelegate?.updateRecipeItemQty(item_id: Int(arr![2])!, item_qty: sender.text!, section: Int(arr![0])!, row: Int(arr![1])!)
     }
 }

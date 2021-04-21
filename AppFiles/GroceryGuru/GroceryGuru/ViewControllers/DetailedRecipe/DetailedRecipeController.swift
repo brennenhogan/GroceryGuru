@@ -16,13 +16,18 @@ class DetailedRecipeController: UIViewController {
             DispatchQueue.main.async {
                 print("Table reload with new data")
                 print(String(self.recipeData.count) + " sections")
-                self.tableView.reloadData()
+                if(!self.text_field_change){
+                    self.tableView.reloadData()
+                } else{
+                    self.text_field_change = false
+                }
             }
         }
     }
     
     var hiddenSections = Set<Int>()
     var deleted = true
+    var text_field_change = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -215,6 +220,7 @@ extension DetailedRecipeController : UITableViewDataSource {
         view.deleteButton.isHidden = !tableView.isEditing
         view.expandButton.tag = section
         view.deleteButton.tag = section
+        view.storeName.tag = section
         
         view.updateRecipeStoreDelegate = self
         view.addRecipeItemDelegate = self
@@ -245,12 +251,13 @@ extension DetailedRecipeController : UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: RecipeViewCell.identifier, for: indexPath) as! RecipeViewCell
         
+        let tag = "\(indexPath.section),\(indexPath.row),\(item_id)"
+
         cell.configure(title: text, qty: qty)
-        
         cell.itemName.isEnabled = tableView.isEditing
         cell.itemQty.isEnabled = tableView.isEditing
-        cell.itemName.tag = item_id
-        cell.itemQty.tag = item_id
+        cell.itemName.accessibilityLabel = tag
+        cell.itemQty.accessibilityLabel = tag
         
         cell.recipeItemQuantityDelegate = self
         cell.recipeItemDescriptionDelegate = self
@@ -365,7 +372,7 @@ extension DetailedRecipeController: AddRecipeItemDelegate {
 }
 
 extension DetailedRecipeController: UpdateRecipeStoreDelegate {
-    func updateRecipeStore(storeID: String, store_name: String) {
+    func updateRecipeStore(storeID: String, store_name: String, section: Int) {
         let updateRecipeStoreNameRequest = UpdateRecipeStoreNameRequest(store_name: store_name, store_id: storeID)
         updateRecipeStoreNameRequest.updateRecipeStoreName { [weak self] result in
             switch result {
@@ -377,14 +384,14 @@ extension DetailedRecipeController: UpdateRecipeStoreDelegate {
                 print(error)
             case .success(_):
                 print("Store edited")
-                self?.getData()
-            }
+                self!.recipeData[section].name = store_name
+                self!.text_field_change = true            }
         }
     }
 }
 
 extension DetailedRecipeController: RecipeItemDescriptionDelegate {
-    func updateRecipeItemDescription(item_id: Int, item_description: String) {
+    func updateRecipeItemDescription(item_id: Int, item_description: String, section: Int, row: Int) {
         let updateRecipeItemDescriptionRequest = UpdateRecipeItemDescriptionRequest(item_id: item_id, item_description: item_description)
         updateRecipeItemDescriptionRequest.updateRecipeItemDescription { [weak self] result in
             switch result {
@@ -392,7 +399,8 @@ extension DetailedRecipeController: RecipeItemDescriptionDelegate {
                 print(error)
             case .success(let response):
                 print("Recipe has been updated \(response)")
-                self?.getData()
+                self!.recipeData[section].items[row].itemDescription = item_description
+                self!.text_field_change = true
             }
         }
         return
@@ -400,7 +408,7 @@ extension DetailedRecipeController: RecipeItemDescriptionDelegate {
 }
 
 extension DetailedRecipeController: RecipeItemQuantityDelegate {
-    func updateRecipeItemQty(item_id: Int, item_qty: String) {
+    func updateRecipeItemQty(item_id: Int, item_qty: String, section: Int, row: Int) {
         let updateRecipeItemQuantityRequest = UpdateRecipeItemQuantityRequest(item_id: item_id, item_qty: item_qty)
         updateRecipeItemQuantityRequest.updateRecipeItemQty { [weak self] result in
             switch result {
@@ -412,7 +420,8 @@ extension DetailedRecipeController: RecipeItemQuantityDelegate {
                 print(error)
             case .success(_):
                 print("Quantity edited")
-                self?.getData()
+                self!.recipeData[section].items[row].qty = Int(item_qty)!
+                self!.text_field_change = true
             }
         }
     }

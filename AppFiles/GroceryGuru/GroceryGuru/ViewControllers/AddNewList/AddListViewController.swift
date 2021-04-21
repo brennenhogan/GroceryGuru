@@ -70,12 +70,14 @@ class AddListViewController: UIViewController {
             oldListTableView.isHidden = true
             recipeTableView.isHidden = true
         } else if (sender.selectedSegmentIndex == 1) {
+            self.view.endEditing(true)
             newListView.isHidden = true
             instructions.text = "Pick an old list from below"
             createButton.isHidden = true
             oldListTableView.isHidden = false
             recipeTableView.isHidden = true
         } else if (sender.selectedSegmentIndex == 2) {
+            self.view.endEditing(true)
             newListView.isHidden = true
             instructions.text = "Pick a recipe from below"
             createButton.isHidden = true

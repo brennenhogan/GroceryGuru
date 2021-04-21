@@ -10,12 +10,12 @@ import Foundation
 struct RecipeElement: Codable {
     var items: [RecipeItem]
     var store_id: Int
-    let name: String // name is the name of the store
+    var name: String // name is the name of the store
 }
 
 struct RecipeItem : Codable {
-    let itemDescription: String
-    let itemID, recipeID, qty, checked: Int
+    var itemDescription: String
+    var itemID, recipeID, qty, checked: Int
     
     enum CodingKeys: String, CodingKey {
         case itemDescription = "description"

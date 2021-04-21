@@ -276,11 +276,13 @@ extension DetailedListController : UITableViewDataSource {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListHeaderView.identifier) as! ListHeaderView
         view.configure(title: listData.stores[section].name, storeID: String(listData.stores[section].store_id)) // TODO - add buttons here that do things
 
+        
         view.storeName.isEnabled = tableView.isEditing
         view.addButton.isHidden = tableView.isEditing
         view.deleteButton.isHidden = !tableView.isEditing
         view.deleteButton.tag = section
         view.expandButton.tag = section
+        view.storeName.tag = section
         
         view.addItemDelegate = self // Be listening for the button tap in the header
         view.deleteStoreDelegate = self
@@ -411,7 +413,7 @@ extension DetailedListController: DeleteStoreDelegate {
 }
 
 extension DetailedListController: EditStoreDelegate {
-    func editStore(storeID: String, store_name: String) {
+    func editStore(storeID: String, store_name: String, section: Int) {
         let updateStoreNameRequest = UpdateStoreNameRequest(store_name: store_name, store_id: storeID, list_id: selected_list_id)
         updateStoreNameRequest.updateStoreName { [weak self] result in
             switch result {
@@ -424,6 +426,7 @@ extension DetailedListController: EditStoreDelegate {
             case .success(_):
                 print("Store edited")
                 self!.local_version += 1
+                self!.listData.stores[section].name = store_name
             }
         }
     }

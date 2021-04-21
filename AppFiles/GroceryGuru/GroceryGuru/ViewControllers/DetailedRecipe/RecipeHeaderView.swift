@@ -25,7 +25,7 @@ import UIKit
  }
 
 protocol UpdateRecipeStoreDelegate{
-    func updateRecipeStore(storeID: String, store_name: String)
+    func updateRecipeStore(storeID: String, store_name: String, section: Int)
 }
  
 
@@ -75,7 +75,7 @@ class RecipeHeaderView: UITableViewHeaderFooterView {
     var updateRecipeStoreDelegate: UpdateRecipeStoreDelegate?
     
     @IBAction func updateStore(_ sender: UITextField){
-        updateRecipeStoreDelegate?.updateRecipeStore(storeID: store_id, store_name: storeName.text!)
+        updateRecipeStoreDelegate?.updateRecipeStore(storeID: store_id, store_name: storeName.text!, section: sender.tag)
     }
 
     @IBAction func addRecipeItem(_ sender: UIButton){
