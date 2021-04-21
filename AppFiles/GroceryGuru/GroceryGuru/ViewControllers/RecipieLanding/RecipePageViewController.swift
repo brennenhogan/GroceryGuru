@@ -7,13 +7,12 @@
 
 import UIKit
 
-public var selected_recipe_id = ""
-public var selected_recipe_name = ""
-
 class RecipePageViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
+    var deleted = true
+
     var allRecipieData = AllRecipeResponse() {
         didSet {
             DispatchQueue.main.async {
@@ -36,6 +35,7 @@ class RecipePageViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.getData()
+        active_page = "O"
     }
     
     func getData() {
@@ -74,16 +74,16 @@ class RecipePageViewController: UIViewController {
                 case .failure(let error):
                     DispatchQueue.main.async {
                         self?.CreateAlert(title: "Error", message: "\(error)")
-                        deleted = false
+                        self?.deleted = false
                     }
                     print(error)
                 case .success(let response):
                     print("List has been deleted \(response)")
-                    deleted = response.result
+                    self?.deleted = response.result
                 }
             }
             
-            if(deleted){
+            if(self.deleted){
                 allRecipieData.remove(at: indexPath.item)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }

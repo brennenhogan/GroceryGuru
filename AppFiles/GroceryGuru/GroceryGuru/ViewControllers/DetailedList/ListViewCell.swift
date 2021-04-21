@@ -8,15 +8,15 @@
 import UIKit
 
 protocol ItemDescriptionDelegate {
-    func editDescription(item_id: Int, item_description: String)
+    func editDescription(item_id: Int, item_description: String, section: String, row: String)
 }
 
 protocol ItemQuantityDelegate {
-    func editQty(item_id: Int, item_qty: String)
+    func editQty(item_id: Int, item_qty: String, section: String, row: String)
 }
 
 protocol CheckButtonDelegate {
-    func markItem(item_id: Int, check: Int)
+    func markItem(item_id: Int, check: Int, section: String, row: String)
 }
 
 class ListViewCell: UITableViewCell {
@@ -57,24 +57,25 @@ class ListViewCell: UITableViewCell {
     var checkButtonDelegate: CheckButtonDelegate?
 
     @IBAction func editDescription(_ sender: UITextField){
-        let item_id = sender.tag
-        itemDescriptionDelegate?.editDescription(item_id: item_id, item_description: sender.text!)
+        let arr = sender.accessibilityLabel?.components(separatedBy: ",")
+        itemDescriptionDelegate?.editDescription(item_id: Int(arr![2])!, item_description: sender.text!, section: arr![0], row: arr![1])
     }
     
     @IBAction func editQty(_ sender: UITextField){
-        itemQuantityDelegate?.editQty(item_id: sender.tag, item_qty: sender.text!)
+        let arr = sender.accessibilityLabel?.components(separatedBy: ",")
+        itemQuantityDelegate?.editQty(item_id: Int(arr![2])!, item_qty: sender.text!, section: arr![0], row: arr![1])
     }
     
     @IBAction func markItem(_ sender: UIButton){
-        let item_id = sender.tag
+        let arr = sender.accessibilityLabel?.components(separatedBy: ",")
         sender.isSelected = !sender.isSelected
-        var result = 0
         
+        var result = 0
         if(sender.isSelected){
             result = 1
         }
         
-        checkButtonDelegate?.markItem(item_id: item_id, check: result)
+        checkButtonDelegate?.markItem(item_id: Int(arr![2])!, check: result, section: arr![0], row: arr![1])
     }
     
 }

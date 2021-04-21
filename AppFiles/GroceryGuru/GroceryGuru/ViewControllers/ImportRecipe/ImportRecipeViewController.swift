@@ -7,8 +7,6 @@
 
 import UIKit
 
-public var create_recipe_import = 0
-
 class ImportRecipeViewController: UIViewController {
 
     // MARK: Outlets
@@ -27,6 +25,10 @@ class ImportRecipeViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         self.getRecipeData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        active_page = "O"
     }
     
     //MARK: Actions
@@ -83,7 +85,6 @@ class ImportRecipeViewController: UIViewController {
                 DispatchQueue.main.async {
                     self?.CreateAlert(title: "Error", message: "\(error)")
                 }
-                print(error)
             case .success(let allRecipes):
                 self?.allRecipieData = allRecipes
                 print("Data received properly")
@@ -99,9 +100,6 @@ class ImportRecipeViewController: UIViewController {
 
 extension ImportRecipeViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("This recipe was tapped: " + String(allRecipieData[indexPath.row].recipeID))
-        print("Its name is: " + allRecipieData[indexPath.row].recipeName)
-        
         selected_recipe_id = String(allRecipieData[indexPath.row].recipeID)
         selected_recipe_name = allRecipieData[indexPath.row].recipeName
         

@@ -7,8 +7,6 @@
 
 import UIKit
 
-public var userUuid = ""
-
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var userText: UITextField!

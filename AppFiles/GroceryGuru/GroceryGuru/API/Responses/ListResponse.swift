@@ -24,8 +24,8 @@ struct ListElement: Codable {
 }
 
 struct Item : Codable {
-    let itemDescription: String
-    let itemID, listID, purchased, qty: Int
+    var itemDescription: String
+    var itemID, listID, purchased, qty: Int
     
     enum CodingKeys: String, CodingKey {
         case itemDescription = "description"

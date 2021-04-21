@@ -6,32 +6,16 @@
 //
 
 import UIKit
-import CoreData
-
-extension AddListViewController: UITextViewDelegate {
-    func textViewDidChangeSelection(_ textView: UITextView){
-        if createButton.isHidden {
-            textView.text.removeAll()
-            
-            createButton.isHidden = false
-            
-            UIView.animate(withDuration: 0.3) {
-                self.view.layoutIfNeeded()
-            }
-        }
-    }
-}
 
 class AddListViewController: UIViewController {
 
     // MARK: Outlets
 
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var textView: UITextField!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var createButton: UIButton!
-    @IBOutlet weak var bottomContraint: NSLayoutConstraint!
     @IBOutlet weak var newListView: UIView!
-    @IBOutlet weak var newListLabel: UILabel!
+    @IBOutlet weak var instructions: UILabel!
     @IBOutlet var oldListTableView: UITableView!
     @IBOutlet var recipeTableView: UITableView!
     
@@ -39,14 +23,9 @@ class AddListViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow(with:)),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-        textView.becomeFirstResponder()
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        
+        createButton.backgroundColor = createButton.backgroundColor?.withAlphaComponent(0.50)
         
         oldListTableView.register(OldListsCell.nib(), forCellReuseIdentifier:OldListsCell.identifier)
         oldListTableView.delegate = self
@@ -62,21 +41,16 @@ class AddListViewController: UIViewController {
         self.getRecipeData()
     }
     
-    //MARK: Actions
-    
-    @objc func keyboardWillShow(with notification: Notification){
-        let key = "UIKeyboardFrameEndUserInfoKey"
-        guard let keyboardFrame = notification.userInfo?[key] as? NSValue else { return }
-        
-        let keyboardHeight = keyboardFrame.cgRectValue.height
-        
-        bottomContraint.constant = keyboardHeight + 20
-        
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
+    override func viewDidAppear(_ animated: Bool) {
+        active_page = "O"
+        NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object:self.textView, queue: OperationQueue.main) { (notification) -> Void in
+            let textFieldName = self.textView as UITextField
+            self.createButton.isEnabled = !textFieldName.text!.isEmpty
+            self.createButton.backgroundColor = self.createButton.backgroundColor?.withAlphaComponent(self.createButton.isEnabled ? 1.0 : 0.50)
         }
-        
     }
+    
+    //MARK: Actions
     
     func CreateAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
@@ -90,25 +64,23 @@ class AddListViewController: UIViewController {
     @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
         let selection = sender.selectedSegmentIndex
         if (selection == 0) {
-            print(selection)
             newListView.isHidden = false
-            newListLabel.isHidden = false
+            instructions.text = "Enter a name for your list"
+            createButton.isHidden = false
             oldListTableView.isHidden = true
             recipeTableView.isHidden = true
         } else if (sender.selectedSegmentIndex == 1) {
             newListView.isHidden = true
-            newListLabel.isHidden = true
+            instructions.text = "Pick an old list from below"
             createButton.isHidden = true
             oldListTableView.isHidden = false
             recipeTableView.isHidden = true
-            print(selection)
         } else if (sender.selectedSegmentIndex == 2) {
             newListView.isHidden = true
-            newListLabel.isHidden = true
+            instructions.text = "Pick a recipe from below"
             createButton.isHidden = true
             oldListTableView.isHidden = true
             recipeTableView.isHidden = false
-            print(selection)
         }
     }
     
@@ -118,33 +90,24 @@ class AddListViewController: UIViewController {
             return
         }
         
-        // Creates a new list
-        // 0 for new list, 1 for previous list, 2 for recipes
-        let segment = Int16(segmentedControl.selectedSegmentIndex)
-        
-        if( segment == 0 ){
-            print("Create from scratch")
-            
-            let addListRequest = AddListRequest(listname: listName)
-            addListRequest.addList { [weak self] result in
-                switch result {
-                case .failure(let error):
-                    DispatchQueue.main.async {
-                        self?.CreateAlert(title: "Error", message: "\(error)")
-                    }
-                    print(error)
-                case .success(let response):
-                    let addListResponse = response
-                    print("Now performing segue to detailed list page \(addListResponse.list_id)")
-                    selected_list_id = String(addListResponse.list_id)
-                    selected_list_name = listName
-                    DispatchQueue.main.async{
-                        self?.performSegue(withIdentifier: "unwindToLanding", sender: self)
-                    }
+        let addListRequest = AddListRequest(listname: listName)
+        addListRequest.addList { [weak self] result in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.CreateAlert(title: "Error", message: "\(error)")
+                }
+                print(error)
+            case .success(let response):
+                let addListResponse = response
+                selected_list_id = String(addListResponse.list_id)
+                selected_list_name = listName
+                DispatchQueue.main.async{
+                    self?.performSegue(withIdentifier: "unwindToLanding", sender: self)
                 }
             }
-            
         }
+            
     }
     
     var allListData = AllListResponse() {
@@ -203,9 +166,6 @@ class AddListViewController: UIViewController {
 extension AddListViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == oldListTableView {
-            print("This list was tapped: " + String(allListData[indexPath.row].listID))
-            print("Its name is: " + allListData[indexPath.row].listName)
-            
             tableView.deselectRow(at: indexPath, animated: true) // Unselect the previous list
             
             let listId = String(allListData[indexPath.row].listID)
@@ -230,7 +190,6 @@ extension AddListViewController : UITableViewDelegate {
                     case .success(let response):
                         print("List has been created with id = \(response.list_id)")
                         
-                        print("Now performing segue to landing page!")
                         DispatchQueue.main.async{
                             self?.performSegue(withIdentifier: "unwindToLanding", sender: self)
                         }
@@ -256,7 +215,6 @@ extension AddListViewController : UITableViewDelegate {
             selected_recipe_id = String(allRecipieData[indexPath.row].recipeID)
             selected_recipe_name = allRecipieData[indexPath.row].recipeName
             
-            print("Now performing segue to recipe checking page!")
             DispatchQueue.main.async{
                 self.performSegue(withIdentifier: "NewListToRecipeCheck", sender: self)
             }

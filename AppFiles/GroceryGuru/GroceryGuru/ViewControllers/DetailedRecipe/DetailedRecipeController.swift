@@ -22,6 +22,7 @@ class DetailedRecipeController: UIViewController {
     }
     
     var hiddenSections = Set<Int>()
+    var deleted = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,16 +102,16 @@ class DetailedRecipeController: UIViewController {
                 case .failure(let error):
                     DispatchQueue.main.async {
                         self?.CreateAlert(title: "Error", message: "\(error)")
-                        deleted = false
+                        self?.deleted = false
                     }
                     print(error)
                 case .success(let response):
                     print("Recipe has been deleted \(response)")
-                    deleted = response.result
+                    self?.deleted = response.result
                 }
             }
             
-            if(deleted){
+            if(self.deleted){
                 var items = recipeData[indexPath.section].items
                 items.remove(at: indexPath.row)
                 recipeData[indexPath.section].items = items

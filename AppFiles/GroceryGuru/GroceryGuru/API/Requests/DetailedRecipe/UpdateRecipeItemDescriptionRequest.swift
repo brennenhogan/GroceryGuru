@@ -17,7 +17,7 @@ struct UpdateRecipeItemDescriptionRequest {
     let requestURL:URLRequest
     
     init(item_id:Int, item_description:String) {
-        let resourceString = "http://318.188.0.221:8080/recipe/item/description"
+        let resourceString = "http://18.188.0.221:8080/recipe/item/description"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         let parameterDictionary = ["item_description": item_description, "item_id": item_id] as [String : Any]
         var request = URLRequest(url: resourceURL)

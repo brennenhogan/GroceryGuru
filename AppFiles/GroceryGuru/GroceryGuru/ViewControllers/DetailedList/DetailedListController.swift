@@ -7,9 +7,6 @@
 
 import UIKit
 
-public var filter_selection = 0
-public var detailed_list_active = 0
-
 class DetailedListController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
@@ -17,22 +14,26 @@ class DetailedListController: UIViewController {
     
     var listData = ListResponse() {
         didSet {
-            DispatchQueue.main.async {
-                print("Table reload with new data")
-                print(String(self.listData.stores.count) + " sections")
-                self.tableView.reloadData()
+            if(self.local_version <= self.server_version || self.local_version == -1){
+                DispatchQueue.main.async {
+                    print("Table reload with new data")
+                    print(String(self.listData.stores.count) + " sections")
+                    self.tableView.reloadData()
+                }
             }
         }
     }
     
     var hiddenSections = Set<Int>()
     var timer = Timer()
-    var latest_version = -1
-    var current_version = -1
-
+    var server_version = -1
+    var local_version = -1
+    var deleted = true
+    var filter_selection = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getData()
         self.navigationItem.title = selected_list_name
         configureNavigationBar()
         
@@ -41,19 +42,17 @@ class DetailedListController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        self.getData()
-        
+                
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.getData()
-        detailed_list_active = 1
-        
+        active_page = "D"
+
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
             // Invalidate the timer if we are no longer on the detailed list page
-            if(detailed_list_active==0){
+            if(active_page != "D"){
                 self.timer.invalidate()
             }
 
@@ -66,18 +65,18 @@ class DetailedListController: UIViewController {
                 case .failure(let error):
                     print(error)
                 case .success(let list):
-                    self!.latest_version = list.version
-                    print("Data received properly")
+                    self?.server_version = list.version
                 }
             }
             
-            print(self.latest_version)
-            print(self.current_version)
+            /*print(self.server_version)
+            print(self.current_version)*/
             
-            // Check to see if the version of the list matches our current version
-            if(self.latest_version != self.current_version){
+            // Check to see the server version is more up to date than the local
+            if(self.server_version > self.local_version){
+                print("Getting new data")
                 self.getData()
-                self.current_version = self.latest_version
+                self.local_version = self.server_version
             }
 
         }
@@ -118,7 +117,7 @@ class DetailedListController: UIViewController {
     }
     
     func getData() {
-        let listRequest = ListRequest(list_id: selected_list_id, filter: filter_selection)
+        let listRequest = ListRequest(list_id: selected_list_id, filter: self.filter_selection)
         listRequest.getList { [weak self] result in
             switch result {
             case .failure(let error):
@@ -128,7 +127,8 @@ class DetailedListController: UIViewController {
                 }
                 print(error)
             case .success(let list):
-                self!.current_version = Int(list.version)!
+                self!.local_version = Int(list.version)!
+                self!.server_version = Int(list.version)!
                 self?.listData = list
                 print("Data received properly")
             }
@@ -158,16 +158,16 @@ class DetailedListController: UIViewController {
                 case .failure(let error):
                     DispatchQueue.main.async {
                         self?.CreateAlert(title: "Error", message: "\(error)")
-                        deleted = false
+                        self?.deleted = false
                     }
                     print(error)
                 case .success(let response):
                     print("List has been deleted \(response)")
-                    deleted = response.result
+                    self?.deleted = response.result
                 }
             }
             
-            if(deleted){
+            if(self.deleted){
                 var items = listData.stores[indexPath.section].items
                 items.remove(at: indexPath.row)
                 listData.stores[indexPath.section].items = items
@@ -243,7 +243,7 @@ class DetailedListController: UIViewController {
     }
     
     @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
-        filter_selection = sender.selectedSegmentIndex
+        self.filter_selection = sender.selectedSegmentIndex
         self.getData()
     }
 
@@ -312,14 +312,16 @@ extension DetailedListController : UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ListViewCell.identifier, for: indexPath) as! ListViewCell
         
+        let tag = "\(indexPath.section),\(indexPath.row),\(item_id)"
         cell.configure(title: text, qty: qty)
         cell.itemName.isEnabled = tableView.isEditing
         cell.itemQty.isEnabled = tableView.isEditing
         cell.checkBtn.isHidden = tableView.isEditing
         cell.checkBtn.isSelected = (purchased == 1)
-        cell.itemName.tag = item_id
-        cell.itemQty.tag = item_id
-        cell.checkBtn.tag = item_id
+        cell.itemName.accessibilityLabel = tag
+        cell.itemQty.accessibilityLabel = tag
+        cell.checkBtn.accessibilityLabel = tag
+        
         cell.itemQuantityDelegate = self
         cell.itemDescriptionDelegate = self
         cell.checkButtonDelegate = self
@@ -421,14 +423,14 @@ extension DetailedListController: EditStoreDelegate {
                 print(error)
             case .success(_):
                 print("Store edited")
-                self?.getData()
+                self!.local_version += 1
             }
         }
     }
 }
 
 extension DetailedListController: ItemQuantityDelegate {
-    func editQty(item_id: Int, item_qty: String) {
+    func editQty(item_id: Int, item_qty: String, section: String, row: String) {
         let updateStoreNameRequest = UpdateItemQuantityRequest(item_id: item_id, item_qty: item_qty)
         updateStoreNameRequest.updateStoreName { [weak self] result in
             switch result {
@@ -440,14 +442,15 @@ extension DetailedListController: ItemQuantityDelegate {
                 print(error)
             case .success(_):
                 print("Quantity edited")
-                self?.getData()
+                self!.local_version += 1
+                self!.listData.stores[Int(section)!].items[Int(row)!].qty = Int(item_qty)!
             }
         }
     }
 }
 
 extension DetailedListController: ItemDescriptionDelegate {
-    func editDescription(item_id: Int, item_description: String) {
+    func editDescription(item_id: Int, item_description: String, section: String, row: String) {
         let updateItemDescriptionRequest = UpdateItemDescriptionRequest(item_id: item_id, item_description: item_description)
         updateItemDescriptionRequest.updateItemDescription { [weak self] result in
             switch result {
@@ -455,7 +458,8 @@ extension DetailedListController: ItemDescriptionDelegate {
                 print(error)
             case .success(let response):
                 print("List has been updated \(response)")
-                self?.getData()
+                self!.local_version += 1
+                self!.listData.stores[Int(section)!].items[Int(row)!].itemDescription = item_description
             }
         }
         return
@@ -488,7 +492,7 @@ extension DetailedListController: ExpandSectionDelegate {
 }
 
 extension DetailedListController: CheckButtonDelegate {
-    func markItem(item_id: Int, check: Int) {
+    func markItem(item_id: Int, check: Int, section: String, row: String) {
         let updatePurchasedRequest = UpdatePurchasedRequest(item_id: item_id, purchased: check)
         updatePurchasedRequest.updateItemPurchased { [weak self] result in
             switch result {
@@ -496,7 +500,8 @@ extension DetailedListController: CheckButtonDelegate {
                 print(error)
             case .success(let response):
                 print("Item purchased has been updated \(response)")
-                self?.getData()
+                self!.local_version += 1
+                self!.listData.stores[Int(section)!].items[Int(row)!].purchased = check
             }
         }
         return

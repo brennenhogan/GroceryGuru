@@ -65,7 +65,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="SUz-aD-Qiw"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                                         <state key="normal" title="Recipes">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -84,7 +84,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="172" id="9zr-7U-K7g"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                                         <state key="normal" title="Old Lists">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -157,7 +157,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="dOQ-hc-XeV"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                         <state key="normal" title="Add Recipe">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -242,7 +242,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="lZh-AI-OA9"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                                 <state key="normal" title="Import Recipe">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -263,7 +263,7 @@
                                                     <constraint firstAttribute="width" constant="174" id="NGm-ZW-HXF"/>
                                                     <constraint firstAttribute="height" constant="50" id="wKC-e3-BvK"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                                 <state key="normal" title="Add Store">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -319,78 +319,116 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="C8V-dn-Vg5">
-                                <rect key="frame" x="20" y="98" width="374" height="358.5"/>
+                                <rect key="frame" x="20" y="98" width="374" height="1089.5"/>
                                 <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="uaB-WY-ohm">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="84.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build a new list from..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1l-St-odF">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="38.5"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="28"/>
+                                                <color key="textColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Nyk-jv-Uax">
+                                                <rect key="frame" x="0.0" y="54.5" width="374" height="31"/>
+                                                <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="Dbb-kO-cow"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="New List"/>
+                                                    <segment title="Old List"/>
+                                                    <segment title="Recipe"/>
+                                                </segments>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="selectedSegmentTintColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="didChangeSegment:" destination="nRt-iz-LqB" eventType="valueChanged" id="Jyk-7Q-Izy"/>
+                                                </connections>
+                                            </segmentedControl>
+                                        </subviews>
+                                    </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a name for your list" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcx-l4-1Ov">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="33"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="28"/>
+                                        <rect key="frame" x="0.0" y="100.5" width="374" height="25"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="200" ambiguous="YES" text="List Name" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MuT-uy-2eZ">
-                                        <rect key="frame" x="0.0" y="49" width="374" height="243.5"/>
-                                        <color key="textColor" systemColor="labelColor"/>
-                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="28"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="username"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="nRt-iz-LqB" id="njN-Fr-nNT"/>
-                                        </connections>
-                                    </textView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fPV-fU-DhV" userLabel="Old Lists Table View">
-                                        <rect key="frame" x="0.0" y="308.5" width="374" height="0.0"/>
-                                        <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="tintColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="separatorColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="25"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </tableView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bmg-Su-sSv" userLabel="Recipe Table View">
-                                        <rect key="frame" x="0.0" y="324.5" width="374" height="34"/>
-                                        <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="tintColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="separatorColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="25"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </tableView>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="uaB-WY-ohm">
-                                <rect key="frame" x="20" y="760.5" width="374" height="101.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build from..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1l-St-odF">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="38.5"/>
-                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="28"/>
-                                        <color key="textColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Nyk-jv-Uax">
-                                        <rect key="frame" x="0.0" y="54.5" width="374" height="32"/>
-                                        <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <segments>
-                                            <segment title="New List"/>
-                                            <segment title="Previous List"/>
-                                            <segment title="Recipes"/>
-                                        </segments>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="selectedSegmentTintColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="didChangeSegment:" destination="nRt-iz-LqB" eventType="valueChanged" id="Jyk-7Q-Izy"/>
-                                        </connections>
-                                    </segmentedControl>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EI7-hT-uwG">
-                                        <rect key="frame" x="0.0" y="101.5" width="374" height="0.0"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q5v-Ml-jGQ" customClass="DesignableView" customModule="GroceryGuru" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="141.5" width="374" height="50"/>
                                         <subviews>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="245" restorationIdentifier="Create Button" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSK-b6-pVj" userLabel="Create Button">
-                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="51"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="List Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KFT-sE-h0k">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="Ypo-kQ-dk8"/>
+                                                </constraints>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="KFT-sE-h0k" secondAttribute="bottom" id="2KP-YY-r5z"/>
+                                            <constraint firstItem="KFT-sE-h0k" firstAttribute="leading" secondItem="q5v-Ml-jGQ" secondAttribute="leading" id="4xV-eu-Cop"/>
+                                            <constraint firstItem="KFT-sE-h0k" firstAttribute="top" secondItem="q5v-Ml-jGQ" secondAttribute="top" id="Am5-Ym-3ei"/>
+                                            <constraint firstAttribute="trailing" secondItem="KFT-sE-h0k" secondAttribute="trailing" id="CNy-yD-FS7"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" systemColor="labelColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="0.10000000000000001"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
+                                                <real key="value" value="-3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fPV-fU-DhV" userLabel="Old Lists Table View">
+                                        <rect key="frame" x="0.0" y="207.5" width="374" height="400"/>
+                                        <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="400" id="ErD-ZN-dhr"/>
+                                        </constraints>
+                                        <color key="separatorColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </tableView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bmg-Su-sSv" userLabel="Recipe Table View">
+                                        <rect key="frame" x="0.0" y="623.5" width="374" height="400"/>
+                                        <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="400" id="2ad-gj-9d1"/>
+                                        </constraints>
+                                        <color key="separatorColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </tableView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EI7-hT-uwG">
+                                        <rect key="frame" x="0.0" y="1039.5" width="374" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="245" restorationIdentifier="Create Button" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSK-b6-pVj" userLabel="Create Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
                                                 <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="28"/>
-                                                <state key="normal" title="Create">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="Gfp-q0-bLP"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
+                                                <state key="normal" title="Create List">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -410,28 +448,20 @@
                         <viewLayoutGuide key="safeArea" id="iEm-ds-hek"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="iEm-ds-hek" firstAttribute="bottom" secondItem="uaB-WY-ohm" secondAttribute="bottom" id="7Oi-YO-LyP"/>
-                            <constraint firstItem="uaB-WY-ohm" firstAttribute="leading" secondItem="iEm-ds-hek" secondAttribute="leading" constant="20" id="AEE-0U-tZN"/>
                             <constraint firstItem="C8V-dn-Vg5" firstAttribute="leading" secondItem="iEm-ds-hek" secondAttribute="leading" constant="20" id="Bnf-ht-VUm"/>
                             <constraint firstItem="iEm-ds-hek" firstAttribute="trailing" secondItem="C8V-dn-Vg5" secondAttribute="trailing" constant="20" id="Jk2-EC-3ry"/>
-                            <constraint firstItem="uaB-WY-ohm" firstAttribute="leading" secondItem="iEm-ds-hek" secondAttribute="leading" constant="20" id="O9E-Hm-TBq"/>
                             <constraint firstItem="C8V-dn-Vg5" firstAttribute="top" secondItem="iEm-ds-hek" secondAttribute="top" constant="10" id="f54-oe-Dvr"/>
-                            <constraint firstAttribute="trailing" secondItem="uaB-WY-ohm" secondAttribute="trailing" constant="20" id="jhs-gI-0Xk"/>
-                            <constraint firstAttribute="bottom" secondItem="uaB-WY-ohm" secondAttribute="bottom" id="pEd-U8-Yv3"/>
-                            <constraint firstItem="iEm-ds-hek" firstAttribute="trailing" secondItem="uaB-WY-ohm" secondAttribute="trailing" constant="20" id="xjP-7a-Nqb"/>
-                            <constraint firstItem="C8V-dn-Vg5" firstAttribute="height" secondItem="ngw-CG-Mf8" secondAttribute="height" multiplier="0.4" id="yDO-v5-rpJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create New List" id="lw6-Oy-su7"/>
                     <connections>
-                        <outlet property="bottomContraint" destination="pEd-U8-Yv3" id="LIU-zL-BeG"/>
                         <outlet property="createButton" destination="rSK-b6-pVj" id="2Cr-ae-X4L"/>
-                        <outlet property="newListLabel" destination="dcx-l4-1Ov" id="fXB-ZY-eOY"/>
-                        <outlet property="newListView" destination="MuT-uy-2eZ" id="v0V-qR-dKt"/>
+                        <outlet property="instructions" destination="dcx-l4-1Ov" id="8I9-wB-9Sh"/>
+                        <outlet property="newListView" destination="q5v-Ml-jGQ" id="vXI-69-G1N"/>
                         <outlet property="oldListTableView" destination="fPV-fU-DhV" id="Em9-Fb-Suk"/>
                         <outlet property="recipeTableView" destination="Bmg-Su-sSv" id="K1X-z8-YuY"/>
                         <outlet property="segmentedControl" destination="Nyk-jv-Uax" id="bX5-jg-zNa"/>
-                        <outlet property="textView" destination="MuT-uy-2eZ" id="Qal-73-GIq"/>
+                        <outlet property="textView" destination="KFT-sE-h0k" id="9Le-cK-kml"/>
                         <segue destination="GVW-bU-frF" kind="show" identifier="AddToDetailed" id="4nF-TC-L7i"/>
                         <segue destination="ZJO-B2-k3K" kind="unwind" identifier="unwindToLanding" unwindAction="unwind:" id="kDB-Gv-hSK"/>
                         <segue destination="wd3-fr-8Nt" kind="show" identifier="NewListToRecipeCheck" id="dyz-qF-xdS"/>
@@ -553,7 +583,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="abN-4m-5VW"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                                         <state key="normal" title="Continue">
                                                             <color key="titleColor" systemColor="systemBackgroundColor"/>
                                                         </state>
@@ -770,7 +800,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="960-AV-aSH"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                                 <state key="normal" title="Continue">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -942,7 +972,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="v0H-pb-OtR"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                                 <state key="normal" title="Continue">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -1013,7 +1043,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="YgN-Ui-Ey7"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                                 <state key="normal" title="Add Store">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
@@ -1033,7 +1063,7 @@
                                                     <constraint firstAttribute="width" constant="172" id="XQF-z2-jvQ"/>
                                                     <constraint firstAttribute="height" constant="50" id="enR-d4-F44"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                                 <state key="normal" title="Submit">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
@@ -1114,7 +1144,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="BLY-ft-sXL"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                                 <state key="normal" title="Create List">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
@@ -1212,9 +1242,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="RVP-7Q-Hyg"/>
-        <segue reference="lTw-40-dyv"/>
-        <segue reference="YPC-dN-Orv"/>
+        <segue reference="dyz-qF-xdS"/>
+        <segue reference="4nF-TC-L7i"/>
+        <segue reference="ceX-1p-A5Y"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
     <resources>

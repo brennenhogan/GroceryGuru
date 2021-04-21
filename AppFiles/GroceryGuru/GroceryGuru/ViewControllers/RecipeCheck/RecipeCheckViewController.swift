@@ -16,7 +16,6 @@ class RecipeCheckViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 print("Table reload with new data")
-                print(String(self.recipeData.count) + " sections")
                 self.tableView.reloadData()
             }
         }
@@ -76,11 +75,9 @@ class RecipeCheckViewController: UIViewController {
         recipeRequest.getRecipe { [weak self] result in
             switch result {
             case .failure(let error):
-                print("Error getting recipe data")
                 DispatchQueue.main.async {
                     self?.CreateAlert(title: "Error", message: "\(error)")
                 }
-                print(error)
             case .success(let recipe):
                 self?.recipeData = recipe
                 print("Recipe data received properly")
@@ -117,7 +114,6 @@ class RecipeCheckViewController: UIViewController {
                     case .failure(let error):
                         print(error)
                     case .success(let response):
-                        print("List has been created with id = \(response.list_id)")
                         selected_list_id = String(response.list_id)
                         selected_list_name = (textField?.text)!
                         
@@ -175,7 +171,6 @@ class RecipeCheckViewController: UIViewController {
 extension RecipeCheckViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("tapped cell!!")
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -212,7 +207,6 @@ extension RecipeCheckViewController: UITableViewDataSource {
         let text = recipeData[indexPath.section].items[indexPath.row].itemDescription
         let qty = recipeData[indexPath.section].items[indexPath.row].qty
         let checked = recipeData[indexPath.section].items[indexPath.row].checked
-        print(checked == 1)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: RecipeCheckCell.identifier, for: indexPath) as! RecipeCheckCell
         

@@ -20,16 +20,23 @@ extension UIColor {
 
 }
 
-public var deleted = true
+/* GLOBAL VARIABLES */
+public var userUuid = ""
 public var selected_list_id = ""
 public var selected_list_name = ""
+public var selected_recipe_id = ""
+public var selected_recipe_name = ""
+public var active_page = "O" // L for landing, D for detailed list, O for other
+public var create_recipe_import = 0 // 0 for new list, 1 for import to existing
 
 class LandingPageViewController: UIViewController, TableViewCellDelegate {
 
     @IBOutlet weak var createListButton: UIButton!
     @IBOutlet var tableView: UITableView!
-    
+
+    var deleted = true
     var loginDetails = LoginResponse()
+    var timer = Timer()
     
     var allListData = AllListResponse() {
         didSet {
@@ -55,8 +62,35 @@ class LandingPageViewController: UIViewController, TableViewCellDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        detailed_list_active = 0
         self.getData()
+        active_page = "L" // Sets the active page to be landing each time the page appears
+        
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            // Invalidate the timer if we are no longer on the landing list page
+            if(active_page != "L"){
+                self.timer.invalidate()
+            }
+
+            // Makes a getData-like request, but with conditional updating
+            let allListRequest = AllListRequest(status: 0)
+            allListRequest.getList { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    print("Error getting data")
+                    DispatchQueue.main.async {
+                        self?.CreateAlert(title: "Error", message: "\(error)")
+                    }
+                    print(error)
+                case .success(let allLists):
+                    // Updates if a new list is shared with the user
+                    if(self?.allListData.count != allLists.count){
+                        self?.allListData = allLists
+                    }
+                }
+            }
+        }
+        timer.tolerance = 0.2
+        RunLoop.current.add(timer, forMode: .common)
     }
     
     private func configureCreateListButton() {
@@ -125,16 +159,16 @@ class LandingPageViewController: UIViewController, TableViewCellDelegate {
                 case .failure(let error):
                     DispatchQueue.main.async {
                         self?.CreateAlert(title: "Error", message: "\(error)")
-                        deleted = false
+                        self?.deleted = false
                     }
                     print(error)
                 case .success(let response):
                     print("List has been deleted \(response)")
-                    deleted = response.result
+                    self?.deleted = response.result
                 }
             }
             
-            if(deleted){
+            if(self.deleted){
                 allListData.remove(at: indexPath.item)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }
