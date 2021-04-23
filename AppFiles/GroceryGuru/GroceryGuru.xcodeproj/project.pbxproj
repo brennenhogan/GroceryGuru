@@ -113,6 +113,9 @@
 		2EEF49662627695B0001B10E /* UpdateRecipeStoreNameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF49652627695B0001B10E /* UpdateRecipeStoreNameRequest.swift */; };
 		2EEF496E2627725D0001B10E /* UpdateRecipeItemDescriptionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF496D2627725D0001B10E /* UpdateRecipeItemDescriptionRequest.swift */; };
 		2EEF4976262774070001B10E /* UpdateRecipeItemQuantityRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF4975262774070001B10E /* UpdateRecipeItemQuantityRequest.swift */; };
+		2EF9F05926333BBB006AF976 /* LaunchAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF9F05826333BBB006AF976 /* LaunchAnimationViewController.swift */; };
+		2EF9F06126334213006AF976 /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF9F06026334213006AF976 /* CustomSegue.swift */; };
+		2EF9F07526334B41006AF976 /* Animation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EF9F07426334B41006AF976 /* Animation.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,6 +248,9 @@
 		2EEF49652627695B0001B10E /* UpdateRecipeStoreNameRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdateRecipeStoreNameRequest.swift; path = GroceryGuru/API/Requests/DetailedRecipe/UpdateRecipeStoreNameRequest.swift; sourceTree = SOURCE_ROOT; };
 		2EEF496D2627725D0001B10E /* UpdateRecipeItemDescriptionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRecipeItemDescriptionRequest.swift; sourceTree = "<group>"; };
 		2EEF4975262774070001B10E /* UpdateRecipeItemQuantityRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRecipeItemQuantityRequest.swift; sourceTree = "<group>"; };
+		2EF9F05826333BBB006AF976 /* LaunchAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAnimationViewController.swift; sourceTree = "<group>"; };
+		2EF9F06026334213006AF976 /* CustomSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
+		2EF9F07426334B41006AF976 /* Animation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Animation.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -414,11 +420,14 @@
 				2E9ABE5E260A91180047DED3 /* Fonts */,
 				2E87AFEC25FFF56600D3A575 /* ViewControllers */,
 				02A8F9E226309C580083FE19 /* Old Lists */,
-				2E87AFBF25FFF4B800D3A575 /* Main.storyboard */,
+				2EF9F06026334213006AF976 /* CustomSegue.swift */,
 				2E87AFC225FFF4B900D3A575 /* Assets.xcassets */,
 				2E87AFB925FFF4B800D3A575 /* AppDelegate.swift */,
 				2E87AFBB25FFF4B800D3A575 /* SceneDelegate.swift */,
 				2E87AFC425FFF4B900D3A575 /* LaunchScreen.storyboard */,
+				2EF9F07426334B41006AF976 /* Animation.storyboard */,
+				2E87AFBF25FFF4B800D3A575 /* Main.storyboard */,
+				2EF9F05826333BBB006AF976 /* LaunchAnimationViewController.swift */,
 				2E87AFC725FFF4B900D3A575 /* Info.plist */,
 			);
 			path = GroceryGuru;
@@ -731,6 +740,7 @@
 				2E9ABE51260A91040047DED3 /* OpenSans-Light.ttf in Resources */,
 				2E9ABE54260A91040047DED3 /* OpenSans-LightItalic.ttf in Resources */,
 				2E9ABE5A260A91040047DED3 /* OpenSans-BoldItalic.ttf in Resources */,
+				2EF9F07526334B41006AF976 /* Animation.storyboard in Resources */,
 				02A8F9B02625EBA80083FE19 /* RecipeHeaderView.xib in Resources */,
 				2E9ABE57260A91040047DED3 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				02A8F9A62625EA3A0083FE19 /* RecipeViewCell.xib in Resources */,
@@ -787,6 +797,7 @@
 				2E87AFBE25FFF4B800D3A575 /* LandingPageViewController.swift in Sources */,
 				02A8F99026251D7D0083FE19 /* AllRecipeResponse.swift in Sources */,
 				02A8F9CC2627A0A20083FE19 /* RecipeCheckCell.swift in Sources */,
+				2EF9F06126334213006AF976 /* CustomSegue.swift in Sources */,
 				0211EF9C2612759F00CAA05C /* ListHeaderView.swift in Sources */,
 				2E9ABE96260BC09F0047DED3 /* SignUpViewController.swift in Sources */,
 				2E213E062626810500E8B23C /* UpdateRecipeTitle.swift in Sources */,
@@ -821,6 +832,7 @@
 				0211EF7C260E924A00CAA05C /* AllListResponse.swift in Sources */,
 				2E9ABECD260BF8CC0047DED3 /* NewUserRequest.swift in Sources */,
 				02A8F99F2625E9A00083FE19 /* DetailedRecipeController.swift in Sources */,
+				2EF9F05926333BBB006AF976 /* LaunchAnimationViewController.swift in Sources */,
 				02A8F9E426309C6B0083FE19 /* OldListsController.swift in Sources */,
 				0211EFF5262377AA00CAA05C /* AddItemRequest.swift in Sources */,
 				0211EFE7261E5B9C00CAA05C /* OldListsCell.swift in Sources */,

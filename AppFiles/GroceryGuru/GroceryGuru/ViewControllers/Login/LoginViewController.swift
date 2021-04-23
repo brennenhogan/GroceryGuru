@@ -17,7 +17,27 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureNavigationBar()
         self.navigationItem.setHidesBackButton(true, animated: false)
+    }
+    
+    private func configureNavigationBar() {
+        // Nav Bar Colors
+        let white = UIColor(hex: 0xFFFFFF)
+        let dark_sage = UIColor(hex: 0x7A916E)
+        
+        // Sets Bar Tint and Tint Color
+        self.navigationController?.navigationBar.barTintColor = white
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.tintColor = dark_sage
+        
+        // Sets the Title Color, Sizing, and Font
+        let titleDict: NSDictionary = [
+            NSAttributedString.Key.foregroundColor: dark_sage,
+            NSAttributedString.Key.font: UIFont(name: "Roboto-Regular", size: 28)!
+        ]
+        self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [NSAttributedString.Key : AnyObject]
+        
     }
     
     func CreateAlert(title: String, message: String) {
@@ -30,7 +50,7 @@ class LoginViewController: UIViewController {
 
             self.present(alertController, animated: true, completion: nil)
     }
-    
+        
     @IBAction func login(_ sender: UIButton) {
         
         guard let userText = userText.text else {return}
