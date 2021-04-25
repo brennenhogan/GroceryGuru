@@ -248,6 +248,7 @@ class DetailedListController: UIViewController {
     @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
         self.filter_selection = sender.selectedSegmentIndex
         self.getData()
+        self.initial = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -512,7 +513,22 @@ extension DetailedListController: CheckButtonDelegate {
             case .success(let response):
                 print("Item purchased has been updated \(response)")
                 self!.local_version += 1
-                self!.listData.stores[Int(section)!].items[Int(row)!].purchased = check
+                if(self?.filter_selection == 0){
+                    self!.listData.stores[Int(section)!].items[Int(row)!].purchased = check
+                }
+                else if(self?.filter_selection == 1){
+                    var items = self?.listData.stores[Int(section)!].items
+                    DispatchQueue.main.async {
+                        for (index, item) in items!.enumerated() {
+                            if item.itemID == item_id {
+                                items!.remove(at: index)
+                                self?.listData.stores[Int(section)!].items = items!
+                                let indexPath = IndexPath(row: index, section: Int(section)!)
+                                self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+                            }
+                        }
+                    }
+                }
             }
         }
         return
