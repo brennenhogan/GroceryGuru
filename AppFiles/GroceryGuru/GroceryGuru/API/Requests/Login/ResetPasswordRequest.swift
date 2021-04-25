@@ -11,15 +11,16 @@ enum ResetPasswordError:Error {
     case NoDataAvailable
     case CanNotProcessData
     case UserDoesNotExist
+    case OldPasswordIncorrect
 }
 
 struct ResetPasswordRequest {
     let requestURL:URLRequest
     
-    init(username:String, password:String) {
+    init(username:String, old_password:String, new_password:String) {
         let resourceString = "http://18.188.0.221:8080/resetpass"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
-        let parameterDictionary = ["name" : username, "password": password]
+        let parameterDictionary = ["name" : username, "old_password": old_password, "new_password": new_password]
         var request = URLRequest(url: resourceURL)
         request.httpMethod = "PUT"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
@@ -41,8 +42,10 @@ struct ResetPasswordRequest {
                 if (newUserResponse.uuid! != "") {
                     completion(.success(newUserResponse))
                 }
-                else {
+                else if (newUserResponse.message == "ERROR: User does not exist") {
                     completion(.failure(.UserDoesNotExist))
+                } else if (newUserResponse.message == "ERROR: Old password does not match") {
+                    completion(.failure(.OldPasswordIncorrect))
                 }
             } catch{
                 completion(.failure(.CanNotProcessData))

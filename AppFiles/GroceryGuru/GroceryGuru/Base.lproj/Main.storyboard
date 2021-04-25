@@ -899,10 +899,10 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="fcQ-fQ-q4d">
-                                        <rect key="frame" x="20" y="10" width="374" height="244"/>
+                                        <rect key="frame" x="20" y="10" width="374" height="318"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="k0f-uA-gVv">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="170"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="244"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your email to reset password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24L-KU-dI1">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="22"/>
@@ -947,7 +947,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="32u-Gw-4SW" customClass="DesignableView" customModule="GroceryGuru" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="120" width="374" height="50"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t4r-Pi-Ujo">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Old Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t4r-Pi-Ujo">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="wP0-br-gaQ"/>
@@ -978,10 +978,44 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a1r-YS-xPN" customClass="DesignableView" customModule="GroceryGuru" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="194" width="374" height="50"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="te2-xj-eJB">
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="D34-5t-VDD"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
+                                                            </textField>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="te2-xj-eJB" secondAttribute="trailing" id="6IX-UR-wEi"/>
+                                                            <constraint firstItem="te2-xj-eJB" firstAttribute="leading" secondItem="a1r-YS-xPN" secondAttribute="leading" id="IVn-mK-xM0"/>
+                                                            <constraint firstItem="te2-xj-eJB" firstAttribute="top" secondItem="a1r-YS-xPN" secondAttribute="top" id="TRi-4a-OPf"/>
+                                                            <constraint firstAttribute="bottom" secondItem="te2-xj-eJB" secondAttribute="bottom" id="srR-YK-poL"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <real key="value" value="0.10000000000000001"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
+                                                                <real key="value" value="-3"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U0Q-kg-lHv">
-                                                <rect key="frame" x="0.0" y="194" width="374" height="50"/>
+                                                <rect key="frame" x="0.0" y="268" width="374" height="50"/>
                                                 <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="v0H-pb-OtR"/>
@@ -1002,7 +1036,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="200" translatesAutoresizingMaskIntoConstraints="NO" id="T0K-QP-THM">
-                                        <rect key="frame" x="20" y="270" width="374" height="494"/>
+                                        <rect key="frame" x="20" y="344" width="374" height="420"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -1021,7 +1055,8 @@
                     <navigationItem key="navigationItem" title="Reset Password" id="vEs-Um-MPx"/>
                     <connections>
                         <outlet property="loginButton" destination="U0Q-kg-lHv" id="1tL-Sn-h4U"/>
-                        <outlet property="passwordText" destination="t4r-Pi-Ujo" id="OfS-3U-TfK"/>
+                        <outlet property="newPasswordText" destination="te2-xj-eJB" id="rgw-Oa-iS0"/>
+                        <outlet property="oldPasswordText" destination="t4r-Pi-Ujo" id="9Ze-Np-Lcc"/>
                         <outlet property="userText" destination="dW9-AO-a9B" id="9VG-Qo-lUE"/>
                         <segue destination="IMX-vx-KnZ" kind="show" identifier="ResetToLanding" id="ceX-1p-A5Y"/>
                     </connections>
@@ -1304,7 +1339,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="RVP-7Q-Hyg"/>
         <segue reference="lTw-40-dyv"/>
-        <segue reference="MAS-V4-j2s"/>
+        <segue reference="ceX-1p-A5Y"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
     <resources>

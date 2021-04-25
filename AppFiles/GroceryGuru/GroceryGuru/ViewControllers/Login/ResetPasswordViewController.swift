@@ -10,7 +10,8 @@ import UIKit
 class ResetPasswordViewController: UIViewController {
     
     @IBOutlet weak var userText: UITextField!
-    @IBOutlet weak var passwordText: UITextField!
+    @IBOutlet weak var oldPasswordText: UITextField!
+    @IBOutlet weak var newPasswordText: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
     var userDetails = NewUserResponse()
@@ -65,8 +66,9 @@ class ResetPasswordViewController: UIViewController {
     @IBAction func resetPassword(_ sender: UIButton) {
         
         guard let userText = userText.text else {return}
-        guard let passwordText = passwordText.text else {return}
-        let resetPasswordRequest = ResetPasswordRequest(username: userText, password: passwordText)
+        guard let oldPasswordText = oldPasswordText.text else {return}
+        guard let newPasswordText = newPasswordText.text else {return}
+        let resetPasswordRequest = ResetPasswordRequest(username: userText, old_password: oldPasswordText, new_password: newPasswordText)
         resetPasswordRequest.putPassword { [weak self] result in
             switch result {
             case .failure(let error):
