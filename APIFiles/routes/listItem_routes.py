@@ -26,10 +26,10 @@ def add_item():
     db.session.commit()
   except exc.SQLAlchemyError:
     print(exc.SQLAlchemyError)
-    return {"result": False}
+    return {"result": False, "item_id": 0}
 
   update_version(list_id)
-  return {"result": True}
+  return {"result": True, "item_id": new_item.item_id}
 
 # Update the quantity of an item
 @listItem_api.route('/item/qty', methods=['POST'])
