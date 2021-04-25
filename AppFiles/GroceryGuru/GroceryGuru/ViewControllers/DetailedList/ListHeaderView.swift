@@ -8,19 +8,19 @@
 import UIKit
 
 protocol EditStoreDelegate {
-    func editStore(storeID: String, store_name: String)
+    func editStore(storeID: Int, store_name: String)
 }
 
 protocol AddItemDelegate {
-    func addItem(storeID: String)
+    func addItem(storeID: Int)
 }
 
 protocol DeleteStoreDelegate {
-    func deleteStore(storeID: String)
+    func deleteStore(storeID: Int)
 }
 
 protocol ExpandSectionDelegate {
-    func expandSection(storeID: String)
+    func expandSection(storeID: Int)
 }
 
 class ListHeaderView: UITableViewHeaderFooterView {
@@ -33,13 +33,13 @@ class ListHeaderView: UITableViewHeaderFooterView {
     static var identifier = "ListHeaderView"
     
         
-    var store_id: String = "0" // Temporary value that gets overwritten
+    var store_id: Int = 0
     
     static func nib() -> UINib {
         return UINib(nibName: "ListHeaderView", bundle: nil)
     }
     
-    public func configure(title: String, storeID: String) {
+    public func configure(title: String, storeID: Int) {
         storeName.text = title
         store_id = storeID
     }

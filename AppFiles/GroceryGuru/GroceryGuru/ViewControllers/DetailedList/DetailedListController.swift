@@ -88,9 +88,9 @@ class DetailedListController: UIViewController {
 
     }
     
-    private func getSection(store_id: String) -> Int {
+    private func getSection(store_id: Int) -> Int {
         for (index, store) in listData.stores.enumerated(){
-            if (store.store_id == Int(store_id)!){
+            if (store.store_id == store_id){
                 return index
             }
         }
@@ -287,15 +287,12 @@ extension DetailedListController : UITableViewDataSource {
     // Use custom header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListHeaderView.identifier) as! ListHeaderView
-        view.configure(title: listData.stores[section].name, storeID: String(listData.stores[section].store_id)) // TODO - add buttons here that do things
+        view.configure(title: listData.stores[section].name, storeID: listData.stores[section].store_id)
 
         
         view.storeName.isEnabled = tableView.isEditing
         view.addButton.isHidden = tableView.isEditing
         view.deleteButton.isHidden = !tableView.isEditing
-        view.deleteButton.tag = section
-        view.expandButton.tag = section
-        view.storeName.tag = section
         
         view.addItemDelegate = self // Be listening for the button tap in the header
         view.deleteStoreDelegate = self
@@ -420,7 +417,7 @@ extension DetailedListController: CheckButtonDelegate {
 // TODO fix these
 
 extension DetailedListController: AddItemDelegate {
-    func addItem(storeID: String) {
+    func addItem(storeID: Int) {
         let alert = UIAlertController(title: "Enter an Item Name", message: "", preferredStyle: .alert)
 
         alert.addTextField { (textField) in
@@ -463,7 +460,7 @@ extension DetailedListController: AddItemDelegate {
 }
 
 extension DetailedListController: ExpandSectionDelegate {
-    func expandSection(storeID: String) {
+    func expandSection(storeID: Int) {
         let section = self.getSection(store_id: storeID)
         func indexPathsForSection() -> [IndexPath] {
             var indexPaths = [IndexPath]()
@@ -489,9 +486,9 @@ extension DetailedListController: ExpandSectionDelegate {
 }
 
 extension DetailedListController: DeleteStoreDelegate {
-    func deleteStore(storeID: String) {
+    func deleteStore(storeID: Int) {
         let section = self.getSection(store_id: storeID)
-        print("deleting store: " + storeID)
+        print("deleting store: \(storeID)")
         let alert = UIAlertController(title: "Are you sure you want to delete \"\(listData.stores[section].name)\" and all items in the section?", message: "", preferredStyle: .alert)
 
         alert.view.tintColor = UIColor(hex: 0x7A916E)
@@ -531,7 +528,7 @@ extension DetailedListController: DeleteStoreDelegate {
 }
 
 extension DetailedListController: EditStoreDelegate {
-    func editStore(storeID: String, store_name: String) {
+    func editStore(storeID: Int, store_name: String) {
         let section = self.getSection(store_id: storeID)
         let updateStoreNameRequest = UpdateStoreNameRequest(store_name: store_name, store_id: storeID, list_id: selected_list_id)
         updateStoreNameRequest.updateStoreName { [weak self] result in

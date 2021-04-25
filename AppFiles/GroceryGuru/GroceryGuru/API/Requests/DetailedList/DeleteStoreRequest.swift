@@ -16,10 +16,10 @@ enum DeleteStoreError:Error {
 struct DeleteStoreRequest {
     let requestURL:URLRequest
     
-    init(store_id: String, list_id: String) {
+    init(store_id: Int, list_id: String) {
         let resourceString = "http://18.188.0.221:8080/store/delete"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
-        let parameterDictionary = ["uuid" : userUuid, "list_id": list_id, "store_id": store_id]
+        let parameterDictionary = ["uuid" : userUuid, "list_id": list_id, "store_id": store_id] as [String : Any]
         var request = URLRequest(url: resourceURL)
         request.httpMethod = "POST"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")

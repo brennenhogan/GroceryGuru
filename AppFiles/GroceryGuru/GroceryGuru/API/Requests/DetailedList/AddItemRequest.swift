@@ -16,10 +16,10 @@ enum AddItemRequestError:Error {
 struct AddItemRequest {
     let requestURL:URLRequest
     
-    init(description: String, list_id: String, store_id: String, qty: String) {
+    init(description: String, list_id: String, store_id: Int, qty: String) {
         let resourceString = "http://18.188.0.221:8080/item"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
-        let parameterDictionary = ["store_id" : store_id, "list_id": list_id, "qty": qty, "description": description]
+        let parameterDictionary = ["store_id" : store_id, "list_id": list_id, "qty": qty, "description": description] as [String : Any]
         var request = URLRequest(url: resourceURL)
         request.httpMethod = "POST"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
