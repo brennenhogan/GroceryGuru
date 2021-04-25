@@ -378,11 +378,11 @@ extension DetailedListController: ItemDescriptionDelegate {
                 DispatchQueue.main.async {
                     let indexPath = self!.tableView.indexPath(for: cell)!
                     self!.listData.stores[indexPath.section].items[indexPath.row].itemDescription = item_description
+                    if(!self!.tableView.isEditing){
+                        cell.itemName.isEnabled = false
+                    }
                 }
                 // If the item is being edited for the first time, allow but set to false afterwards
-                if(!self!.tableView.isEditing){
-                    cell.itemName.isEnabled = false
-                }
             }
         }
         return
@@ -409,7 +409,6 @@ extension DetailedListController: CheckButtonDelegate {
                             items!.remove(at: indexPath.row)
                             self?.listData.stores[indexPath.section].items = items!
                             self?.tableView.deleteRows(at: [indexPath], with: .automatic)
-
                     }
                 }
             }
@@ -425,31 +424,31 @@ extension DetailedListController: AddItemDelegate {
         let section = self.getSection(store_id: storeID)
         let current_row_count = self.listData.stores[section].items.count
         
-            // Add Item Action
-            let addItemRequest = AddItemRequest(description: "", list_id: selected_list_id, store_id: storeID, qty: "1")
-            
-            addItemRequest.addItem { [weak self] result in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let response):
-                    print("Item has been created \(response)")
-                    var items = self?.listData.stores[section].items
-                    self!.local_version += 1
+        // Add Item Action
+        let addItemRequest = AddItemRequest(description: "", list_id: selected_list_id, store_id: storeID, qty: "1") // Inserts an item with no description
+        
+        addItemRequest.addItem { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let response):
+                print("Item has been created \(response)")
+                self!.local_version += 1
 
-                    let indexPath = IndexPath(row: (current_row_count), section: section)
-                    var item = Item(itemDescription: "", itemID: response.item_id, listID: Int(selected_list_id)!, purchased: 0, qty: 1)
-                    items?.append(item)
-                    self?.listData.stores[section].items = items!
-                    DispatchQueue.main.async {
-                        self?.tableView.insertRows(at: [indexPath], with: .automatic)
-                        let cell = self?.tableView.cellForRow(at: indexPath) as! ListViewCell
-                        cell.itemName.isEnabled = true
-                        cell.itemName.becomeFirstResponder()
-                    }
+                var items = self?.listData.stores[section].items
+                var item = Item(itemDescription: "", itemID: response.item_id, listID: Int(selected_list_id)!, purchased: 0, qty: 1) // Local copy of the item
+                items?.append(item)
+                self?.listData.stores[section].items = items!
+                let indexPath = IndexPath(row: (current_row_count), section: section)
+
+                DispatchQueue.main.async {
+                    self?.tableView.insertRows(at: [indexPath], with: .automatic) // Insert new item
+                    let cell = self?.tableView.cellForRow(at: indexPath) as! ListViewCell
+                    cell.itemName.isEnabled = true
+                    cell.itemName.becomeFirstResponder() // Keyboard pop up on new item's description
                 }
             }
-        
+        }
     }
 }
 

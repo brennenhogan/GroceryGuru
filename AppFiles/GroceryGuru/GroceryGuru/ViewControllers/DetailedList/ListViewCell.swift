@@ -39,11 +39,7 @@ class ListViewCell: UITableViewCell {
         super.awakeFromNib()
         checkBtn.setImage(UIImage(systemName: "circle"), for: .normal)
         checkBtn.setImage(UIImage(systemName:"checkmark.circle.fill"), for: .selected)
-    }
-    
-    func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
-        itemName.resignFirstResponder()
-        return true
+        itemName.delegate = self
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -75,4 +71,11 @@ class ListViewCell: UITableViewCell {
         checkButtonDelegate?.markItem(cell: self, item_id: sender.tag, check: result)
     }
     
+}
+
+extension ListViewCell: UITextFieldDelegate {
+    func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
+        itemName.resignFirstResponder() // dismiss keyboard
+        return true
+    }
 }
