@@ -419,7 +419,6 @@
 				2E9ABEC3260BF84B0047DED3 /* API */,
 				2E9ABE5E260A91180047DED3 /* Fonts */,
 				2E87AFEC25FFF56600D3A575 /* ViewControllers */,
-				02A8F9E226309C580083FE19 /* Old Lists */,
 				2EF9F06026334213006AF976 /* CustomSegue.swift */,
 				2E87AFC225FFF4B900D3A575 /* Assets.xcassets */,
 				2E87AFB925FFF4B800D3A575 /* AppDelegate.swift */,
@@ -462,6 +461,7 @@
 				02A8F974262517710083FE19 /* RecipieLanding */,
 				0211EFBB2612864800CAA05C /* LandingPage */,
 				2E9ABEBC260BCFBA0047DED3 /* Login */,
+				02A8F9E226309C580083FE19 /* Old Lists */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

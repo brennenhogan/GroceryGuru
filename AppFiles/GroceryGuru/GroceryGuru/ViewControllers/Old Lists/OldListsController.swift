@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OldListsController: UIViewController {
+class OldListsController: UIViewController, UITableViewDelegate {
 
     @IBOutlet var tableView: UITableView!
 
@@ -15,10 +15,16 @@ class OldListsController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 print("Table reload with new data")
-                self.tableView.reloadData()
+                if(!self.local){
+                    self.tableView.reloadData()
+                } else{
+                    self.local = false
+                }
             }
         }
     }
+    var deleted = true
+    var local = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,13 +62,13 @@ class OldListsController: UIViewController {
 
         self.present(alertController, animated: true, completion: nil)
     }
-    /*
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if (editingStyle == .delete){
-            let recipe_id = String(allRecipieData[indexPath.row].recipeID)
+            let list_id = allListData[indexPath.row].listID
             
-            let deleteRequest = DeleteRecipeRequest(recipe_id: recipe_id)
-            deleteRequest.deleteRecipe { [weak self] result in
+            let deleteRequest = DeleteListRequest(list_id: list_id)
+            deleteRequest.deleteList { [weak self] result in
                 switch result {
                 case .failure(let error):
                     DispatchQueue.main.async {
@@ -77,8 +83,9 @@ class OldListsController: UIViewController {
             }
             
             if(self.deleted){
-                allRecipieData.remove(at: indexPath.item)
+                allListData.remove(at: indexPath.item)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.local = true
             }
             
             return
@@ -93,31 +100,7 @@ class OldListsController: UIViewController {
             print(self.tableView.isEditing)
             cell.recipeTitle.isEnabled = self.tableView.isEditing
         }
-    } */
-}
-
-extension OldListsController : UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true) // Unselect
-        let listId = String(allListData[indexPath.row].listID)
-        
-        print("This list was tapped: " + listId)
-        print("Its name is: " + allListData[indexPath.row].listName)
-        /*
-        tableView.deselectRow(at: indexPath, animated: true) // Unselect the previous list
-        
-        print("Now performing segue to individual recipe view!")
-        
-        selected_recipe_id = String(allRecipieData[indexPath.row].recipeID)
-        selected_recipe_name = allRecipieData[indexPath.row].recipeName
-        print(selected_recipe_id)
-        print(selected_recipe_name)
-        DispatchQueue.main.async{
-            self.performSegue(withIdentifier: "LandingToDetailedRecipe", sender: self)
-        } */
     }
-    
 }
 
 extension OldListsController : UITableViewDataSource {
@@ -131,31 +114,8 @@ extension OldListsController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: OldListsBiggerCell.identifier, for: indexPath) as! OldListsBiggerCell
         
         cell.configure(title: item.listName, qty: item.listQty)
-        //cell.recipeTitle.tag = item.recipeID
-        //cell.recipeTitle.isEnabled = self.tableView.isEditing
-        //cell.recipeTitleDelegate = self
 
         return cell
     }
     
 }
-/*
-extension RecipePageViewController: RecipeTitleDelegate {
-    func editTitle(recipe_id: Int, recipe_title: String) {
-        let updateRecipeTitleRequest = UpdateRecipeTitleRequest(recipe_title: recipe_title, recipe_id: recipe_id)
-        updateRecipeTitleRequest.updateRecipeTitle { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print("Error editing recipe")
-                DispatchQueue.main.async {
-                    self?.CreateAlert(title: "Error", message: "\(error)")
-                }
-                print(error)
-            case .success(_):
-                print("Recipe edited")
-                self?.getData()
-            }
-        }
-    }
-}
-*/
