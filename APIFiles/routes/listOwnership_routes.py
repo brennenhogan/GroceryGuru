@@ -10,7 +10,7 @@ from sqlalchemy import exc
 
 listOwnership_api = Blueprint('listOwnership_api', __name__)
 
-# Share a list to another user)
+# Share a list to another user
 @listOwnership_api.route('/share', methods=['POST'])
 def add_owner():
   name = request.json['name']
@@ -39,6 +39,23 @@ def add_owner():
     return {"result": False, "message": "SQLAlchemy Error"}
 
   return {"result": True, "message": "Share successful"}
+
+# Get number of owners on a list
+@listOwnership_api.route('/owner/count/<list_id>', methods=['GET'])
+def get_owner_count(list_id):
+  owners = ListOwnership.query.filter_by(list_id=list_id).all()
+
+  return {"count": len(owners)}
+
+# Get number of owners on a list
+@listOwnership_api.route('/owner/listcount/<user_uuid>', methods=['GET'])
+def get_list_count(user_uuid):
+  lists = db.session.query(ListOwnership, List)\
+    .join(List, List.list_id == ListOwnership.list_id)\
+    .filter(ListOwnership.uuid==user_uuid)\
+    .filter(List.old==0).all() # Get current lists only
+
+  return {"count": len(lists)}
 
 # LANDING PAGE QUERY #
 # See all lists for a user (ListOwnership.list_id, List.name, List.old)
