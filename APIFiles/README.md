@@ -18,3 +18,14 @@ Currently if the DB already exists, you must delete the existing database and re
 python app.py
 
 SQLAlchemy will allow us to change the DB from sqlite to a cloud DB if needed
+
+AWS INSTRUCTIONS 
+How to run:
+export FLASK_ENV=production
+export FLASK_APP="wsgi.py"
+nohup gunicorn -w 3 wsgi:app 2>&1 &
+
+We use 3 workers because we have 1 CPU core (2 workers per core) and 1 extra (recommended)
+
+Old way to run:
+nohup python3 app.py 2>&1 &
