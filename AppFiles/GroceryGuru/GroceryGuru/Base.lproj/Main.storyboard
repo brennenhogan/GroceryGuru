@@ -503,6 +503,11 @@
                                                     <constraint firstAttribute="width" constant="128" id="14t-L4-lu2"/>
                                                     <constraint firstAttribute="height" constant="128" id="3k4-8J-Eam"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                         </subviews>
                                     </stackView>
@@ -1339,7 +1344,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="RVP-7Q-Hyg"/>
         <segue reference="lTw-40-dyv"/>
-        <segue reference="ceX-1p-A5Y"/>
+        <segue reference="MAS-V4-j2s"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
