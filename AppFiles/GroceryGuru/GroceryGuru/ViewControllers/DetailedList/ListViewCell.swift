@@ -8,15 +8,15 @@
 import UIKit
 
 protocol ItemDescriptionDelegate {
-    func editDescription(item_id: Int, item_description: String, section: String, row: String)
+    func editDescription(cell: ListViewCell, item_id: Int, item_description: String)
 }
 
 protocol ItemQuantityDelegate {
-    func editQty(item_id: Int, item_qty: String, section: String, row: String)
+    func editQty(cell: ListViewCell, item_id: Int, item_qty: Int)
 }
 
 protocol CheckButtonDelegate {
-    func markItem(item_id: Int, check: Int, section: String, row: String)
+    func markItem(cell: ListViewCell, item_id: Int, check: Int)
 }
 
 class ListViewCell: UITableViewCell {
@@ -57,17 +57,14 @@ class ListViewCell: UITableViewCell {
     var checkButtonDelegate: CheckButtonDelegate?
 
     @IBAction func editDescription(_ sender: UITextField){
-        let arr = sender.accessibilityLabel?.components(separatedBy: ",")
-        itemDescriptionDelegate?.editDescription(item_id: Int(arr![2])!, item_description: sender.text!, section: arr![0], row: arr![1])
+        itemDescriptionDelegate?.editDescription(cell: self, item_id: sender.tag, item_description: sender.text!)
     }
     
     @IBAction func editQty(_ sender: UITextField){
-        let arr = sender.accessibilityLabel?.components(separatedBy: ",")
-        itemQuantityDelegate?.editQty(item_id: Int(arr![2])!, item_qty: sender.text!, section: arr![0], row: arr![1])
+        itemQuantityDelegate?.editQty(cell: self, item_id: sender.tag, item_qty: Int(sender.text!)!)
     }
     
     @IBAction func markItem(_ sender: UIButton){
-        let arr = sender.accessibilityLabel?.components(separatedBy: ",")
         sender.isSelected = !sender.isSelected
         
         var result = 0
@@ -75,7 +72,7 @@ class ListViewCell: UITableViewCell {
             result = 1
         }
         
-        checkButtonDelegate?.markItem(item_id: Int(arr![2])!, check: result, section: arr![0], row: arr![1])
+        checkButtonDelegate?.markItem(cell: self, item_id: sender.tag, check: result)
     }
     
 }

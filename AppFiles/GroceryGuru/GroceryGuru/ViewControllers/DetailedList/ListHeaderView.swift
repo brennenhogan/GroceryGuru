@@ -8,7 +8,7 @@
 import UIKit
 
 protocol EditStoreDelegate {
-    func editStore(storeID: String, store_name: String, section: Int)
+    func editStore(storeID: String, store_name: String)
 }
 
 protocol AddItemDelegate {
@@ -16,11 +16,11 @@ protocol AddItemDelegate {
 }
 
 protocol DeleteStoreDelegate {
-    func deleteStore(storeID: String, section: Int)
+    func deleteStore(storeID: String)
 }
 
 protocol ExpandSectionDelegate {
-    func expandSection(section: Int)
+    func expandSection(storeID: String)
 }
 
 class ListHeaderView: UITableViewHeaderFooterView {
@@ -70,7 +70,7 @@ class ListHeaderView: UITableViewHeaderFooterView {
     var expandSectionDelegate: ExpandSectionDelegate?
     
     @IBAction func editStore(_ sender: UITextField){
-        editStoreDelegate?.editStore(storeID: store_id, store_name: storeName.text!, section: sender.tag)
+        editStoreDelegate?.editStore(storeID: store_id, store_name: storeName.text!)
     }
 
     @IBAction func addStore(_ sender: UIButton){
@@ -78,15 +78,13 @@ class ListHeaderView: UITableViewHeaderFooterView {
     }
     
     @IBAction func deleteStore(_ sender: UIButton){
-        let section = sender.tag
-        deleteStoreDelegate?.deleteStore(storeID: store_id, section: section)
+        deleteStoreDelegate?.deleteStore(storeID: store_id)
     }
     
     @IBAction func expandSection(_ sender: UIButton){
-        let section = sender.tag
         sender.isSelected = !sender.isSelected
 
-        expandSectionDelegate?.expandSection(section: section)
+        expandSectionDelegate?.expandSection(storeID: store_id)
     }
 
 }

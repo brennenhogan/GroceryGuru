@@ -88,6 +88,15 @@ class DetailedListController: UIViewController {
 
     }
     
+    private func getSection(store_id: String) -> Int {
+        for (index, store) in listData.stores.enumerated(){
+            if (store.store_id == Int(store_id)!){
+                return index
+            }
+        }
+        return -1
+    }
+    
     private func configureNavigationBar() {
         // Nav Bar Colors
         let white = UIColor(hex: 0xFFFFFF)
@@ -318,15 +327,15 @@ extension DetailedListController : UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: ListViewCell.identifier, for: indexPath) as! ListViewCell
         
-        let tag = "\(indexPath.section),\(indexPath.row),\(item_id)"
         cell.configure(title: text, qty: qty)
         cell.itemName.isEnabled = tableView.isEditing
         cell.itemQty.isEnabled = tableView.isEditing
         cell.checkBtn.isHidden = tableView.isEditing
         cell.checkBtn.isSelected = (purchased == 1)
-        cell.itemName.accessibilityLabel = tag
-        cell.itemQty.accessibilityLabel = tag
-        cell.checkBtn.accessibilityLabel = tag
+        
+        cell.itemName.tag = item_id
+        cell.itemQty.tag = item_id
+        cell.checkBtn.tag = item_id
         
         cell.itemQuantityDelegate = self
         cell.itemDescriptionDelegate = self
@@ -336,9 +345,82 @@ extension DetailedListController : UITableViewDataSource {
     }
 }
 
+extension DetailedListController: ItemQuantityDelegate {
+    func editQty(cell: ListViewCell, item_id: Int, item_qty: Int) {
+        let updateStoreNameRequest = UpdateItemQuantityRequest(item_id: item_id, item_qty: String(item_qty))
+        updateStoreNameRequest.updateStoreName { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print("Error editing item quantity")
+                DispatchQueue.main.async {
+                    self?.CreateAlert(title: "Error", message: "\(error)")
+                }
+                print(error)
+            case .success(_):
+                print("Quantity edited")
+                self!.local_version += 1
+                DispatchQueue.main.async {
+                    let indexPath = self!.tableView.indexPath(for: cell)!
+                    self!.listData.stores[indexPath.section].items[indexPath.row].qty = item_qty
+                }
+            }
+        }
+    }
+}
+
+extension DetailedListController: ItemDescriptionDelegate {
+    func editDescription(cell: ListViewCell, item_id: Int, item_description: String) {
+        let updateItemDescriptionRequest = UpdateItemDescriptionRequest(item_id: item_id, item_description: item_description)
+        updateItemDescriptionRequest.updateItemDescription { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let response):
+                print("List has been updated \(response)")
+                self!.local_version += 1
+                DispatchQueue.main.async {
+                    let indexPath = self!.tableView.indexPath(for: cell)!
+                    self!.listData.stores[indexPath.section].items[indexPath.row].itemDescription = item_description
+                }
+            }
+        }
+        return
+    }
+}
+
+extension DetailedListController: CheckButtonDelegate {
+    func markItem(cell: ListViewCell, item_id: Int, check: Int) {
+        let updatePurchasedRequest = UpdatePurchasedRequest(item_id: item_id, purchased: check)
+        updatePurchasedRequest.updateItemPurchased { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let response):
+                print("Item purchased has been updated \(response)")
+                self!.local_version += 1
+                DispatchQueue.main.async {
+                    let indexPath = self!.tableView.indexPath(for: cell)!
+
+                    if(self?.filter_selection == 0){
+                        self!.listData.stores[indexPath.section].items[indexPath.row].purchased = check
+                    } else if(self?.filter_selection == 1){
+                        var items = self?.listData.stores[indexPath.section].items
+                            items!.remove(at: indexPath.row)
+                            self?.listData.stores[indexPath.section].items = items!
+                            self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+
+                    }
+                }
+            }
+        }
+        return
+    }
+}
+
+// TODO fix these
+
 extension DetailedListController: AddItemDelegate {
     func addItem(storeID: String) {
-        print("In Delegate")
         let alert = UIAlertController(title: "Enter an Item Name", message: "", preferredStyle: .alert)
 
         alert.addTextField { (textField) in
@@ -380,8 +462,35 @@ extension DetailedListController: AddItemDelegate {
     }
 }
 
+extension DetailedListController: ExpandSectionDelegate {
+    func expandSection(storeID: String) {
+        let section = self.getSection(store_id: storeID)
+        func indexPathsForSection() -> [IndexPath] {
+            var indexPaths = [IndexPath]()
+            
+            for row in 0..<self.listData.stores[section].items.count {
+                indexPaths.append(IndexPath(row: row,
+                                            section: section))
+            }
+            
+            return indexPaths
+        }
+        
+        if self.hiddenSections.contains(section) {
+            self.hiddenSections.remove(section)
+            self.tableView.insertRows(at: indexPathsForSection(),
+                                      with: .fade)
+        } else {
+            self.hiddenSections.insert(section)
+            self.tableView.deleteRows(at: indexPathsForSection(),
+                                      with: .fade)
+        }
+    }
+}
+
 extension DetailedListController: DeleteStoreDelegate {
-    func deleteStore(storeID: String, section: Int) {
+    func deleteStore(storeID: String) {
+        let section = self.getSection(store_id: storeID)
         print("deleting store: " + storeID)
         let alert = UIAlertController(title: "Are you sure you want to delete \"\(listData.stores[section].name)\" and all items in the section?", message: "", preferredStyle: .alert)
 
@@ -422,7 +531,8 @@ extension DetailedListController: DeleteStoreDelegate {
 }
 
 extension DetailedListController: EditStoreDelegate {
-    func editStore(storeID: String, store_name: String, section: Int) {
+    func editStore(storeID: String, store_name: String) {
+        let section = self.getSection(store_id: storeID)
         let updateStoreNameRequest = UpdateStoreNameRequest(store_name: store_name, store_id: storeID, list_id: selected_list_id)
         updateStoreNameRequest.updateStoreName { [weak self] result in
             switch result {
@@ -440,98 +550,3 @@ extension DetailedListController: EditStoreDelegate {
         }
     }
 }
-
-extension DetailedListController: ItemQuantityDelegate {
-    func editQty(item_id: Int, item_qty: String, section: String, row: String) {
-        let updateStoreNameRequest = UpdateItemQuantityRequest(item_id: item_id, item_qty: item_qty)
-        updateStoreNameRequest.updateStoreName { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print("Error editing item quantity")
-                DispatchQueue.main.async {
-                    self?.CreateAlert(title: "Error", message: "\(error)")
-                }
-                print(error)
-            case .success(_):
-                print("Quantity edited")
-                self!.local_version += 1
-                self!.listData.stores[Int(section)!].items[Int(row)!].qty = Int(item_qty)!
-            }
-        }
-    }
-}
-
-extension DetailedListController: ItemDescriptionDelegate {
-    func editDescription(item_id: Int, item_description: String, section: String, row: String) {
-        let updateItemDescriptionRequest = UpdateItemDescriptionRequest(item_id: item_id, item_description: item_description)
-        updateItemDescriptionRequest.updateItemDescription { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let response):
-                print("List has been updated \(response)")
-                self!.local_version += 1
-                self!.listData.stores[Int(section)!].items[Int(row)!].itemDescription = item_description
-            }
-        }
-        return
-    }
-}
-
-extension DetailedListController: ExpandSectionDelegate {
-    func expandSection(section: Int) {
-        func indexPathsForSection() -> [IndexPath] {
-            var indexPaths = [IndexPath]()
-            
-            for row in 0..<self.listData.stores[section].items.count {
-                indexPaths.append(IndexPath(row: row,
-                                            section: section))
-            }
-            
-            return indexPaths
-        }
-        
-        if self.hiddenSections.contains(section) {
-            self.hiddenSections.remove(section)
-            self.tableView.insertRows(at: indexPathsForSection(),
-                                      with: .fade)
-        } else {
-            self.hiddenSections.insert(section)
-            self.tableView.deleteRows(at: indexPathsForSection(),
-                                      with: .fade)
-        }
-    }
-}
-
-extension DetailedListController: CheckButtonDelegate {
-    func markItem(item_id: Int, check: Int, section: String, row: String) {
-        let updatePurchasedRequest = UpdatePurchasedRequest(item_id: item_id, purchased: check)
-        updatePurchasedRequest.updateItemPurchased { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let response):
-                print("Item purchased has been updated \(response)")
-                self!.local_version += 1
-                if(self?.filter_selection == 0){
-                    self!.listData.stores[Int(section)!].items[Int(row)!].purchased = check
-                }
-                else if(self?.filter_selection == 1){
-                    var items = self?.listData.stores[Int(section)!].items
-                    DispatchQueue.main.async {
-                        for (index, item) in items!.enumerated() {
-                            if item.itemID == item_id {
-                                items!.remove(at: index)
-                                self?.listData.stores[Int(section)!].items = items!
-                                let indexPath = IndexPath(row: index, section: Int(section)!)
-                                self?.tableView.deleteRows(at: [indexPath], with: .automatic)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return
-    }
-}
-
