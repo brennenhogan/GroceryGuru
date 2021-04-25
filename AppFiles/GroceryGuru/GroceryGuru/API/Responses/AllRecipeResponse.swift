@@ -10,7 +10,7 @@ import Foundation
 struct AllRecipeElement: Codable {
     let recipeID: Int
     let recipeQty: Int
-    let recipeName: String
+    var recipeName: String
     
     enum CodingKeys: String, CodingKey {
         case recipeID = "recipe_id"

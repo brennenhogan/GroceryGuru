@@ -14,8 +14,8 @@ class RecipePageViewController: UIViewController {
     var allRecipieData = AllRecipeResponse() {
         didSet {
             DispatchQueue.main.async {
-                print("Table reload with new data")
                 if(!self.local){
+                    print("Table reload with new data")
                     self.tableView.reloadData()
                 } else{
                     self.local = false
@@ -192,7 +192,7 @@ extension RecipePageViewController : UITableViewDataSource {
 }
 
 extension RecipePageViewController: RecipeTitleDelegate {
-    func editTitle(recipe_id: Int, recipe_title: String) {
+    func editTitle(cell: RecipeTableCell, recipe_id: Int, recipe_title: String) {
         let updateRecipeTitleRequest = UpdateRecipeTitleRequest(recipe_title: recipe_title, recipe_id: recipe_id)
         updateRecipeTitleRequest.updateRecipeTitle { [weak self] result in
             switch result {
@@ -204,7 +204,11 @@ extension RecipePageViewController: RecipeTitleDelegate {
                 print(error)
             case .success(_):
                 print("Recipe edited")
-                self?.getData()
+                self!.local = true
+                DispatchQueue.main.async {
+                    let indexPath = self!.tableView.indexPath(for: cell)!
+                    self!.allRecipieData[indexPath.row].recipeName = recipe_title
+                }
             }
         }
     }

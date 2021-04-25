@@ -41,8 +41,8 @@ class LandingPageViewController: UIViewController, TableViewCellDelegate {
     var allListData = AllListResponse() {
         didSet {
             DispatchQueue.main.async {
-                print("Table reload with new data")
                 if(!self.local){
+                    print("Table reload with new data")
                     self.tableView.reloadData()
                 } else{
                     self.local = false
@@ -70,7 +70,7 @@ class LandingPageViewController: UIViewController, TableViewCellDelegate {
         self.getData()
         active_page = "L" // Sets the active page to be landing each time the page appears
         
-        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+        self.timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { timer in
             // Invalidate the timer if we are no longer on the landing list page
             if(active_page != "L"){
                 self.timer.invalidate()
@@ -88,7 +88,7 @@ class LandingPageViewController: UIViewController, TableViewCellDelegate {
                     print(error)
                 case .success(let allLists):
                     // Updates if a new list is shared with the user
-                    if(self?.allListData.count != allLists.count){
+                    if((self?.allListData.count)! < allLists.count){
                         self?.allListData = allLists
                     }
                 }
@@ -204,7 +204,11 @@ class LandingPageViewController: UIViewController, TableViewCellDelegate {
                 print(error)
             case .success(let response):
                 print("List has been updated \(response)")
-                self?.getData()
+                self!.local = true
+                DispatchQueue.main.async {
+                    let indexPath = self!.tableView.indexPath(for: cell)!
+                    self!.allListData[indexPath.row].listName = name
+                }
             }
         }
     }
@@ -293,7 +297,6 @@ extension LandingPageViewController: ShareListButtonDelegate {
                         self?.CreateAlert(title: "Success", message: "List has been shared with \(name)")
                     }
                     print("Share permissions have been updated \(response)")
-                    self?.getData()
                 }
             }
             return

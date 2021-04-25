@@ -381,13 +381,13 @@
 			children = (
 				2E3475FC2613E91D00BA27D9 /* AddListResponse.swift */,
 				0211EF7B260E924A00CAA05C /* AllListResponse.swift */,
+				02A8F98F26251D7D0083FE19 /* AllRecipeResponse.swift */,
 				2E3476062615004900BA27D9 /* BooleanResponse.swift */,
 				2E0847BB262DCD3F008E738D /* BooleanResponseMessage.swift */,
 				2E3D71A0262F4BBD00406A6B /* BooleanResponseVersion.swift */,
 				0211EF6E260E7C7500CAA05C /* ListResponse.swift */,
 				2E9ABE85260AAEF60047DED3 /* LoginResponse.swift */,
 				2E9ABEC4260BF8990047DED3 /* NewUserResponse.swift */,
-				02A8F98F26251D7D0083FE19 /* AllRecipeResponse.swift */,
 				02A8F9B92625ECC30083FE19 /* RecipeResponse.swift */,
 			);
 			path = Responses;

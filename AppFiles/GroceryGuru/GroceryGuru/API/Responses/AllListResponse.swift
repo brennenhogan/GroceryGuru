@@ -9,7 +9,7 @@ import Foundation
 
 struct AllListElement: Codable {
     let listID, listOld, listQty: Int
-    let listName: String
+    var listName: String
     
     enum CodingKeys: String, CodingKey {
         case listID = "list_id"

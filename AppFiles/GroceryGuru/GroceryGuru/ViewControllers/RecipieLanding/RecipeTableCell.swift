@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RecipeTitleDelegate {
-    func editTitle(recipe_id: Int, recipe_title: String)
+    func editTitle(cell: RecipeTableCell, recipe_id: Int, recipe_title: String)
 }
 
 class RecipeTableCell: UITableViewCell {
@@ -50,7 +50,7 @@ class RecipeTableCell: UITableViewCell {
     var recipeTitleDelegate: RecipeTitleDelegate?
     
     @IBAction func editTitle(_ sender: UITextField){
-        recipeTitleDelegate?.editTitle(recipe_id: sender.tag, recipe_title: sender.text!)
+        recipeTitleDelegate?.editTitle(cell: self, recipe_id: sender.tag, recipe_title: sender.text!)
     }
         
 }
