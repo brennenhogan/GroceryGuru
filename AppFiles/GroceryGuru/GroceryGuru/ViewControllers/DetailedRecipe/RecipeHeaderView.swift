@@ -13,19 +13,19 @@ import UIKit
  }
 */
  protocol AddRecipeItemDelegate {
-     func addRecipeItem(storeID: String)
+     func addRecipeItem(storeID: Int)
  }
 
  protocol DeleteRecipeStoreDelegate {
-    func deleteRecipeStore(storeID: String, section: Int)
+    func deleteRecipeStore(storeID: Int)
  }
 
  protocol ExpandRecipeSectionDelegate {
-     func expandSection(section: Int)
+     func expandSection(storeID: Int)
  }
 
 protocol UpdateRecipeStoreDelegate{
-    func updateRecipeStore(storeID: String, store_name: String, section: Int)
+    func updateRecipeStore(storeID: Int, store_name: String)
 }
  
 
@@ -38,13 +38,13 @@ class RecipeHeaderView: UITableViewHeaderFooterView {
     
     static var identifier = "RecipeHeaderView"
         
-    var store_id: String = "0" // Temporary value that gets overwritten
+    var store_id: Int = 0 // Temporary value that gets overwritten
     
     static func nib() -> UINib {
         return UINib(nibName: "RecipeHeaderView", bundle: nil)
     }
     
-    public func configure(title: String, storeID: String) {
+    public func configure(title: String, storeID: Int) {
         storeName.text = title
         store_id = storeID
     }
@@ -75,7 +75,7 @@ class RecipeHeaderView: UITableViewHeaderFooterView {
     var updateRecipeStoreDelegate: UpdateRecipeStoreDelegate?
     
     @IBAction func updateStore(_ sender: UITextField){
-        updateRecipeStoreDelegate?.updateRecipeStore(storeID: store_id, store_name: storeName.text!, section: sender.tag)
+        updateRecipeStoreDelegate?.updateRecipeStore(storeID: store_id, store_name: storeName.text!)
     }
 
     @IBAction func addRecipeItem(_ sender: UIButton){
@@ -83,14 +83,13 @@ class RecipeHeaderView: UITableViewHeaderFooterView {
     }
     
     @IBAction func deleteRecipeStore(_ sender: UIButton){
-        deleteRecipeStoreDelegate?.deleteRecipeStore(storeID: store_id, section: sender.tag)
+        deleteRecipeStoreDelegate?.deleteRecipeStore(storeID: store_id)
     }
     
     @IBAction func expandSection(_ sender: UIButton){
-        let section = sender.tag
         sender.isSelected = !sender.isSelected
         
-        expandRecipeSectionDelegate?.expandSection(section: section)
+        expandRecipeSectionDelegate?.expandSection(storeID: store_id)
     }
 
 }

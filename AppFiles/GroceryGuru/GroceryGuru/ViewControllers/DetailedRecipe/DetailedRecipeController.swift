@@ -14,9 +14,9 @@ class DetailedRecipeController: UIViewController {
     var recipeData = RecipeResponse() {
         didSet {
             DispatchQueue.main.async {
-                print("Table reload with new data")
                 print(String(self.recipeData.count) + " sections")
                 if(!self.local){
+                    print("Table reload with new data")
                     self.tableView.reloadData()
                 } else{
                     self.local = false
@@ -45,6 +45,15 @@ class DetailedRecipeController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.getData()
+    }
+    
+    private func getSection(store_id: Int) -> Int {
+        for (index, store) in recipeData.enumerated(){
+            if (store.store_id == store_id){
+                return index
+            }
+        }
+        return -1
     }
     
     private func configureNavigationBar() {
@@ -214,14 +223,11 @@ extension DetailedRecipeController : UITableViewDataSource {
     // Use custom header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: RecipeHeaderView.identifier) as! RecipeHeaderView
-        view.configure(title: recipeData[section].name, storeID: String(recipeData[section].store_id))
+        view.configure(title: recipeData[section].name, storeID: recipeData[section].store_id)
 
         view.storeName.isEnabled = tableView.isEditing
         view.addButton.isHidden = tableView.isEditing
         view.deleteButton.isHidden = !tableView.isEditing
-        view.expandButton.tag = section
-        view.deleteButton.tag = section
-        view.storeName.tag = section
         
         view.updateRecipeStoreDelegate = self
         view.addRecipeItemDelegate = self
@@ -252,13 +258,12 @@ extension DetailedRecipeController : UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: RecipeViewCell.identifier, for: indexPath) as! RecipeViewCell
         
-        let tag = "\(indexPath.section),\(indexPath.row),\(item_id)"
-
         cell.configure(title: text, qty: qty)
         cell.itemName.isEnabled = tableView.isEditing
         cell.itemQty.isEnabled = tableView.isEditing
-        cell.itemName.accessibilityLabel = tag
-        cell.itemQty.accessibilityLabel = tag
+        
+        cell.itemName.tag = item_id
+        cell.itemQty.tag = item_id
         
         cell.recipeItemQuantityDelegate = self
         cell.recipeItemDescriptionDelegate = self
@@ -268,7 +273,8 @@ extension DetailedRecipeController : UITableViewDataSource {
 }
 
 extension DetailedRecipeController: ExpandRecipeSectionDelegate {
-    func expandSection(section: Int) {
+    func expandSection(storeID: Int) {
+        let section = self.getSection(store_id: storeID)
         func indexPathsForSection() -> [IndexPath] {
             var indexPaths = [IndexPath]()
             
@@ -293,8 +299,9 @@ extension DetailedRecipeController: ExpandRecipeSectionDelegate {
 }
 
 extension DetailedRecipeController: DeleteRecipeStoreDelegate {
-    func deleteRecipeStore(storeID: String, section: Int) {
-        print("deleting store: " + storeID)
+    func deleteRecipeStore(storeID: Int) {
+        let section = self.getSection(store_id: storeID)
+        print("deleting store: \(storeID)")
         
         let alert = UIAlertController(title: "Are you sure you want to delete \"\(recipeData[section].name)\" and all items in the section?", message: "", preferredStyle: .alert)
 
@@ -334,8 +341,8 @@ extension DetailedRecipeController: DeleteRecipeStoreDelegate {
 }
 
 extension DetailedRecipeController: AddRecipeItemDelegate {
-    func addRecipeItem(storeID: String) {
-        print("In Delegate")
+    func addRecipeItem(storeID: Int) {
+        let section = self.getSection(store_id: storeID)
         let alert = UIAlertController(title: "Enter an Item Name", message: "", preferredStyle: .alert)
 
         alert.addTextField { (textField) in
@@ -378,7 +385,8 @@ extension DetailedRecipeController: AddRecipeItemDelegate {
 }
 
 extension DetailedRecipeController: UpdateRecipeStoreDelegate {
-    func updateRecipeStore(storeID: String, store_name: String, section: Int) {
+    func updateRecipeStore(storeID: Int, store_name: String) {
+        let section = self.getSection(store_id: storeID)
         let updateRecipeStoreNameRequest = UpdateRecipeStoreNameRequest(store_name: store_name, store_id: storeID)
         updateRecipeStoreNameRequest.updateRecipeStoreName { [weak self] result in
             switch result {
@@ -391,13 +399,14 @@ extension DetailedRecipeController: UpdateRecipeStoreDelegate {
             case .success(_):
                 print("Store edited")
                 self!.recipeData[section].name = store_name
-                self!.local = true            }
+                self!.local = true
+            }
         }
     }
 }
 
 extension DetailedRecipeController: RecipeItemDescriptionDelegate {
-    func updateRecipeItemDescription(item_id: Int, item_description: String, section: Int, row: Int) {
+    func updateRecipeItemDescription(cell: RecipeViewCell, item_id: Int, item_description: String) {
         let updateRecipeItemDescriptionRequest = UpdateRecipeItemDescriptionRequest(item_id: item_id, item_description: item_description)
         updateRecipeItemDescriptionRequest.updateRecipeItemDescription { [weak self] result in
             switch result {
@@ -405,8 +414,11 @@ extension DetailedRecipeController: RecipeItemDescriptionDelegate {
                 print(error)
             case .success(let response):
                 print("Recipe has been updated \(response)")
-                self!.recipeData[section].items[row].itemDescription = item_description
                 self!.local = true
+                DispatchQueue.main.async {
+                    let indexPath = self!.tableView.indexPath(for: cell)!
+                    self!.recipeData[indexPath.section].items[indexPath.row].itemDescription = item_description
+                }
             }
         }
         return
@@ -414,7 +426,7 @@ extension DetailedRecipeController: RecipeItemDescriptionDelegate {
 }
 
 extension DetailedRecipeController: RecipeItemQuantityDelegate {
-    func updateRecipeItemQty(item_id: Int, item_qty: String, section: Int, row: Int) {
+    func updateRecipeItemQty(cell: RecipeViewCell, item_id: Int, item_qty: String) {
         let updateRecipeItemQuantityRequest = UpdateRecipeItemQuantityRequest(item_id: item_id, item_qty: item_qty)
         updateRecipeItemQuantityRequest.updateRecipeItemQty { [weak self] result in
             switch result {
@@ -426,8 +438,11 @@ extension DetailedRecipeController: RecipeItemQuantityDelegate {
                 print(error)
             case .success(_):
                 print("Quantity edited")
-                self!.recipeData[section].items[row].qty = Int(item_qty)!
                 self!.local = true
+                DispatchQueue.main.async {
+                    let indexPath = self!.tableView.indexPath(for: cell)!
+                    self!.recipeData[indexPath.section].items[indexPath.row].qty = Int(item_qty)!
+                }
             }
         }
     }

@@ -188,7 +188,7 @@ extension RecipeCheckViewController: UITableViewDataSource {
     // Use custom header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: RecipeHeaderView.identifier) as! RecipeHeaderView
-        view.configure(title: recipeData[section].name, storeID: String(recipeData[section].store_id))
+        view.configure(title: recipeData[section].name, storeID: recipeData[section].store_id)
 
         view.storeName.isEnabled = false
         view.addButton.isHidden = true

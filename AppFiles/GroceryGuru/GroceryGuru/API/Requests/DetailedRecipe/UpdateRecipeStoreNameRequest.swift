@@ -16,7 +16,7 @@ enum UpdateRecipeStoreNameError:Error {
 struct UpdateRecipeStoreNameRequest {
     let requestURL:URLRequest
     
-    init(store_name:String, store_id:String) {
+    init(store_name:String, store_id:Int) {
         let resourceString = "http://18.188.0.221:8080/recipe/store/name"
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         let parameterDictionary = ["store_name": store_name, "store_id": store_id, "recipe_id": selected_recipe_id] as [String : Any]
