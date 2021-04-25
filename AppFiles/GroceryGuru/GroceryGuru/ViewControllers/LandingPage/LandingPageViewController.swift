@@ -42,10 +42,15 @@ class LandingPageViewController: UIViewController, TableViewCellDelegate {
         didSet {
             DispatchQueue.main.async {
                 print("Table reload with new data")
-                self.tableView.reloadData()
+                if(!self.local){
+                    self.tableView.reloadData()
+                } else{
+                    self.local = false
+                }
             }
         }
     }
+    var local = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -171,6 +176,7 @@ class LandingPageViewController: UIViewController, TableViewCellDelegate {
             if(self.deleted){
                 allListData.remove(at: indexPath.item)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.local = true
             }
             
             return

@@ -16,10 +16,10 @@ class DetailedRecipeController: UIViewController {
             DispatchQueue.main.async {
                 print("Table reload with new data")
                 print(String(self.recipeData.count) + " sections")
-                if(!self.text_field_change){
+                if(!self.local){
                     self.tableView.reloadData()
                 } else{
-                    self.text_field_change = false
+                    self.local = false
                 }
             }
         }
@@ -27,8 +27,8 @@ class DetailedRecipeController: UIViewController {
     
     var hiddenSections = Set<Int>()
     var deleted = true
-    var text_field_change = false
-    
+    var local = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = selected_recipe_name
@@ -96,7 +96,7 @@ class DetailedRecipeController: UIViewController {
 
         self.present(alertController, animated: true, completion: nil)
     }
-    
+        
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if (editingStyle == .delete){
             let item_id = recipeData[indexPath.section].items[indexPath.row].itemID
@@ -121,6 +121,7 @@ class DetailedRecipeController: UIViewController {
                 items.remove(at: indexPath.row)
                 recipeData[indexPath.section].items = items
                 tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.local = true
             }
             
             return
@@ -314,7 +315,12 @@ extension DetailedRecipeController: DeleteRecipeStoreDelegate {
                     print(error)
                 case .success(_):
                     print("Store deleted")
-                    self?.getData()
+                    let indexSet = IndexSet(arrayLiteral: section)
+                    DispatchQueue.main.async {
+                        self!.recipeData.remove(at: section)
+                        self!.tableView.deleteSections(indexSet, with: .automatic)
+                    }
+                    self!.local = true
                 }
             }
         })
@@ -385,7 +391,7 @@ extension DetailedRecipeController: UpdateRecipeStoreDelegate {
             case .success(_):
                 print("Store edited")
                 self!.recipeData[section].name = store_name
-                self!.text_field_change = true            }
+                self!.local = true            }
         }
     }
 }
@@ -400,7 +406,7 @@ extension DetailedRecipeController: RecipeItemDescriptionDelegate {
             case .success(let response):
                 print("Recipe has been updated \(response)")
                 self!.recipeData[section].items[row].itemDescription = item_description
-                self!.text_field_change = true
+                self!.local = true
             }
         }
         return
@@ -421,7 +427,7 @@ extension DetailedRecipeController: RecipeItemQuantityDelegate {
             case .success(_):
                 print("Quantity edited")
                 self!.recipeData[section].items[row].qty = Int(item_qty)!
-                self!.text_field_change = true
+                self!.local = true
             }
         }
     }

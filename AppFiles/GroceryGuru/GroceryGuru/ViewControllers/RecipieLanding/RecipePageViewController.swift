@@ -11,16 +11,20 @@ class RecipePageViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
-    var deleted = true
-
     var allRecipieData = AllRecipeResponse() {
         didSet {
             DispatchQueue.main.async {
                 print("Table reload with new data")
-                self.tableView.reloadData()
+                if(!self.local){
+                    self.tableView.reloadData()
+                } else{
+                    self.local = false
+                }
             }
         }
     }
+    var deleted = true
+    var local = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +90,7 @@ class RecipePageViewController: UIViewController {
             if(self.deleted){
                 allRecipieData.remove(at: indexPath.item)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.local = true
             }
             
             return

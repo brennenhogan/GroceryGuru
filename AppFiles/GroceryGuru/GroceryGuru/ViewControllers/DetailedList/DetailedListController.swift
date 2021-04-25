@@ -14,11 +14,14 @@ class DetailedListController: UIViewController {
     
     var listData = ListResponse() {
         didSet {
-            if(self.local_version <= self.server_version || self.local_version == -1){
+            if(self.local_version < self.server_version || self.initial){
                 DispatchQueue.main.async {
+                    print("Local \(self.local_version) Server \(self.server_version)")
                     print("Table reload with new data")
                     print(String(self.listData.stores.count) + " sections")
                     self.tableView.reloadData()
+                    self.local_version = self.server_version
+                    self.initial = false
                 }
             }
         }
@@ -26,6 +29,7 @@ class DetailedListController: UIViewController {
     
     var hiddenSections = Set<Int>()
     var timer = Timer()
+    var initial = true
     var server_version = -1
     var local_version = -1
     var deleted = true
@@ -50,7 +54,7 @@ class DetailedListController: UIViewController {
         self.getData()
         active_page = "D"
 
-        self.timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.75, repeats: true) { timer in
             // Invalidate the timer if we are no longer on the detailed list page
             if(active_page != "D"){
                 self.timer.invalidate()
@@ -69,14 +73,13 @@ class DetailedListController: UIViewController {
                 }
             }
             
-            /*print(self.server_version)
-            print(self.current_version)*/
+            print(self.server_version)
+            print(self.local_version)
             
             // Check to see the server version is more up to date than the local
             if(self.server_version > self.local_version){
                 print("Getting new data")
                 self.getData()
-                self.local_version = self.server_version
             }
 
         }
@@ -127,7 +130,6 @@ class DetailedListController: UIViewController {
                 }
                 print(error)
             case .success(let list):
-                self!.local_version = Int(list.version)!
                 self!.server_version = Int(list.version)!
                 self?.listData = list
                 print("Data received properly")
@@ -163,6 +165,7 @@ class DetailedListController: UIViewController {
                     print(error)
                 case .success(let response):
                     print("List has been deleted \(response)")
+                    self?.local_version += 1
                     self?.deleted = response.result
                 }
             }
@@ -398,7 +401,12 @@ extension DetailedListController: DeleteStoreDelegate {
                     print(error)
                 case .success(_):
                     print("Store deleted")
-                    self?.getData()
+                    let indexSet = IndexSet(arrayLiteral: section)
+                    DispatchQueue.main.async {
+                        self!.listData.stores.remove(at: section)
+                        self!.tableView.deleteSections(indexSet, with: .automatic)
+                    }
+                    self!.local_version += 1
                 }
             }
         })
