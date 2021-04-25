@@ -49,14 +49,19 @@ def create():
 @login_api.route('/resetpass', methods=['PUT'])
 def reset_pass():
   name = request.json['name']
-  password = request.json['password']
+  old_password = request.json['old_password']
+  new_password = request.json['new_password']
   user =  Login.query.filter_by(name=name).first()
   
-  # If the user exists, update their password and return the UUID
+  # If the user exists, check the old_password, then update to new_password and return the UUID
   if user:
-    user.password = password
-    db.session.commit()
-    return {"uuid": user.uuid, "message": "Password successfully changed"}
+    if user.password == old_password:
+      user.password = new_password
+      db.session.commit()
+      return {"uuid": user.uuid, "message": "Password successfully changed"}
+    else: 
+      return {"uuid": "", "message": "ERROR: Old password does not match"}
+
   
   # IF the user does not exist, throw an error
   return {"uuid": "", "message": "ERROR: User does not exist"}
