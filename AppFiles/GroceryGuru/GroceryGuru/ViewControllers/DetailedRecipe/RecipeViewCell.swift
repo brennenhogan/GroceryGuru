@@ -21,6 +21,7 @@ class RecipeViewCell: UITableViewCell {
     
     @IBOutlet var itemName: UITextField!
     @IBOutlet var itemQty: UITextField!
+    @IBOutlet var dash: UIButton!
     
     static func nib() -> UINib {
         return UINib(nibName: "RecipeViewCell", bundle: nil)

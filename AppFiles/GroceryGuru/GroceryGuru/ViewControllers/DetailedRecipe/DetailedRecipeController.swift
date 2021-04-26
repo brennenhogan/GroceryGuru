@@ -186,6 +186,9 @@ class DetailedRecipeController: UIViewController {
             guard let cell = cell as? RecipeViewCell else { return }
             cell.itemName.isEnabled = tableView.isEditing
             cell.itemQty.isEnabled = tableView.isEditing
+            cell.dash.isHidden = tableView.isEditing
+            cell.itemName.borderStyle = (self.tableView.isEditing) ? .roundedRect : .none
+            cell.itemQty.borderStyle = (self.tableView.isEditing) ? .roundedRect : .none
         }
         
         for i in 0...recipeData.count {
@@ -193,6 +196,7 @@ class DetailedRecipeController: UIViewController {
             header.deleteButton.isHidden = !tableView.isEditing
             header.storeName.isEnabled = tableView.isEditing
             header.addButton.isHidden = tableView.isEditing
+            header.storeName.borderStyle = (self.tableView.isEditing) ? .roundedRect : .none
         }
     }
 

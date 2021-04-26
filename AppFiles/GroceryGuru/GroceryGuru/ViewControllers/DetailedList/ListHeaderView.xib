@@ -9,8 +9,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="OpenSans-Regular.ttf">
-            <string>OpenSans-Regular</string>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
         </array>
     </customFonts>
     <objects>
@@ -47,7 +47,7 @@
                                         <rect key="frame" x="60" y="0.0" width="185" height="50"/>
                                         <color key="backgroundColor" red="0.38823529411764707" green="0.396078431372549" blue="0.40784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="24"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="editStore:" destination="iN0-l3-epB" eventType="editingDidEnd" id="QlS-0h-204"/>
@@ -107,7 +107,7 @@
                 <outlet property="expandButton" destination="Lgd-yk-PE2" id="1ua-xG-1mN"/>
                 <outlet property="storeName" destination="rdd-9Z-nmN" id="upu-gI-nVG"/>
             </connections>
-            <point key="canvasLocation" x="74.637681159420296" y="81.696428571428569"/>
+            <point key="canvasLocation" x="74.637681159420296" y="87.723214285714278"/>
         </view>
     </objects>
     <resources>

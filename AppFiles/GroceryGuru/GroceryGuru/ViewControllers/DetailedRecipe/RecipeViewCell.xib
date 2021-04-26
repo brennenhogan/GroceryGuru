@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,20 +15,31 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeViewCell" id="WUK-7O-jCk" userLabel="Recipe View Cell" customClass="RecipeViewCell" customModule="GroceryGuru" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="350" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeViewCell" rowHeight="35" id="WUK-7O-jCk" userLabel="Recipe View Cell" customClass="RecipeViewCell" customModule="GroceryGuru" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="350" height="35"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WUK-7O-jCk" id="jyE-9F-hHn">
-                <rect key="frame" x="0.0" y="0.0" width="350" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="350" height="35"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="cX4-8U-gR4">
-                        <rect key="frame" x="60" y="0.0" width="280" height="44"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="cX4-8U-gR4">
+                        <rect key="frame" x="10" y="0.0" width="330" height="35"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Qty" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zet-5C-fKn">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJ6-o3-eNm">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="Awp-vl-Eyb"/>
+                                    <constraint firstAttribute="width" constant="50" id="YBV-9z-2ry"/>
+                                </constraints>
+                                <color key="tintColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="minus" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Qty" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zet-5C-fKn">
+                                <rect key="frame" x="65" y="0.0" width="75" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="Awp-vl-Eyb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
@@ -36,7 +48,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AZI-Sr-Ajv">
-                                <rect key="frame" x="77" y="0.0" width="203" height="44"/>
+                                <rect key="frame" x="155" y="0.0" width="175" height="35"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <connections>
@@ -49,17 +61,21 @@
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="cX4-8U-gR4" secondAttribute="bottom" id="4k4-vo-lGY"/>
-                    <constraint firstItem="cX4-8U-gR4" firstAttribute="leading" secondItem="jyE-9F-hHn" secondAttribute="leading" constant="60" id="Gtz-0G-Gio"/>
+                    <constraint firstItem="cX4-8U-gR4" firstAttribute="leading" secondItem="jyE-9F-hHn" secondAttribute="leading" constant="10" id="Gtz-0G-Gio"/>
                     <constraint firstItem="cX4-8U-gR4" firstAttribute="top" secondItem="jyE-9F-hHn" secondAttribute="top" id="elK-MF-fhF"/>
                     <constraint firstAttribute="trailing" secondItem="cX4-8U-gR4" secondAttribute="trailing" constant="10" id="iNk-gm-3FX"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="ptT-Se-8Xl"/>
             <connections>
+                <outlet property="dash" destination="lJ6-o3-eNm" id="e01-3s-oYY"/>
                 <outlet property="itemName" destination="AZI-Sr-Ajv" id="Xas-ng-yzc"/>
                 <outlet property="itemQty" destination="Zet-5C-fKn" id="y2p-mr-5Vj"/>
             </connections>
-            <point key="canvasLocation" x="127.53623188405798" y="107.8125"/>
+            <point key="canvasLocation" x="127.53623188405798" y="110.82589285714285"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="minus" catalog="system" width="128" height="24"/>
+    </resources>
 </document>
