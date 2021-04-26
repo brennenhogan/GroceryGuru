@@ -23,7 +23,7 @@ AWS INSTRUCTIONS
 How to run:
 export FLASK_ENV=production
 export FLASK_APP="wsgi.py"
-nohup gunicorn -w 3 wsgi:app 2>&1 &
+nohup gunicorn -w 3 -b 0.0.0.0:8080 wsgi:app 2>&1 &
 
 We use 3 workers because we have 1 CPU core (2 workers per core) and 1 extra (recommended)
 
