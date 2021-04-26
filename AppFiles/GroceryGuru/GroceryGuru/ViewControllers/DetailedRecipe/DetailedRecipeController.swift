@@ -28,6 +28,7 @@ class DetailedRecipeController: UIViewController {
     var hiddenSections = Set<Int>()
     var deleted = true
     var local = false
+    var collapsing = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -210,9 +211,8 @@ class DetailedRecipeController: UIViewController {
 extension DetailedRecipeController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("tapped cell!!")
+        tableView.deselectRow(at: indexPath, animated: true) // Unselect the tapped item
     }
-    
 }
 
 extension DetailedRecipeController : UITableViewDataSource {
@@ -221,7 +221,7 @@ extension DetailedRecipeController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50 // This is because the view is height 50 in the RecipeViewCell.xib
+        return 35 // This is because the view is height 35 in the RecipeViewCell.xib
     }
     
     // Use custom header
@@ -295,6 +295,7 @@ extension DetailedRecipeController: ExpandRecipeSectionDelegate {
             self.tableView.insertRows(at: indexPathsForSection(),
                                       with: .fade)
         } else {
+            self.collapsing = true // Indicates that a section has been collapsed
             self.hiddenSections.insert(section)
             self.tableView.deleteRows(at: indexPathsForSection(),
                                       with: .fade)
@@ -419,9 +420,16 @@ extension DetailedRecipeController: RecipeItemDescriptionDelegate {
             case .success(let response):
                 print("Recipe has been updated \(response)")
                 self!.local = true
-                DispatchQueue.main.async {
-                    let indexPath = self!.tableView.indexPath(for: cell)!
-                    self!.recipeData[indexPath.section].items[indexPath.row].itemDescription = item_description
+                
+                // Handles case where edit ends due to section collapse
+                if(self!.collapsing){
+                    self?.getData()
+                    self!.collapsing = false
+                } else {
+                    DispatchQueue.main.async {
+                        let indexPath = self!.tableView.indexPath(for: cell)!
+                        self!.recipeData[indexPath.section].items[indexPath.row].itemDescription = item_description
+                    }
                 }
             }
         }
@@ -443,9 +451,16 @@ extension DetailedRecipeController: RecipeItemQuantityDelegate {
             case .success(_):
                 print("Quantity edited")
                 self!.local = true
-                DispatchQueue.main.async {
-                    let indexPath = self!.tableView.indexPath(for: cell)!
-                    self!.recipeData[indexPath.section].items[indexPath.row].qty = Int(item_qty)!
+                
+                // Handles case where edit ends due to section collapse
+                if(self!.collapsing){
+                    self?.getData()
+                    self!.collapsing = false
+                } else {
+                    DispatchQueue.main.async {
+                        let indexPath = self!.tableView.indexPath(for: cell)!
+                        self!.recipeData[indexPath.section].items[indexPath.row].qty = Int(item_qty)!
+                    }
                 }
             }
         }

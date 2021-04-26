@@ -100,6 +100,7 @@ class ImportRecipeViewController: UIViewController {
 
 extension ImportRecipeViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true) // Unselect the tapped item
         selected_recipe_id = String(allRecipieData[indexPath.row].recipeID)
         selected_recipe_name = allRecipieData[indexPath.row].recipeName
         

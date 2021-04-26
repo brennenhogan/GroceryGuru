@@ -30,7 +30,7 @@ class DetailedListController: UIViewController {
     var hiddenSections = Set<Int>() // Hidden sections for collapsable
     var initial = true // Indicates that a list is loading for the first time
     var collapsing = false // Indicates that a section of the table view is collapsing
-    var deleted = true //
+    var deleted = true
     var timer = Timer() // Timer for shared lists
     var server_version = -1 // Version of the list from the API
     var local_version = -1 // Version of the list locally on the device
@@ -278,9 +278,8 @@ class DetailedListController: UIViewController {
 extension DetailedListController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("tapped cell!!")
+        tableView.deselectRow(at: indexPath, animated: true) // Unselect the tapped item
     }
-    
 }
 
 extension DetailedListController : UITableViewDataSource {
@@ -289,7 +288,7 @@ extension DetailedListController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50 // This is because the view is height 50 in the ListViewCell.xib
+        return 35 // This is because the view is height 35 in the ListViewCell.xib
     }
     
     // Use custom header
@@ -302,7 +301,7 @@ extension DetailedListController : UITableViewDataSource {
         view.addButton.isHidden = tableView.isEditing
         view.deleteButton.isHidden = !tableView.isEditing
         
-        view.addItemDelegate = self // Be listening for the button tap in the header
+        view.addItemDelegate = self
         view.deleteStoreDelegate = self
         view.editStoreDelegate = self
         view.expandSectionDelegate = self
@@ -438,8 +437,6 @@ extension DetailedListController: CheckButtonDelegate {
     }
 }
 
-// TODO fix these
-
 extension DetailedListController: AddItemDelegate {
     func addItem(storeID: Int) {
         let section = self.getSection(store_id: storeID)
@@ -483,7 +480,6 @@ extension DetailedListController: ExpandSectionDelegate {
                 indexPaths.append(IndexPath(row: row,
                                             section: section))
             }
-            
             return indexPaths
         }
         
