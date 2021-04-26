@@ -27,12 +27,13 @@ class DetailedListController: UIViewController {
         }
     }
     
-    var hiddenSections = Set<Int>()
-    var timer = Timer()
-    var initial = true
-    var server_version = -1
-    var local_version = -1
-    var deleted = true
+    var hiddenSections = Set<Int>() // Hidden sections for collapsable
+    var initial = true // Indicates that a list is loading for the first time
+    var collapsing = false // Indicates that a section of the table view is collapsing
+    var deleted = true //
+    var timer = Timer() // Timer for shared lists
+    var server_version = -1 // Version of the list from the API
+    var local_version = -1 // Version of the list locally on the device
     var filter_selection = 0
     
     override func viewDidLoad() {
@@ -54,7 +55,10 @@ class DetailedListController: UIViewController {
         self.getData()
         active_page = "D"
 
+        // TODO network call to invalidate timer
+        
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.75, repeats: true) { timer in
+            
             // Invalidate the timer if we are no longer on the detailed list page
             if(active_page != "D"){
                 self.timer.invalidate()
@@ -258,6 +262,7 @@ class DetailedListController: UIViewController {
     }
     
     @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
+        self.tableView.endEditing(true)
         self.filter_selection = sender.selectedSegmentIndex
         self.getData()
         self.initial = true
@@ -359,9 +364,16 @@ extension DetailedListController: ItemQuantityDelegate {
             case .success(_):
                 print("Quantity edited")
                 self!.local_version += 1
-                DispatchQueue.main.async {
-                    let indexPath = self!.tableView.indexPath(for: cell)!
-                    self!.listData.stores[indexPath.section].items[indexPath.row].qty = item_qty
+                
+                // Handles case where edit ends due to section collapse
+                if(self!.collapsing){
+                    self?.getData()
+                    self!.collapsing = false
+                } else {
+                    DispatchQueue.main.async {
+                        let indexPath = self!.tableView.indexPath(for: cell)!
+                        self!.listData.stores[indexPath.section].items[indexPath.row].qty = item_qty
+                    }
                 }
             }
         }
@@ -378,14 +390,20 @@ extension DetailedListController: ItemDescriptionDelegate {
             case .success(let response):
                 print("List has been updated \(response)")
                 self!.local_version += 1
-                DispatchQueue.main.async {
-                    let indexPath = self!.tableView.indexPath(for: cell)!
-                    self!.listData.stores[indexPath.section].items[indexPath.row].itemDescription = item_description
-                    if(!self!.tableView.isEditing){
-                        cell.itemName.isEnabled = false
+                
+                // Handles case where edit ends due to section collapse
+                if(self!.collapsing){
+                    self?.getData()
+                    self!.collapsing = false
+                } else {
+                    DispatchQueue.main.async {
+                        let indexPath = self!.tableView.indexPath(for: cell)!
+                        self!.listData.stores[indexPath.section].items[indexPath.row].itemDescription = item_description
+                        if(!self!.tableView.isEditing){ // If item is new, allow edit but set to false afterwards
+                            cell.itemName.isEnabled = false
+                        }
                     }
                 }
-                // If the item is being edited for the first time, allow but set to false afterwards
             }
         }
         return
@@ -439,7 +457,7 @@ extension DetailedListController: AddItemDelegate {
                 self!.local_version += 1
 
                 var items = self?.listData.stores[section].items
-                var item = Item(itemDescription: "", itemID: response.item_id, listID: Int(selected_list_id)!, purchased: 0, qty: 1) // Local copy of the item
+                let item = Item(itemDescription: "", itemID: response.item_id, listID: Int(selected_list_id)!, purchased: 0, qty: 1) // Local copy of the item
                 items?.append(item)
                 self?.listData.stores[section].items = items!
                 let indexPath = IndexPath(row: (current_row_count), section: section)
@@ -474,6 +492,8 @@ extension DetailedListController: ExpandSectionDelegate {
             self.tableView.insertRows(at: indexPathsForSection(),
                                       with: .fade)
         } else {
+            self.collapsing = true // Indicates that a section has been collapsed
+            self.tableView.endEditing(true)
             self.hiddenSections.insert(section)
             self.tableView.deleteRows(at: indexPathsForSection(),
                                       with: .fade)
