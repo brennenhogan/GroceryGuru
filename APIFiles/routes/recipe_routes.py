@@ -24,9 +24,9 @@ def add_recipe():
     db.session.commit()
   except exc.SQLAlchemyError:
     print(exc.SQLAlchemyError)
-    return {"result": False}
+    return {"result": False, "recipe_id": 0}
 
-  return {"result": True}
+  return {"result": True, "recipe_id": new_recipe.recipe_id}
 
 # Delete a recipe
 @recipe_api.route('/recipe/delete', methods=['POST'])
@@ -95,9 +95,9 @@ def add_recipeItem():
     db.session.commit()
   except exc.SQLAlchemyError:
     print(exc.SQLAlchemyError)
-    return {"result": False}
+    return {"result": False, "item_id": 0}
 
-  return {"result": True}
+  return {"result": True, "item_id": new_recipeItem.item_id}
 
 # Update the quantity of an item
 @recipe_api.route('/recipe/item/qty', methods=['POST'])
@@ -182,9 +182,9 @@ def add_store():
     db.session.commit()
   except exc.SQLAlchemyError:
     print(exc.SQLAlchemyError)
-    return {"result": False}
+    return {"result": False, "store_id": 0}
 
-  return {"result": True}
+  return {"result": True, "store_id": new_store.store_id}
 
 # Edit a store
 @recipe_api.route('/recipe/store/name', methods=['POST'])

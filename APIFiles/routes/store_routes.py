@@ -22,10 +22,10 @@ def add_store():
     db.session.commit()
   except exc.SQLAlchemyError:
     print(exc.SQLAlchemyError)
-    return {"result": False}
+    return {"result": False, "store_id": 0}
 
   update_version(list_id)
-  return {"result": True}
+  return {"result": True, "store_id": new_store.store_id}
 
 # Edit a store name
 @store_api.route('/store/description', methods=['POST'])
