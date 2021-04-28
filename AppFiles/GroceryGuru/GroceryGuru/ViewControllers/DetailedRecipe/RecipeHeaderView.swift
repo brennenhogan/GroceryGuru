@@ -7,11 +7,6 @@
 
 import UIKit
 
-/*
- protocol EditStoreDelegate {
-     func editStore(storeID: String, store_name: String)
- }
-*/
  protocol AddRecipeItemDelegate {
      func addRecipeItem(storeID: Int)
  }
@@ -25,7 +20,7 @@ import UIKit
  }
 
 protocol UpdateRecipeStoreDelegate{
-    func updateRecipeStore(storeID: Int, store_name: String)
+    func updateRecipeStore(cell: RecipeHeaderView, storeID: Int, store_name: String)
 }
  
 
@@ -71,7 +66,7 @@ class RecipeHeaderView: UITableViewHeaderFooterView {
     var updateRecipeStoreDelegate: UpdateRecipeStoreDelegate?
     
     @IBAction func updateStore(_ sender: UITextField){
-        updateRecipeStoreDelegate?.updateRecipeStore(storeID: store_id, store_name: storeName.text!)
+        updateRecipeStoreDelegate?.updateRecipeStore(cell: self, storeID: store_id, store_name: storeName.text!)
     }
 
     @IBAction func addRecipeItem(_ sender: UIButton){

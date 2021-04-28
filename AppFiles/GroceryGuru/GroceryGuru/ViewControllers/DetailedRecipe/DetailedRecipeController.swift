@@ -139,44 +139,28 @@ class DetailedRecipeController: UIViewController {
     }
     
     @IBAction func addStore(_ sender: UIButton){
-        let alert = UIAlertController(title: "Enter a Store Name", message: "", preferredStyle: .alert)
-
-        alert.addTextField { (textField) in
-            textField.text = ""
-        }
-
-        alert.view.tintColor = UIColor(hex: 0x7A916E)
-        self.present(alert, animated: true, completion: nil)
+        let current_section_count = self.recipeData.count
         
-        // Grab the value from the text field when the user clicks Create
-        let createAction = UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            //Create recipe_id Action
-            let addRecipeStoreRequest = AddRecipeStoreRequest(storename: (textField?.text)!)
-            addRecipeStoreRequest.addRecipeStore { [weak self] result in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let response):
-                    print("Store has been created \(response)")
-                    self?.getData()
+        //Create recipe_id Action
+        let addRecipeStoreRequest = AddRecipeStoreRequest(storename: "")
+        addRecipeStoreRequest.addRecipeStore { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let response):
+                print("Store has been created \(response.store_id)")
+                self!.local = true
+                
+                let listElement = RecipeElement(items: [], store_id: response.store_id, name: "")
+                self?.recipeData.append(listElement)
+                DispatchQueue.main.async {
+                    self?.tableView.insertSections([current_section_count], with: .automatic)
+                    let header = (self?.tableView.headerView(forSection: current_section_count))! as! RecipeHeaderView
+                    header.storeName.isEnabled = true
+                    header.storeName.becomeFirstResponder() // Keyboard pop up on new item's description
                 }
             }
-        })
-            
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
-        
-        createAction.isEnabled = false
-        
-        // adding the notification observer here
-        NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object:alert.textFields?[0], queue: OperationQueue.main) { (notification) -> Void in
-            let textFieldName = (alert.textFields?[0])! as UITextField
-            createAction.isEnabled = !textFieldName.text!.isEmpty
         }
-        
-        alert.addAction(cancelAction)
-        alert.addAction(createAction)
-        
     }
     
     @IBAction func editAction(_ sender: UIBarButtonItem){
@@ -296,6 +280,7 @@ extension DetailedRecipeController: ExpandRecipeSectionDelegate {
                                       with: .fade)
         } else {
             self.collapsing = true // Indicates that a section has been collapsed
+            self.tableView.endEditing(true)
             self.hiddenSections.insert(section)
             self.tableView.deleteRows(at: indexPathsForSection(),
                                       with: .fade)
@@ -348,49 +333,38 @@ extension DetailedRecipeController: DeleteRecipeStoreDelegate {
 extension DetailedRecipeController: AddRecipeItemDelegate {
     func addRecipeItem(storeID: Int) {
         let section = self.getSection(store_id: storeID)
-        let alert = UIAlertController(title: "Enter an Item Name", message: "", preferredStyle: .alert)
-
-        alert.addTextField { (textField) in
-            textField.text = ""
-        }
-
-        alert.view.tintColor = UIColor(hex: 0x7A916E)
-        self.present(alert, animated: true, completion: nil)
+        let current_row_count = self.recipeData[section].items.count
         
-        // Grab the value from the text field when the user clicks Add
-        let createAction = UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            // Add Item Action
-            let addRecipeItemRequest = AddRecipeItemRequest(description: (textField?.text)!, store_id: storeID, qty: "1")
-            
-            addRecipeItemRequest.addRecipeItem { [weak self] result in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let response):
-                    print("Item has been created \(response)")
-                    self?.getData()
+        // Add Item Action
+        let addRecipeItemRequest = AddRecipeItemRequest(description: "", store_id: storeID, qty: "1")
+        
+        addRecipeItemRequest.addRecipeItem { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let response):
+                print("Item has been created \(response)")
+                self!.local = true
+
+                var items = self?.recipeData[section].items
+                let item = RecipeItem(itemDescription: "", itemID: response.item_id, recipeID: Int(selected_recipe_id)!, qty: 1, checked: 0)
+                items?.append(item)
+                self?.recipeData[section].items = items!
+                let indexPath = IndexPath(row: (current_row_count), section: section)
+
+                DispatchQueue.main.async {
+                    self?.tableView.insertRows(at: [indexPath], with: .automatic) // Insert new item
+                    let cell = self?.tableView.cellForRow(at: indexPath) as! RecipeViewCell
+                    cell.itemName.isEnabled = true
+                    cell.itemName.becomeFirstResponder() // Keyboard pop up on new item's description
                 }
             }
-        })
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
-        
-        createAction.isEnabled = false
-        
-        // adding the notification observer here
-        NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object:alert.textFields?[0], queue: OperationQueue.main) { (notification) -> Void in
-            let textFieldName = (alert.textFields?[0])! as UITextField
-            createAction.isEnabled = !textFieldName.text!.isEmpty
-            }
-        
-        alert.addAction(cancelAction)
-        alert.addAction(createAction)
+        }
     }
 }
 
 extension DetailedRecipeController: UpdateRecipeStoreDelegate {
-    func updateRecipeStore(storeID: Int, store_name: String) {
+    func updateRecipeStore(cell: RecipeHeaderView, storeID: Int, store_name: String) {
         let section = self.getSection(store_id: storeID)
         let updateRecipeStoreNameRequest = UpdateRecipeStoreNameRequest(store_name: store_name, store_id: storeID)
         updateRecipeStoreNameRequest.updateRecipeStoreName { [weak self] result in
@@ -405,6 +379,11 @@ extension DetailedRecipeController: UpdateRecipeStoreDelegate {
                 print("Store edited")
                 self!.recipeData[section].name = store_name
                 self!.local = true
+                DispatchQueue.main.async {
+                    if(!self!.tableView.isEditing){ // If item is new, allow edit but set to false afterwards
+                        cell.storeName.isEnabled = false
+                    }
+                }
             }
         }
     }
@@ -429,6 +408,10 @@ extension DetailedRecipeController: RecipeItemDescriptionDelegate {
                     DispatchQueue.main.async {
                         let indexPath = self!.tableView.indexPath(for: cell)!
                         self!.recipeData[indexPath.section].items[indexPath.row].itemDescription = item_description
+                        
+                        if(!self!.tableView.isEditing){ // If item is new, allow edit but set to false afterwards
+                            cell.itemName.isEnabled = false
+                        }
                     }
                 }
             }

@@ -108,45 +108,31 @@ class RecipePageViewController: UIViewController {
     }
     
     @IBAction func addRecipe(_ sender: UIButton){
-        let alert = UIAlertController(title: "Enter a Recipe Name", message: "", preferredStyle: .alert)
+        let current_row_count = self.allRecipieData.count
 
-        alert.addTextField { (textField) in
-            textField.text = ""
-        }
+        //Create Recipe Action
+        let addRecipeRequest = AddRecipeRequest(name: "")
+        addRecipeRequest.addRecipe { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let response):
+                print("Recipe has been created \(response)")
+                self!.local = true
+                
+                let allRecipeElement = AllRecipeElement(recipeID: response.recipe_id, recipeQty: 0, recipeName: "")
+                self?.allRecipieData.append(allRecipeElement)
+                let indexPath = IndexPath(row: (current_row_count), section: 0)
 
-        alert.view.tintColor = UIColor(hex: 0x7A916E)
-        self.present(alert, animated: true, completion: nil)
-        
-        // Grab the value from the text field when the user clicks Create
-        let createAction = UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            //Create List Action
-            let addRecipeRequest = AddRecipeRequest(name: (textField?.text)!)
-            addRecipeRequest.addRecipe { [weak self] result in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let response):
-                    print("Store has been created \(response)")
-                    self?.getData()
+                DispatchQueue.main.async {
+                    self?.tableView.insertRows(at: [indexPath], with: .automatic) // Insert new item
+                    let cell = self?.tableView.cellForRow(at: indexPath) as! RecipeTableCell
+                    cell.recipeTitle.isEnabled = true
+                    cell.recipeTitle.becomeFirstResponder() // Keyboard pop up on new item's description
                 }
             }
-        })
-        
-        createAction.isEnabled = false
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
-        
-        // adding the notification observer here
-        NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object:alert.textFields?[0], queue: OperationQueue.main) { (notification) -> Void in
-            let textFieldName = (alert.textFields?[0])! as UITextField
-            createAction.isEnabled = !textFieldName.text!.isEmpty
-            }
-        
-        alert.addAction(cancelAction)
-        alert.addAction(createAction)
+        }
     }
-    
     
 }
 
@@ -208,6 +194,9 @@ extension RecipePageViewController: RecipeTitleDelegate {
                 DispatchQueue.main.async {
                     let indexPath = self!.tableView.indexPath(for: cell)!
                     self!.allRecipieData[indexPath.row].recipeName = recipe_title
+                    if(!self!.tableView.isEditing){ // If recipe is new, allow edit but set to false afterwards
+                        cell.recipeTitle.isEnabled = false
+                    }
                 }
             }
         }

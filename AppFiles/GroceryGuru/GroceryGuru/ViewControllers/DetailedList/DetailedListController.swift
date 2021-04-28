@@ -199,44 +199,28 @@ class DetailedListController: UIViewController {
     }
     
     @IBAction func addStore(_ sender: UIButton){
-        let alert = UIAlertController(title: "Enter a Store Name", message: "", preferredStyle: .alert)
-
-        alert.addTextField { (textField) in
-            textField.text = ""
-        }
-
-        alert.view.tintColor = UIColor(hex: 0x7A916E)
-        self.present(alert, animated: true, completion: nil)
+        let current_section_count = self.listData.stores.count
         
-        // Grab the value from the text field when the user clicks Create
-        let createAction = UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            //Create List Action
-            let addStoreRequest = AddStoreRequest(storename: (textField?.text)!)
-            addStoreRequest.addStore { [weak self] result in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let response):
-                    print("Store has been created \(response)")
-                    self?.getData()
+        //Create List Action
+        let addStoreRequest = AddStoreRequest(storename: "")
+        addStoreRequest.addStore { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let response):
+                print("Store has been created \(response.store_id)")
+                self!.local_version += 1
+                
+                let listElement = ListElement(items: [], store_id: response.store_id, name: "")
+                self?.listData.stores.append(listElement)
+                DispatchQueue.main.async {
+                    self?.tableView.insertSections([current_section_count], with: .automatic)
+                    let header = (self?.tableView.headerView(forSection: current_section_count))! as! ListHeaderView
+                    header.storeName.isEnabled = true
+                    header.storeName.becomeFirstResponder() // Keyboard pop up on new item's description
                 }
             }
-        })
-        
-        createAction.isEnabled = false
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction!) -> Void in }
-        
-        // adding the notification observer here
-        NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object:alert.textFields?[0], queue: OperationQueue.main) { (notification) -> Void in
-            let textFieldName = (alert.textFields?[0])! as UITextField
-            createAction.isEnabled = !textFieldName.text!.isEmpty
-            }
-        
-        alert.addAction(cancelAction)
-        alert.addAction(createAction)
-        
+        }
     }
     
     @IBAction func editAction(_ sender: UIBarButtonItem){
@@ -540,7 +524,7 @@ extension DetailedListController: DeleteStoreDelegate {
 }
 
 extension DetailedListController: EditStoreDelegate {
-    func editStore(storeID: Int, store_name: String) {
+    func editStore(cell: ListHeaderView, storeID: Int, store_name: String) {
         let section = self.getSection(store_id: storeID)
         let updateStoreNameRequest = UpdateStoreNameRequest(store_name: store_name, store_id: storeID, list_id: selected_list_id)
         updateStoreNameRequest.updateStoreName { [weak self] result in
@@ -555,6 +539,11 @@ extension DetailedListController: EditStoreDelegate {
                 print("Store edited")
                 self!.local_version += 1
                 self!.listData.stores[section].name = store_name
+                DispatchQueue.main.async {
+                    if(!self!.tableView.isEditing){ // If store is new, allow edit but set to false afterwards
+                        cell.storeName.isEnabled = false
+                    }
+                }
             }
         }
     }

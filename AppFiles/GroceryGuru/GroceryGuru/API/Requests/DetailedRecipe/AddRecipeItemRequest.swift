@@ -28,7 +28,7 @@ struct AddRecipeItemRequest {
         self.requestURL = request
     }
     
-    func addRecipeItem (completion: @escaping(Result<BooleanResponse, AddRecipeItemRequestError>) -> Void) {
+    func addRecipeItem (completion: @escaping(Result<BooleanResponseItemId, AddRecipeItemRequestError>) -> Void) {
         let dataTask = URLSession.shared.dataTask(with: requestURL) { data, _, _ in
             guard let jsonData = data else {
                 completion(.failure(.NoDataAvailable))
@@ -37,7 +37,7 @@ struct AddRecipeItemRequest {
             
             do {
                 let decoder = JSONDecoder()
-                let addItemResponse = try decoder.decode(BooleanResponse.self, from: jsonData)
+                let addItemResponse = try decoder.decode(BooleanResponseItemId.self, from: jsonData)
                 if (addItemResponse.result) {
                     completion(.success(addItemResponse))
                 }
