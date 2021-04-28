@@ -30,15 +30,11 @@ class RecipeViewCell: UITableViewCell {
     public func configure(title: String, qty: Int) {
         itemName.text = title
         itemQty.text = String(qty)
+        itemName.delegate = self
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    }
-    
-    func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
-        itemName.resignFirstResponder()
-        return true
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -56,5 +52,12 @@ class RecipeViewCell: UITableViewCell {
     
     @IBAction func updateRecipeItemQty(_ sender: UITextField){
         recipeItemQuantityDelegate?.updateRecipeItemQty(cell: self, item_id: sender.tag, item_qty: sender.text!)
+    }
+}
+
+extension RecipeViewCell: UITextFieldDelegate {
+    func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
+        itemName.resignFirstResponder() // dismiss keyboard
+        return true
     }
 }

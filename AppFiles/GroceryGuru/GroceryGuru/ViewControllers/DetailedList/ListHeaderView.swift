@@ -49,11 +49,7 @@ class ListHeaderView: UITableViewHeaderFooterView {
         storeName.returnKeyType = .done
         expandButton.setImage(UIImage(systemName: "arrowtriangle.down"), for: .normal)
         expandButton.setImage(UIImage(systemName:"arrowtriangle.right"), for: .selected)
-    }
-
-    func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
-        itemName.resignFirstResponder()
-        return true
+        storeName.delegate = self
     }
     
     override init(reuseIdentifier: String?) {
@@ -86,5 +82,11 @@ class ListHeaderView: UITableViewHeaderFooterView {
 
         expandSectionDelegate?.expandSection(storeID: store_id)
     }
+}
 
+extension ListHeaderView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
+        storeName.resignFirstResponder() // dismiss keyboard
+        return true
+    }
 }

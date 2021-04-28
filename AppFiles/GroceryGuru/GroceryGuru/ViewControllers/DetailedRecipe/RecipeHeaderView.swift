@@ -54,11 +54,7 @@ class RecipeHeaderView: UITableViewHeaderFooterView {
         storeName.returnKeyType = .done
         expandButton.setImage(UIImage(systemName: "arrowtriangle.down"), for: .normal)
         expandButton.setImage(UIImage(systemName:"arrowtriangle.right"), for: .selected)
-    }
-
-    func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
-        itemName.resignFirstResponder()
-        return true
+        storeName.delegate = self
     }
     
     override init(reuseIdentifier: String?) {
@@ -91,5 +87,11 @@ class RecipeHeaderView: UITableViewHeaderFooterView {
         
         expandRecipeSectionDelegate?.expandSection(storeID: store_id)
     }
+}
 
+extension RecipeHeaderView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
+        storeName.resignFirstResponder() // dismiss keyboard
+        return true
+    }
 }

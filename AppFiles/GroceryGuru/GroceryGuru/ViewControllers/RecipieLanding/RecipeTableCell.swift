@@ -34,6 +34,7 @@ class RecipeTableCell: UITableViewCell {
         let theme_grey = UIColor(hex: 0x636568)
         self.backgroundColor = theme_grey
         recipeTitle.returnKeyType = .done
+        recipeTitle.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -42,15 +43,16 @@ class RecipeTableCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func textFieldShouldReturn(_ myText: UITextField) -> Bool {
-        myText.resignFirstResponder()
-        return true
-    }
-    
     var recipeTitleDelegate: RecipeTitleDelegate?
     
     @IBAction func editTitle(_ sender: UITextField){
         recipeTitleDelegate?.editTitle(cell: self, recipe_id: sender.tag, recipe_title: sender.text!)
     }
-        
+}
+
+extension RecipeTableCell: UITextFieldDelegate {
+    func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
+        recipeTitle.resignFirstResponder() // dismiss keyboard
+        return true
+    }
 }
