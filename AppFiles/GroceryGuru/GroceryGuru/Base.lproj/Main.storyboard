@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ANm-xT-Hie">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ANm-xT-Hie">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -29,7 +29,7 @@
                                 <rect key="frame" x="20" y="98" width="374" height="761.5"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UGY-qv-7sb">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="570.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="564.5"/>
                                         <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="separatorColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -39,8 +39,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </tableView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="66" translatesAutoresizingMaskIntoConstraints="NO" id="Dv4-1E-4D8">
-                                        <rect key="frame" x="0.0" y="595.5" width="374" height="166"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Dv4-1E-4D8">
+                                        <rect key="frame" x="0.0" y="589.5" width="374" height="172"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="245" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zHR-Q3-Szf">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -56,8 +56,26 @@
                                                     <segue destination="nRt-iz-LqB" kind="show" identifier="" id="l0t-Jh-WSp"/>
                                                 </connections>
                                             </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fLj-5p-otc">
+                                                <rect key="frame" x="0.0" y="75" width="374" height="22"/>
+                                                <subviews>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Z2v-I3-Swr">
+                                                        <rect key="frame" x="0.0" y="0.0" width="51" height="22"/>
+                                                        <color key="onTintColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <connections>
+                                                            <action selector="toggleButtonWithSender:" destination="IMX-vx-KnZ" eventType="primaryActionTriggered" id="bxi-i1-WdM"/>
+                                                        </connections>
+                                                    </switch>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="200" text="Launch Lists in Energy Saver Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9m-FR-40r">
+                                                        <rect key="frame" x="65" y="0.0" width="309" height="22"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="OEP-so-gHx">
-                                                <rect key="frame" x="0.0" y="116" width="374" height="50"/>
+                                                <rect key="frame" x="0.0" y="122" width="374" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dr5-LF-u9X">
                                                         <rect key="frame" x="0.0" y="0.0" width="182" height="50"/>
@@ -124,6 +142,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="createListButton" destination="zHR-Q3-Szf" id="Ynm-2w-h34"/>
+                        <outlet property="energySaver" destination="Z2v-I3-Swr" id="s58-hx-EMj"/>
                         <outlet property="tableView" destination="UGY-qv-7sb" id="V1v-Sl-Qqd"/>
                         <segue destination="GVW-bU-frF" kind="show" identifier="LandingToDetailed" id="lTw-40-dyv"/>
                     </connections>
@@ -1351,7 +1370,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="RVP-7Q-Hyg"/>
         <segue reference="lTw-40-dyv"/>
-        <segue reference="MAS-V4-j2s"/>
+        <segue reference="YPC-dN-Orv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.47843137250000001" green="0.56862745100000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
     <resources>

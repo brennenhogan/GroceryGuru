@@ -144,7 +144,9 @@ class DetailedListController: UIViewController {
     }
     
     func createTimer(){
-        self.timer = Timer.scheduledTimer(withTimeInterval: 0.75, repeats: true) { timer in
+        let interval = energy_saver ? 10.0 : 1.0
+        
+        self.timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { timer in
             
             // Invalidate the timer if we are no longer on the detailed list page
             if(active_page != "D"){

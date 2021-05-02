@@ -28,11 +28,13 @@ public var selected_recipe_id = ""
 public var selected_recipe_name = ""
 public var active_page = "O" // L for landing, D for detailed list, O for other
 public var create_recipe_import = 0 // 0 for new list, 1 for import to existing
+public var energy_saver = false
 
 class LandingPageViewController: UIViewController, TableViewCellDelegate {
 
     @IBOutlet weak var createListButton: UIButton!
     @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var energySaver: UISwitch!
 
     var deleted = true
     var loginDetails = LoginResponse()
@@ -68,6 +70,7 @@ class LandingPageViewController: UIViewController, TableViewCellDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         self.getData()
+        self.energySaver.isOn = energy_saver
         active_page = "L" // Sets the active page to be landing each time the page appears
         
         self.timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { timer in
@@ -219,6 +222,10 @@ class LandingPageViewController: UIViewController, TableViewCellDelegate {
     }
     
     @IBAction func unwind(_ segue: UIStoryboardSegue) {}
+    
+    @IBAction func toggleButton( sender: UISwitch){
+        energy_saver = energySaver.isOn
+    }
 }
 
 extension LandingPageViewController : UITableViewDelegate {
