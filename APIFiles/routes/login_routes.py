@@ -2,6 +2,7 @@ from flask import request, jsonify, Blueprint
 from models.base_model import db
 from models.login_model import Login
 from schemas.login_schema import login_schema
+from routes.utils import insert_default_data
 import random
 import string
 
@@ -42,6 +43,9 @@ def create():
 
   db.session.add(new_login)
   db.session.commit()
+
+  # Insert default data
+  insert_default_data(uuid)
 
   return {"uuid": new_login.uuid, "message": "Account created successfully"}
 
