@@ -35,9 +35,11 @@ class DetailedListController: UIViewController {
     var server_version = -1 // Version of the list from the API
     var local_version = -1 // Version of the list locally on the device
     var filter_selection = 0
+    var user_count = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getCount()
         self.getData()
         self.navigationItem.title = selected_list_name
         configureNavigationBar()
@@ -52,43 +54,16 @@ class DetailedListController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        self.getCount()
         self.getData()
         active_page = "D"
-
-        // TODO network call to invalidate timer
         
-        self.timer = Timer.scheduledTimer(withTimeInterval: 0.75, repeats: true) { timer in
-            
-            // Invalidate the timer if we are no longer on the detailed list page
-            if(active_page != "D"){
-                self.timer.invalidate()
-            }
-
-            print("Timer fired!")
-            
-            // Gets the current version of the list
-            let listVersionRequest = ListVersionRequest(list_id: selected_list_id)
-            listVersionRequest.getVersion { [weak self] result in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let list):
-                    self?.server_version = list.version
-                }
-            }
-            
-            print(self.server_version)
-            print(self.local_version)
-            
-            // Check to see the server version is more up to date than the local
-            if(self.server_version > self.local_version){
-                print("Getting new data")
-                self.getData()
-            }
-
+        print("Users with list access: \(self.user_count)")
+        
+        // Creates the timer for collaborative editing if multiple users have access to the list
+        if(self.user_count > 1){
+            self.createTimer()
         }
-        timer.tolerance = 0.2
-        RunLoop.current.add(timer, forMode: .common)
 
     }
     
@@ -148,6 +123,59 @@ class DetailedListController: UIViewController {
                 print("Data received properly")
             }
         }
+    }
+    
+    func getCount() {
+        let ownerCountRequest = OwnerCountRequest(list_id: selected_list_id)
+        ownerCountRequest.getCount() { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print("Error getting data")
+                DispatchQueue.main.async {
+                    self?.CreateAlert(title: "Error", message: "\(error)")
+                }
+                print(error)
+            case .success(let response):
+                print("Data received properly")
+                print(response)
+                self!.user_count = response.count
+            }
+        }
+    }
+    
+    func createTimer(){
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.75, repeats: true) { timer in
+            
+            // Invalidate the timer if we are no longer on the detailed list page
+            if(active_page != "D"){
+                self.timer.invalidate()
+            }
+
+            print("Timer fired!")
+            
+            // Gets the current version of the list
+            let listVersionRequest = ListVersionRequest(list_id: selected_list_id)
+            listVersionRequest.getVersion { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let list):
+                    self?.server_version = list.version
+                }
+            }
+            
+            print(self.server_version)
+            print(self.local_version)
+            
+            // Check to see the server version is more up to date than the local
+            if(self.server_version > self.local_version){
+                print("Getting new data")
+                self.getData()
+            }
+
+        }
+        timer.tolerance = 0.2
+        RunLoop.current.add(timer, forMode: .common)
     }
     
     func CreateAlert(title: String, message: String) {
