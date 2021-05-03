@@ -182,7 +182,7 @@ extension RecipeCheckViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50 // This is because the view is height 50 in the RecipeViewCell.xib
+        return 35 // This is because the view is height 50 in the RecipeViewCell.xib
     }
     
     // Use custom header
@@ -230,7 +230,6 @@ extension RecipeCheckViewController: CheckRecipeButtonDelegate {
                 print(error)
             case .success(let response):
                 print("Item checked has been updated \(response)")
-                self?.getData()
             }
         }
         return

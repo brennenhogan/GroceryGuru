@@ -30,6 +30,8 @@ class RecipeCheckCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        checkBtn.setImage(UIImage(systemName: "circle"), for: .normal)
+        checkBtn.setImage(UIImage(systemName:"xmark.circle.fill"), for: .selected)
     }
     
     func textFieldShouldReturn(_ itemName: UITextField) -> Bool {
