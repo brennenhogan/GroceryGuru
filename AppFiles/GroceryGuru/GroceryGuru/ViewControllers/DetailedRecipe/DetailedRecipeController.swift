@@ -40,6 +40,7 @@ class DetailedRecipeController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = 30
         
         self.getData()
     }
