@@ -732,7 +732,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="oen-uu-o5A">
-                                        <rect key="frame" x="20" y="10" width="374" height="299"/>
+                                        <rect key="frame" x="20" y="10" width="374" height="296"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="WTT-Q5-ze7">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="170"/>
@@ -814,17 +814,17 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Yub-zb-7mD">
-                                                <rect key="frame" x="0.0" y="194" width="374" height="31"/>
+                                                <rect key="frame" x="0.0" y="194" width="374" height="28"/>
                                                 <subviews>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lbT-gg-ZNQ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="51" height="28"/>
                                                         <color key="onTintColor" red="0.58039215690000001" green="0.66666666669999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <connections>
                                                             <action selector="toggleButtonWithSender:" destination="kLp-IX-E2O" eventType="primaryActionTriggered" id="PFn-nx-tZ4"/>
                                                         </connections>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="200" text="I agree to terms and conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oe5-UP-WyZ">
-                                                        <rect key="frame" x="65" y="0.0" width="309" height="31"/>
+                                                        <rect key="frame" x="65" y="0.0" width="309" height="28"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -832,7 +832,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tMP-yK-i4X">
-                                                <rect key="frame" x="0.0" y="249" width="374" height="50"/>
+                                                <rect key="frame" x="0.0" y="246" width="374" height="50"/>
                                                 <color key="backgroundColor" red="0.38823529410000002" green="0.39607843139999999" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="960-AV-aSH"/>
@@ -853,7 +853,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="200" translatesAutoresizingMaskIntoConstraints="NO" id="5mp-ds-sHO">
-                                        <rect key="frame" x="20" y="325" width="374" height="439"/>
+                                        <rect key="frame" x="20" y="322" width="374" height="442"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -1146,7 +1146,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="addStore:" destination="0yz-ct-IcC" eventType="primaryActionTriggered" id="tad-UH-cPW"/>
                                                     <segue destination="XiS-Zp-ra4" kind="unwind" unwindAction="unwind:" id="3Re-bd-O7X"/>
                                                 </connections>
                                             </button>
