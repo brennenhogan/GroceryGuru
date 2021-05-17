@@ -20,6 +20,9 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         loginButton.isHidden = true
+        
+        userText.delegate = self
+        passwordText.delegate = self
     }
     
     private func configureNavigationBar() {
@@ -85,4 +88,15 @@ class SignUpViewController: UIViewController {
         }
     }
 
+}
+
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == userText{
+            userText.resignFirstResponder() // dismiss keyboard
+        } else if textField == passwordText {
+            passwordText.resignFirstResponder()
+        }
+        return true
+    }
 }

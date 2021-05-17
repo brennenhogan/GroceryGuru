@@ -19,6 +19,9 @@ class ResetPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
+        userText.delegate = self
+        oldPasswordText.delegate = self
+        newPasswordText.delegate = self
     }
     
     private func configureNavigationBar() {
@@ -90,3 +93,15 @@ class ResetPasswordViewController: UIViewController {
 
 }
 
+extension ResetPasswordViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == userText{
+            userText.resignFirstResponder() // dismiss keyboard
+        }else if textField == oldPasswordText {
+            oldPasswordText.resignFirstResponder()
+        }else if textField == newPasswordText {
+            newPasswordText.resignFirstResponder()
+        }
+        return true
+    }
+}

@@ -23,6 +23,9 @@ class LoginViewController: UIViewController {
         self.configureNavigationBar()
         self.navigationItem.setHidesBackButton(true, animated: false)
         
+        userText.delegate = self
+        passwordText.delegate = self
+        
         // Sets the default values to the user preferences
         userText.text = defaults.string(forKey: "Name") ?? ""
         saveUsername.isOn = defaults.bool(forKey: "SaveName")
@@ -95,4 +98,15 @@ class LoginViewController: UIViewController {
         }
     }
 
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == userText{
+            userText.resignFirstResponder() // dismiss keyboard
+        } else if textField == passwordText {
+            passwordText.resignFirstResponder()
+        }
+        return true
+    }
 }
