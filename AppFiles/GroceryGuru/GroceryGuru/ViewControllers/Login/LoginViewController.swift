@@ -9,9 +9,12 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    let defaults = UserDefaults.standard
+    
     @IBOutlet weak var userText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var saveUsername: UISwitch!
     
     var loginDetails = LoginResponse()
     
@@ -19,6 +22,10 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.configureNavigationBar()
         self.navigationItem.setHidesBackButton(true, animated: false)
+        
+        // Sets the default values to the user preferences
+        userText.text = defaults.string(forKey: "Name") ?? ""
+        saveUsername.isOn = defaults.bool(forKey: "SaveName")
     }
     
     private func configureNavigationBar() {
@@ -66,13 +73,26 @@ class LoginViewController: UIViewController {
             case .success(let login):
                 userUuid = login.uuid!
                 self?.loginDetails = login
+                let saveUsername = self?.defaults.bool(forKey: "SaveName") ?? false
                 print("Now performing segue to landing page")
                 DispatchQueue.main.async{
+                    if saveUsername { // Saves the username at login if the user toggled save
+                        self?.defaults.set(userText, forKey: "Name")
+                    }
                     self?.performSegue(withIdentifier: "LoginToLanding", sender: self)
                 }
             }
         }
         
+    }
+    
+    @IBAction func toggleSwitch( sender: UISwitch) {
+        defaults.set(saveUsername.isOn, forKey: "SaveName")
+        
+        // Erases the saved username if the user toggles off
+        if !saveUsername.isOn{
+            defaults.set("", forKey: "Name")
+        }
     }
 
 }

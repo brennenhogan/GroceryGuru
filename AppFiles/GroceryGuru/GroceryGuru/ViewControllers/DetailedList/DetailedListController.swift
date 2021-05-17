@@ -36,6 +36,8 @@ class DetailedListController: UIViewController {
     var local_version = -1 // Version of the list locally on the device
     var filter_selection = 0
     var user_count = -1
+    var newestIndexPath = IndexPath()
+    var newestSection = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -256,14 +258,14 @@ class DetailedListController: UIViewController {
             case .success(let response):
                 print("Store has been created \(response.store_id)")
                 self!.local_version += 1
+                self?.newestSection = current_section_count
                 
                 let listElement = ListElement(items: [], store_id: response.store_id, name: "")
                 self?.listData.stores.append(listElement)
                 DispatchQueue.main.async {
                     self?.tableView.insertSections([current_section_count], with: .automatic)
-                    let header = (self?.tableView.headerView(forSection: current_section_count))! as! ListHeaderView
-                    header.storeName.isEnabled = true
-                    header.storeName.becomeFirstResponder() // Keyboard pop up on new item's description
+                    let sectionIndexPath = IndexPath(row: NSNotFound, section: current_section_count)
+                    self?.tableView.scrollToRow(at: sectionIndexPath, at: .bottom, animated: true)
                 }
             }
         }
@@ -342,6 +344,13 @@ extension DetailedListController : UITableViewDataSource {
             view.expandButton.isSelected = false
         }
         
+        if newestSection == section {
+            newestSection = -1
+            view.storeName.isEnabled = true
+            view.storeName.resignFirstResponder()
+            view.storeName.becomeFirstResponder()
+        }
+                
         return view
     }
     
@@ -374,6 +383,12 @@ extension DetailedListController : UITableViewDataSource {
         cell.itemQuantityDelegate = self
         cell.itemDescriptionDelegate = self
         cell.checkButtonDelegate = self
+        
+        if indexPath.elementsEqual(self.newestIndexPath) {
+            cell.itemName.isEnabled = true
+            cell.itemName.resignFirstResponder()
+            cell.itemName.becomeFirstResponder() // Keyboard pop up on new item's description
+        }
                 
         return cell
     }
@@ -488,12 +503,11 @@ extension DetailedListController: AddItemDelegate {
                 items?.append(item)
                 self?.listData.stores[section].items = items!
                 let indexPath = IndexPath(row: (current_row_count), section: section)
+                self?.newestIndexPath = indexPath
 
                 DispatchQueue.main.async {
                     self?.tableView.insertRows(at: [indexPath], with: .automatic) // Insert new item
-                    let cell = self?.tableView.cellForRow(at: indexPath) as! ListViewCell
-                    cell.itemName.isEnabled = true
-                    cell.itemName.becomeFirstResponder() // Keyboard pop up on new item's description
+                    self?.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
                 }
             }
         }

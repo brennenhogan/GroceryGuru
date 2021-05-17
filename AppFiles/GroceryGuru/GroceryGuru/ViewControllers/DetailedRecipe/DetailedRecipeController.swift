@@ -369,6 +369,7 @@ extension DetailedRecipeController: AddRecipeItemDelegate {
 
                 DispatchQueue.main.async {
                     self?.tableView.insertRows(at: [indexPath], with: .automatic) // Insert new item
+                    self?.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true) //Scroll to the row after being added
                     let cell = self?.tableView.cellForRow(at: indexPath) as! RecipeViewCell
                     cell.itemName.isEnabled = true
                     cell.itemName.becomeFirstResponder() // Keyboard pop up on new item's description
