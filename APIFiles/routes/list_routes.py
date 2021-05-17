@@ -169,7 +169,7 @@ def create_from_oldlist():
     store_mappings[store.get_id()] = new_store.store_id # Update store_mappings with mappings so later we can use the new store ids
 
   # Insert new items
-  items = ListItem.query.filter(ListItem.list_id==list_id).all() # Get all items for the list with list_id == list_id
+  items = ListItem.query.filter(ListItem.list_id==list_id).filter(ListItem.deleted==0).all() # Get all items for the list with list_id == list_id
   for item in items:
     new_item = ListItem(new_list.list_id, store_mappings[item.get_store()], item.get_qty(), item.get_description(), 0) # Items start off unpurchased.  Use the new stores
     db.session.add(new_item)
@@ -190,6 +190,7 @@ def delete_list():
  
   ownership_lists = ListOwnership.query.filter(ListOwnership.list_id==list_id).all() # Get the list from the DB
   current_list = List.query.filter(List.list_id==list_id).first() # Get the list from the DB
+  print(ownership_lists)
   
   # Deletes the entry from both tables if only one owner exists
   if len(ownership_lists) == 1:
@@ -198,10 +199,9 @@ def delete_list():
 
     stores = Store.query.filter(Store.list_id==list_id).all()
     items = ListItem.query.filter(ListItem.list_id==list_id).all()
-    for store in stores:
-      db.session.delete(store)
+    # Do not delete stores to preserve their unique id as well
     for item in items:
-      db.session.delete(item)
+      item.deleted = 1 # This preserves the item_id in the table
   else: #Deletes only the ownership for the current user if there are multiple owners
     for owner in ownership_lists:
       if owner.uuid == uuid:

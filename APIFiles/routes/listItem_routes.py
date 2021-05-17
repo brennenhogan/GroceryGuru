@@ -104,7 +104,7 @@ def delete_item():
   item_id = request.json['item_id']
  
   item = ListItem.query.filter(ListItem.item_id==item_id).first() # Get the item from the DB
-  db.session.delete(item)
+  item.deleted = 1
   
   try:
     db.session.commit()
@@ -137,11 +137,13 @@ def get_list(id, user_uuid, purchased):
         .filter(ListItem.list_id==id)\
         .filter(ListItem.store_id==store_id)\
         .filter(ListItem.purchased==0)\
+        .filter(ListItem.deleted==0)\
         .all()
     else:
       store_items = db.session.query(ListItem)\
         .filter(ListItem.list_id==id)\
         .filter(ListItem.store_id==store_id)\
+        .filter(ListItem.deleted==0)\
         .all()
     
     listFragment = {"name": store.get_name(), "store_id": store_id,"items": store_items}

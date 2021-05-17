@@ -72,7 +72,7 @@ def get_listids(user_uuid, old):
     ListObj = l_obj._asdict()['List']
 
     list_id = ListOwnershipObj.get_list_id()
-    list_qty = ListItem.query.filter(ListItem.list_id==list_id).count()
+    list_qty = ListItem.query.filter(ListItem.list_id==list_id).filter(ListItem.deleted==0).count()
 
     temp = {"list_id": list_id, "list_name": ListObj.get_name(), "list_old": ListObj.get_old(), "list_qty": list_qty} # Use the model methods to get the data
     all_lists.append(temp)

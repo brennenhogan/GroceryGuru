@@ -9,6 +9,7 @@ class ListItem(db.Model):
   qty = db.Column(db.Integer, nullable=False)
   description = db.Column(db.String(100), nullable=False)
   purchased = db.Column(db.Integer, nullable=False)
+  deleted = db.Column(db.Integer, nullable=False)
 
   def __init__(self, list_id, store_id, qty, description, purchased):
     self.list_id = list_id
@@ -16,6 +17,7 @@ class ListItem(db.Model):
     self.qty = qty
     self.description = description
     self.purchased = purchased
+    self.deleted = 0 # Items start not deleted
 
   def get_store(self):
     return self.store_id

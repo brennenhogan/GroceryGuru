@@ -61,7 +61,7 @@ def delete_store():
   items = ListItem.query.filter(ListItem.store_id==store_id).all() # Get all items for the list with store_id == store_id
 
   for item in items:
-    db.session.delete(item)
+    item.deleted = 1
 
   store = Store.query.filter(Store.store_id==store_id).one()
   db.session.delete(store)
